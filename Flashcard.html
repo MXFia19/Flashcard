@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards Espagnol</title>
+    
+    <!-- Importation de Tailwind CSS pour le style -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Importation de React -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Importation de Babel pour lire le code React -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        // Icônes SVG simples pour remplacer celles du logiciel
+        const IconBook = () => <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>;
+        const IconArrows = () => <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></svg>;
+        const IconReset = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>;
+        const IconShuffle = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 18h1.4c1.3 0 2.5-.6 3.3-1.7l6.1-8.6c.7-1.1 2-1.7 3.3-1.7H22"/><path d="m18 2 4 4-4 4"/><path d="M2 6h1.9c1.5 0 2.8.8 3.6 2.1l2 3.1"/><path d="m22 16-4 4 4 4"/><path d="M15.1 14.9l2.4 3.4c.7 1 1.9 1.7 3.2 1.7H22"/></svg>;
+        const IconLeft = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>;
+        const IconRight = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>;
+        const IconSkip = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>;
+
+        const VOCABULARY_DB = {
+            "Fiche 11 : Achats en magasin": [
+                { es: "Tienda", fr: "Magasin" }, { es: "Centro comercial", fr: "Centre commercial" },
+                { es: "Boutique", fr: "Boutique" }, { es: "Compras", fr: "Achats" },
+                { es: "Cliente", fr: "Client" }, { es: "Dependiente", fr: "Vendeur" },
+                { es: "Precio", fr: "Prix" }, { es: "Descuento", fr: "Remise" },
+                { es: "Rebajas", fr: "Soldes" }, { es: "Cambio", fr: "Monnaie (Retour)" },
+                { es: "Devolver", fr: "Rembourser" }, { es: "Probar", fr: "Essayer" },
+                { es: "Tarjeta de crédito", fr: "Carte de crédit" }, { es: "Dinero en efectivo", fr: "Argent liquide" },
+                { es: "Bolsa", fr: "Sac" }, { es: "Tienda en línea", fr: "Boutique en ligne" },
+                { es: "Envío", fr: "Livraison" }, { es: "Devolución", fr: "Retour" }
+            ],
+            "Fiche 12 : Vêtements et accessoires": [
+                { es: "Pantalones", fr: "Pantalon" }, { es: "Pantalones cortos", fr: "Short" },
+                { es: "Vaqueros", fr: "Jeans" }, { es: "Vestido", fr: "Robe" },
+                { es: "Falda", fr: "Jupe" }, { es: "Camisa", fr: "Chemise" },
+                { es: "Camiseta / Niqui", fr: "T-shirt" }, { es: "Blusa", fr: "Blouse" },
+                { es: "Chaqueta", fr: "Veste" }, { es: "Abrigo", fr: "Manteau" },
+                { es: "Traje", fr: "Costume" }, { es: "Jersey", fr: "Pull" },
+                { es: "Suéter", fr: "Sweatshirt" }, { es: "Chaleco", fr: "Gilet" },
+                { es: "Pijama", fr: "Pijama" }, { es: "Bata", fr: "Robe de nuit" },
+                { es: "Un bañador", fr: "Maillot de bain" }, { es: "Ropa interior", fr: "Sous-vêtements" },
+                { es: "Sujetador / Sostén", fr: "Soutien-gorge" }, { es: "Braga", fr: "Culotte" },
+                { es: "Calzoncillo", fr: "Caleçon" }, { es: "Bóxer", fr: "Boxer" },
+                { es: "Zapatos", fr: "Chaussures" }, { es: "Zapatos de tacón", fr: "Chaussures à talon" },
+                { es: "Zapatos de deporte", fr: "Baskets" }, { es: "Botas", fr: "Bottes" },
+                { es: "Zapatillas", fr: "Pantoufles" }, { es: "Sandalias", fr: "Sandales" },
+                { es: "Chanclas", fr: "Tongs" }, { es: "Calcetines", fr: "Chaussettes" },
+                { es: "Sombrero", fr: "Chapeau" }, { es: "Guantes", fr: "Gants" },
+                { es: "Bufanda", fr: "Écharpe" }, { es: "Pañuelo", fr: "Foulard" },
+                { es: "Gorro", fr: "Bonnet" }, { es: "Gorra", fr: "Casquette" },
+                { es: "Corbata", fr: "Cravate" }, { es: "Cinturón", fr: "Ceinture" },
+                { es: "Paraguas", fr: "Parapluie" }
+            ],
+            "Fiche 13 : Couleurs, matières, motifs": [
+                { es: "Rojo", fr: "Rouge" }, { es: "Azul", fr: "Bleu" },
+                { es: "Amarillo", fr: "Jaune" }, { es: "Verde", fr: "Vert" },
+                { es: "Negro", fr: "Noir" }, { es: "Blanco", fr: "Blanc" },
+                { es: "Gris", fr: "Gris" }, { es: "Naranja", fr: "Orange" },
+                { es: "Marrón", fr: "brun" }, { es: "Rosa", fr: "Rose" },
+                { es: "Violeta", fr: "Violet" }, { es: "Morado / Malva", fr: "Mauve" },
+                { es: "Celeste", fr: "Bleu ciel" }, { es: "Turquesa", fr: "Turquoise" },
+                { es: "Beige", fr: "Beige" }, { es: "Plateado", fr: "Argenté" },
+                { es: "Dorado", fr: "Doré" }, { es: "Burdeos", fr: "Bordeaux" },
+                { es: "Caqui", fr: "Kaki" }, { es: "Fucsia", fr: "Fuchsia" },
+                { es: "De algodón", fr: "En coton" }, { es: "De lana", fr: "En laine" },
+                { es: "De seda", fr: "En soie" }, { es: "De cuero", fr: "En cuir" },
+                { es: "De piel", fr: "En daim" }, { es: "De vaqueros", fr: "En jeans" },
+                { es: "A rayas", fr: "A rayures" }, { es: "A cuadros", fr: "A carreaux" },
+                { es: "A lunares", fr: "A pois" }, { es: "Liso", fr: "Uni" }
+            ],
+            "Fiche 14 & 15 : Aliments & Ustensiles": [
+                { es: "pan", fr: "pain" }, { es: "la leche", fr: "le lait" },
+                { es: "la mantequilla", fr: "le beurre" }, { es: "queso", fr: "fromage" },
+                { es: "huevo", fr: "oeuf" }, { es: "pollo", fr: "poulet" },
+                { es: "carne", fr: "viande" }, { es: "pescado", fr: "poisson" },
+                { es: "fruta", fr: "fruit" }, { es: "manzana", fr: "pomme" },
+                { es: "plátano", fr: "banane" }, { es: "fresa", fr: "fraise" },
+                { es: "una verdura", fr: "un légume" }, { es: "tomate", fr: "tomate" },
+                { es: "zanahoria", fr: "carotte" }, { es: "lechuga", fr: "laitue" },
+                { es: "cebolla", fr: "oignon" }, { es: "patata", fr: "pomme de terre" },
+                { es: "pimiento", fr: "poivron" }, { es: "arroz", fr: "riz" },
+                { es: "pastas", fr: "pâtes" }, { es: "azúcar", fr: "sucre" },
+                { es: "sal", fr: "sel" }, { es: "pimienta", fr: "poivre" },
+                { es: "aceite", fr: "huile" }, { es: "vinagre", fr: "vinaigre" },
+                { es: "galletas", fr: "biscuits" }, { es: "mermelada", fr: "confiture" },
+                { es: "chocolate", fr: "chocolat" }, { es: "yogurt", fr: "yaourt" },
+                { es: "el plato", fr: "assiette" }, { es: "cuchara", fr: "cuillère" },
+                { es: "tenedor", fr: "fourchette" }, { es: "cuchillo", fr: "couteau" },
+                { es: "vaso", fr: "verre" }, { es: "copa", fr: "verre à pied, à vin" },
+                { es: "taza", fr: "tasse" }, { es: "bol, tazón", fr: "bol" },
+                { es: "sartén", fr: "poêle" }, { es: "cacerola", fr: "casserole" },
+                { es: "olla", fr: "marmite" }, { es: "batidora", fr: "mixeur" },
+                { es: "mezclar", fr: "mélanger" }, { es: "cortar", fr: "couper" },
+                { es: "añadir", fr: "ajouter" }, { es: "cocer", fr: "cuire" }
+            ]
+        };
+
+        const ALL_VOCABULARY = Object.values(VOCABULARY_DB).flat();
+
+        function App() {
+            const [activeCategory, setActiveCategory] = useState("Tout le vocabulaire");
+            const [cards, setCards] = useState([...ALL_VOCABULARY]);
+            const [currentIndex, setCurrentIndex] = useState(0);
+            const [isFlipped, setIsFlipped] = useState(false);
+            const [isAnimating, setIsAnimating] = useState(false);
+            const [isFrToEs, setIsFrToEs] = useState(false);
+
+            const handleCategoryChange = (e) => {
+                const category = e.target.value;
+                setActiveCategory(category);
+                setIsAnimating(true);
+                setIsFlipped(false);
+                setTimeout(() => {
+                    if (category === "Tout le vocabulaire") {
+                        setCards([...ALL_VOCABULARY]);
+                    } else {
+                        setCards([...VOCABULARY_DB[category]]);
+                    }
+                    setCurrentIndex(0);
+                    setIsAnimating(false);
+                }, 150);
+            };
+
+            const toggleFlip = () => setIsFlipped(!isFlipped);
+
+            const toggleDirection = () => {
+                if (isAnimating) return;
+                setIsAnimating(true);
+                setIsFlipped(false);
+                setTimeout(() => {
+                    setIsFrToEs(!isFrToEs);
+                    setIsAnimating(false);
+                }, 150);
+            };
+
+            const handleNext = () => {
+                if (isAnimating) return;
+                setIsAnimating(true);
+                setIsFlipped(false);
+                setTimeout(() => {
+                    setCurrentIndex((prevIndex) => (prevIndex + 1) % cards.length);
+                    setIsAnimating(false);
+                }, 150);
+            };
+
+            const handlePrev = () => {
+                if (isAnimating) return;
+                setIsAnimating(true);
+                setIsFlipped(false);
+                setTimeout(() => {
+                    setCurrentIndex((prevIndex) => (prevIndex - 1 + cards.length) % cards.length);
+                    setIsAnimating(false);
+                }, 150);
+            };
+
+            const handleSkipToEnd = () => {
+                if (isAnimating) return;
+                setIsAnimating(true);
+                setIsFlipped(false);
+                setTimeout(() => {
+                    setCards(prevCards => {
+                        const newCards = [...prevCards];
+                        const currentCard = newCards.splice(currentIndex, 1)[0];
+                        newCards.push(currentCard);
+                        return newCards;
+                    });
+                    setCurrentIndex(prevIndex => prevIndex === cards.length - 1 ? 0 : prevIndex);
+                    setIsAnimating(false);
+                }, 150);
+            };
+
+            const handleShuffle = () => {
+                if (isAnimating) return;
+                setIsAnimating(true);
+                setIsFlipped(false);
+                setTimeout(() => {
+                    const shuffled = [...cards].sort(() => Math.random() - 0.5);
+                    setCards(shuffled);
+                    setCurrentIndex(0);
+                    setIsAnimating(false);
+                }, 150);
+            };
+
+            const handleReset = () => {
+                if (isAnimating) return;
+                setIsAnimating(true);
+                setIsFlipped(false);
+                setTimeout(() => {
+                    if (activeCategory === "Tout le vocabulaire") {
+                        setCards([...ALL_VOCABULARY]);
+                    } else {
+                        setCards([...VOCABULARY_DB[activeCategory]]);
+                    }
+                    setCurrentIndex(0);
+                    setIsAnimating(false);
+                }, 150);
+            };
+
+            const currentCard = cards[currentIndex];
+            const frontLanguage = isFrToEs ? "Français" : "Espagnol";
+            const backLanguage = isFrToEs ? "Espagnol" : "Français";
+            const frontText = isFrToEs ? currentCard?.fr : currentCard?.es;
+            const backText = isFrToEs ? currentCard?.es : currentCard?.fr;
+
+            return (
+                <div className="min-h-screen bg-amber-50 flex flex-col items-center justify-center p-4 font-sans text-slate-800">
+                    
+                    <style dangerouslySetInnerHTML={{__html: `
+                        .flashcard-container { perspective: 1000px; }
+                        .flashcard-inner {
+                            position: relative; width: 100%; height: 100%;
+                            transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+                            transform-style: preserve-3d;
+                        }
+                        .flashcard-flipped .flashcard-inner { transform: rotateY(180deg); }
+                        .flashcard-front, .flashcard-back {
+                            position: absolute; width: 100%; height: 100%;
+                            -webkit-backface-visibility: hidden; backface-visibility: hidden;
+                            border-radius: 1.5rem;
+                            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+                            display: flex; flex-direction: column; align-items: center; justify-content: center;
+                            padding: 2rem; text-align: center; cursor: pointer;
+                        }
+                        .flashcard-front { background-color: white; border: 2px solid #fde68a; }
+                        .flashcard-back { background-color: #fffbeb; border: 2px solid #fcd34d; transform: rotateY(180deg); }
+                        select { 
+                            appearance: none; 
+                            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23b45309%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); 
+                            background-repeat: no-repeat; background-position: right .7rem top 50%; background-size: .65rem auto; 
+                        }
+                    `}} />
+
+                    <div className="max-w-md w-full">
+                        <div className="mb-6 w-full">
+                            <div className="relative">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-amber-600">
+                                    <IconBook />
+                                </div>
+                                <select 
+                                    value={activeCategory}
+                                    onChange={handleCategoryChange}
+                                    className="block w-full pl-10 pr-10 py-3 text-base border-amber-200 focus:outline-none focus:ring-amber-500 focus:border-amber-500 sm:text-sm rounded-2xl bg-white shadow-sm text-amber-900 font-semibold cursor-pointer"
+                                >
+                                    <option value="Tout le vocabulaire">📚 Tout le vocabulaire ({ALL_VOCABULARY.length} mots)</option>
+                                    {Object.keys(VOCABULARY_DB).map(cat => (
+                                        <option key={cat} value={cat}>{cat} ({VOCABULARY_DB[cat].length} mots)</option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div className="flex justify-between items-center mb-4 px-2">
+                            <div className="flex gap-2">
+                                <button
+                                    onClick={toggleDirection}
+                                    className="flex items-center gap-1 px-3 py-2 bg-red-50 text-red-600 rounded-full shadow-sm hover:bg-red-100 transition-colors font-semibold text-sm"
+                                    title="Changer le sens (Espagnol <-> Français)"
+                                >
+                                    <span>{isFrToEs ? 'FR' : 'ES'}</span>
+                                    <IconArrows />
+                                    <span>{isFrToEs ? 'ES' : 'FR'}</span>
+                                </button>
+                            </div>
+                            
+                            <div className="flex gap-2">
+                                <button onClick={handleReset} className="p-2 bg-white rounded-full shadow-sm hover:bg-amber-100 transition-colors text-amber-600" title="Ordre original">
+                                    <IconReset />
+                                </button>
+                                <button onClick={handleShuffle} className="p-2 bg-amber-500 text-white rounded-full shadow-sm hover:bg-amber-600 transition-colors" title="Mélanger les cartes">
+                                    <IconShuffle />
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="flashcard-container h-80 w-full mb-8">
+                            <div className={`flashcard ${isFlipped ? 'flashcard-flipped' : ''} w-full h-full`} onClick={toggleFlip}>
+                                <div className="flashcard-inner">
+                                    <div className="flashcard-front">
+                                        <span className="absolute top-4 right-5 text-sm font-medium text-amber-400">{frontLanguage}</span>
+                                        <p className="text-3xl md:text-4xl font-bold text-slate-800 leading-tight">{frontText}</p>
+                                        <p className="absolute bottom-6 text-sm text-amber-400 flex items-center gap-1">
+                                            <IconReset /> Cliquez pour retourner
+                                        </p>
+                                    </div>
+                                    <div className="flashcard-back">
+                                        <span className="absolute top-4 right-5 text-sm font-medium text-red-400">{backLanguage}</span>
+                                        <p className="text-3xl md:text-4xl font-bold text-red-600 leading-tight">{backText}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="flex flex-col gap-3">
+                            <div className="flex items-center justify-between bg-white p-2 rounded-2xl shadow-sm border border-amber-100">
+                                <button onClick={handlePrev} disabled={isAnimating} className="flex items-center gap-2 px-4 py-3 text-slate-600 hover:text-amber-700 hover:bg-amber-50 rounded-xl transition-colors font-medium disabled:opacity-50">
+                                    <IconLeft />
+                                    <span className="hidden sm:inline">Précédent</span>
+                                </button>
+                                
+                                <div className="text-sm font-semibold text-amber-600">
+                                    {currentIndex + 1} / {cards.length}
+                                </div>
+
+                                <button onClick={handleNext} disabled={isAnimating} className="flex items-center gap-2 px-4 py-3 text-slate-600 hover:text-amber-700 hover:bg-amber-50 rounded-xl transition-colors font-medium disabled:opacity-50">
+                                    <span className="hidden sm:inline">Suivant</span>
+                                    <IconRight />
+                                </button>
+                            </div>
+
+                            <button onClick={handleSkipToEnd} disabled={isAnimating} className="flex items-center justify-center gap-2 px-4 py-3 bg-white text-slate-600 hover:text-red-600 hover:bg-red-50 rounded-2xl shadow-sm border border-amber-100 hover:border-red-200 transition-all font-medium disabled:opacity-50 w-full">
+                                <IconSkip />
+                                Passer et mettre à la fin
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
