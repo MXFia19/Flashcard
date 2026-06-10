@@ -16,7 +16,7 @@
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Importation des librairies fiables (cdnjs) -->
+    <!-- Importation des librairies fiables -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js" crossorigin></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js" crossorigin></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.6/babel.min.js" crossorigin></script>
@@ -35,23 +35,21 @@
     <script type="text/babel">
         const { useState, useEffect, useMemo } = React;
 
-        // --- GESTION SÉCURISÉE DE LA MÉMOIRE (Évite l'écran blanc) ---
-        const safeGetStorage = (key, defaultVal) => {
-            try { return JSON.parse(localStorage.getItem(key)) || defaultVal; } 
-            catch (e) { return defaultVal; }
-        };
-        const safeSetStorage = (key, val) => {
-            try { localStorage.setItem(key, JSON.stringify(val)); } 
-            catch (e) {}
-        };
-        const safeGetTheme = () => {
-            try { return localStorage.getItem('theme') === 'dark'; } 
-            catch (e) { return false; }
-        };
-        const safeSetTheme = (isDark) => {
-            try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } 
-            catch (e) {}
-        };
+        // --- GESTION SÉCURISÉE DE LA MÉMOIRE ---
+        const safeGetStorage = (key, defaultVal) => { try { return JSON.parse(localStorage.getItem(key)) || defaultVal; } catch (e) { return defaultVal; } };
+        const safeSetStorage = (key, val) => { try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {} };
+        const safeGetTheme = () => { try { return localStorage.getItem('theme') === 'dark'; } catch (e) { return false; } };
+        const safeSetTheme = (isDark) => { try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (e) {} };
+
+        // --- LANGUES DISPONIBLES ---
+        const LANGUAGES = [
+            { code: 'es', label: 'Espagnol', tts: 'es-ES' },
+            { code: 'nl', label: 'Néerlandais', tts: 'nl-NL' },
+            { code: 'en', label: 'Anglais', tts: 'en-US' },
+            { code: 'de', label: 'Allemand', tts: 'de-DE' },
+            { code: 'it', label: 'Italien', tts: 'it-IT' },
+            { code: 'fr', label: 'Français', tts: 'fr-FR' }
+        ];
 
         // --- ICÔNES SVG ---
         const Icons = {
@@ -66,7 +64,9 @@
             Check: () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>,
             X: () => <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>,
             Rotate: () => <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>,
-            Book: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            Book: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>,
+            Shuffle: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 18h1.4c1.3 0 2.5-.6 3.3-1.7l6.1-8.6c.7-1.1 2-1.7 3.3-1.7H22"/><path d="m18 2 4 4-4 4"/><path d="M2 6h1.9c1.5 0 2.8.8 3.6 2.1l2 3.1"/><path d="m22 16-4 4 4 4"/><path d="M15.1 14.9l2.4 3.4c.7 1 1.9 1.7 3.2 1.7H22"/></svg>,
+            Reset: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
         };
 
         // --- BD ESPAGNOL PAR DÉFAUT ---
@@ -79,14 +79,16 @@
                 { front: "Rebajas", back: "Soldes" }, { front: "Cambio", back: "Monnaie (Retour)" },
                 { front: "Devolver", back: "Rembourser" }, { front: "Probar", back: "Essayer" },
                 { front: "Tarjeta de crédito", back: "Carte de crédit" }, { front: "Dinero en efectivo", back: "Argent liquide" },
-                { front: "Bolsa", back: "Sac" }
+                { front: "Bolsa", back: "Sac" }, { front: "Tienda en línea", back: "Boutique en ligne" },
+                { front: "Envío", back: "Livraison" }, { front: "Devolución", back: "Retour" }
             ],
             "Fiche 12 : Vêtements": [
                 { front: "Pantalones", back: "Pantalon" }, { front: "Vaqueros", back: "Jeans" },
                 { front: "Vestido", back: "Robe" }, { front: "Falda", back: "Jupe" },
                 { front: "Camisa", back: "Chemise" }, { front: "Camiseta", back: "T-shirt" },
                 { front: "Chaqueta", back: "Veste" }, { front: "Abrigo", back: "Manteau" },
-                { front: "Zapatos", back: "Chaussures" }, { front: "Sombrero", back: "Chapeau" }
+                { front: "Zapatos", back: "Chaussures" }, { front: "Sombrero", back: "Chapeau" },
+                { front: "Zapatos de deporte", back: "Baskets" }, { front: "Bufanda", back: "Écharpe" }
             ],
             "Fiche 13 : Couleurs & Matières": [
                 { front: "Rojo", back: "Rouge" }, { front: "Azul", back: "Bleu" },
@@ -96,18 +98,27 @@
                 { front: "De cuero", back: "En cuir" }, { front: "A rayas", back: "A rayures" }
             ]
         };
-
         const ALL_VOCABULARY = Object.values(VOCABULARY_DB).flat();
 
         // ==========================================
         // 1. FLASHCARDS INTELLIGENTES
         // ==========================================
-        const FlashcardMode = ({ cards, isReversed, onPlayAudio }) => {
-            const [queue, setQueue] = useState([...cards].sort(() => Math.random() - 0.5));
+        const FlashcardMode = ({ cards, isReversed, langFront, langBack, onPlayAudio }) => {
+            const [queue, setQueue] = useState([...cards]);
             const [missed, setMissed] = useState([]);
             const [currentIndex, setCurrentIndex] = useState(0);
             const [isFlipped, setIsFlipped] = useState(false);
             const [finished, setFinished] = useState(false);
+
+            const handleShuffle = () => {
+                setQueue([...cards].sort(() => Math.random() - 0.5));
+                setMissed([]); setCurrentIndex(0); setIsFlipped(false); setFinished(false);
+            };
+
+            const handleResetOrder = () => {
+                setQueue([...cards]);
+                setMissed([]); setCurrentIndex(0); setIsFlipped(false); setFinished(false);
+            };
 
             const handleAnswer = (knewIt) => {
                 setIsFlipped(false);
@@ -118,20 +129,15 @@
                 }, 200);
             };
 
-            const retryMissed = () => { setQueue([...missed].sort(() => Math.random() - 0.5)); setMissed([]); setCurrentIndex(0); setFinished(false); };
-            const restartAll = () => { setQueue([...cards].sort(() => Math.random() - 0.5)); setMissed([]); setCurrentIndex(0); setFinished(false); };
-
             if (finished) {
                 return (
                     <div className="text-center p-8 bg-white dark:bg-slate-800 rounded-3xl shadow-lg mt-8 border border-slate-100 dark:border-slate-700">
                         <h2 className="text-3xl font-bold mb-4">Terminé ! 🎉</h2>
                         <p className="text-xl mb-6">Score : <span className="font-bold text-brand-600 dark:text-brand-400">{queue.length - missed.length} / {queue.length}</span></p>
                         {missed.length > 0 ? (
-                            <button onClick={retryMissed} className="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-bold mb-3 shadow-md">Réviser mes {missed.length} erreurs 🔄</button>
-                        ) : (
-                            <p className="text-green-500 font-bold mb-6">Parfait ! Aucune erreur. 🌟</p>
-                        )}
-                        <button onClick={restartAll} className="w-full py-3 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-xl font-bold">Tout recommencer</button>
+                            <button onClick={() => { setQueue([...missed].sort(() => Math.random() - 0.5)); setMissed([]); setCurrentIndex(0); setFinished(false); }} className="w-full py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-xl font-bold mb-3 shadow-md">Réviser mes {missed.length} erreurs 🔄</button>
+                        ) : <p className="text-green-500 font-bold mb-6">Parfait ! Aucune erreur. 🌟</p>}
+                        <button onClick={handleResetOrder} className="w-full py-3 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-xl font-bold">Tout recommencer</button>
                     </div>
                 );
             }
@@ -141,25 +147,41 @@
             const currentCard = queue[currentIndex];
             const frontText = isReversed ? currentCard.back : currentCard.front;
             const backText = isReversed ? currentCard.front : currentCard.back;
+            
+            // Textes des labels selon le sens
+            const topLabelFront = isReversed ? langBack.toUpperCase() : langFront.toUpperCase();
+            const topLabelBack = isReversed ? langFront.toUpperCase() : langBack.toUpperCase();
+            
+            // Langue de l'audio selon le sens
+            const audioLangFront = isReversed ? langBack : langFront;
+            const audioLangBack = isReversed ? langFront : langBack;
 
             return (
-                <div className="w-full mt-4 flex flex-col items-center">
-                    <p className="text-slate-500 dark:text-slate-400 mb-4 font-medium">Carte {currentIndex + 1} / {queue.length}</p>
+                <div className="w-full mt-4 flex flex-col items-center max-w-md mx-auto">
+                    <div className="flex justify-between items-center w-full px-2 mb-4">
+                        <p className="text-slate-500 dark:text-slate-400 font-medium">Carte {currentIndex + 1} / {queue.length}</p>
+                        <div className="flex gap-2">
+                            <button onClick={handleResetOrder} className="p-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors text-slate-600 dark:text-slate-300" title="Ordre original"><Icons.Reset/></button>
+                            <button onClick={handleShuffle} className="p-2 bg-brand-500 text-white rounded-full shadow-sm hover:bg-brand-600 transition-colors" title="Mélanger les cartes"><Icons.Shuffle/></button>
+                        </div>
+                    </div>
+
                     <div className="perspective-1000 w-full h-80 mb-8 cursor-pointer" onClick={() => setIsFlipped(!isFlipped)}>
                         <div className={`relative w-full h-full card-transition transform-style-3d ${isFlipped ? 'rotate-y-180' : ''}`}>
                             <div className="absolute w-full h-full backface-hidden bg-white dark:bg-slate-800 rounded-3xl shadow-xl border-2 border-slate-100 dark:border-slate-700 flex flex-col items-center justify-center p-6 text-center">
-                                <button onClick={(e) => { e.stopPropagation(); onPlayAudio(frontText, isReversed ? 'fr' : 'es'); }} className="absolute top-4 left-4 p-2 text-slate-400 hover:text-brand-500 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition"><Icons.Volume/></button>
-                                <span className="absolute top-5 right-5 text-sm font-bold text-slate-300 dark:text-slate-500">{isReversed ? 'FR' : 'ES'}</span>
+                                <button onClick={(e) => { e.stopPropagation(); onPlayAudio(frontText, audioLangFront); }} className="absolute top-4 left-4 p-2 text-slate-400 hover:text-brand-500 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 transition"><Icons.Volume/></button>
+                                <span className="absolute top-5 right-5 text-sm font-bold text-slate-300 dark:text-slate-500">{topLabelFront}</span>
                                 <h2 className="text-4xl sm:text-5xl font-bold text-slate-800 dark:text-white leading-tight">{frontText}</h2>
                                 <p className="absolute bottom-6 text-sm text-slate-400 flex items-center gap-1"><Icons.Rotate /> Tapoter pour voir la réponse</p>
                             </div>
                             <div className="absolute w-full h-full backface-hidden bg-brand-50 dark:bg-brand-900/30 rounded-3xl shadow-xl border-2 border-brand-200 dark:border-brand-700 flex flex-col items-center justify-center p-6 text-center rotate-y-180">
-                                <button onClick={(e) => { e.stopPropagation(); onPlayAudio(backText, isReversed ? 'es' : 'fr'); }} className="absolute top-4 left-4 p-2 text-brand-400 hover:text-brand-600 rounded-full hover:bg-brand-100 dark:hover:bg-slate-700 transition"><Icons.Volume/></button>
-                                <span className="absolute top-5 right-5 text-sm font-bold text-brand-300 dark:text-brand-700">{isReversed ? 'ES' : 'FR'}</span>
+                                <button onClick={(e) => { e.stopPropagation(); onPlayAudio(backText, audioLangBack); }} className="absolute top-4 left-4 p-2 text-brand-400 hover:text-brand-600 rounded-full hover:bg-brand-100 dark:hover:bg-slate-700 transition"><Icons.Volume/></button>
+                                <span className="absolute top-5 right-5 text-sm font-bold text-brand-300 dark:text-brand-700">{topLabelBack}</span>
                                 <h2 className="text-4xl sm:text-5xl font-bold text-brand-700 dark:text-brand-300 leading-tight">{backText}</h2>
                             </div>
                         </div>
                     </div>
+
                     {isFlipped ? (
                         <div className="flex gap-4 w-full">
                             <button onClick={() => handleAnswer(false)} className="flex-1 py-4 bg-red-100 hover:bg-red-200 dark:bg-red-900/50 dark:hover:bg-red-900 text-red-700 dark:text-red-200 rounded-2xl font-bold text-lg flex justify-center items-center gap-2"><Icons.X/> J'ai faux</button>
@@ -173,7 +195,7 @@
         // ==========================================
         // 2. QCM
         // ==========================================
-        const QcmMode = ({ cards, isReversed, onPlayAudio }) => {
+        const QcmMode = ({ cards, isReversed, langFront, langBack, onPlayAudio }) => {
             const [queue, setQueue] = useState([...cards].sort(() => Math.random() - 0.5));
             const [currentIndex, setCurrentIndex] = useState(0);
             const [options, setOptions] = useState([]);
@@ -212,12 +234,13 @@
             if (queue.length === 0) return null;
             const currentCard = queue[currentIndex];
             const questionText = isReversed ? currentCard.back : currentCard.front;
+            const audioLangFront = isReversed ? langBack : langFront;
 
             return (
                 <div className="w-full mt-4 flex flex-col items-center">
                     <p className="text-slate-500 mb-4 font-medium">Question {currentIndex + 1} / {queue.length}</p>
                     <div className="w-full bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-sm border border-slate-200 dark:border-slate-700 text-center mb-6 relative">
-                        <button onClick={() => onPlayAudio(questionText, isReversed ? 'fr' : 'es')} className="absolute top-4 right-4 p-2 text-slate-400 hover:text-brand-500 rounded-full transition"><Icons.Volume/></button>
+                        <button onClick={() => onPlayAudio(questionText, audioLangFront)} className="absolute top-4 right-4 p-2 text-slate-400 hover:text-brand-500 rounded-full transition"><Icons.Volume/></button>
                         <h2 className="text-3xl font-bold text-slate-800 dark:text-white mt-4">{questionText}</h2>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
@@ -238,7 +261,7 @@
         // ==========================================
         // 3. CLAVIER
         // ==========================================
-        const TypingMode = ({ cards, isReversed, onPlayAudio }) => {
+        const TypingMode = ({ cards, isReversed, langFront, langBack, onPlayAudio }) => {
             const [queue, setQueue] = useState([...cards].sort(() => Math.random() - 0.5));
             const [currentIndex, setCurrentIndex] = useState(0);
             const [input, setInput] = useState('');
@@ -249,6 +272,7 @@
             const currentCard = queue[currentIndex];
             const questionText = isReversed ? currentCard.back : currentCard.front;
             const answerText = isReversed ? currentCard.front : currentCard.back;
+            const audioLangFront = isReversed ? langBack : langFront;
 
             const checkAnswer = (e) => {
                 e.preventDefault();
@@ -272,7 +296,7 @@
                 <div className="w-full mt-4 flex flex-col items-center max-w-md mx-auto">
                     <p className="text-slate-500 mb-4 font-medium">{currentIndex + 1} / {queue.length}</p>
                     <div className="w-full bg-white dark:bg-slate-800 rounded-t-3xl p-8 shadow-sm border border-slate-200 dark:border-slate-700 text-center relative border-b-0">
-                        <button onClick={() => onPlayAudio(questionText, isReversed ? 'fr' : 'es')} className="absolute top-4 right-4 text-slate-400"><Icons.Volume/></button>
+                        <button onClick={() => onPlayAudio(questionText, audioLangFront)} className="absolute top-4 right-4 text-slate-400"><Icons.Volume/></button>
                         <h2 className="text-3xl font-bold text-slate-800 dark:text-white mt-4">{questionText}</h2>
                     </div>
                     <form onSubmit={checkAnswer} className="w-full">
@@ -305,6 +329,7 @@
             const [tiles, setTiles] = useState([]);
             const [flipped, setFlipped] = useState([]);
             const [matched, setMatched] = useState([]);
+            const [gameId, setGameId] = useState(0);
 
             useEffect(() => {
                 if(cards.length === 0) return;
@@ -316,7 +341,7 @@
                 });
                 setTiles(newTiles.sort(() => Math.random() - 0.5));
                 setFlipped([]); setMatched([]);
-            }, [cards]);
+            }, [cards, gameId]);
 
             const handleTileClick = (index) => {
                 if (flipped.length >= 2 || flipped.includes(index) || matched.includes(tiles[index].matchId)) return;
@@ -334,7 +359,7 @@
             if (matched.length === tiles.length / 2 && tiles.length > 0) return (
                 <div className="text-center p-8 bg-white dark:bg-slate-800 rounded-3xl shadow mt-8">
                     <h2 className="text-3xl font-bold mb-4 text-green-500">Gagné ! 🏆</h2>
-                    <button onClick={() => setTiles([])} className="w-full py-3 bg-brand-500 text-white rounded-xl font-bold">Nouveau plateau</button>
+                    <button onClick={() => setGameId(g => g + 1)} className="w-full py-3 bg-brand-500 text-white rounded-xl font-bold">Nouveau plateau</button>
                 </div>
             );
 
@@ -365,33 +390,61 @@
         function App() {
             const [darkMode, setDarkMode] = useState(() => safeGetTheme());
             const [activeTab, setActiveTab] = useState('flashcards');
+            
+            // Les listes customs ont maintenant cette structure : { cards: [...], langFront: 'es', langBack: 'fr' }
             const [customLists, setCustomLists] = useState(() => safeGetStorage('polyglot_lists', {}));
+            
             const [activeCategory, setActiveCategory] = useState("Tout le vocabulaire");
             const [isReversed, setIsReversed] = useState(false);
+            
+            // Formulaire de création
             const [newListName, setNewListName] = useState("");
             const [rawInput, setRawInput] = useState("");
+            const [newLangFront, setNewLangFront] = useState("es"); // Langue de la face 1
+            const [newLangBack, setNewLangBack] = useState("fr");   // Langue de la face 2
+            
             const [exportString, setExportString] = useState("");
 
             useEffect(() => {
-                if (darkMode) document.documentElement.classList.add('dark');
-                else document.documentElement.classList.remove('dark');
+                const html = document.documentElement;
+                if (darkMode) html.classList.add('dark');
+                else html.classList.remove('dark');
                 safeSetTheme(darkMode);
             }, [darkMode]);
 
             useEffect(() => { safeSetStorage('polyglot_lists', customLists); }, [customLists]);
 
-            const currentCards = useMemo(() => {
-                if (activeCategory === "Tout le vocabulaire") return ALL_VOCABULARY;
-                if (VOCABULARY_DB[activeCategory]) return VOCABULARY_DB[activeCategory];
-                if (customLists[activeCategory]) return customLists[activeCategory];
-                return ALL_VOCABULARY;
+            // Extraction des données de la liste active (Maintient la compatibilité avec les anciennes listes)
+            const listData = useMemo(() => {
+                if (activeCategory === "Tout le vocabulaire" || VOCABULARY_DB[activeCategory]) {
+                    return {
+                        cards: activeCategory === "Tout le vocabulaire" ? ALL_VOCABULARY : VOCABULARY_DB[activeCategory],
+                        langFront: 'es',
+                        langBack: 'fr'
+                    };
+                }
+                
+                const custom = customLists[activeCategory];
+                if (custom) {
+                    // Si c'est l'ancien format (juste un tableau)
+                    if (Array.isArray(custom)) return { cards: custom, langFront: 'es', langBack: 'fr' };
+                    // Nouveau format
+                    return custom;
+                }
+                return { cards: ALL_VOCABULARY, langFront: 'es', langBack: 'fr' };
             }, [activeCategory, customLists]);
 
-            const playAudio = (text, lang) => {
+            const currentCards = listData.cards;
+            const currentLangFront = listData.langFront;
+            const currentLangBack = listData.langBack;
+
+            // Fonction Audio Intelligente
+            const playAudio = (text, langCode) => {
                 if (!window.speechSynthesis) return;
                 window.speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = lang === 'es' ? 'es-ES' : 'fr-FR';
+                const langObj = LANGUAGES.find(l => l.code === langCode);
+                utterance.lang = langObj ? langObj.tts : 'fr-FR'; // Fallback français
                 window.speechSynthesis.speak(utterance);
             };
 
@@ -409,7 +462,10 @@
                 });
                 if (newCards.length > 0) {
                     const name = newListName.trim();
-                    setCustomLists(prev => ({ ...prev, [name]: newCards }));
+                    setCustomLists(prev => ({ 
+                        ...prev, 
+                        [name]: { cards: newCards, langFront: newLangFront, langBack: newLangBack }
+                    }));
                     setActiveCategory(name);
                     setNewListName(""); setRawInput(""); setActiveTab('flashcards');
                     alert(`Liste "${name}" créée avec ${newCards.length} mots !`);
@@ -439,7 +495,7 @@
                             <Icons.Book />
                             <h1 className="font-extrabold text-xl tracking-tight">Polyglot</h1>
                         </div>
-                        <button onClick={() => setDarkMode(!darkMode)} className="p-2 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 transition">
+                        <button onClick={() => setDarkMode(!darkMode)} className="p-2 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">
                             {darkMode ? <Icons.Sun /> : <Icons.Moon />}
                         </button>
                     </header>
@@ -455,26 +511,42 @@
                                     </optgroup>
                                     {Object.keys(customLists).length > 0 && (
                                         <optgroup label="Mes Listes">
-                                            {Object.keys(customLists).map(c => <option key={c} value={c}>💾 {c}</option>)}
+                                            {Object.keys(customLists).map(c => {
+                                                const len = Array.isArray(customLists[c]) ? customLists[c].length : customLists[c].cards.length;
+                                                return <option key={c} value={c}>💾 {c} ({len})</option>
+                                            })}
                                         </optgroup>
                                     )}
                                 </select>
-                                <button onClick={() => setIsReversed(!isReversed)} className="p-3 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 text-brand-600 dark:text-brand-400 font-bold flex items-center gap-1">
-                                    {isReversed ? 'FR' : 'ES'} <Icons.Rotate/>
+                                <button onClick={() => setIsReversed(!isReversed)} className="p-3 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 text-brand-600 dark:text-brand-400 font-bold flex items-center gap-1 w-20 justify-center">
+                                    {isReversed ? currentLangBack.toUpperCase() : currentLangFront.toUpperCase()} <Icons.Rotate/>
                                 </button>
                             </div>
                         )}
 
-                        {activeTab === 'flashcards' && <FlashcardMode cards={currentCards} isReversed={isReversed} onPlayAudio={playAudio} key={`fc-${activeCategory}-${isReversed}`} />}
-                        {activeTab === 'qcm' && <QcmMode cards={currentCards} isReversed={isReversed} onPlayAudio={playAudio} key={`qcm-${activeCategory}-${isReversed}`} />}
-                        {activeTab === 'typing' && <TypingMode cards={currentCards} isReversed={isReversed} onPlayAudio={playAudio} key={`typ-${activeCategory}-${isReversed}`} />}
+                        {activeTab === 'flashcards' && <FlashcardMode cards={currentCards} isReversed={isReversed} langFront={currentLangFront} langBack={currentLangBack} onPlayAudio={playAudio} key={`fc-${activeCategory}-${isReversed}`} />}
+                        {activeTab === 'qcm' && <QcmMode cards={currentCards} isReversed={isReversed} langFront={currentLangFront} langBack={currentLangBack} onPlayAudio={playAudio} key={`qcm-${activeCategory}-${isReversed}`} />}
+                        {activeTab === 'typing' && <TypingMode cards={currentCards} isReversed={isReversed} langFront={currentLangFront} langBack={currentLangBack} onPlayAudio={playAudio} key={`typ-${activeCategory}-${isReversed}`} />}
                         {activeTab === 'memory' && <MemoryMode cards={currentCards} key={`mem-${activeCategory}`} />}
                         
                         {activeTab === 'create' && (
                             <div className="space-y-8 animate-in fade-in">
                                 <div className="bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-700">
                                     <h2 className="text-xl font-bold mb-4 flex items-center gap-2"><Icons.Edit/> Nouvelle Liste</h2>
+                                    
                                     <input type="text" value={newListName} onChange={e => setNewListName(e.target.value)} placeholder="Nom de la liste" className="w-full p-4 mb-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 outline-none focus:border-brand-500 font-bold" />
+                                    
+                                    <div className="flex gap-2 mb-4">
+                                        <select value={newLangFront} onChange={e => setNewLangFront(e.target.value)} className="w-1/2 p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 outline-none font-semibold text-sm">
+                                            <option value="" disabled>Langue du Mot</option>
+                                            {LANGUAGES.map(l => <option key={`front-${l.code}`} value={l.code}>{l.label} (Face A)</option>)}
+                                        </select>
+                                        <select value={newLangBack} onChange={e => setNewLangBack(e.target.value)} className="w-1/2 p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 outline-none font-semibold text-sm">
+                                            <option value="" disabled>Langue de la Trad</option>
+                                            {LANGUAGES.map(l => <option key={`back-${l.code}`} value={l.code}>{l.label} (Face B)</option>)}
+                                        </select>
+                                    </div>
+
                                     <textarea value={rawInput} onChange={e => setRawInput(e.target.value)} placeholder={"Mot - Traduction\nPerro - Chien\nGato - Chat"} className="w-full h-40 p-4 mb-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 outline-none focus:border-brand-500 font-mono text-sm resize-y" />
                                     <button onClick={handleCreate} className="w-full py-4 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-bold shadow-md">Sauvegarder la liste</button>
                                 </div>
@@ -491,7 +563,7 @@
                         )}
                     </main>
 
-                    <nav className="fixed bottom-0 w-full max-w-2xl bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 flex justify-around p-2 shadow-lg">
+                    <nav className="fixed bottom-0 w-full max-w-2xl bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 flex justify-around p-2 shadow-lg z-50">
                         <button onClick={() => setActiveTab('flashcards')} className={`flex flex-col items-center p-2 rounded-xl transition-all ${activeTab === 'flashcards' ? 'text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-900/30' : 'text-slate-400'}`}><Icons.Cards/><span className="text-[10px] font-bold mt-1">Cartes</span></button>
                         <button onClick={() => setActiveTab('qcm')} className={`flex flex-col items-center p-2 rounded-xl transition-all ${activeTab === 'qcm' ? 'text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-900/30' : 'text-slate-400'}`}><Icons.List/><span className="text-[10px] font-bold mt-1">QCM</span></button>
                         <button onClick={() => setActiveTab('typing')} className={`flex flex-col items-center p-2 rounded-xl transition-all ${activeTab === 'typing' ? 'text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-900/30' : 'text-slate-400'}`}><Icons.Keyboard/><span className="text-[10px] font-bold mt-1">Clavier</span></button>
@@ -507,4 +579,3 @@
     </script>
 </body>
 </html>
-
