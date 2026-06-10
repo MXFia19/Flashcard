@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flashcards Espagnol</title>
+    <title>Mes Flashcards</title>
     
     <!-- Importation de Tailwind CSS pour le style -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -15,13 +15,14 @@
     <!-- Importation de Babel pour lire le code React -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
-<body>
+<body class="bg-slate-50 min-h-screen font-sans text-slate-800">
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState } = React;
+        const { useState, useEffect } = React;
 
-        // Icônes SVG simples pour remplacer celles du logiciel
+        // --- Icônes SVG ---
+        const IconEdit = () => <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>;
         const IconBook = () => <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>;
         const IconArrows = () => <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></svg>;
         const IconReset = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>;
@@ -29,111 +30,198 @@
         const IconLeft = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>;
         const IconRight = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>;
         const IconSkip = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>;
+        const IconTrash = () => <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>;
 
+        // --- Base de données par défaut (Espagnol) ---
         const VOCABULARY_DB = {
             "Fiche 11 : Achats en magasin": [
-                { es: "Tienda", fr: "Magasin" }, { es: "Centro comercial", fr: "Centre commercial" },
-                { es: "Boutique", fr: "Boutique" }, { es: "Compras", fr: "Achats" },
-                { es: "Cliente", fr: "Client" }, { es: "Dependiente", fr: "Vendeur" },
-                { es: "Precio", fr: "Prix" }, { es: "Descuento", fr: "Remise" },
-                { es: "Rebajas", fr: "Soldes" }, { es: "Cambio", fr: "Monnaie (Retour)" },
-                { es: "Devolver", fr: "Rembourser" }, { es: "Probar", fr: "Essayer" },
-                { es: "Tarjeta de crédito", fr: "Carte de crédit" }, { es: "Dinero en efectivo", fr: "Argent liquide" },
-                { es: "Bolsa", fr: "Sac" }, { es: "Tienda en línea", fr: "Boutique en ligne" },
-                { es: "Envío", fr: "Livraison" }, { es: "Devolución", fr: "Retour" }
+                { front: "Tienda", back: "Magasin" }, { front: "Centro comercial", back: "Centre commercial" },
+                { front: "Boutique", back: "Boutique" }, { front: "Compras", back: "Achats" },
+                { front: "Cliente", back: "Client" }, { front: "Dependiente", back: "Vendeur" },
+                { front: "Precio", back: "Prix" }, { front: "Descuento", back: "Remise" },
+                { front: "Rebajas", back: "Soldes" }, { front: "Cambio", back: "Monnaie (Retour)" },
+                { front: "Devolver", back: "Rembourser" }, { front: "Probar", back: "Essayer" },
+                { front: "Tarjeta de crédito", back: "Carte de crédit" }, { front: "Dinero en efectivo", back: "Argent liquide" },
+                { front: "Bolsa", back: "Sac" }, { front: "Tienda en línea", back: "Boutique en ligne" },
+                { front: "Envío", back: "Livraison" }, { front: "Devolución", back: "Retour" }
             ],
             "Fiche 12 : Vêtements et accessoires": [
-                { es: "Pantalones", fr: "Pantalon" }, { es: "Pantalones cortos", fr: "Short" },
-                { es: "Vaqueros", fr: "Jeans" }, { es: "Vestido", fr: "Robe" },
-                { es: "Falda", fr: "Jupe" }, { es: "Camisa", fr: "Chemise" },
-                { es: "Camiseta / Niqui", fr: "T-shirt" }, { es: "Blusa", fr: "Blouse" },
-                { es: "Chaqueta", fr: "Veste" }, { es: "Abrigo", fr: "Manteau" },
-                { es: "Traje", fr: "Costume" }, { es: "Jersey", fr: "Pull" },
-                { es: "Suéter", fr: "Sweatshirt" }, { es: "Chaleco", fr: "Gilet" },
-                { es: "Pijama", fr: "Pijama" }, { es: "Bata", fr: "Robe de nuit" },
-                { es: "Un bañador", fr: "Maillot de bain" }, { es: "Ropa interior", fr: "Sous-vêtements" },
-                { es: "Sujetador / Sostén", fr: "Soutien-gorge" }, { es: "Braga", fr: "Culotte" },
-                { es: "Calzoncillo", fr: "Caleçon" }, { es: "Bóxer", fr: "Boxer" },
-                { es: "Zapatos", fr: "Chaussures" }, { es: "Zapatos de tacón", fr: "Chaussures à talon" },
-                { es: "Zapatos de deporte", fr: "Baskets" }, { es: "Botas", fr: "Bottes" },
-                { es: "Zapatillas", fr: "Pantoufles" }, { es: "Sandalias", fr: "Sandales" },
-                { es: "Chanclas", fr: "Tongs" }, { es: "Calcetines", fr: "Chaussettes" },
-                { es: "Sombrero", fr: "Chapeau" }, { es: "Guantes", fr: "Gants" },
-                { es: "Bufanda", fr: "Écharpe" }, { es: "Pañuelo", fr: "Foulard" },
-                { es: "Gorro", fr: "Bonnet" }, { es: "Gorra", fr: "Casquette" },
-                { es: "Corbata", fr: "Cravate" }, { es: "Cinturón", fr: "Ceinture" },
-                { es: "Paraguas", fr: "Parapluie" }
+                { front: "Pantalones", back: "Pantalon" }, { front: "Pantalones cortos", back: "Short" },
+                { front: "Vaqueros", back: "Jeans" }, { front: "Vestido", back: "Robe" },
+                { front: "Falda", back: "Jupe" }, { front: "Camisa", back: "Chemise" },
+                { front: "Camiseta / Niqui", back: "T-shirt" }, { front: "Blusa", back: "Blouse" },
+                { front: "Chaqueta", back: "Veste" }, { front: "Abrigo", back: "Manteau" },
+                { front: "Traje", back: "Costume" }, { front: "Jersey", back: "Pull" },
+                { front: "Suéter", back: "Sweatshirt" }, { front: "Chaleco", back: "Gilet" },
+                { front: "Pijama", back: "Pijama" }, { front: "Bata", back: "Robe de nuit" },
+                { front: "Un bañador", back: "Maillot de bain" }, { front: "Ropa interior", back: "Sous-vêtements" },
+                { front: "Sujetador / Sostén", back: "Soutien-gorge" }, { front: "Braga", back: "Culotte" },
+                { front: "Calzoncillo", back: "Caleçon" }, { front: "Bóxer", back: "Boxer" },
+                { front: "Zapatos", back: "Chaussures" }, { front: "Zapatos de tacón", back: "Chaussures à talon" },
+                { front: "Zapatos de deporte", back: "Baskets" }, { front: "Botas", back: "Bottes" },
+                { front: "Zapatillas", back: "Pantoufles" }, { front: "Sandalias", back: "Sandales" },
+                { front: "Chanclas", back: "Tongs" }, { front: "Calcetines", back: "Chaussettes" },
+                { front: "Sombrero", back: "Chapeau" }, { front: "Guantes", back: "Gants" },
+                { front: "Bufanda", back: "Écharpe" }, { front: "Pañuelo", back: "Foulard" },
+                { front: "Gorro", back: "Bonnet" }, { front: "Gorra", back: "Casquette" },
+                { front: "Corbata", back: "Cravate" }, { front: "Cinturón", back: "Ceinture" },
+                { front: "Paraguas", back: "Parapluie" }
             ],
             "Fiche 13 : Couleurs, matières, motifs": [
-                { es: "Rojo", fr: "Rouge" }, { es: "Azul", fr: "Bleu" },
-                { es: "Amarillo", fr: "Jaune" }, { es: "Verde", fr: "Vert" },
-                { es: "Negro", fr: "Noir" }, { es: "Blanco", fr: "Blanc" },
-                { es: "Gris", fr: "Gris" }, { es: "Naranja", fr: "Orange" },
-                { es: "Marrón", fr: "brun" }, { es: "Rosa", fr: "Rose" },
-                { es: "Violeta", fr: "Violet" }, { es: "Morado / Malva", fr: "Mauve" },
-                { es: "Celeste", fr: "Bleu ciel" }, { es: "Turquesa", fr: "Turquoise" },
-                { es: "Beige", fr: "Beige" }, { es: "Plateado", fr: "Argenté" },
-                { es: "Dorado", fr: "Doré" }, { es: "Burdeos", fr: "Bordeaux" },
-                { es: "Caqui", fr: "Kaki" }, { es: "Fucsia", fr: "Fuchsia" },
-                { es: "De algodón", fr: "En coton" }, { es: "De lana", fr: "En laine" },
-                { es: "De seda", fr: "En soie" }, { es: "De cuero", fr: "En cuir" },
-                { es: "De piel", fr: "En daim" }, { es: "De vaqueros", fr: "En jeans" },
-                { es: "A rayas", fr: "A rayures" }, { es: "A cuadros", fr: "A carreaux" },
-                { es: "A lunares", fr: "A pois" }, { es: "Liso", fr: "Uni" }
+                { front: "Rojo", back: "Rouge" }, { front: "Azul", back: "Bleu" },
+                { front: "Amarillo", back: "Jaune" }, { front: "Verde", back: "Vert" },
+                { front: "Negro", back: "Noir" }, { front: "Blanco", back: "Blanc" },
+                { front: "Gris", back: "Gris" }, { front: "Naranja", back: "Orange" },
+                { front: "Marrón", back: "brun" }, { front: "Rosa", back: "Rose" },
+                { front: "Violeta", back: "Violet" }, { front: "Morado / Malva", back: "Mauve" },
+                { front: "Celeste", back: "Bleu ciel" }, { front: "Turquesa", back: "Turquoise" },
+                { front: "Beige", back: "Beige" }, { front: "Plateado", back: "Argenté" },
+                { front: "Dorado", back: "Doré" }, { front: "Burdeos", back: "Bordeaux" },
+                { front: "Caqui", back: "Kaki" }, { front: "Fucsia", back: "Fuchsia" },
+                { front: "De algodón", back: "En coton" }, { front: "De lana", back: "En laine" },
+                { front: "De seda", back: "En soie" }, { front: "De cuero", back: "En cuir" },
+                { front: "De piel", back: "En daim" }, { front: "De vaqueros", back: "En jeans" },
+                { front: "A rayas", back: "A rayures" }, { front: "A cuadros", back: "A carreaux" },
+                { front: "A lunares", back: "A pois" }, { front: "Liso", back: "Uni" }
             ],
             "Fiche 14 & 15 : Aliments & Ustensiles": [
-                { es: "pan", fr: "pain" }, { es: "la leche", fr: "le lait" },
-                { es: "la mantequilla", fr: "le beurre" }, { es: "queso", fr: "fromage" },
-                { es: "huevo", fr: "oeuf" }, { es: "pollo", fr: "poulet" },
-                { es: "carne", fr: "viande" }, { es: "pescado", fr: "poisson" },
-                { es: "fruta", fr: "fruit" }, { es: "manzana", fr: "pomme" },
-                { es: "plátano", fr: "banane" }, { es: "fresa", fr: "fraise" },
-                { es: "una verdura", fr: "un légume" }, { es: "tomate", fr: "tomate" },
-                { es: "zanahoria", fr: "carotte" }, { es: "lechuga", fr: "laitue" },
-                { es: "cebolla", fr: "oignon" }, { es: "patata", fr: "pomme de terre" },
-                { es: "pimiento", fr: "poivron" }, { es: "arroz", fr: "riz" },
-                { es: "pastas", fr: "pâtes" }, { es: "azúcar", fr: "sucre" },
-                { es: "sal", fr: "sel" }, { es: "pimienta", fr: "poivre" },
-                { es: "aceite", fr: "huile" }, { es: "vinagre", fr: "vinaigre" },
-                { es: "galletas", fr: "biscuits" }, { es: "mermelada", fr: "confiture" },
-                { es: "chocolate", fr: "chocolat" }, { es: "yogurt", fr: "yaourt" },
-                { es: "el plato", fr: "assiette" }, { es: "cuchara", fr: "cuillère" },
-                { es: "tenedor", fr: "fourchette" }, { es: "cuchillo", fr: "couteau" },
-                { es: "vaso", fr: "verre" }, { es: "copa", fr: "verre à pied, à vin" },
-                { es: "taza", fr: "tasse" }, { es: "bol, tazón", fr: "bol" },
-                { es: "sartén", fr: "poêle" }, { es: "cacerola", fr: "casserole" },
-                { es: "olla", fr: "marmite" }, { es: "batidora", fr: "mixeur" },
-                { es: "mezclar", fr: "mélanger" }, { es: "cortar", fr: "couper" },
-                { es: "añadir", fr: "ajouter" }, { es: "cocer", fr: "cuire" }
+                { front: "pan", back: "pain" }, { front: "la leche", back: "le lait" },
+                { front: "la mantequilla", back: "le beurre" }, { front: "queso", back: "fromage" },
+                { front: "huevo", back: "oeuf" }, { front: "pollo", back: "poulet" },
+                { front: "carne", back: "viande" }, { front: "pescado", back: "poisson" },
+                { front: "fruta", back: "fruit" }, { front: "manzana", back: "pomme" },
+                { front: "plátano", back: "banane" }, { front: "fresa", back: "fraise" },
+                { front: "una verdura", back: "un légume" }, { front: "tomate", back: "tomate" },
+                { front: "zanahoria", back: "carotte" }, { front: "lechuga", back: "laitue" },
+                { front: "cebolla", back: "oignon" }, { front: "patata", back: "pomme de terre" },
+                { front: "pimiento", back: "poivron" }, { front: "arroz", back: "riz" },
+                { front: "pastas", back: "pâtes" }, { front: "azúcar", back: "sucre" },
+                { front: "sal", back: "sel" }, { front: "pimienta", back: "poivre" },
+                { front: "aceite", back: "huile" }, { front: "vinagre", back: "vinaigre" },
+                { front: "galletas", back: "biscuits" }, { front: "mermelada", back: "confiture" },
+                { front: "chocolate", back: "chocolat" }, { front: "yogurt", back: "yaourt" },
+                { front: "el plato", back: "assiette" }, { front: "cuchara", back: "cuillère" },
+                { front: "tenedor", back: "fourchette" }, { front: "cuchillo", back: "couteau" },
+                { front: "vaso", back: "verre" }, { front: "copa", back: "verre à pied, à vin" },
+                { front: "taza", back: "tasse" }, { front: "bol, tazón", back: "bol" },
+                { front: "sartén", back: "poêle" }, { front: "cacerola", back: "casserole" },
+                { front: "olla", back: "marmite" }, { front: "batidora", back: "mixeur" },
+                { front: "mezclar", back: "mélanger" }, { front: "cortar", back: "couper" },
+                { front: "añadir", back: "ajouter" }, { front: "cocer", back: "cuire" }
             ]
         };
 
         const ALL_VOCABULARY = Object.values(VOCABULARY_DB).flat();
 
         function App() {
+            // --- États ---
+            const [activeTab, setActiveTab] = useState('play'); // 'play' ou 'create'
+            
+            // Initialisation des listes personnalisées depuis le localStorage
+            const [customLists, setCustomLists] = useState(() => {
+                const savedLists = localStorage.getItem('my_flashcard_lists');
+                if (savedLists) {
+                    try {
+                        return JSON.parse(savedLists);
+                    } catch (e) {
+                        return {};
+                    }
+                }
+                return {};
+            }); 
+
             const [activeCategory, setActiveCategory] = useState("Tout le vocabulaire");
             const [cards, setCards] = useState([...ALL_VOCABULARY]);
+            
+            // Navigation Flashcards
             const [currentIndex, setCurrentIndex] = useState(0);
             const [isFlipped, setIsFlipped] = useState(false);
             const [isAnimating, setIsAnimating] = useState(false);
-            const [isFrToEs, setIsFrToEs] = useState(false);
+            const [isReversed, setIsReversed] = useState(false);
 
+            const [newListName, setNewListName] = useState("");
+            const [rawInput, setRawInput] = useState("");
+
+            // Sauvegarder dans le localStorage à chaque fois que customLists change
+            useEffect(() => {
+                localStorage.setItem('my_flashcard_lists', JSON.stringify(customLists));
+            }, [customLists]);
+
+            // --- Logique Changement de Catégorie ---
             const handleCategoryChange = (e) => {
                 const category = e.target.value;
                 setActiveCategory(category);
                 setIsAnimating(true);
                 setIsFlipped(false);
+                setIsReversed(false);
+                
                 setTimeout(() => {
                     if (category === "Tout le vocabulaire") {
                         setCards([...ALL_VOCABULARY]);
-                    } else {
+                    } else if (VOCABULARY_DB[category]) {
                         setCards([...VOCABULARY_DB[category]]);
+                    } else if (customLists[category]) {
+                        setCards([...customLists[category]]);
                     }
                     setCurrentIndex(0);
                     setIsAnimating(false);
                 }, 150);
             };
 
+            // --- Logique de Création de Liste ---
+            const handleCreateList = () => {
+                if (!newListName.trim()) {
+                    alert("Veuillez donner un nom à votre liste !");
+                    return;
+                }
+                
+                const lines = rawInput.split('\n');
+                const newCards = [];
+
+                lines.forEach(line => {
+                    if (!line.trim()) return;
+                    let parts = line.split('\t');
+                    if (parts.length < 2) parts = line.split(' - ');
+                    if (parts.length < 2) parts = line.split('-');
+                    if (parts.length < 2) parts = line.split(':');
+
+                    if (parts.length >= 2) {
+                        newCards.push({ front: parts[0].trim(), back: parts[1].trim() });
+                    }
+                });
+
+                if (newCards.length > 0) {
+                    const name = newListName.trim();
+                    setCustomLists(prev => ({ ...prev, [name]: newCards }));
+                    setActiveCategory(name);
+                    setCards([...newCards]);
+                    setCurrentIndex(0);
+                    setIsFlipped(false);
+                    setNewListName("");
+                    setRawInput("");
+                    setActiveTab('play');
+                    alert(`Liste "${name}" sauvegardée localement avec ${newCards.length} mots !`);
+                } else {
+                    alert("Aucun mot n'a pu être extrait. Vérifiez que vous avez bien mis des tirets (-) entre les mots et leurs définitions.");
+                }
+            };
+
+            // --- Supprimer une liste personnalisée ---
+            const handleDeleteList = () => {
+                if (confirm(`Êtes-vous sûr de vouloir supprimer définitivement la liste "${activeCategory}" ?`)) {
+                    const newCustomLists = { ...customLists };
+                    delete newCustomLists[activeCategory];
+                    setCustomLists(newCustomLists);
+                    
+                    // Retour au vocabulaire par défaut
+                    setActiveCategory("Tout le vocabulaire");
+                    setCards([...ALL_VOCABULARY]);
+                    setCurrentIndex(0);
+                    setIsFlipped(false);
+                }
+            };
+
+            // --- Logique Flashcards ---
             const toggleFlip = () => setIsFlipped(!isFlipped);
 
             const toggleDirection = () => {
@@ -141,7 +229,7 @@
                 setIsAnimating(true);
                 setIsFlipped(false);
                 setTimeout(() => {
-                    setIsFrToEs(!isFrToEs);
+                    setIsReversed(!isReversed);
                     setIsAnimating(false);
                 }, 150);
             };
@@ -201,8 +289,10 @@
                 setTimeout(() => {
                     if (activeCategory === "Tout le vocabulaire") {
                         setCards([...ALL_VOCABULARY]);
-                    } else {
+                    } else if (VOCABULARY_DB[activeCategory]) {
                         setCards([...VOCABULARY_DB[activeCategory]]);
+                    } else if (customLists[activeCategory]) {
+                        setCards([...customLists[activeCategory]]);
                     }
                     setCurrentIndex(0);
                     setIsAnimating(false);
@@ -210,13 +300,16 @@
             };
 
             const currentCard = cards[currentIndex];
-            const frontLanguage = isFrToEs ? "Français" : "Espagnol";
-            const backLanguage = isFrToEs ? "Espagnol" : "Français";
-            const frontText = isFrToEs ? currentCard?.fr : currentCard?.es;
-            const backText = isFrToEs ? currentCard?.es : currentCard?.fr;
+            const frontText = isReversed ? currentCard?.back : currentCard?.front;
+            const backText = isReversed ? currentCard?.front : currentCard?.back;
+
+            const isSpanishList = activeCategory === "Tout le vocabulaire" || VOCABULARY_DB[activeCategory] !== undefined;
+            const isCustomList = customLists[activeCategory] !== undefined;
+            const labelRecto = isReversed ? (isSpanishList ? "Français" : "Verso") : (isSpanishList ? "Espagnol" : "Recto");
+            const labelVerso = isReversed ? (isSpanishList ? "Espagnol" : "Recto") : (isSpanishList ? "Français" : "Verso");
 
             return (
-                <div className="min-h-screen bg-amber-50 flex flex-col items-center justify-center p-4 font-sans text-slate-800">
+                <div className="flex flex-col items-center p-4 max-w-xl mx-auto pt-8">
                     
                     <style dangerouslySetInnerHTML={{__html: `
                         .flashcard-container { perspective: 1000px; }
@@ -234,98 +327,168 @@
                             display: flex; flex-direction: column; align-items: center; justify-content: center;
                             padding: 2rem; text-align: center; cursor: pointer;
                         }
-                        .flashcard-front { background-color: white; border: 2px solid #fde68a; }
-                        .flashcard-back { background-color: #fffbeb; border: 2px solid #fcd34d; transform: rotateY(180deg); }
+                        .flashcard-front { background-color: white; border: 2px solid #e2e8f0; }
+                        .flashcard-back { background-color: #f8fafc; border: 2px solid #cbd5e1; transform: rotateY(180deg); }
                         select { 
                             appearance: none; 
-                            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23b45309%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); 
+                            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%234f46e5%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); 
                             background-repeat: no-repeat; background-position: right .7rem top 50%; background-size: .65rem auto; 
                         }
                     `}} />
 
-                    <div className="max-w-md w-full">
-                        <div className="mb-6 w-full">
-                            <div className="relative">
-                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-amber-600">
-                                    <IconBook />
-                                </div>
+                    {/* Onglets de navigation */}
+                    <div className="flex w-full bg-white rounded-full p-1 shadow-sm border border-slate-200 mb-6">
+                        <button 
+                            onClick={() => setActiveTab('play')}
+                            className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-full font-semibold transition-all ${activeTab === 'play' ? 'bg-indigo-600 text-white shadow' : 'text-slate-500 hover:text-slate-700 hover:bg-slate-50'}`}
+                        >
+                            <IconBook /> Réviser
+                        </button>
+                        <button 
+                            onClick={() => setActiveTab('create')}
+                            className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-full font-semibold transition-all ${activeTab === 'create' ? 'bg-indigo-600 text-white shadow' : 'text-slate-500 hover:text-slate-700 hover:bg-slate-50'}`}
+                        >
+                            <IconEdit /> Créer une liste
+                        </button>
+                    </div>
+
+                    {/* VUE 1 : RÉVISION */}
+                    {activeTab === 'play' && (
+                        <div className="w-full animate-in fade-in duration-300">
+                            
+                            {/* Menu de sélection de catégorie avec bouton supprimer si liste custom */}
+                            <div className="mb-6 w-full flex gap-2">
                                 <select 
                                     value={activeCategory}
                                     onChange={handleCategoryChange}
-                                    className="block w-full pl-10 pr-10 py-3 text-base border-amber-200 focus:outline-none focus:ring-amber-500 focus:border-amber-500 sm:text-sm rounded-2xl bg-white shadow-sm text-amber-900 font-semibold cursor-pointer"
+                                    className="block w-full pl-4 pr-10 py-3 text-base border-slate-200 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-2xl bg-white shadow-sm text-indigo-900 font-semibold cursor-pointer"
                                 >
-                                    <option value="Tout le vocabulaire">📚 Tout le vocabulaire ({ALL_VOCABULARY.length} mots)</option>
-                                    {Object.keys(VOCABULARY_DB).map(cat => (
-                                        <option key={cat} value={cat}>{cat} ({VOCABULARY_DB[cat].length} mots)</option>
-                                    ))}
+                                    <optgroup label="Listes d'Espagnol">
+                                        <option value="Tout le vocabulaire">📚 Tout le vocabulaire ({ALL_VOCABULARY.length} mots)</option>
+                                        {Object.keys(VOCABULARY_DB).map(cat => (
+                                            <option key={cat} value={cat}>{cat} ({VOCABULARY_DB[cat].length} mots)</option>
+                                        ))}
+                                    </optgroup>
+                                    
+                                    {Object.keys(customLists).length > 0 && (
+                                        <optgroup label="Mes Listes Sauvegardées">
+                                            {Object.keys(customLists).map(cat => (
+                                                <option key={cat} value={cat}>💾 {cat} ({customLists[cat].length} mots)</option>
+                                            ))}
+                                        </optgroup>
+                                    )}
                                 </select>
+                                
+                                {isCustomList && (
+                                    <button 
+                                        onClick={handleDeleteList}
+                                        className="p-3 bg-red-50 text-red-600 hover:bg-red-100 rounded-2xl shadow-sm transition-colors"
+                                        title="Supprimer cette liste"
+                                    >
+                                        <IconTrash />
+                                    </button>
+                                )}
                             </div>
-                        </div>
 
-                        <div className="flex justify-between items-center mb-4 px-2">
-                            <div className="flex gap-2">
+                            {/* Contrôles du haut */}
+                            <div className="flex justify-between items-center mb-4 px-2">
                                 <button
                                     onClick={toggleDirection}
-                                    className="flex items-center gap-1 px-3 py-2 bg-red-50 text-red-600 rounded-full shadow-sm hover:bg-red-100 transition-colors font-semibold text-sm"
-                                    title="Changer le sens (Espagnol <-> Français)"
+                                    className="flex items-center gap-1 px-3 py-2 bg-slate-200 text-slate-700 rounded-full shadow-sm hover:bg-slate-300 transition-colors font-semibold text-sm"
                                 >
-                                    <span>{isFrToEs ? 'FR' : 'ES'}</span>
+                                    <span>{labelRecto}</span>
                                     <IconArrows />
-                                    <span>{isFrToEs ? 'ES' : 'FR'}</span>
-                                </button>
-                            </div>
-                            
-                            <div className="flex gap-2">
-                                <button onClick={handleReset} className="p-2 bg-white rounded-full shadow-sm hover:bg-amber-100 transition-colors text-amber-600" title="Ordre original">
-                                    <IconReset />
-                                </button>
-                                <button onClick={handleShuffle} className="p-2 bg-amber-500 text-white rounded-full shadow-sm hover:bg-amber-600 transition-colors" title="Mélanger les cartes">
-                                    <IconShuffle />
-                                </button>
-                            </div>
-                        </div>
-
-                        <div className="flashcard-container h-80 w-full mb-8">
-                            <div className={`flashcard ${isFlipped ? 'flashcard-flipped' : ''} w-full h-full`} onClick={toggleFlip}>
-                                <div className="flashcard-inner">
-                                    <div className="flashcard-front">
-                                        <span className="absolute top-4 right-5 text-sm font-medium text-amber-400">{frontLanguage}</span>
-                                        <p className="text-3xl md:text-4xl font-bold text-slate-800 leading-tight">{frontText}</p>
-                                        <p className="absolute bottom-6 text-sm text-amber-400 flex items-center gap-1">
-                                            <IconReset /> Cliquez pour retourner
-                                        </p>
-                                    </div>
-                                    <div className="flashcard-back">
-                                        <span className="absolute top-4 right-5 text-sm font-medium text-red-400">{backLanguage}</span>
-                                        <p className="text-3xl md:text-4xl font-bold text-red-600 leading-tight">{backText}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="flex flex-col gap-3">
-                            <div className="flex items-center justify-between bg-white p-2 rounded-2xl shadow-sm border border-amber-100">
-                                <button onClick={handlePrev} disabled={isAnimating} className="flex items-center gap-2 px-4 py-3 text-slate-600 hover:text-amber-700 hover:bg-amber-50 rounded-xl transition-colors font-medium disabled:opacity-50">
-                                    <IconLeft />
-                                    <span className="hidden sm:inline">Précédent</span>
+                                    <span>{labelVerso}</span>
                                 </button>
                                 
-                                <div className="text-sm font-semibold text-amber-600">
-                                    {currentIndex + 1} / {cards.length}
+                                <div className="flex gap-2">
+                                    <button onClick={handleReset} className="p-2 bg-white rounded-full shadow-sm hover:bg-slate-100 transition-colors text-slate-600" title="Ordre original">
+                                        <IconReset />
+                                    </button>
+                                    <button onClick={handleShuffle} className="p-2 bg-indigo-500 text-white rounded-full shadow-sm hover:bg-indigo-600 transition-colors" title="Mélanger les cartes">
+                                        <IconShuffle />
+                                    </button>
                                 </div>
-
-                                <button onClick={handleNext} disabled={isAnimating} className="flex items-center gap-2 px-4 py-3 text-slate-600 hover:text-amber-700 hover:bg-amber-50 rounded-xl transition-colors font-medium disabled:opacity-50">
-                                    <span className="hidden sm:inline">Suivant</span>
-                                    <IconRight />
-                                </button>
                             </div>
 
-                            <button onClick={handleSkipToEnd} disabled={isAnimating} className="flex items-center justify-center gap-2 px-4 py-3 bg-white text-slate-600 hover:text-red-600 hover:bg-red-50 rounded-2xl shadow-sm border border-amber-100 hover:border-red-200 transition-all font-medium disabled:opacity-50 w-full">
-                                <IconSkip />
-                                Passer et mettre à la fin
+                            {/* La carte */}
+                            <div className="flashcard-container h-80 w-full mb-8">
+                                <div className={`flashcard ${isFlipped ? 'flashcard-flipped' : ''} w-full h-full`} onClick={toggleFlip}>
+                                    <div className="flashcard-inner">
+                                        <div className="flashcard-front">
+                                            <span className="absolute top-4 right-5 text-sm font-medium text-slate-400">{labelRecto}</span>
+                                            <p className="text-3xl md:text-4xl font-bold text-slate-800 leading-tight px-4">{frontText}</p>
+                                            <p className="absolute bottom-6 text-sm text-slate-400 flex items-center gap-1">
+                                                <IconReset /> Cliquez pour retourner
+                                            </p>
+                                        </div>
+                                        <div className="flashcard-back">
+                                            <span className="absolute top-4 right-5 text-sm font-medium text-indigo-400">{labelVerso}</span>
+                                            <p className="text-3xl md:text-4xl font-bold text-indigo-600 leading-tight px-4">{backText}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Contrôles de navigation */}
+                            <div className="flex flex-col gap-3">
+                                <div className="flex items-center justify-between bg-white p-2 rounded-2xl shadow-sm border border-slate-200">
+                                    <button onClick={handlePrev} disabled={isAnimating} className="flex items-center gap-2 px-4 py-3 text-slate-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-xl transition-colors font-medium disabled:opacity-50">
+                                        <IconLeft />
+                                        <span className="hidden sm:inline">Précédent</span>
+                                    </button>
+                                    
+                                    <div className="text-sm font-semibold text-slate-500">
+                                        {currentIndex + 1} / {cards.length}
+                                    </div>
+
+                                    <button onClick={handleNext} disabled={isAnimating} className="flex items-center gap-2 px-4 py-3 text-slate-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-xl transition-colors font-medium disabled:opacity-50">
+                                        <span className="hidden sm:inline">Suivant</span>
+                                        <IconRight />
+                                    </button>
+                                </div>
+
+                                <button onClick={handleSkipToEnd} disabled={isAnimating} className="flex items-center justify-center gap-2 px-4 py-3 bg-white text-slate-600 hover:text-amber-600 hover:bg-amber-50 rounded-2xl shadow-sm border border-slate-200 hover:border-amber-200 transition-all font-medium disabled:opacity-50 w-full">
+                                    <IconSkip />
+                                    Passer et mettre à la fin
+                                </button>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* VUE 2 : CRÉATION */}
+                    {activeTab === 'create' && (
+                        <div className="w-full flex flex-col gap-4 animate-in fade-in duration-300">
+                            <div className="bg-blue-50 text-blue-800 p-4 rounded-2xl text-sm leading-relaxed border border-blue-100">
+                                <strong>Comment créer votre liste ?</strong><br/>
+                                Copiez-collez votre vocabulaire ci-dessous (un mot par ligne). Séparez le terme et la traduction par un <b>tiret (-)</b>.<br/>
+                                <i>⚠️ Les listes sont sauvegardées sur <b>cet appareil</b> spécifiquement.</i>
+                            </div>
+                            
+                            <input 
+                                type="text"
+                                value={newListName}
+                                onChange={(e) => setNewListName(e.target.value)}
+                                placeholder="Nom de la liste (ex: Verbes Irréguliers)"
+                                className="w-full p-4 rounded-2xl border-2 border-slate-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 outline-none font-bold text-slate-700"
+                            />
+
+                            <textarea 
+                                value={rawInput}
+                                onChange={(e) => setRawInput(e.target.value)}
+                                className="w-full h-64 p-4 rounded-2xl border-2 border-slate-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 outline-none resize-y font-mono text-sm"
+                                placeholder="Apple - Pomme&#10;Dog - Chien&#10;Cat - Chat"
+                            ></textarea>
+
+                            <button 
+                                onClick={handleCreateList}
+                                className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                            >
+                                <IconEdit /> Créer et Sauvegarder
                             </button>
                         </div>
-                    </div>
+                    )}
+
                 </div>
             );
         }
