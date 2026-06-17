@@ -73,9 +73,7 @@
             Landmark: () => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 22 7 12 2"/><line x1="6" x2="6" y1="22" y2="7"/><line x1="18" x2="18" y1="22" y2="7"/><line x1="12" x2="12" y1="22" y2="7"/><line x1="2" x2="22" y1="22" y2="22"/></svg>
         };
 
-        // --- BASES DE DONNÉES EN DUR ---
-
-        // 1. Espagnol (Langue cible = es, Langue source = fr)
+        // --- BD ESPAGNOL PAR DÉFAUT ---
         const VOCABULARY_DB = {
             "Fiche 11 : Achats en magasin": [
                 { front: "Tienda", back: "Magasin" }, { front: "Centro comercial", back: "Centre commercial" },
@@ -105,25 +103,6 @@
             ]
         };
         const ALL_VOCABULARY = Object.values(VOCABULARY_DB).flat();
-
-        // 2. Histoire (Langue cible = fr, Langue source = fr)
-        const HISTORY_DB = {
-            "Thème 1 : Démographie & Agri": [
-                { front: "Démographie", back: "Étude quantitative des populations humaines et de leurs variations." },
-                { front: "Exode rural", back: "Migration massive des habitants des campagnes vers les villes." },
-                { front: "Mortalité infantile", back: "Décès d'enfants de moins d'un an pour 1000 naissances." },
-                { front: "Transition démographique", back: "Passage d'une natalité/mortalité élevées à des taux faibles." },
-                { front: "Ancien régime", back: "Époque où il y avait beaucoup de naissances mais aussi beaucoup de décès." },
-                { front: "Jachère", back: "Terre laissée au repos pendant un an pour qu'elle redevienne fertile." },
-                { front: "Assolement quadriennal", back: "Technique agricole sur 4 ans sans jachère (inclut les plantes fourragères)." },
-                { front: "Révolution agricole", back: "Période marquée par la mécanisation, les engrais et les croisements de races." },
-                { front: "Baisse mortalité (19e)", back: "Chute due aux progrès de l'hygiène, de l'alimentation et de la médecine." },
-                { front: "Mécanisation agricole", back: "Nécessite moins de bras, ce qui provoque le chômage paysan et l'exode rural." },
-                { front: "Famine irlandaise", back: "Famine (1846-1848) due à la maladie de la pomme de terre (1 million de morts)." },
-                { front: "États-Unis", back: "Destination principale de l'émigration européenne au 19ème siècle (17 millions)." },
-                { front: "L'Angleterre", back: "Pays très en avance qui a vaincu la famine dès le 17ème siècle." }
-            ]
-        };
 
         // ==========================================
         // COMPOSANTS DES JEUX (Flashcards, QCM, Clavier, Mémoire)
@@ -364,6 +343,7 @@
             );
         };
 
+
         // ==========================================
         // MODE HISTOIRE
         // ==========================================
@@ -502,16 +482,11 @@
             useEffect(() => { safeSetStorage('polyglot_lists', customLists); }, [customLists]);
 
             // Système de récupération intelligent des listes avec les bonnes langues
+            // SUPPRESSION DE LA BASE D'HISTOIRE ICI (Les jeux ne liront plus l'histoire)
             const listData = useMemo(() => {
-                // 1. Si c'est du Vocabulaire Espagnol par défaut
                 if (activeCategory === "Tout le vocabulaire" || VOCABULARY_DB[activeCategory]) {
                     return { cards: activeCategory === "Tout le vocabulaire" ? ALL_VOCABULARY : VOCABULARY_DB[activeCategory], langFront: 'es', langBack: 'fr' };
                 }
-                // 2. Si c'est le vocabulaire d'Histoire par défaut
-                if (HISTORY_DB[activeCategory]) {
-                    return { cards: HISTORY_DB[activeCategory], langFront: 'fr', langBack: 'fr' };
-                }
-                // 3. Si c'est une liste Custom
                 const custom = customLists[activeCategory];
                 if (custom) {
                     if (Array.isArray(custom)) return { cards: custom, langFront: 'es', langBack: 'fr' };
@@ -587,9 +562,6 @@
                                     <optgroup label="Listes d'Espagnol">
                                         <option value="Tout le vocabulaire">📚 Tout le vocabulaire</option>
                                         {Object.keys(VOCABULARY_DB).map(c => <option key={c} value={c}>{c}</option>)}
-                                    </optgroup>
-                                    <optgroup label="Listes d'Histoire">
-                                        {Object.keys(HISTORY_DB).map(c => <option key={c} value={c}>🏛️ {c}</option>)}
                                     </optgroup>
                                     {Object.keys(customLists).length > 0 && (
                                         <optgroup label="Mes Listes">
