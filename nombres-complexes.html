@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nombres complexes — tous les exercices du cours</title>
+<meta name="description" content="Les 54 exercices du cours de 6e sur les nombres complexes, avec réponses et solutions détaillées.">
+<style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=Spectral:ital,wght@0,600;0,700;1,600&display=swap">
+
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']], processEscapes: true },
+  svg: { fontCache: 'global' },
+  options: { enableMenu: false, skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js" async></script>
+
+
+<style>
+/* ---------- tokens : plan de travail / plan complexe ---------- */
+:root{
+  --paper:#e9eef4; --surface:#ffffff; --surface-2:#f3f6fa; --surface-3:#e5ecf4;
+  --ink:#0f2039; --ink-2:#4e6079; --ink-3:#7d8ca3;
+  --rule:#ccd8e6; --rule-soft:#dde6f0;
+  --real:#1a4ea6; --imag:#b01e6e; --ok:#0d7a5c;
+  --grid:rgba(26,78,166,.055);
+  --shadow:0 1px 2px rgba(15,32,57,.06), 0 6px 20px -12px rgba(15,32,57,.25);
+  --r:10px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#080f19; --surface:#0f1a29; --surface-2:#152336; --surface-3:#1b2c43;
+    --ink:#dde7f5; --ink-2:#93a6c2; --ink-3:#6c7e9a;
+    --rule:#233449; --rule-soft:#1b2a3d;
+    --real:#7cadff; --imag:#ff7cbb; --ok:#45cfa3;
+    --grid:rgba(124,173,255,.06);
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#080f19; --surface:#0f1a29; --surface-2:#152336; --surface-3:#1b2c43;
+  --ink:#dde7f5; --ink-2:#93a6c2; --ink-3:#6c7e9a;
+  --rule:#233449; --rule-soft:#1b2a3d;
+  --real:#7cadff; --imag:#ff7cbb; --ok:#45cfa3;
+  --grid:rgba(124,173,255,.06);
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.8);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  font-size:16px; line-height:1.6; -webkit-text-size-adjust:100%;
+  background-image:linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size:28px 28px;
+}
+h1,h2,h3{font-family:Spectral,Georgia,"Times New Roman",serif; font-weight:600; text-wrap:balance; margin:0}
+a{color:var(--real)}
+.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+
+.wrap{max-width:1140px; margin:0 auto; padding-inline:16px; padding-block:0}
+
+/* ---------- en-tête ---------- */
+.hero{padding-block:34px 22px}
+.eyebrow{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--imag); margin:0 0 10px}
+.hero h1{font-size:clamp(2.1rem,6vw,3.3rem); line-height:1.05; letter-spacing:-.015em}
+.hero h1 em{font-style:italic; color:var(--imag)}
+.lede{color:var(--ink-2); max-width:56ch; margin:12px 0 0; font-size:1.05rem}
+.hero-grid{display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:28px; align-items:center}
+@media (max-width:760px){ .hero-grid{grid-template-columns:1fr; gap:18px} }
+.plane{width:100%; height:auto; max-width:360px; justify-self:end}
+@media (max-width:760px){ .plane{justify-self:start; max-width:320px} }
+
+/* ---------- barre d'outils ---------- */
+.bar{position:sticky; top:env(safe-area-inset-top,0px); z-index:20; background:color-mix(in srgb,var(--paper) 88%, transparent); backdrop-filter:blur(8px); border-block:1px solid var(--rule); margin-block:10px 26px}
+.bar-in{display:flex; flex-wrap:wrap; gap:10px; align-items:center; padding-block:10px}
+.meter{flex:1 1 180px; min-width:150px}
+.meter-top{display:flex; justify-content:space-between; align-items:baseline; gap:8px; font-family:"IBM Plex Mono",monospace; font-size:.74rem; letter-spacing:.04em; color:var(--ink-2)}
+.meter-top b{color:var(--ink); font-weight:600}
+.track{height:5px; border-radius:99px; background:var(--surface-3); overflow:hidden; margin-top:5px}
+.fill{height:100%; width:0%; border-radius:99px; background:linear-gradient(90deg,var(--real),var(--imag)); transition:width .35s ease}
+.search{flex:1 1 200px; min-width:150px; position:relative}
+.search input{width:100%; font:inherit; font-size:.92rem; color:var(--ink); background:var(--surface); border:1px solid var(--rule); border-radius:var(--r); padding:8px 12px}
+.search input::placeholder{color:var(--ink-3)}
+.btn{font:inherit; font-size:.87rem; color:var(--ink); background:var(--surface); border:1px solid var(--rule); border-radius:var(--r); padding:8px 13px; cursor:pointer; transition:background .15s, border-color .15s, color .15s}
+.btn:hover{border-color:var(--ink-3)}
+.btn:focus-visible, .search input:focus-visible, a:focus-visible{outline:2px solid var(--imag); outline-offset:2px}
+.btn.ghost{background:transparent}
+.btn.warn[data-armed="1"]{color:var(--imag); border-color:var(--imag)}
+
+/* ---------- mise en page ---------- */
+.cols{display:grid; grid-template-columns:210px minmax(0,1fr); gap:40px; align-items:start; padding-bottom:60px}
+@media (max-width:960px){ .cols{grid-template-columns:1fr; gap:24px} }
+nav.toc{position:sticky; top:calc(env(safe-area-inset-top,0px) + 72px)}
+@media (max-width:960px){ nav.toc{position:static} }
+.toc h2{font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); font-weight:500; margin-bottom:10px}
+.toc ol{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:1px}
+@media (max-width:960px){ .toc ol{flex-direction:row; flex-wrap:wrap; gap:6px} }
+.toc a{display:flex; justify-content:space-between; gap:8px; align-items:baseline; text-decoration:none; color:var(--ink-2); font-size:.88rem; padding:5px 8px; border-radius:8px; border-left:2px solid transparent}
+@media (max-width:960px){ .toc a{border:1px solid var(--rule); border-left-width:1px; background:var(--surface)} }
+.toc a:hover{color:var(--ink); background:var(--surface-2)}
+.toc a.active{color:var(--ink); border-left-color:var(--imag); background:var(--surface-2); font-weight:600}
+.toc .n{font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--ink-3); font-variant-numeric:tabular-nums}
+
+/* ---------- aide-mémoire ---------- */
+.memo{background:var(--surface); border:1px solid var(--rule); border-radius:var(--r); padding:18px 20px; margin-bottom:34px; box-shadow:var(--shadow)}
+.memo h2{font-size:1.05rem; margin-bottom:4px}
+.memo p.sub{margin:0 0 14px; color:var(--ink-2); font-size:.9rem}
+.memo dl{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px 26px; margin:0}
+.memo dt{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--imag); margin-bottom:2px}
+.memo dd{margin:0; font-size:.94rem; color:var(--ink-2)}
+
+/* ---------- sections ---------- */
+section.sec{margin-bottom:46px; scroll-margin-top:calc(env(safe-area-inset-top,0px) + 84px)}
+.sec-head{border-bottom:1px solid var(--rule); padding-bottom:12px; margin-bottom:20px}
+.sec-head .kick{font-family:"IBM Plex Mono",monospace; font-size:.71rem; letter-spacing:.12em; text-transform:uppercase; color:var(--real); display:block; margin-bottom:6px}
+.sec-head h2{font-size:1.5rem; letter-spacing:-.01em}
+.sec-head p{margin:6px 0 0; color:var(--ink-2); font-size:.93rem; max-width:70ch}
+
+/* ---------- exercices ---------- */
+.ex{display:grid; grid-template-columns:4px minmax(0,1fr); background:var(--surface); border:1px solid var(--rule); border-radius:var(--r); overflow:hidden; margin-bottom:12px; box-shadow:var(--shadow)}
+.ex .rail{background:var(--rule-soft)}
+.ex.done .rail{background:var(--ok)}
+.ex.flash{animation:flash .9s ease}
+@keyframes flash{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--imag) 55%, transparent)}100%{box-shadow:0 0 0 14px transparent}}
+.ex-body{padding:15px 17px 14px; min-width:0}
+.ex-top{display:flex; align-items:center; gap:9px; margin-bottom:9px}
+.ex-num{font-family:"IBM Plex Mono",monospace; font-size:.76rem; font-weight:600; letter-spacing:.06em; color:var(--imag); background:color-mix(in srgb,var(--imag) 11%, transparent); border-radius:6px; padding:2px 8px; white-space:nowrap}
+.ex.done .ex-num{color:var(--ok); background:color-mix(in srgb,var(--ok) 13%, transparent)}
+.ex-tag{font-size:.74rem; color:var(--ink-3); font-family:"IBM Plex Mono",monospace}
+.done-btn{margin-left:auto; font:inherit; font-size:.79rem; color:var(--ink-3); background:transparent; border:1px solid var(--rule); border-radius:99px; padding:3px 11px; cursor:pointer; display:inline-flex; align-items:center; gap:5px; white-space:nowrap}
+.done-btn:hover{color:var(--ink-2); border-color:var(--ink-3)}
+.ex.done .done-btn{color:var(--ok); border-color:color-mix(in srgb,var(--ok) 45%, transparent); background:color-mix(in srgb,var(--ok) 9%, transparent)}
+.ex-q{font-size:1.02rem; overflow-x:auto; overflow-y:hidden}
+.ex-q b{font-weight:600}
+.ex-tools{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+.btn-sm{font:inherit; font-size:.82rem; padding:5px 11px; border-radius:8px; border:1px solid var(--rule); background:var(--surface-2); color:var(--ink-2); cursor:pointer}
+.btn-sm:hover{color:var(--ink); border-color:var(--ink-3)}
+.btn-sm[aria-expanded="true"]{background:color-mix(in srgb,var(--real) 10%, transparent); border-color:color-mix(in srgb,var(--real) 40%, transparent); color:var(--real)}
+.btn-sm:focus-visible{outline:2px solid var(--imag); outline-offset:2px}
+
+.panel{display:grid; grid-template-rows:0fr; transition:grid-template-rows .26s ease}
+.panel.open{grid-template-rows:1fr}
+.panel > .inner{overflow:hidden; min-height:0}
+.pad{padding-top:12px}
+.lbl{display:block; font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3); margin-bottom:5px}
+.ans-box{border-left:2px solid var(--imag); background:var(--surface-2); border-radius:0 8px 8px 0; padding:10px 14px; overflow-x:auto}
+.ans-box .lbl{color:var(--imag)}
+.sol-box{border-left:2px solid var(--real); background:var(--surface-2); border-radius:0 8px 8px 0; padding:10px 14px}
+.sol-box .lbl{color:var(--real)}
+.sol-box ol{margin:0; padding-left:22px}
+.sol-box li{font-size:.96rem; color:var(--ink-2); padding-left:3px}
+.sol-box .stp{overflow-x:auto; overflow-y:hidden}
+.sol-box li + li{margin-top:7px}
+.sol-box li::marker{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:.8em}
+.sol-box li strong{color:var(--ink)}
+
+mjx-container{max-width:100%}
+mjx-container[display="true"]{margin:.5em 0}
+
+footer.foot{border-top:1px solid var(--rule); padding-block:22px 40px; color:var(--ink-3); font-size:.85rem; display:flex; flex-wrap:wrap; gap:8px 20px; justify-content:space-between}
+footer.foot em{font-style:italic}
+
+@media (prefers-reduced-motion: reduce){ *{animation-duration:.01ms !important; transition-duration:.01ms !important} }
+@media print{
+  .bar,nav.toc,.ex-tools,.done-btn{display:none}
+  .cols{grid-template-columns:1fr}
+  .panel{grid-template-rows:1fr}
+  body{background:#fff}
+}
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Mathématiques · 6ᵉ (6 h)</p>
+        <h1>Nombres complexes,<br><em>tous les exercices</em></h1>
+        <p class="lede">Les 54 exercices du cours — de la formule de Cardano aux équations posées à l’ULB et à la Faculté polytechnique de Mons — avec la réponse et la démarche complète pour chacun.</p>
+      </div>
+      
+<svg class="plane" viewBox="0 0 340 226" role="img" aria-label="Plan complexe : le point z = 3 + 2i et son conjugué 3 − 2i">
+  <g stroke="var(--rule)" stroke-width="1" opacity=".75">
+    <path d="M50 11V215M84 11V215M118 11V215M152 11V215M186 11V215M220 11V215M254 11V215M288 11V215"/>
+    <path d="M16 11H300M16 45H300M16 79H300M16 113H300M16 147H300M16 181H300M16 215H300"/>
+  </g>
+  <path d="M10 113H304" stroke="var(--ink-3)" stroke-width="1.4" fill="none"/>
+  <path d="M84 222V6" stroke="var(--ink-3)" stroke-width="1.4" fill="none"/>
+  <path d="M304 113l-7-3.5v7z" fill="var(--ink-3)"/>
+  <path d="M84 6l-3.5 7h7z" fill="var(--ink-3)"/>
+  <path d="M186 113V45M84 45h102" stroke="var(--imag)" stroke-width="1.1" stroke-dasharray="3 3" fill="none" opacity=".8"/>
+  <circle cx="186" cy="45" r="4.5" fill="var(--imag)"/>
+  <circle cx="186" cy="181" r="4.5" fill="var(--real)"/>
+  <path d="M186 113V181" stroke="var(--real)" stroke-width="1.1" stroke-dasharray="3 3" fill="none" opacity=".8"/>
+  <g font-family="IBM Plex Mono, monospace" font-size="11">
+    <text x="196" y="42" fill="var(--imag)">z = 3 + 2i</text>
+    <text x="196" y="186" fill="var(--real)">z̄ = 3 − 2i</text>
+    <text x="292" y="128" fill="var(--ink-3)" text-anchor="end">Re</text>
+    <text x="92" y="17" fill="var(--ink-3)">Im</text>
+    <text x="76" y="127" fill="var(--ink-3)" text-anchor="end">0</text>
+  </g>
+</svg>
+
+    </div>
+  </header>
+
+  <div class="bar">
+    <div class="bar-in">
+      <div class="meter">
+        <div class="meter-top"><span>Progression</span><span id="count"><b>0</b> / 54</span></div>
+        <div class="track"><div class="fill" id="fill"></div></div>
+      </div>
+      <div class="search"><input id="q" type="search" placeholder="Chercher : conjugué, discriminant, Horner…" aria-label="Chercher un exercice"></div>
+      <button class="btn" id="rand" type="button">Au hasard</button>
+      <button class="btn ghost" id="all" type="button">Tout révéler</button>
+      <button class="btn ghost warn" id="reset" type="button" data-armed="0">Réinitialiser</button>
+    </div>
+  </div>
+
+  <div class="cols">
+    <nav class="toc" aria-label="Sommaire">
+      <h2>Sommaire</h2>
+      <ol>
+      <li><a href="#methodes" data-sec="methodes"><span>Méthodes du cours</span><span class="n" data-count="methodes">0/4</span></a></li>
+      <li><a href="#histo" data-sec="histo"><span>Cardano & Bombelli</span><span class="n" data-count="histo">0/2</span></a></li>
+      <li><a href="#egalite" data-sec="egalite"><span>Égalité de complexes</span><span class="n" data-count="egalite">0/3</span></a></li>
+      <li><a href="#calculs" data-sec="calculs"><span>Calculs sous forme a + bi</span><span class="n" data-count="calculs">0/12</span></a></li>
+      <li><a href="#ulb3" data-sec="ulb3"><span>Un quotient réel</span><span class="n" data-count="ulb3">0/1</span></a></li>
+      <li><a href="#binome" data-sec="binome"><span>Racines carrées</span><span class="n" data-count="binome">0/6</span></a></li>
+      <li><a href="#complete" data-sec="complete"><span>Équations complètes</span><span class="n" data-count="complete">0/10</span></a></li>
+      <li><a href="#alembert" data-sec="alembert"><span>Polynômes & d’Alembert</span><span class="n" data-count="alembert">0/6</span></a></li>
+      <li><a href="#fpms" data-sec="fpms"><span>Mons (FPMs)</span><span class="n" data-count="fpms">0/2</span></a></li>
+      <li><a href="#ulb" data-sec="ulb"><span>ULB — plus loin</span><span class="n" data-count="ulb">0/8</span></a></li>
+      </ol>
+    </nav>
+
+    <main>
+    <div class="memo">
+      <h2>L’essentiel en huit lignes</h2>
+      <p class="sub">Tout ce qu’il faut avoir en tête avant de se lancer dans les exercices.</p>
+      <dl>
+        <div><dt>Le nombre $i$</dt><dd>$i^{2}=-1$. Tout complexe s’écrit $z=a+bi$, avec $a=\mathrm{Re}(z)$ et $b=\mathrm{Im}(z)$.</dd></div>
+        <div><dt>Égalité</dt><dd>$a+bi=c+di$ &nbsp;$\Leftrightarrow$&nbsp; $a=c$ et $b=d$.</dd></div>
+        <div><dt>Conjugué</dt><dd>$\overline{a+bi}=a-bi$, &nbsp;et&nbsp; $z\cdot\bar z=a^{2}+b^{2}$, toujours réel.</dd></div>
+        <div><dt>Puissances de $i$</dt><dd>$i^{0}=1$, &nbsp;$i^{1}=i$, &nbsp;$i^{2}=-1$, &nbsp;$i^{3}=-i$, puis le cycle recommence.</dd></div>
+        <div><dt>Division</dt><dd>Multiplier haut et bas par le conjugué du dénominateur. En particulier $\dfrac{1}{i}=-i$.</dd></div>
+        <div><dt>Racine carrée</dt><dd>Pour $z^{2}=a+bi$, poser $z=x+yi$ : $x^{2}-y^{2}=a$ et $2xy=b$, puis résoudre l’équation bicarrée.</dd></div>
+        <div><dt>Discriminant négatif</dt><dd>$\Delta<0$ s’écrit $\Delta=|\Delta|\,i^{2}$, donc $\sqrt{\Delta}=\pm\sqrt{|\Delta|}\,i$ : les racines sont conjuguées.</dd></div>
+        <div><dt>d’Alembert</dt><dd>Toute équation polynomiale de degré $n$ à coefficients réels admet $n$ solutions complexes, distinctes ou non.</dd></div>
+      </dl>
+    </div>
+    <section class="sec" id="methodes">
+      <div class="sec-head">
+        <span class="kick">Aide-mémoire</span>
+        <h2>Les méthodes du cours</h2>
+        <p>Les exercices résolus des pages 3, 6, 7 et 8 — les modèles à suivre</p>
+      </div>
+      <article class="ex" id="x-methodes-m1" data-id="methodes-m1" data-search="résoudre x 2 -2x+5=0 . x 1 =1+2i et x 2 =1-2i . discriminant : =(-2) 2 -4 1 5=-16 . on écrit ce discriminant négatif à l’aide de i : -16=16 ,i 2 , donc = 4i . x 1 = 2+4i 2 =1+2i et x 2 = 2-4i 2 =1-2i . les deux solutions sont conjuguées : c’est toujours le cas pour une équation à coefficients réels. les méthodes du cours aide-mémoire page 3">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">M1</span><span class="ex-tag">page 3</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Résoudre $x^{2}-2x+5=0$.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="true" aria-controls="a-methodes-m1">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="true" aria-controls="s-methodes-m1">Solution détaillée</button>
+          </div>
+          <div class="panel open" id="a-methodes-m1"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x_{1}=1+2i$ et $x_{2}=1-2i$.</div></div></div></div></div>
+          <div class="panel open" id="s-methodes-m1"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Discriminant : $\Delta=(-2)^{2}-4\cdot 1\cdot 5=-16$.</div></li>
+          <li><div class="stp">On écrit ce discriminant négatif à l’aide de $i$ : $-16=16\,i^{2}$, donc $\sqrt{\Delta}=\pm 4i$.</div></li>
+          <li><div class="stp">$x_{1}=\dfrac{2+4i}{2}=1+2i$ &nbsp;et&nbsp; $x_{2}=\dfrac{2-4i}{2}=1-2i$.</div></li>
+          <li><div class="stp">Les deux solutions sont <em>conjuguées</em> : c’est toujours le cas pour une équation à coefficients réels.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-methodes-m2" data-id="methodes-m2" data-search="résoudre z 2 =3+4i , c’est-à-dire rechercher les racines carrées de 3+4i . z 1 =2+i et z 2 =-2-i . on pose z=x+yi avec x,y r : (x+yi) 2 =x 2 -y 2 +2xyi=3+4i . identification des parties réelles et imaginaires : x 2 -y 2 =3 (1) et 2xy=4 (2). de (2) : y= 2 x . en reportant dans (1) : x 2 - 4 x 2 =3 , soit x 4 -3x 2 -4=0 . équation bicarrée : on pose t=x 2 , d’où t 2 -3t-4=0 et t=-1 ou t=4 . x 2 =-1 est à rejeter ( x est réel) x 2 =4 donne x= 2 , puis y= 2 x = 1 . à retenir : tout nombre complexe possède exactement deux racines carrées opposées. les méthodes du cours aide-mémoire page 6 · équation binôme">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">M2</span><span class="ex-tag">page 6 · équation binôme</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Résoudre $z^{2}=3+4i$, c’est-à-dire rechercher les racines carrées de $3+4i$.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="true" aria-controls="a-methodes-m2">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="true" aria-controls="s-methodes-m2">Solution détaillée</button>
+          </div>
+          <div class="panel open" id="a-methodes-m2"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$z_{1}=2+i$ et $z_{2}=-2-i$.</div></div></div></div></div>
+          <div class="panel open" id="s-methodes-m2"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">On pose $z=x+yi$ avec $x,y\in\mathbb{R}$ : $(x+yi)^{2}=x^{2}-y^{2}+2xyi=3+4i$.</div></li>
+          <li><div class="stp">Identification des parties réelles et imaginaires : $x^{2}-y^{2}=3$ (1) et $2xy=4$ (2).</div></li>
+          <li><div class="stp">De (2) : $y=\dfrac{2}{x}$. En reportant dans (1) : $x^{2}-\dfrac{4}{x^{2}}=3$, soit $x^{4}-3x^{2}-4=0$.</div></li>
+          <li><div class="stp">Équation bicarrée : on pose $t=x^{2}$, d’où $t^{2}-3t-4=0$ et $t=-1$ ou $t=4$.</div></li>
+          <li><div class="stp">$x^{2}=-1$ est à rejeter ($x$ est réel) ; $x^{2}=4$ donne $x=\pm 2$, puis $y=\dfrac{2}{x}=\pm 1$.</div></li>
+          <li><div class="stp"><strong>À retenir :</strong> tout nombre complexe possède exactement deux racines carrées opposées.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-methodes-m3" data-id="methodes-m3" data-search="résoudre 2x 2 +(2+3i) x+2i-1=0 . x 1 =-i et x 2 =-1- 1 2 i . =(2+3i) 2 -4 2 (2i-1)=4+12i+9i 2 -16i+8=3-4i . le discriminant est complexe : on cherche ses racines carrées en résolvant l’équation binôme z 2 =3-4i , ce qui donne 2-i et -2+i . x= -(2+3i) (2-i) 4 , d’où x 1 = -4i 4 =-i et x 2 = -4-2i 4 =-1- 1 2 i . à noter : avec des coefficients complexes, les deux solutions ne sont plus conjuguées. les méthodes du cours aide-mémoire page 7 · coefficients complexes">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">M3</span><span class="ex-tag">page 7 · coefficients complexes</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Résoudre $2x^{2}+(2+3i)\cdot x+2i-1=0$.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="true" aria-controls="a-methodes-m3">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="true" aria-controls="s-methodes-m3">Solution détaillée</button>
+          </div>
+          <div class="panel open" id="a-methodes-m3"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x_{1}=-i$ et $x_{2}=-1-\dfrac{1}{2}i$.</div></div></div></div></div>
+          <div class="panel open" id="s-methodes-m3"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\Delta=(2+3i)^{2}-4\cdot 2\cdot(2i-1)=4+12i+9i^{2}-16i+8=3-4i$.</div></li>
+          <li><div class="stp">Le discriminant est complexe : on cherche ses racines carrées en résolvant l’équation binôme $z^{2}=3-4i$, ce qui donne $2-i$ et $-2+i$.</div></li>
+          <li><div class="stp">$x=\dfrac{-(2+3i)\pm(2-i)}{4}$, d’où $x_{1}=\dfrac{-4i}{4}=-i$ et $x_{2}=\dfrac{-4-2i}{4}=-1-\dfrac{1}{2}i$.</div></li>
+          <li><div class="stp"><strong>À noter :</strong> avec des coefficients complexes, les deux solutions ne sont plus conjuguées.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-methodes-m4" data-id="methodes-m4" data-search="résoudre x 3 =1 . s= 1, -1+ 3 ,i 2 , -1- 3 ,i 2 le théorème de d’alembert annonce 3 solutions : au-delà de la solution évidente x=1 , il faut aller plus loin. x 3 -1=0 (x-1)(x 2 +x+1)=0 , grâce à a 3 -b 3 =(a-b)(a 2 +ab+b 2 ) . x 2 +x+1=0 a pour discriminant -3 , d’où les deux solutions conjuguées -1 3 ,i 2 . les méthodes du cours aide-mémoire page 8 · d’alembert">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">M4</span><span class="ex-tag">page 8 · d’Alembert</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Résoudre $x^{3}=1$.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="true" aria-controls="a-methodes-m4">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="true" aria-controls="s-methodes-m4">Solution détaillée</button>
+          </div>
+          <div class="panel open" id="a-methodes-m4"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$S=\left\{1,\ \dfrac{-1+\sqrt{3}\,i}{2},\ \dfrac{-1-\sqrt{3}\,i}{2}\right\}$</div></div></div></div></div>
+          <div class="panel open" id="s-methodes-m4"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Le théorème de d’Alembert annonce 3 solutions : au-delà de la solution évidente $x=1$, il faut aller plus loin.</div></li>
+          <li><div class="stp">$x^{3}-1=0 \Leftrightarrow (x-1)(x^{2}+x+1)=0$, grâce à $a^{3}-b^{3}=(a-b)(a^{2}+ab+b^{2})$.</div></li>
+          <li><div class="stp">$x^{2}+x+1=0$ a pour discriminant $-3$, d’où les deux solutions conjuguées $\dfrac{-1\pm\sqrt{3}\,i}{2}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+    </section>
+    <section class="sec" id="histo">
+      <div class="sec-head">
+        <span class="kick">Échauffement</span>
+        <h2>Sur les traces de Cardano et Bombelli</h2>
+        <p>Les deux vérifications demandées dans l’introduction historique (pages 1 et 2)</p>
+      </div>
+      <article class="ex" id="x-histo-h1" data-id="histo-h1" data-search="vérifier l’ensemble des solutions de x 3 =19x+30 — le cours annonce s= 2,3,5 . s= 5, ,-2, ,-3 — l’énoncé imprimé a perdu les signes « - ». on écrit x 3 -19x-30=0 et on teste les diviseurs de 30 (méthode de horner). 5 3 -19 5-30=125-95-30=0 : 5 est racine. (-2) 3 -19(-2)-30=-8+38-30=0 et (-3) 3 -19(-3)-30=-27+57-30=0 . factorisation : x 3 -19x-30=(x-5)(x+2)(x+3) , donc s= 5,-2,-3 . tout l’intérêt de l’exemple est là : l’équation a trois solutions réelles , alors que la formule de cardano bute sur une racine carrée de nombre négatif. sur les traces de cardano et bombelli échauffement page 2">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">H1</span><span class="ex-tag">page 2</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Vérifier l’ensemble des solutions de $x^{3}=19x+30$ — le cours annonce $S=\{2,3,5\}$.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-histo-h1">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-histo-h1">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-histo-h1"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$S=\{5,\,-2,\,-3\}$ — l’énoncé imprimé a perdu les signes « $-$ ».</div></div></div></div></div>
+          <div class="panel" id="s-histo-h1"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">On écrit $x^{3}-19x-30=0$ et on teste les diviseurs de $30$ (méthode de Horner).</div></li>
+          <li><div class="stp">$5^{3}-19\cdot 5-30=125-95-30=0$ : $5$ est racine.</div></li>
+          <li><div class="stp">$(-2)^{3}-19(-2)-30=-8+38-30=0$ &nbsp;et&nbsp; $(-3)^{3}-19(-3)-30=-27+57-30=0$.</div></li>
+          <li><div class="stp">Factorisation : $x^{3}-19x-30=(x-5)(x+2)(x+3)$, donc $S=\{5,-2,-3\}$.</div></li>
+          <li><div class="stp">Tout l’intérêt de l’exemple est là : l’équation a trois solutions <em>réelles</em>, alors que la formule de Cardano bute sur une racine carrée de nombre négatif.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-histo-h2" data-id="histo-h2" data-search="vérifier que (2- -1 ) 3 =2- -121 . (2-i) 3 =2-11i=2- -121 avec -1 =i : (2-i) 3 =2 3 -3 2 2 i+3 2 i 2 -i 3 . =8-12i-6+i (car i 2 =-1 et i 3 =-i ). =2-11i , et comme -121 =11i , on obtient bien 2- -121 . joint à (2+ -1 ) 3 =2+ -121 , ce calcul permet à bombelli de tirer x=4 de la formule de cardano. sur les traces de cardano et bombelli échauffement page 2">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">H2</span><span class="ex-tag">page 2</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Vérifier que $\left(2-\sqrt{-1}\right)^{3}=2-\sqrt{-121}$.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-histo-h2">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-histo-h2">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-histo-h2"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$(2-i)^{3}=2-11i=2-\sqrt{-121}$</div></div></div></div></div>
+          <div class="panel" id="s-histo-h2"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Avec $\sqrt{-1}=i$ : $(2-i)^{3}=2^{3}-3\cdot 2^{2}\cdot i+3\cdot 2\cdot i^{2}-i^{3}$.</div></li>
+          <li><div class="stp">$=8-12i-6+i$ &nbsp; (car $i^{2}=-1$ et $i^{3}=-i$).</div></li>
+          <li><div class="stp">$=2-11i$, et comme $\sqrt{-121}=11i$, on obtient bien $2-\sqrt{-121}$.</div></li>
+          <li><div class="stp">Joint à $\left(2+\sqrt{-1}\right)^{3}=2+\sqrt{-121}$, ce calcul permet à Bombelli de tirer $x=4$ de la formule de Cardano.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+    </section>
+    <section class="sec" id="egalite">
+      <div class="sec-head">
+        <span class="kick">Exercice 1 · page 5</span>
+        <h2>Égalité de deux nombres complexes</h2>
+        <p>Deux complexes sont égaux si et seulement si leurs parties réelles sont égales et leurs parties imaginaires sont égales</p>
+      </div>
+      <article class="ex" id="x-egalite-1a" data-id="egalite-1a" data-search="(2x+1)+(3y-2)=15+4i aucun couple de réels ne convient : s= . le membre de gauche (2x+1)+(3y-2)=2x+3y-1 est un réel : sa partie imaginaire vaut 0 . l’égalité des parties imaginaires donnerait 0=4 : impossible. remarque : si l’énoncé portait (2x+1)+(3y-2)i=15+4i , on aurait 2x+1=15 et 3y-2=4 , soit x=7 et y=2 . égalité de deux nombres complexes exercice 1 · page 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">1 a</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$(2x+1)+(3y-2)=15+4i$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-egalite-1a">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-egalite-1a">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-egalite-1a"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Aucun couple de réels ne convient : $S=\varnothing$.</div></div></div></div></div>
+          <div class="panel" id="s-egalite-1a"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Le membre de gauche $(2x+1)+(3y-2)=2x+3y-1$ est un <strong>réel</strong> : sa partie imaginaire vaut $0$.</div></li>
+          <li><div class="stp">L’égalité des parties imaginaires donnerait $0=4$ : impossible.</div></li>
+          <li><div class="stp"><em>Remarque :</em> si l’énoncé portait $(2x+1)+(3y-2)i=15+4i$, on aurait $2x+1=15$ et $3y-2=4$, soit $x=7$ et $y=2$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-egalite-1b" data-id="egalite-1b" data-search="(x+yi)-(2x-yi)=3+6i x=-3 et y=3 on développe : (x-2x)+(y+y)i=-x+2yi . identification : -x=3 et 2y=6 . d’où x=-3 et y=3 . égalité de deux nombres complexes exercice 1 · page 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">1 b</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$(x+yi)-(2x-yi)=3+6i$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-egalite-1b">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-egalite-1b">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-egalite-1b"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=-3$ et $y=3$</div></div></div></div></div>
+          <div class="panel" id="s-egalite-1b"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">On développe : $(x-2x)+(y+y)i=-x+2yi$.</div></li>
+          <li><div class="stp">Identification : $-x=3$ &nbsp;et&nbsp; $2y=6$.</div></li>
+          <li><div class="stp">D’où $x=-3$ et $y=3$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-egalite-1c" data-id="egalite-1c" data-search="xi-y-x+3i=0 x=-3 et y=3 on regroupe partie réelle et partie imaginaire : (-y-x)+(x+3)i=0+0i . identification : x+3=0 et -y-x=0 . d’où x=-3 , puis y=-x=3 . égalité de deux nombres complexes exercice 1 · page 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">1 c</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$xi-y-x+3i=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-egalite-1c">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-egalite-1c">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-egalite-1c"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=-3$ et $y=3$</div></div></div></div></div>
+          <div class="panel" id="s-egalite-1c"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">On regroupe partie réelle et partie imaginaire : $(-y-x)+(x+3)i=0+0i$.</div></li>
+          <li><div class="stp">Identification : $x+3=0$ &nbsp;et&nbsp; $-y-x=0$.</div></li>
+          <li><div class="stp">D’où $x=-3$, puis $y=-x=3$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+    </section>
+    <section class="sec" id="calculs">
+      <div class="sec-head">
+        <span class="kick">Exercice 2 · page 5</span>
+        <h2>Calculer et donner la réponse sous la forme $a+bi$</h2>
+        <p>On calcule comme dans $\mathbb{R}$, en tenant compte de $i^{2}=-1$</p>
+      </div>
+      <article class="ex" id="x-calculs-2a" data-id="calculs-2a" data-search="(2i+3)+(-5i+1)-(3-2i) 1-i parties réelles : 3+1-3=1 . parties imaginaires : 2-5+2=-1 . résultat : 1-i . calculer et donner la réponse sous la forme a+bi exercice 2 · page 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">2 a</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$(2i+3)+(-5i+1)-(3-2i)$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-calculs-2a">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-calculs-2a">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-calculs-2a"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$1-i$</div></div></div></div></div>
+          <div class="panel" id="s-calculs-2a"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Parties réelles : $3+1-3=1$.</div></li>
+          <li><div class="stp">Parties imaginaires : $2-5+2=-1$.</div></li>
+          <li><div class="stp">Résultat : $1-i$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-calculs-2b" data-id="calculs-2b" data-search="2 (3-5i) 6-10i on distribue : 2 3-2 5i=6-10i . calculer et donner la réponse sous la forme a+bi exercice 2 · page 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">2 b</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$2\cdot(3-5i)$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-calculs-2b">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-calculs-2b">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-calculs-2b"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$6-10i$</div></div></div></div></div>
+          <div class="panel" id="s-calculs-2b"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">On distribue : $2\cdot 3-2\cdot 5i=6-10i$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-calculs-2c" data-id="calculs-2c" data-search="(3-2i) 2 5-12i (3-2i) 2 =9-12i+4i 2 . or 4i 2 =-4 : le résultat vaut 9-4-12i=5-12i . calculer et donner la réponse sous la forme a+bi exercice 2 · page 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">2 c</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$(3-2i)^{2}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-calculs-2c">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-calculs-2c">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-calculs-2c"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$5-12i$</div></div></div></div></div>
+          <div class="panel" id="s-calculs-2c"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$(3-2i)^{2}=9-12i+4i^{2}$.</div></li>
+          <li><div class="stp">Or $4i^{2}=-4$ : le résultat vaut $9-4-12i=5-12i$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-calculs-2d" data-id="calculs-2d" data-search="(1-i) 3 -2-2i (1-i) 2 =1-2i+i 2 =-2i . (1-i) 3 =(1-i) 2 (1-i)=-2i(1-i)=-2i+2i 2 . =-2-2i . calculer et donner la réponse sous la forme a+bi exercice 2 · page 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">2 d</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$(1-i)^{3}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-calculs-2d">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-calculs-2d">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-calculs-2d"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$-2-2i$</div></div></div></div></div>
+          <div class="panel" id="s-calculs-2d"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$(1-i)^{2}=1-2i+i^{2}=-2i$.</div></li>
+          <li><div class="stp">$(1-i)^{3}=(1-i)^{2}\cdot(1-i)=-2i(1-i)=-2i+2i^{2}$.</div></li>
+          <li><div class="stp">$=-2-2i$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-calculs-2e" data-id="calculs-2e" data-search="(8-3i) (8+3i) 73 produit de deux complexes conjugués : z z=a 2 +b 2 . =8 2 +3 2 =64+9=73 , un réel. calculer et donner la réponse sous la forme a+bi exercice 2 · page 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">2 e</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$(8-3i)\cdot(8+3i)$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-calculs-2e">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-calculs-2e">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-calculs-2e"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$73$</div></div></div></div></div>
+          <div class="panel" id="s-calculs-2e"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Produit de deux complexes conjugués : $z\cdot\bar z=a^{2}+b^{2}$.</div></li>
+          <li><div class="stp">$=8^{2}+3^{2}=64+9=73$, un réel.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-calculs-2f" data-id="calculs-2f" data-search="(-2+ 3 i ) 2 1-4 3 ,i (-2+ 3 i ) 2 =4-4 3 i+3i 2 . =4-3-4 3 i=1-4 3 ,i . calculer et donner la réponse sous la forme a+bi exercice 2 · page 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">2 f</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\left(-2+\sqrt{3}\cdot i\right)^{2}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-calculs-2f">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-calculs-2f">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-calculs-2f"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$1-4\sqrt{3}\,i$</div></div></div></div></div>
+          <div class="panel" id="s-calculs-2f"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\left(-2+\sqrt{3}i\right)^{2}=4-4\sqrt{3}i+3i^{2}$.</div></li>
+          <li><div class="stp">$=4-3-4\sqrt{3}i=1-4\sqrt{3}\,i$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-calculs-2g" data-id="calculs-2g" data-search="1 1+3i 1 10 - 3 10 i on multiplie numérateur et dénominateur par le conjugué 1-3i . 1-3i (1+3i)(1-3i) = 1-3i 1+9 = 1-3i 10 . calculer et donner la réponse sous la forme a+bi exercice 2 · page 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">2 g</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\dfrac{1}{1+3i}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-calculs-2g">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-calculs-2g">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-calculs-2g"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$\dfrac{1}{10}-\dfrac{3}{10}i$</div></div></div></div></div>
+          <div class="panel" id="s-calculs-2g"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">On multiplie numérateur et dénominateur par le conjugué $1-3i$.</div></li>
+          <li><div class="stp">$\dfrac{1-3i}{(1+3i)(1-3i)}=\dfrac{1-3i}{1+9}=\dfrac{1-3i}{10}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-calculs-2h" data-id="calculs-2h" data-search="1+i 1-2i - 1 5 + 3 5 i conjugué du dénominateur : 1+2i . numérateur : (1+i)(1+2i)=1+2i+i+2i 2 =-1+3i . dénominateur : 1 2 +2 2 =5 . résultat : -1+3i 5 . calculer et donner la réponse sous la forme a+bi exercice 2 · page 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">2 h</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\dfrac{1+i}{1-2i}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-calculs-2h">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-calculs-2h">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-calculs-2h"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$-\dfrac{1}{5}+\dfrac{3}{5}i$</div></div></div></div></div>
+          <div class="panel" id="s-calculs-2h"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Conjugué du dénominateur : $1+2i$.</div></li>
+          <li><div class="stp">Numérateur : $(1+i)(1+2i)=1+2i+i+2i^{2}=-1+3i$.</div></li>
+          <li><div class="stp">Dénominateur : $1^{2}+2^{2}=5$.</div></li>
+          <li><div class="stp">Résultat : $\dfrac{-1+3i}{5}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-calculs-2i" data-id="calculs-2i" data-search="1 i -i le conjugué de i est -i : 1 i = -i i (-i) = -i 1 =-i . vérification : i (-i)=-i 2 =1 . ce petit résultat resservira souvent. calculer et donner la réponse sous la forme a+bi exercice 2 · page 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">2 i</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\dfrac{1}{i}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-calculs-2i">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-calculs-2i">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-calculs-2i"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$-i$</div></div></div></div></div>
+          <div class="panel" id="s-calculs-2i"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Le conjugué de $i$ est $-i$ : $\dfrac{1}{i}=\dfrac{-i}{i\cdot(-i)}=\dfrac{-i}{1}=-i$.</div></li>
+          <li><div class="stp">Vérification : $i\cdot(-i)=-i^{2}=1$. Ce petit résultat resservira souvent.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-calculs-2j" data-id="calculs-2j" data-search="i 2+3i + 1 2-3i 5 13 + 5 13 i i 2+3i = i(2-3i) 4+9 = 3+2i 13 . 1 2-3i = 2+3i 13 . somme : 3+2i+2+3i 13 = 5+5i 13 . calculer et donner la réponse sous la forme a+bi exercice 2 · page 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">2 j</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\dfrac{i}{2+3i}+\dfrac{1}{2-3i}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-calculs-2j">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-calculs-2j">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-calculs-2j"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$\dfrac{5}{13}+\dfrac{5}{13}i$</div></div></div></div></div>
+          <div class="panel" id="s-calculs-2j"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\dfrac{i}{2+3i}=\dfrac{i(2-3i)}{4+9}=\dfrac{3+2i}{13}$.</div></li>
+          <li><div class="stp">$\dfrac{1}{2-3i}=\dfrac{2+3i}{13}$.</div></li>
+          <li><div class="stp">Somme : $\dfrac{3+2i+2+3i}{13}=\dfrac{5+5i}{13}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-calculs-2k" data-id="calculs-2k" data-search="4-i 2-i + 4+i 2+i 18 5 , un réel 4-i 2-i = (4-i)(2+i) 5 = 9+2i 5 . 4+i 2+i = (4+i)(2-i) 5 = 9-2i 5 . les deux termes sont conjugués : leur somme vaut 18 5 . calculer et donner la réponse sous la forme a+bi exercice 2 · page 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">2 k</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\dfrac{4-i}{2-i}+\dfrac{4+i}{2+i}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-calculs-2k">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-calculs-2k">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-calculs-2k"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$\dfrac{18}{5}$, un réel</div></div></div></div></div>
+          <div class="panel" id="s-calculs-2k"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\dfrac{4-i}{2-i}=\dfrac{(4-i)(2+i)}{5}=\dfrac{9+2i}{5}$.</div></li>
+          <li><div class="stp">$\dfrac{4+i}{2+i}=\dfrac{(4+i)(2-i)}{5}=\dfrac{9-2i}{5}$.</div></li>
+          <li><div class="stp">Les deux termes sont conjugués : leur somme vaut $\dfrac{18}{5}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-calculs-2l" data-id="calculs-2l" data-search="1 +i -i conjugué du dénominateur : -i . dénominateur : 2 + 2 =1 . résultat : -i — l’inverse d’un complexe de module 1 est son conjugué. calculer et donner la réponse sous la forme a+bi exercice 2 · page 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">2 l</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\dfrac{1}{\cos\theta+i\cdot\sin\theta}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-calculs-2l">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-calculs-2l">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-calculs-2l"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$\cos\theta-i\sin\theta$</div></div></div></div></div>
+          <div class="panel" id="s-calculs-2l"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Conjugué du dénominateur : $\cos\theta-i\sin\theta$.</div></li>
+          <li><div class="stp">Dénominateur : $\cos^{2}\theta+\sin^{2}\theta=1$.</div></li>
+          <li><div class="stp">Résultat : $\cos\theta-i\sin\theta$ — l’inverse d’un complexe de module $1$ est son conjugué.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+    </section>
+    <section class="sec" id="ulb3">
+      <div class="sec-head">
+        <span class="kick">Exercice 3 · page 5</span>
+        <h2>Un quotient qui se révèle réel</h2>
+        <p>Énoncé proposé à l’ULB</p>
+      </div>
+      <article class="ex" id="x-ulb3-3" data-id="ulb3-3" data-search="montrer que a+ib a-ib + a-ib a+ib (avec a,b r et a ou b 0 ) est un nombre réel, et calculer ce nombre. 2 (a 2 -b 2 ) a 2 +b 2 , qui est bien réel. dénominateur commun : (a-ib)(a+ib)=a 2 +b 2 , non nul puisque a ou b est non nul. numérateur : (a+ib) 2 +(a-ib) 2 = (a 2 -b 2 +2abi )+ (a 2 -b 2 -2abi ) . les parties imaginaires s’annulent : il reste 2 (a 2 -b 2 ) . d’où 2 (a 2 -b 2 ) a 2 +b 2 r . on reconnaît la somme z+ z=2 , re (z) , toujours réelle. un quotient qui se révèle réel exercice 3 · page 5 ulb">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">3</span><span class="ex-tag">ULB</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Montrer que $\dfrac{a+ib}{a-ib}+\dfrac{a-ib}{a+ib}$ (avec $a,b\in\mathbb{R}$ et $a$ ou $b\neq 0$) est un nombre réel, et calculer ce nombre.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-ulb3-3">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-ulb3-3">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-ulb3-3"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$\dfrac{2\left(a^{2}-b^{2}\right)}{a^{2}+b^{2}}$, qui est bien réel.</div></div></div></div></div>
+          <div class="panel" id="s-ulb3-3"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Dénominateur commun : $(a-ib)(a+ib)=a^{2}+b^{2}$, non nul puisque $a$ ou $b$ est non nul.</div></li>
+          <li><div class="stp">Numérateur : $(a+ib)^{2}+(a-ib)^{2}=\left(a^{2}-b^{2}+2abi\right)+\left(a^{2}-b^{2}-2abi\right)$.</div></li>
+          <li><div class="stp">Les parties imaginaires s’annulent : il reste $2\left(a^{2}-b^{2}\right)$.</div></li>
+          <li><div class="stp">D’où $\dfrac{2\left(a^{2}-b^{2}\right)}{a^{2}+b^{2}}\in\mathbb{R}$. On reconnaît la somme $z+\bar z=2\,\mathrm{Re}(z)$, toujours réelle.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+    </section>
+    <section class="sec" id="binome">
+      <div class="sec-head">
+        <span class="kick">Équations binômes · page 6</span>
+        <h2>Racines carrées d’un nombre complexe</h2>
+        <p>Poser $z=x+yi$, identifier, puis résoudre l’équation bicarrée</p>
+      </div>
+      <article class="ex" id="x-binome-a" data-id="binome-a" data-search="z 2 =5+2i z= ( 29 +5 2 + 29 -5 2 ,i ) (2 , 279+0 , 439 ,i) z=x+yi donne x 2 -y 2 =5 (1) et 2xy=2 , soit xy=1 (2). de (2) : y= 1 x . en reportant : x 2 - 1 x 2 =5 , soit x 4 -5x 2 -1=0 . avec t=x 2 : t 2 -5t-1=0 , =29 , t= 5 29 2 . seule t= 5+ 29 2 convient, car t 0 . x= 5+ 29 2 et y= 1 x est de même signe que x , avec y 2 =x 2 -5= 29 -5 2 . les deux racines carrées sont opposées — c’est le cas général. racines carrées d’un nombre complexe équations binômes · page 6">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">a</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$z^{2}=5+2i$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-binome-a">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-binome-a">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-binome-a"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$z=\pm\left(\sqrt{\dfrac{\sqrt{29}+5}{2}}+\sqrt{\dfrac{\sqrt{29}-5}{2}}\,i\right)\approx\pm(2{,}279+0{,}439\,i)$</div></div></div></div></div>
+          <div class="panel" id="s-binome-a"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$z=x+yi$ donne $x^{2}-y^{2}=5$ (1) et $2xy=2$, soit $xy=1$ (2).</div></li>
+          <li><div class="stp">De (2) : $y=\dfrac{1}{x}$. En reportant : $x^{2}-\dfrac{1}{x^{2}}=5$, soit $x^{4}-5x^{2}-1=0$.</div></li>
+          <li><div class="stp">Avec $t=x^{2}$ : $t^{2}-5t-1=0$, $\Delta=29$, $t=\dfrac{5\pm\sqrt{29}}{2}$. Seule $t=\dfrac{5+\sqrt{29}}{2}$ convient, car $t\geq 0$.</div></li>
+          <li><div class="stp">$x=\pm\sqrt{\dfrac{5+\sqrt{29}}{2}}$ et $y=\dfrac{1}{x}$ est de même signe que $x$, avec $y^{2}=x^{2}-5=\dfrac{\sqrt{29}-5}{2}$.</div></li>
+          <li><div class="stp">Les deux racines carrées sont opposées — c’est le cas général.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-binome-b" data-id="binome-b" data-search="z 2 =1 z=1 ou z=-1 z 2 -1=0 (z-1)(z+1)=0 . les deux racines carrées de 1 sont bien opposées. racines carrées d’un nombre complexe équations binômes · page 6">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">b</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$z^{2}=1$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-binome-b">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-binome-b">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-binome-b"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$z=1$ ou $z=-1$</div></div></div></div></div>
+          <div class="panel" id="s-binome-b"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$z^{2}-1=0\Leftrightarrow(z-1)(z+1)=0$.</div></li>
+          <li><div class="stp">Les deux racines carrées de $1$ sont bien opposées.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-binome-c" data-id="binome-c" data-search="z 2 +4=0 z=2i ou z=-2i z 2 =-4=4i 2 . d’où z= 2i : deux imaginaires purs. racines carrées d’un nombre complexe équations binômes · page 6">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">c</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$z^{2}+4=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-binome-c">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-binome-c">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-binome-c"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$z=2i$ ou $z=-2i$</div></div></div></div></div>
+          <div class="panel" id="s-binome-c"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$z^{2}=-4=4i^{2}$.</div></li>
+          <li><div class="stp">D’où $z=\pm 2i$ : deux imaginaires purs.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-binome-d" data-id="binome-d" data-search="z 2 =i z= 2 2 (1+i) x 2 -y 2 =0 (1) et 2xy=1 (2). (2) impose xy&gt;0 : x et y sont de même signe, donc (1) donne x=y . 2x 2 =1 , d’où x= 2 2 et y=x . z= 2 2 + 2 2 i ou son opposé. racines carrées d’un nombre complexe équations binômes · page 6">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">d</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$z^{2}=i$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-binome-d">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-binome-d">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-binome-d"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$z=\pm\dfrac{\sqrt{2}}{2}(1+i)$</div></div></div></div></div>
+          <div class="panel" id="s-binome-d"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$x^{2}-y^{2}=0$ (1) et $2xy=1$ (2).</div></li>
+          <li><div class="stp">(2) impose $xy>0$ : $x$ et $y$ sont de même signe, donc (1) donne $x=y$.</div></li>
+          <li><div class="stp">$2x^{2}=1$, d’où $x=\pm\dfrac{\sqrt{2}}{2}$ et $y=x$.</div></li>
+          <li><div class="stp">$z=\dfrac{\sqrt{2}}{2}+\dfrac{\sqrt{2}}{2}i$ ou son opposé.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-binome-e" data-id="binome-e" data-search="z 2 =5-12i z=3-2i ou z=-3+2i x 2 -y 2 =5 et 2xy=-12 , soit y=- 6 x . x 2 - 36 x 2 =5 x 4 -5x 2 -36=0 . t=x 2 : t 2 -5t-36=0 , t=9 ou t=-4 (rejetée). donc x= 3 . y=- 6 x : si x=3 , y=-2 si x=-3 , y=2 . racines carrées d’un nombre complexe équations binômes · page 6">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">e</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$z^{2}=5-12i$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-binome-e">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-binome-e">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-binome-e"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$z=3-2i$ ou $z=-3+2i$</div></div></div></div></div>
+          <div class="panel" id="s-binome-e"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$x^{2}-y^{2}=5$ et $2xy=-12$, soit $y=-\dfrac{6}{x}$.</div></li>
+          <li><div class="stp">$x^{2}-\dfrac{36}{x^{2}}=5\Rightarrow x^{4}-5x^{2}-36=0$.</div></li>
+          <li><div class="stp">$t=x^{2}$ : $t^{2}-5t-36=0$, $t=9$ ou $t=-4$ (rejetée). Donc $x=\pm 3$.</div></li>
+          <li><div class="stp">$y=-\dfrac{6}{x}$ : si $x=3$, $y=-2$ ; si $x=-3$, $y=2$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-binome-f" data-id="binome-f" data-search="z 2 =-8-6i z=1-3i ou z=-1+3i x 2 -y 2 =-8 et 2xy=-6 , soit y=- 3 x . x 2 - 9 x 2 =-8 x 4 +8x 2 -9=0 . t=x 2 : t 2 +8t-9=0 , t=1 ou t=-9 (rejetée). donc x= 1 et y= 3 . vérification : (1-3i) 2 =1-6i+9i 2 =-8-6i . ✓ racines carrées d’un nombre complexe équations binômes · page 6">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">f</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$z^{2}=-8-6i$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-binome-f">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-binome-f">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-binome-f"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$z=1-3i$ ou $z=-1+3i$</div></div></div></div></div>
+          <div class="panel" id="s-binome-f"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$x^{2}-y^{2}=-8$ et $2xy=-6$, soit $y=-\dfrac{3}{x}$.</div></li>
+          <li><div class="stp">$x^{2}-\dfrac{9}{x^{2}}=-8\Rightarrow x^{4}+8x^{2}-9=0$.</div></li>
+          <li><div class="stp">$t=x^{2}$ : $t^{2}+8t-9=0$, $t=1$ ou $t=-9$ (rejetée). Donc $x=\pm 1$ et $y=\mp 3$.</div></li>
+          <li><div class="stp">Vérification : $(1-3i)^{2}=1-6i+9i^{2}=-8-6i$. ✓</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+    </section>
+    <section class="sec" id="complete">
+      <div class="sec-head">
+        <span class="kick">Équations complètes · page 7</span>
+        <h2>Équations du second degré et bicarrées</h2>
+        <p>Même formule que dans $\mathbb{R}$, mais $\sqrt{\Delta}$ se calcule comme une équation binôme</p>
+      </div>
+      <article class="ex" id="x-complete-a" data-id="complete-a" data-search="x 2 +9=0 x=3i ou x=-3i x 2 =-9=9i 2 . x= 3i . équations du second degré et bicarrées équations complètes · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">a</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$x^{2}+9=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-complete-a">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-complete-a">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-complete-a"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=3i$ ou $x=-3i$</div></div></div></div></div>
+          <div class="panel" id="s-complete-a"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$x^{2}=-9=9i^{2}$.</div></li>
+          <li><div class="stp">$x=\pm 3i$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-complete-b" data-id="complete-b" data-search="x 2 +x+1=0 x= -1 3 ,i 2 =1-4=-3=3i 2 , donc = 3 ,i . x= -1 3 ,i 2 : deux solutions conjuguées, coefficients réels obligent. équations du second degré et bicarrées équations complètes · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">b</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$x^{2}+x+1=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-complete-b">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-complete-b">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-complete-b"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=\dfrac{-1\pm\sqrt{3}\,i}{2}$</div></div></div></div></div>
+          <div class="panel" id="s-complete-b"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\Delta=1-4=-3=3i^{2}$, donc $\sqrt{\Delta}=\pm\sqrt{3}\,i$.</div></li>
+          <li><div class="stp">$x=\dfrac{-1\pm\sqrt{3}\,i}{2}$ : deux solutions conjuguées, coefficients réels obligent.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-complete-c" data-id="complete-c" data-search="x 2 +(2i+1) x+2i=0 x=-1 ou x=-2i =(2i+1) 2 -4 2i=(-3+4i)-8i=-3-4i . racines carrées de : on résout z 2 =-3-4i , ce qui donne (1-2i) . x= -(2i+1) (1-2i) 2 : x 1 = -4i 2 =-2i et x 2 = -2 2 =-1 . plus rapide : x 2 +(2i+1)x+2i=(x+1)(x+2i) . équations du second degré et bicarrées équations complètes · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">c</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$x^{2}+(2i+1)\cdot x+2i=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-complete-c">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-complete-c">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-complete-c"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=-1$ ou $x=-2i$</div></div></div></div></div>
+          <div class="panel" id="s-complete-c"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\Delta=(2i+1)^{2}-4\cdot 2i=(-3+4i)-8i=-3-4i$.</div></li>
+          <li><div class="stp">Racines carrées de $\Delta$ : on résout $z^{2}=-3-4i$, ce qui donne $\pm(1-2i)$.</div></li>
+          <li><div class="stp">$x=\dfrac{-(2i+1)\pm(1-2i)}{2}$ : $x_{1}=\dfrac{-4i}{2}=-2i$ et $x_{2}=\dfrac{-2}{2}=-1$.</div></li>
+          <li><div class="stp">Plus rapide : $x^{2}+(2i+1)x+2i=(x+1)(x+2i)$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-complete-d" data-id="complete-d" data-search="2ix 2 -(1+2i) x+i-1=0 x=1-i ou x= i 2 =(1+2i) 2 -4 2i (i-1)=(-3+4i)- (8i 2 -8i )=5+12i . on résout z 2 =5+12i : x 2 -y 2 =5 et xy=6 donnent z= (3+2i) . x= (1+2i) (3+2i) 4i . x 1 = 4+4i 4i = 1+i i =(1+i) (-i)=1-i . x 2 = -2 4i =- 1 2i = i 2 (car 1 i =-i ). équations du second degré et bicarrées équations complètes · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">d</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$2ix^{2}-(1+2i)\cdot x+i-1=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-complete-d">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-complete-d">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-complete-d"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=1-i$ ou $x=\dfrac{i}{2}$</div></div></div></div></div>
+          <div class="panel" id="s-complete-d"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\Delta=(1+2i)^{2}-4\cdot 2i\cdot(i-1)=(-3+4i)-\left(8i^{2}-8i\right)=5+12i$.</div></li>
+          <li><div class="stp">On résout $z^{2}=5+12i$ : $x^{2}-y^{2}=5$ et $xy=6$ donnent $z=\pm(3+2i)$.</div></li>
+          <li><div class="stp">$x=\dfrac{(1+2i)\pm(3+2i)}{4i}$.</div></li>
+          <li><div class="stp">$x_{1}=\dfrac{4+4i}{4i}=\dfrac{1+i}{i}=(1+i)\cdot(-i)=1-i$.</div></li>
+          <li><div class="stp">$x_{2}=\dfrac{-2}{4i}=-\dfrac{1}{2i}=\dfrac{i}{2}$ &nbsp; (car $\dfrac{1}{i}=-i$).</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-complete-e" data-id="complete-e" data-search="ix 2 +(2+i) x-(i-1)=0 x=i ou x=-1+i =(2+i) 2 +4i(i-1)=(3+4i)+(-4-4i)=-1 . = i . x= -(2+i) i 2i : x 1 = -2 2i =- 1 i =i . x 2 = -2-2i 2i = -1-i i =(-1-i) (-i)=i+i 2 =-1+i . équations du second degré et bicarrées équations complètes · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">e</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$ix^{2}+(2+i)\cdot x-(i-1)=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-complete-e">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-complete-e">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-complete-e"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=i$ ou $x=-1+i$</div></div></div></div></div>
+          <div class="panel" id="s-complete-e"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\Delta=(2+i)^{2}+4i(i-1)=(3+4i)+(-4-4i)=-1$.</div></li>
+          <li><div class="stp">$\sqrt{\Delta}=\pm i$.</div></li>
+          <li><div class="stp">$x=\dfrac{-(2+i)\pm i}{2i}$ : $x_{1}=\dfrac{-2}{2i}=-\dfrac{1}{i}=i$.</div></li>
+          <li><div class="stp">$x_{2}=\dfrac{-2-2i}{2i}=\dfrac{-1-i}{i}=(-1-i)\cdot(-i)=i+i^{2}=-1+i$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-complete-f" data-id="complete-f" data-search="2x 2 +(2+3i) x+2i-1=0 x=-i ou x=-1- 1 2 i =(2+3i) 2 -4 2 (2i-1)=4+12i-9-16i+8=3-4i . racines carrées de : z 2 =3-4i donne (2-i) . x= -(2+3i) (2-i) 4 : x 1 = -4i 4 =-i et x 2 = -4-2i 4 =-1- 1 2 i . équations du second degré et bicarrées équations complètes · page 7 exercice résolu p. 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">f</span><span class="ex-tag">exercice résolu p. 7</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$2x^{2}+(2+3i)\cdot x+2i-1=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-complete-f">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-complete-f">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-complete-f"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=-i$ ou $x=-1-\dfrac{1}{2}i$</div></div></div></div></div>
+          <div class="panel" id="s-complete-f"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\Delta=(2+3i)^{2}-4\cdot 2\cdot(2i-1)=4+12i-9-16i+8=3-4i$.</div></li>
+          <li><div class="stp">Racines carrées de $\Delta$ : $z^{2}=3-4i$ donne $\pm(2-i)$.</div></li>
+          <li><div class="stp">$x=\dfrac{-(2+3i)\pm(2-i)}{4}$ : $x_{1}=\dfrac{-4i}{4}=-i$ et $x_{2}=\dfrac{-4-2i}{4}=-1-\dfrac{1}{2}i$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-complete-g" data-id="complete-g" data-search="(-3+i) x 2 +(5i-1) x+2=0 x=-1+i ou x= 1 5 + 2 5 i =(5i-1) 2 -4(-3+i) 2=(-24-10i)+24-8i=-18i . z 2 =-18i : x 2 -y 2 =0 et 2xy=-18 donnent z= (3-3i) . x= (1-5i) (3-3i) -6+2i . x 1 = 4-8i -6+2i = (4-8i)(-6-2i) 40 = -40+40i 40 =-1+i . x 2 = -2-2i -6+2i = (-2-2i)(-6-2i) 40 = 8+16i 40 = 1 5 + 2 5 i . équations du second degré et bicarrées équations complètes · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">g</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$(-3+i)\cdot x^{2}+(5i-1)\cdot x+2=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-complete-g">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-complete-g">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-complete-g"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=-1+i$ ou $x=\dfrac{1}{5}+\dfrac{2}{5}i$</div></div></div></div></div>
+          <div class="panel" id="s-complete-g"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\Delta=(5i-1)^{2}-4(-3+i)\cdot 2=(-24-10i)+24-8i=-18i$.</div></li>
+          <li><div class="stp">$z^{2}=-18i$ : $x^{2}-y^{2}=0$ et $2xy=-18$ donnent $z=\pm(3-3i)$.</div></li>
+          <li><div class="stp">$x=\dfrac{(1-5i)\pm(3-3i)}{-6+2i}$.</div></li>
+          <li><div class="stp">$x_{1}=\dfrac{4-8i}{-6+2i}=\dfrac{(4-8i)(-6-2i)}{40}=\dfrac{-40+40i}{40}=-1+i$.</div></li>
+          <li><div class="stp">$x_{2}=\dfrac{-2-2i}{-6+2i}=\dfrac{(-2-2i)(-6-2i)}{40}=\dfrac{8+16i}{40}=\dfrac{1}{5}+\dfrac{2}{5}i$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-complete-h" data-id="complete-h" data-search="x 4 +2x 2 +2=0 quatre solutions : ( 2 -1 2 2 +1 2 ,i ) (0 , 455 1 , 099 ,i) équation bicarrée : t=x 2 donne t 2 +2t+2=0 , =-4 , donc t=-1 i . restent deux équations binômes : x 2 =-1+i et x 2 =-1-i . pour x 2 =-1+i : x 2 -y 2 =-1 et 2xy=1 donnent 4x 4 +4x 2 -1=0 , d’où x 2 = 2 -1 2 et y 2 = 2 +1 2 , de mêmes signes car xy&gt;0 . les racines de x 2 =-1-i sont les conjuguées des précédentes. quatre racines pour un degré 4 : le théorème de d’alembert est respecté. équations du second degré et bicarrées équations complètes · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">h</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$x^{4}+2x^{2}+2=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-complete-h">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-complete-h">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-complete-h"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Quatre solutions : $\pm\left(\sqrt{\dfrac{\sqrt{2}-1}{2}}\pm\sqrt{\dfrac{\sqrt{2}+1}{2}}\,i\right)\approx\pm(0{,}455\pm 1{,}099\,i)$</div></div></div></div></div>
+          <div class="panel" id="s-complete-h"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Équation bicarrée : $t=x^{2}$ donne $t^{2}+2t+2=0$, $\Delta=-4$, donc $t=-1\pm i$.</div></li>
+          <li><div class="stp">Restent deux équations binômes : $x^{2}=-1+i$ et $x^{2}=-1-i$.</div></li>
+          <li><div class="stp">Pour $x^{2}=-1+i$ : $x^{2}-y^{2}=-1$ et $2xy=1$ donnent $4x^{4}+4x^{2}-1=0$, d’où $x^{2}=\dfrac{\sqrt{2}-1}{2}$ et $y^{2}=\dfrac{\sqrt{2}+1}{2}$, de mêmes signes car $xy>0$.</div></li>
+          <li><div class="stp">Les racines de $x^{2}=-1-i$ sont les conjuguées des précédentes.</div></li>
+          <li><div class="stp">Quatre racines pour un degré $4$ : le théorème de d’Alembert est respecté.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-complete-i" data-id="complete-i" data-search="ix 4 -(5i+2) x 2 +5 (i+1)=0 x (1 , 755-0 , 285 ,i) et x (1 , 455-0 , 344 ,i) t=x 2 : it 2 -(5i+2)t+5(i+1)=0 . =(5i+2) 2 -4i 5(i+1)=(-21+20i)-(-20+20i)=-1 , donc = i . t= (5i+2) i 2i : t 1 = 2+6i 2i =3-i et t 2 = 2+4i 2i =2-i . x 2 =3-i : avec xy=- 1 2 , on obtient 4x 4 -12x 2 -1=0 , soit x 2 = 3+ 10 2 et x (1 , 755-0 , 285 ,i) . x 2 =2-i : de même x 2 = 2+ 5 2 et x (1 , 455-0 , 344 ,i) . équations du second degré et bicarrées équations complètes · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">i</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$ix^{4}-(5i+2)\cdot x^{2}+5\cdot(i+1)=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-complete-i">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-complete-i">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-complete-i"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x\approx\pm(1{,}755-0{,}285\,i)$ &nbsp;et&nbsp; $x\approx\pm(1{,}455-0{,}344\,i)$</div></div></div></div></div>
+          <div class="panel" id="s-complete-i"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$t=x^{2}$ : $it^{2}-(5i+2)t+5(i+1)=0$.</div></li>
+          <li><div class="stp">$\Delta=(5i+2)^{2}-4i\cdot 5(i+1)=(-21+20i)-(-20+20i)=-1$, donc $\sqrt{\Delta}=\pm i$.</div></li>
+          <li><div class="stp">$t=\dfrac{(5i+2)\pm i}{2i}$ : $t_{1}=\dfrac{2+6i}{2i}=3-i$ et $t_{2}=\dfrac{2+4i}{2i}=2-i$.</div></li>
+          <li><div class="stp">$x^{2}=3-i$ : avec $xy=-\dfrac{1}{2}$, on obtient $4x^{4}-12x^{2}-1=0$, soit $x^{2}=\dfrac{3+\sqrt{10}}{2}$ et $x\approx\pm(1{,}755-0{,}285\,i)$.</div></li>
+          <li><div class="stp">$x^{2}=2-i$ : de même $x^{2}=\dfrac{2+\sqrt{5}}{2}$ et $x\approx\pm(1{,}455-0{,}344\,i)$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-complete-j" data-id="complete-j" data-search="x 4 -13x 2 -36=0 x= 13+ 313 2 3 , 917 et x= 313 -13 2 i 1 , 532 ,i t=x 2 : t 2 -13t-36=0 , =169+144=313 . t= 13 313 2 : t 1 15 , 35 et t 2 -2 , 35 . x 2 =t 1 &gt;0 donne deux solutions réelles x 2 =t 2 à vérifier avec le professeur : les valeurs sont inhabituellement laides pour un exercice de ce type. avec x 4 -13x 2 +36=0 on trouverait x= 2 et x= 3 avec x 4 +13x 2 +36=0 , x= 2i et x= 3i . équations du second degré et bicarrées équations complètes · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">j</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$x^{4}-13x^{2}-36=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-complete-j">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-complete-j">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-complete-j"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=\pm\sqrt{\dfrac{13+\sqrt{313}}{2}}\approx\pm 3{,}917$ &nbsp;et&nbsp; $x=\pm\sqrt{\dfrac{\sqrt{313}-13}{2}}\;i\approx\pm 1{,}532\,i$</div></div></div></div></div>
+          <div class="panel" id="s-complete-j"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$t=x^{2}$ : $t^{2}-13t-36=0$, $\Delta=169+144=313$.</div></li>
+          <li><div class="stp">$t=\dfrac{13\pm\sqrt{313}}{2}$ : $t_{1}\approx 15{,}35$ et $t_{2}\approx-2{,}35$.</div></li>
+          <li><div class="stp">$x^{2}=t_{1}>0$ donne deux solutions réelles ; $x^{2}=t_{2}<0$ donne deux imaginaires purs.</div></li>
+          <li><div class="stp"><em>À vérifier avec le professeur :</em> les valeurs sont inhabituellement laides pour un exercice de ce type. Avec $x^{4}-13x^{2}+36=0$ on trouverait $x=\pm 2$ et $x=\pm 3$ ; avec $x^{4}+13x^{2}+36=0$, $x=\pm 2i$ et $x=\pm 3i$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+    </section>
+    <section class="sec" id="alembert">
+      <div class="sec-head">
+        <span class="kick">Théorème de d’Alembert · page 9</span>
+        <h2>Polynômes, divisibilité et factorisation</h2>
+        <p>Exercices 1 à 6 — toute équation de degré $n$ à coefficients réels admet $n$ solutions complexes</p>
+      </div>
+      <article class="ex" id="x-alembert-1" data-id="alembert-1" data-search="résoudre l’équation z 4 -z 3 +3z-3=0 . z=1 , z=- [3] 3 , z= [3] 3 (1 3 ,i ) 2 groupement : z 3 (z-1)+3(z-1)=(z-1) (z 3 +3 )=0 . première solution : z=1 . z 3 +3=0 : avec a 3 +b 3 =(a+b) (a 2 -ab+b 2 ) et b= [3] 3 , on écrit (z+ [3] 3 ) (z 2 - [3] 3 ,z+ [3] 9 )=0 . le trinôme a pour discriminant [3] 9 -4 [3] 9 =-3 [3] 9 , d’où z= [3] 3 3 , [3] 3 i 2 . numériquement : 1 -1 , 442 0 , 721 1 , 249 ,i — quatre racines pour un degré 4 . polynômes, divisibilité et factorisation théorème de d’alembert · page 9">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">1</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Résoudre l’équation $z^{4}-z^{3}+3z-3=0$.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-alembert-1">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-alembert-1">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-alembert-1"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$z=1$, &nbsp;$z=-\sqrt[3]{3}$, &nbsp;$z=\dfrac{\sqrt[3]{3}\left(1\pm\sqrt{3}\,i\right)}{2}$</div></div></div></div></div>
+          <div class="panel" id="s-alembert-1"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Groupement : $z^{3}(z-1)+3(z-1)=(z-1)\left(z^{3}+3\right)=0$.</div></li>
+          <li><div class="stp">Première solution : $z=1$.</div></li>
+          <li><div class="stp">$z^{3}+3=0$ : avec $a^{3}+b^{3}=(a+b)\left(a^{2}-ab+b^{2}\right)$ et $b=\sqrt[3]{3}$, on écrit $\left(z+\sqrt[3]{3}\right)\left(z^{2}-\sqrt[3]{3}\,z+\sqrt[3]{9}\right)=0$.</div></li>
+          <li><div class="stp">Le trinôme a pour discriminant $\sqrt[3]{9}-4\sqrt[3]{9}=-3\sqrt[3]{9}$, d’où $z=\dfrac{\sqrt[3]{3}\pm\sqrt{3}\,\sqrt[3]{3}\;i}{2}$.</div></li>
+          <li><div class="stp">Numériquement : $1$ ; $-1{,}442$ ; $0{,}721\pm 1{,}249\,i$ — quatre racines pour un degré $4$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-alembert-2" data-id="alembert-2" data-search="déterminer le réel a pour que le polynôme x 3 -2ax 2 +7ax-6 soit divisible par (x-2) . pour cette valeur de a , décomposer le polynôme en un produit de trois polynômes à coefficients complexes. a=- 1 3 , et p(x)=(x-2) (x- -4+ 11 ,i 3 ) (x- -4- 11 ,i 3 ) divisible par (x-2) équivaut à p(2)=0 : 8-8a+14a-6=2+6a=0 , d’où a=- 1 3 . le polynôme devient x 3 + 2 3 x 2 - 7 3 x-6=(x-2) (x 2 + 8 3 x+3 ) (division ou horner). 3x 2 +8x+9=0 : =64-108=-44 , donc x= -8 2 11 ,i 6 = -4 11 ,i 3 . polynômes, divisibilité et factorisation théorème de d’alembert · page 9">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">2</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Déterminer le réel $a$ pour que le polynôme $x^{3}-2ax^{2}+7ax-6$ soit divisible par $(x-2)$. Pour cette valeur de $a$, décomposer le polynôme en un produit de trois polynômes à coefficients complexes.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-alembert-2">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-alembert-2">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-alembert-2"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$a=-\dfrac{1}{3}$, &nbsp;et&nbsp; $p(x)=(x-2)\left(x-\dfrac{-4+\sqrt{11}\,i}{3}\right)\left(x-\dfrac{-4-\sqrt{11}\,i}{3}\right)$</div></div></div></div></div>
+          <div class="panel" id="s-alembert-2"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Divisible par $(x-2)$ équivaut à $p(2)=0$ : $8-8a+14a-6=2+6a=0$, d’où $a=-\dfrac{1}{3}$.</div></li>
+          <li><div class="stp">Le polynôme devient $x^{3}+\dfrac{2}{3}x^{2}-\dfrac{7}{3}x-6=(x-2)\left(x^{2}+\dfrac{8}{3}x+3\right)$ (division ou Horner).</div></li>
+          <li><div class="stp">$3x^{2}+8x+9=0$ : $\Delta=64-108=-44$, donc $x=\dfrac{-8\pm 2\sqrt{11}\,i}{6}=\dfrac{-4\pm\sqrt{11}\,i}{3}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-alembert-3" data-id="alembert-3" data-search="déterminer le réel a pour que le polynôme z 3 -az 2 +3az+37 soit divisible par (z+1) . pour cette valeur de a , décomposer le polynôme en un produit de trois polynômes à coefficients complexes. a=9 , et p(z)=(z+1) (z-5-2 3 ,i ) (z-5+2 3 ,i ) p(-1)=-1-a-3a+37=36-4a=0 , d’où a=9 . z 3 -9z 2 +27z+37=(z+1) (z 2 -10z+37 ) . z 2 -10z+37=0 : =100-148=-48 , donc z= 10 4 3 ,i 2 =5 2 3 ,i . polynômes, divisibilité et factorisation théorème de d’alembert · page 9">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">3</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Déterminer le réel $a$ pour que le polynôme $z^{3}-az^{2}+3az+37$ soit divisible par $(z+1)$. Pour cette valeur de $a$, décomposer le polynôme en un produit de trois polynômes à coefficients complexes.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-alembert-3">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-alembert-3">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-alembert-3"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$a=9$, &nbsp;et&nbsp; $p(z)=(z+1)\left(z-5-2\sqrt{3}\,i\right)\left(z-5+2\sqrt{3}\,i\right)$</div></div></div></div></div>
+          <div class="panel" id="s-alembert-3"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$p(-1)=-1-a-3a+37=36-4a=0$, d’où $a=9$.</div></li>
+          <li><div class="stp">$z^{3}-9z^{2}+27z+37=(z+1)\left(z^{2}-10z+37\right)$.</div></li>
+          <li><div class="stp">$z^{2}-10z+37=0$ : $\Delta=100-148=-48$, donc $z=\dfrac{10\pm 4\sqrt{3}\,i}{2}=5\pm 2\sqrt{3}\,i$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-alembert-4" data-id="alembert-4" data-search="montrer que le polynôme x 3 -8x 2 +25x-26 est divisible par (x-2) . en déduire ses zéros. zéros : 2 , 3+2i , 3-2i p(2)=8-32+50-26=0 : (x-2) divise bien le polynôme. horner : x 3 -8x 2 +25x-26=(x-2) (x 2 -6x+13 ) . x 2 -6x+13=0 : =36-52=-16 , donc x= 6 4i 2 =3 2i . polynômes, divisibilité et factorisation théorème de d’alembert · page 9">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">4</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Montrer que le polynôme $x^{3}-8x^{2}+25x-26$ est divisible par $(x-2)$. En déduire ses zéros.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-alembert-4">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-alembert-4">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-alembert-4"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Zéros : $2$, &nbsp;$3+2i$, &nbsp;$3-2i$</div></div></div></div></div>
+          <div class="panel" id="s-alembert-4"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$p(2)=8-32+50-26=0$ : $(x-2)$ divise bien le polynôme.</div></li>
+          <li><div class="stp">Horner : $x^{3}-8x^{2}+25x-26=(x-2)\left(x^{2}-6x+13\right)$.</div></li>
+          <li><div class="stp">$x^{2}-6x+13=0$ : $\Delta=36-52=-16$, donc $x=\dfrac{6\pm 4i}{2}=3\pm 2i$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-alembert-5" data-id="alembert-5" data-search="montrer que le polynôme 2x 3 -15x 2 -5x-24 est divisible par (x-8) . en déduire ses zéros. zéros : 8 , -1+ 23 ,i 4 , -1- 23 ,i 4 p(8)=1024-960-40-24=0 : (x-8) divise le polynôme. horner : 2x 3 -15x 2 -5x-24=(x-8) (2x 2 +x+3 ) . 2x 2 +x+3=0 : =1-24=-23 , donc x= -1 23 ,i 4 . polynômes, divisibilité et factorisation théorème de d’alembert · page 9">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">5</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Montrer que le polynôme $2x^{3}-15x^{2}-5x-24$ est divisible par $(x-8)$. En déduire ses zéros.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-alembert-5">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-alembert-5">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-alembert-5"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Zéros : $8$, &nbsp;$\dfrac{-1+\sqrt{23}\,i}{4}$, &nbsp;$\dfrac{-1-\sqrt{23}\,i}{4}$</div></div></div></div></div>
+          <div class="panel" id="s-alembert-5"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$p(8)=1024-960-40-24=0$ : $(x-8)$ divise le polynôme.</div></li>
+          <li><div class="stp">Horner : $2x^{3}-15x^{2}-5x-24=(x-8)\left(2x^{2}+x+3\right)$.</div></li>
+          <li><div class="stp">$2x^{2}+x+3=0$ : $\Delta=1-24=-23$, donc $x=\dfrac{-1\pm\sqrt{23}\,i}{4}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-alembert-6" data-id="alembert-6" data-search="soit le polynôme p(x)=x 4 +4x 3 +8x 2 +4x+7 . a) calculer p(i) . b) mettre p(x) sous forme d’un produit de deux polynômes du second degré à coefficients réels. c) calculer les racines de p(x)=0 . a) p(i)=0 · b) p(x)= (x 2 +1 ) (x 2 +4x+7 ) · c) x= i et x=-2 3 ,i a) p(i)=i 4 +4i 3 +8i 2 +4i+7=1-4i-8+4i+7=0 . b) les coefficients sont réels : si i est racine, -i l’est aussi, donc (x-i)(x+i)=x 2 +1 divise p(x) . la division donne p(x)= (x 2 +1 ) (x 2 +4x+7 ) , ce qu’un développement confirme. c) x 2 +1=0 x= i x 2 +4x+7=0 a pour =16-28=-12 , d’où x= -4 2 3 ,i 2 =-2 3 ,i . polynômes, divisibilité et factorisation théorème de d’alembert · page 9">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">6</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Soit le polynôme $p(x)=x^{4}+4x^{3}+8x^{2}+4x+7$. &nbsp;<b>a)</b> Calculer $p(i)$. &nbsp;<b>b)</b> Mettre $p(x)$ sous forme d’un produit de deux polynômes du second degré à coefficients réels. &nbsp;<b>c)</b> Calculer les racines de $p(x)=0$.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-alembert-6">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-alembert-6">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-alembert-6"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div><b>a)</b> $p(i)=0$ &nbsp;·&nbsp; <b>b)</b> $p(x)=\left(x^{2}+1\right)\left(x^{2}+4x+7\right)$ &nbsp;·&nbsp; <b>c)</b> $x=\pm i$ et $x=-2\pm\sqrt{3}\,i$</div></div></div></div></div>
+          <div class="panel" id="s-alembert-6"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp"><b>a)</b> $p(i)=i^{4}+4i^{3}+8i^{2}+4i+7=1-4i-8+4i+7=0$.</div></li>
+          <li><div class="stp"><b>b)</b> Les coefficients sont réels : si $i$ est racine, $-i$ l’est aussi, donc $(x-i)(x+i)=x^{2}+1$ divise $p(x)$.</div></li>
+          <li><div class="stp">La division donne $p(x)=\left(x^{2}+1\right)\left(x^{2}+4x+7\right)$, ce qu’un développement confirme.</div></li>
+          <li><div class="stp"><b>c)</b> $x^{2}+1=0\Rightarrow x=\pm i$ ; $x^{2}+4x+7=0$ a pour $\Delta=16-28=-12$, d’où $x=\dfrac{-4\pm 2\sqrt{3}\,i}{2}=-2\pm\sqrt{3}\,i$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+    </section>
+    <section class="sec" id="fpms">
+      <div class="sec-head">
+        <span class="kick">Faculté Polytechnique de Mons · page 9</span>
+        <h2>Paramètres et racines conjuguées</h2>
+        <p>Exercices 7 et 8</p>
+      </div>
+      <article class="ex" id="x-fpms-7" data-id="fpms-7" data-search="soit l’équation en la variable complexe z : z 2 -( +3i+4) z+2 i-1=0 (avec complexe). a) déterminer le paramètre pour que l’équation admette deux racines complexes conjuguées et calculer ces racines. b) dans un autre cas, si une des racines est i , calculer et l’autre racine. a) =-3i , racines 2+i et 2-i . · b) =4+i , l’autre racine est 8+3i . a) si les racines sont z et z , leur somme z+ z et leur produit z z sont réels . somme = +3i+4 . en posant =x+yi , la partie imaginaire y+3 doit être nulle : y=-3 . produit =2 i-1=2(x-3i)i-1=5+2xi : réel impose x=0 . donc =-3i . l’équation devient z 2 -4z+5=0 , =-4 , d’où z=2 i . ✓ b) z=i est racine : i 2 -( +3i+4)i+2 i-1=0 , ce qui se réduit à 1+ i-4i=0 . i=4i-1 , donc = 4i-1 i =(4i-1) (-i)=4+i . somme des racines = +3i+4=8+4i : l’autre racine vaut 8+4i-i=8+3i . paramètres et racines conjuguées faculté polytechnique de mons · page 9 fpms">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">7</span><span class="ex-tag">FPMs</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Soit l’équation en la variable complexe $z$ : $z^{2}-(\alpha+3i+4)\cdot z+2\alpha\cdot i-1=0$ (avec $\alpha$ complexe). &nbsp;<b>a)</b> Déterminer le paramètre $\alpha$ pour que l’équation admette deux racines complexes conjuguées et calculer ces racines. &nbsp;<b>b)</b> Dans un autre cas, si une des racines est $i$, calculer $\alpha$ et l’autre racine.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-fpms-7">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-fpms-7">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-fpms-7"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div><b>a)</b> $\alpha=-3i$, racines $2+i$ et $2-i$. &nbsp;·&nbsp; <b>b)</b> $\alpha=4+i$, l’autre racine est $8+3i$.</div></div></div></div></div>
+          <div class="panel" id="s-fpms-7"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp"><b>a)</b> Si les racines sont $z$ et $\bar z$, leur somme $z+\bar z$ et leur produit $z\cdot\bar z$ sont <strong>réels</strong>.</div></li>
+          <li><div class="stp">Somme $=\alpha+3i+4$. En posant $\alpha=x+yi$, la partie imaginaire $y+3$ doit être nulle : $y=-3$.</div></li>
+          <li><div class="stp">Produit $=2\alpha i-1=2(x-3i)i-1=5+2xi$ : réel impose $x=0$. Donc $\alpha=-3i$.</div></li>
+          <li><div class="stp">L’équation devient $z^{2}-4z+5=0$, $\Delta=-4$, d’où $z=2\pm i$. ✓</div></li>
+          <li><div class="stp"><b>b)</b> $z=i$ est racine : $i^{2}-(\alpha+3i+4)i+2\alpha i-1=0$, ce qui se réduit à $1+\alpha i-4i=0$.</div></li>
+          <li><div class="stp">$\alpha i=4i-1$, donc $\alpha=\dfrac{4i-1}{i}=(4i-1)\cdot(-i)=4+i$.</div></li>
+          <li><div class="stp">Somme des racines $=\alpha+3i+4=8+4i$ : l’autre racine vaut $8+4i-i=8+3i$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-fpms-8" data-id="fpms-8" data-search="la fonction f(z) de la variable complexe z est définie par f(z)=z 3 +4(1-i) z 2 -2(2+7i) z-16+8i . sachant que cette fonction admet une et une seule racine réelle, calculer ses racines. z=-4 , z=1+i , z=-1+3i soit r la racine réelle. on sépare partie réelle et partie imaginaire de f(r)=0 . partie réelle : r 3 +4r 2 -4r-16=0 . partie imaginaire : -4r 2 -14r+8=0 . la seconde donne 2r 2 +7r-4=0 , soit r= 1 2 ou r=-4 . la première se factorise en (r+4)(r-2)(r+2)=0 : r=-4 , 2 ou -2 . la seule valeur commune est r=-4 : c’est la racine réelle annoncée. division par (z+4) : f(z)=(z+4) (z 2 -4iz-4+2i ) . z 2 -4iz-4+2i=0 : =(-4i) 2 -4(-4+2i)=-8i , dont les racines carrées sont (2-2i) . z= 4i (2-2i) 2 : z 1 =1+i et z 2 =-1+3i . paramètres et racines conjuguées faculté polytechnique de mons · page 9 fpms">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">8</span><span class="ex-tag">FPMs</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">La fonction $f(z)$ de la variable complexe $z$ est définie par $f(z)=z^{3}+4(1-i)\cdot z^{2}-2(2+7i)\cdot z-16+8i$. Sachant que cette fonction admet une et une seule racine réelle, calculer ses racines.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-fpms-8">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-fpms-8">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-fpms-8"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$z=-4$, &nbsp;$z=1+i$, &nbsp;$z=-1+3i$</div></div></div></div></div>
+          <div class="panel" id="s-fpms-8"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Soit $r$ la racine réelle. On sépare partie réelle et partie imaginaire de $f(r)=0$.</div></li>
+          <li><div class="stp">Partie réelle : $r^{3}+4r^{2}-4r-16=0$. &nbsp; Partie imaginaire : $-4r^{2}-14r+8=0$.</div></li>
+          <li><div class="stp">La seconde donne $2r^{2}+7r-4=0$, soit $r=\dfrac{1}{2}$ ou $r=-4$.</div></li>
+          <li><div class="stp">La première se factorise en $(r+4)(r-2)(r+2)=0$ : $r=-4$, $2$ ou $-2$.</div></li>
+          <li><div class="stp">La seule valeur commune est $r=-4$ : c’est la racine réelle annoncée.</div></li>
+          <li><div class="stp">Division par $(z+4)$ : $f(z)=(z+4)\left(z^{2}-4iz-4+2i\right)$.</div></li>
+          <li><div class="stp">$z^{2}-4iz-4+2i=0$ : $\Delta=(-4i)^{2}-4(-4+2i)=-8i$, dont les racines carrées sont $\pm(2-2i)$.</div></li>
+          <li><div class="stp">$z=\dfrac{4i\pm(2-2i)}{2}$ : $z_{1}=1+i$ et $z_{2}=-1+3i$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+    </section>
+    <section class="sec" id="ulb">
+      <div class="sec-head">
+        <span class="kick">Faculté des sciences appliquées (ULB) · page 10</span>
+        <h2>Pour aller plus loin</h2>
+        <p>Exercices 9 à 16</p>
+      </div>
+      <article class="ex" id="x-ulb-9" data-id="ulb-9" data-search="soit p(z)=z 3 +z 2 +(-1+i) z+2+2i . a) montrer que z=-2 est racine de p(z)=0 . b) résoudre dans c l’équation p(z)=0 . s= -2, 1-i, i a) p(-2)=-8+4+(-1+i)(-2)+2+2i=-8+4+2-2i+2+2i=0 . ✓ b) division par (z+2) : p(z)=(z+2) (z 2 -z+1+i ) . z 2 -z+1+i=0 : =1-4(1+i)=-3-4i . racines carrées de : z 2 =-3-4i donne (1-2i) . z= 1 (1-2i) 2 : z 1 =1-i et z 2 =i . pour aller plus loin faculté des sciences appliquées (ulb) · page 10 ulb">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">9</span><span class="ex-tag">ULB</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Soit $p(z)=z^{3}+z^{2}+(-1+i)\cdot z+2+2i$. &nbsp;<b>a)</b> Montrer que $z=-2$ est racine de $p(z)=0$. &nbsp;<b>b)</b> Résoudre dans $\mathbb{C}$ l’équation $p(z)=0$.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-ulb-9">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-ulb-9">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-ulb-9"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$S=\{-2,\ 1-i,\ i\}$</div></div></div></div></div>
+          <div class="panel" id="s-ulb-9"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp"><b>a)</b> $p(-2)=-8+4+(-1+i)(-2)+2+2i=-8+4+2-2i+2+2i=0$. ✓</div></li>
+          <li><div class="stp"><b>b)</b> Division par $(z+2)$ : $p(z)=(z+2)\left(z^{2}-z+1+i\right)$.</div></li>
+          <li><div class="stp">$z^{2}-z+1+i=0$ : $\Delta=1-4(1+i)=-3-4i$.</div></li>
+          <li><div class="stp">Racines carrées de $\Delta$ : $z^{2}=-3-4i$ donne $\pm(1-2i)$.</div></li>
+          <li><div class="stp">$z=\dfrac{1\pm(1-2i)}{2}$ : $z_{1}=1-i$ et $z_{2}=i$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-ulb-10" data-id="ulb-10" data-search="dans quelle(s) condition(s) l’équation x 2 +(a+ib) x+ (a&#x27;+ib&#x27; )=0 possède-t-elle deux racines égales ? ( a,a&#x27;,b,b&#x27; r ) écrire dans ce cas l’équation en fonction de a et b et calculer la solution. condition : a&#x27;= a 2 -b 2 4 et b&#x27;= ab 2 . l’équation s’écrit (x+ a+ib 2 ) 2 =0 et la racine double vaut x=- a+ib 2 . deux racines égales équivaut à =0 : (a+ib) 2 -4 (a&#x27;+ib&#x27; )=0 . (a+ib) 2 =a 2 -b 2 +2abi , d’où par identification 4a&#x27;=a 2 -b 2 et 4b&#x27;=2ab . donc a&#x27;= a 2 -b 2 4 et b&#x27;= ab 2 , autrement dit a&#x27;+ib&#x27;= (a+ib) 2 4 . l’équation devient x 2 +(a+ib)x+ (a+ib) 2 4 =0 : un carré parfait. la racine double est x=- a+ib 2 . pour aller plus loin faculté des sciences appliquées (ulb) · page 10 ulb">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">10</span><span class="ex-tag">ULB</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Dans quelle(s) condition(s) l’équation $x^{2}+(a+ib)\cdot x+\left(a'+ib'\right)=0$ possède-t-elle deux racines égales ? ($a,a',b,b'\in\mathbb{R}$) Écrire dans ce cas l’équation en fonction de $a$ et $b$ et calculer la solution.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-ulb-10">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-ulb-10">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-ulb-10"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Condition : $a'=\dfrac{a^{2}-b^{2}}{4}$ et $b'=\dfrac{ab}{2}$. L’équation s’écrit $\left(x+\dfrac{a+ib}{2}\right)^{2}=0$ et la racine double vaut $x=-\dfrac{a+ib}{2}$.</div></div></div></div></div>
+          <div class="panel" id="s-ulb-10"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Deux racines égales équivaut à $\Delta=0$ : $(a+ib)^{2}-4\left(a'+ib'\right)=0$.</div></li>
+          <li><div class="stp">$(a+ib)^{2}=a^{2}-b^{2}+2abi$, d’où par identification $4a'=a^{2}-b^{2}$ et $4b'=2ab$.</div></li>
+          <li><div class="stp">Donc $a'=\dfrac{a^{2}-b^{2}}{4}$ et $b'=\dfrac{ab}{2}$, autrement dit $a'+ib'=\dfrac{(a+ib)^{2}}{4}$.</div></li>
+          <li><div class="stp">L’équation devient $x^{2}+(a+ib)x+\dfrac{(a+ib)^{2}}{4}=0$ : un carré parfait.</div></li>
+          <li><div class="stp">La racine double est $x=-\dfrac{a+ib}{2}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-ulb-11" data-id="ulb-11" data-search="trouver toutes les racines complexes de l’équation 9 (z+2) 4 + 17 (z+2) 2 =2 . z=1 , z=-5 , z=-2+ 2 2 i , z=-2- 2 2 i condition d’existence : z -2 . on pose u=(z+2) 2 : 9 u 2 + 17 u =2 , soit 2u 2 -17u-9=0 . =289+72=361=19 2 , d’où u= 17 19 4 : u=9 ou u=- 1 2 . (z+2) 2 =9 z+2= 3 z=1 ou z=-5 . (z+2) 2 =- 1 2 z+2= 2 2 i z=-2 2 2 i . pour aller plus loin faculté des sciences appliquées (ulb) · page 10 ulb">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">11</span><span class="ex-tag">ULB</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Trouver toutes les racines complexes de l’équation $\dfrac{9}{(z+2)^{4}}+\dfrac{17}{(z+2)^{2}}=2$.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-ulb-11">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-ulb-11">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-ulb-11"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$z=1$, &nbsp;$z=-5$, &nbsp;$z=-2+\dfrac{\sqrt{2}}{2}i$, &nbsp;$z=-2-\dfrac{\sqrt{2}}{2}i$</div></div></div></div></div>
+          <div class="panel" id="s-ulb-11"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Condition d’existence : $z\neq-2$.</div></li>
+          <li><div class="stp">On pose $u=(z+2)^{2}$ : $\dfrac{9}{u^{2}}+\dfrac{17}{u}=2$, soit $2u^{2}-17u-9=0$.</div></li>
+          <li><div class="stp">$\Delta=289+72=361=19^{2}$, d’où $u=\dfrac{17\pm 19}{4}$ : $u=9$ ou $u=-\dfrac{1}{2}$.</div></li>
+          <li><div class="stp">$(z+2)^{2}=9\Rightarrow z+2=\pm 3\Rightarrow z=1$ ou $z=-5$.</div></li>
+          <li><div class="stp">$(z+2)^{2}=-\dfrac{1}{2}\Rightarrow z+2=\pm\dfrac{\sqrt{2}}{2}i\Rightarrow z=-2\pm\dfrac{\sqrt{2}}{2}i$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-ulb-12" data-id="ulb-12" data-search="sachant que a est une racine cubique complexe du nombre 1 , montrer que (1+a 2 ) 4 =a . vrai : 1+a 2 =-a , donc (1+a 2 ) 4 =a 4 =a 3 a=a . a est racine cubique complexe de 1 : a 3 =1 et a 1 . a 3 -1=(a-1) (a 2 +a+1 )=0 avec a 1 , donc a 2 +a+1=0 . d’où 1+a 2 =-a . (1+a 2 ) 4 =(-a) 4 =a 4 =a 3 a=1 a=a . ✓ pour aller plus loin faculté des sciences appliquées (ulb) · page 10 ulb">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">12</span><span class="ex-tag">ULB</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Sachant que $a$ est une racine cubique complexe du nombre $1$, montrer que $\left(1+a^{2}\right)^{4}=a$.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-ulb-12">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-ulb-12">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-ulb-12"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Vrai : $1+a^{2}=-a$, donc $\left(1+a^{2}\right)^{4}=a^{4}=a^{3}\cdot a=a$.</div></div></div></div></div>
+          <div class="panel" id="s-ulb-12"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$a$ est racine cubique <em>complexe</em> de $1$ : $a^{3}=1$ et $a\neq 1$.</div></li>
+          <li><div class="stp">$a^{3}-1=(a-1)\left(a^{2}+a+1\right)=0$ avec $a\neq 1$, donc $a^{2}+a+1=0$.</div></li>
+          <li><div class="stp">D’où $1+a^{2}=-a$.</div></li>
+          <li><div class="stp">$\left(1+a^{2}\right)^{4}=(-a)^{4}=a^{4}=a^{3}\cdot a=1\cdot a=a$. ✓</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-ulb-13" data-id="ulb-13" data-search="résoudre dans c l’équation i z 2 -(1+i) z=2(i-1) . s= 2, -1-i on ramène tout dans le même membre : iz 2 -(1+i)z+2-2i=0 . =(1+i) 2 -4i(2-2i)=2i- (8i+8 )=-8-6i . racines carrées : z 2 =-8-6i donne (1-3i) — c’est l’exercice f de la page 6. z= (1+i) (1-3i) 2i . z 1 = 2-2i 2i = 1-i i =(1-i) (-i)=-1-i et z 2 = 4i 2i =2 . pour aller plus loin faculté des sciences appliquées (ulb) · page 10 ulb">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">13</span><span class="ex-tag">ULB</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Résoudre dans $\mathbb{C}$ l’équation $i\cdot z^{2}-(1+i)\cdot z=2(i-1)$.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-ulb-13">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-ulb-13">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-ulb-13"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$S=\{2,\ -1-i\}$</div></div></div></div></div>
+          <div class="panel" id="s-ulb-13"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">On ramène tout dans le même membre : $iz^{2}-(1+i)z+2-2i=0$.</div></li>
+          <li><div class="stp">$\Delta=(1+i)^{2}-4i(2-2i)=2i-\left(8i+8\right)=-8-6i$.</div></li>
+          <li><div class="stp">Racines carrées : $z^{2}=-8-6i$ donne $\pm(1-3i)$ — c’est l’exercice f de la page 6.</div></li>
+          <li><div class="stp">$z=\dfrac{(1+i)\pm(1-3i)}{2i}$.</div></li>
+          <li><div class="stp">$z_{1}=\dfrac{2-2i}{2i}=\dfrac{1-i}{i}=(1-i)\cdot(-i)=-1-i$ &nbsp;et&nbsp; $z_{2}=\dfrac{4i}{2i}=2$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-ulb-14" data-id="ulb-14" data-search="résoudre dans c l’équation array ccc 1 z 2 z 6 1 i -i 1 1 1 array =0 . z= 1 z= 2 2 (1+i) z (0 , 455-1 , 099 ,i) — six racines. développement selon la première ligne : 1 (i 1-(-i) 1 )-z 2 (1+i )+z 6 (1-i )=0 . soit (1-i)z 6 -(1+i)z 2 +2i=0 . on pose u=z 2 : (1-i)u 3 -(1+i)u+2i=0 . u=1 est racine évidente : (1-i)-(1+i)+2i=0 . division : (u-1) [(1-i)u 2 +(1-i)u-2i ]=0 . on divise par 1-i , avec 2i 1-i =-1+i : il reste u 2 +u+1-i=0 . =1-4(1-i)=-3+4i , dont les racines carrées sont (1+2i) , d’où u=i ou u=-1-i . z 2 =1 z= 1 z 2 =i z= 2 2 (1+i) z 2 =-1-i z (0 , 455-1 , 099 ,i) . six racines pour une équation de degré 6 : cohérent avec d’alembert. pour aller plus loin faculté des sciences appliquées (ulb) · page 10 ulb">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">14</span><span class="ex-tag">ULB</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Résoudre dans $\mathbb{C}$ l’équation $\left|\begin{array}{ccc}1 & z^{2} & z^{6}\\ 1 & i & -i\\ 1 & 1 & 1\end{array}\right|=0$.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-ulb-14">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-ulb-14">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-ulb-14"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$z=\pm 1$ ; &nbsp;$z=\pm\dfrac{\sqrt{2}}{2}(1+i)$ ; &nbsp;$z\approx\pm(0{,}455-1{,}099\,i)$ — six racines.</div></div></div></div></div>
+          <div class="panel" id="s-ulb-14"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Développement selon la première ligne : $1\cdot\left(i\cdot 1-(-i)\cdot 1\right)-z^{2}\left(1+i\right)+z^{6}\left(1-i\right)=0$.</div></li>
+          <li><div class="stp">Soit $(1-i)z^{6}-(1+i)z^{2}+2i=0$. On pose $u=z^{2}$ : $(1-i)u^{3}-(1+i)u+2i=0$.</div></li>
+          <li><div class="stp">$u=1$ est racine évidente : $(1-i)-(1+i)+2i=0$. Division : $(u-1)\left[(1-i)u^{2}+(1-i)u-2i\right]=0$.</div></li>
+          <li><div class="stp">On divise par $1-i$, avec $\dfrac{2i}{1-i}=-1+i$ : il reste $u^{2}+u+1-i=0$.</div></li>
+          <li><div class="stp">$\Delta=1-4(1-i)=-3+4i$, dont les racines carrées sont $\pm(1+2i)$, d’où $u=i$ ou $u=-1-i$.</div></li>
+          <li><div class="stp">$z^{2}=1\Rightarrow z=\pm 1$ ; &nbsp;$z^{2}=i\Rightarrow z=\pm\dfrac{\sqrt{2}}{2}(1+i)$ ; &nbsp;$z^{2}=-1-i\Rightarrow z\approx\pm(0{,}455-1{,}099\,i)$.</div></li>
+          <li><div class="stp">Six racines pour une équation de degré $6$ : cohérent avec d’Alembert.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-ulb-15" data-id="ulb-15" data-search="résoudre dans c l’équation z 6 -3z 5 +4z 4 -6z 3 +5z 2 -3z+2=0 , sachant qu’elle admet i comme racine double. s= i, -i, 1, 2 , avec i et -i racines doubles. les coefficients sont réels : si i est racine double, -i l’est aussi. donc [(z-i)(z+i) ] 2 = (z 2 +1 ) 2 =z 4 +2z 2 +1 divise le polynôme. la division donne le quotient z 2 -3z+2 . z 2 -3z+2=(z-1)(z-2) , d’où les racines 1 et 2 . factorisation complète : (z 2 +1 ) 2 (z-1)(z-2) — six racines en comptant les multiplicités. pour aller plus loin faculté des sciences appliquées (ulb) · page 10 ulb">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">15</span><span class="ex-tag">ULB</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Résoudre dans $\mathbb{C}$ l’équation $z^{6}-3z^{5}+4z^{4}-6z^{3}+5z^{2}-3z+2=0$, sachant qu’elle admet $i$ comme racine double.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-ulb-15">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-ulb-15">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-ulb-15"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$S=\{i,\ -i,\ 1,\ 2\}$, avec $i$ et $-i$ racines doubles.</div></div></div></div></div>
+          <div class="panel" id="s-ulb-15"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Les coefficients sont réels : si $i$ est racine double, $-i$ l’est aussi.</div></li>
+          <li><div class="stp">Donc $\left[(z-i)(z+i)\right]^{2}=\left(z^{2}+1\right)^{2}=z^{4}+2z^{2}+1$ divise le polynôme.</div></li>
+          <li><div class="stp">La division donne le quotient $z^{2}-3z+2$.</div></li>
+          <li><div class="stp">$z^{2}-3z+2=(z-1)(z-2)$, d’où les racines $1$ et $2$.</div></li>
+          <li><div class="stp">Factorisation complète : $\left(z^{2}+1\right)^{2}(z-1)(z-2)$ — six racines en comptant les multiplicités.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-ulb-16" data-id="ulb-16" data-search="soit l’équation z 2 +2( +i ) z+ 2 +4i + 2 =0 . déterminer , et pour que l’équation admette deux racines complexes conjuguées. trouver ensuite ces racines. =0 et 0 ( quelconque) racines z=- i . deux racines conjuguées imposent que la somme -2( +i ) soit réelle, donc =0 . avec =0 , le produit vaut 2 + 2 : il est bien réel. l’équation devient z 2 +2 z+ 2 + 2 =0 , soit (z+ ) 2 =- 2 . =4 2 -4 ( 2 + 2 )=-4 2 : il faut 0 , sinon les racines sont réelles et confondues. z= -2 2 i 2 =- i : bien deux complexes conjugués. ✓ pour aller plus loin faculté des sciences appliquées (ulb) · page 10 ulb">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">16</span><span class="ex-tag">ULB</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Soit l’équation $z^{2}+2(\alpha+i\gamma)\cdot z+\beta^{2}+4i\gamma+\alpha^{2}=0$. Déterminer $\alpha$, $\beta$ et $\gamma$ pour que l’équation admette deux racines complexes conjuguées. Trouver ensuite ces racines.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-ulb-16">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-ulb-16">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-ulb-16"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$\gamma=0$ et $\beta\neq 0$ ($\alpha$ quelconque) ; racines $z=-\alpha\pm\beta i$.</div></div></div></div></div>
+          <div class="panel" id="s-ulb-16"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Deux racines conjuguées imposent que la somme $-2(\alpha+i\gamma)$ soit réelle, donc $\gamma=0$.</div></li>
+          <li><div class="stp">Avec $\gamma=0$, le produit vaut $\alpha^{2}+\beta^{2}$ : il est bien réel.</div></li>
+          <li><div class="stp">L’équation devient $z^{2}+2\alpha z+\alpha^{2}+\beta^{2}=0$, soit $(z+\alpha)^{2}=-\beta^{2}$.</div></li>
+          <li><div class="stp">$\Delta=4\alpha^{2}-4\left(\alpha^{2}+\beta^{2}\right)=-4\beta^{2}$ : il faut $\beta\neq 0$, sinon les racines sont réelles et confondues.</div></li>
+          <li><div class="stp">$z=\dfrac{-2\alpha\pm 2\beta i}{2}=-\alpha\pm\beta i$ : bien deux complexes conjugués. ✓</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+    </section>
+    </main>
+  </div>
+
+  <footer class="foot">
+    <span><em>Nombres complexes — 6ᵉ (6 h)</em> · 54 exercices, réponses vérifiées</span>
+    <span>Cochez « Fait » : votre progression reste enregistrée dans ce navigateur.</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var KEY = 'nc6-done-v1';
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.ex'));
+  var done = new Set();
+  try { var raw = localStorage.getItem(KEY); if (raw) JSON.parse(raw).forEach(function(id){ done.add(id); }); } catch(e){}
+
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(Array.from(done))); } catch(e){} }
+
+  var fill = document.getElementById('fill');
+  var count = document.getElementById('count');
+
+  function refresh(){
+    var n = 0;
+    cards.forEach(function(c){
+      var d = done.has(c.dataset.id);
+      c.classList.toggle('done', d);
+      c.querySelector('.js-done').setAttribute('aria-pressed', d ? 'true' : 'false');
+      if (d) n++;
+    });
+    fill.style.width = (n / cards.length * 100) + '%';
+    count.innerHTML = '<b>' + n + '</b> / ' + cards.length;
+    document.querySelectorAll('[data-count]').forEach(function(el){
+      var sec = document.getElementById(el.dataset.count);
+      var all = sec.querySelectorAll('.ex');
+      var k = 0;
+      all.forEach(function(c){ if (done.has(c.dataset.id)) k++; });
+      el.textContent = k + '/' + all.length;
+    });
+  }
+
+  document.addEventListener('click', function(ev){
+    var t = ev.target.closest('.js-toggle');
+    if (t){
+      var p = document.getElementById(t.getAttribute('aria-controls'));
+      var open = !p.classList.contains('open');
+      p.classList.toggle('open', open);
+      t.setAttribute('aria-expanded', open ? 'true' : 'false');
+      return;
+    }
+    var d = ev.target.closest('.js-done');
+    if (d){
+      var card = d.closest('.ex');
+      if (done.has(card.dataset.id)) done.delete(card.dataset.id); else done.add(card.dataset.id);
+      save(); refresh();
+    }
+  });
+
+  // tout révéler / tout masquer
+  var allBtn = document.getElementById('all');
+  var shown = false;
+  allBtn.addEventListener('click', function(){
+    shown = !shown;
+    document.querySelectorAll('.panel').forEach(function(p){ p.classList.toggle('open', shown); });
+    document.querySelectorAll('.js-toggle').forEach(function(b){ b.setAttribute('aria-expanded', shown ? 'true' : 'false'); });
+    allBtn.textContent = shown ? 'Tout masquer' : 'Tout révéler';
+  });
+
+  // recherche
+  var q = document.getElementById('q');
+  q.addEventListener('input', function(){
+    var v = q.value.trim().toLowerCase();
+    cards.forEach(function(c){ c.hidden = v !== '' && c.dataset.search.indexOf(v) === -1; });
+    document.querySelectorAll('section.sec').forEach(function(s){
+      var vis = Array.prototype.slice.call(s.querySelectorAll('.ex')).some(function(c){ return !c.hidden; });
+      s.hidden = !vis;
+    });
+  });
+
+  // exercice au hasard, parmi ceux qui restent à faire
+  document.getElementById('rand').addEventListener('click', function(){
+    var pool = cards.filter(function(c){ return !c.hidden && !done.has(c.dataset.id); });
+    if (!pool.length) pool = cards.filter(function(c){ return !c.hidden; });
+    if (!pool.length) return;
+    var c = pool[Math.floor(Math.random() * pool.length)];
+    c.scrollIntoView({behavior:'smooth', block:'center'});
+    c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash');
+  });
+
+  // remise à zéro, en deux temps (pas de boîte de dialogue dans un artifact)
+  var reset = document.getElementById('reset');
+  var armed = false, timer;
+  reset.addEventListener('click', function(){
+    if (!armed){
+      armed = true; reset.dataset.armed = '1'; reset.textContent = 'Confirmer ?';
+      timer = setTimeout(function(){ armed = false; reset.dataset.armed = '0'; reset.textContent = 'Réinitialiser'; }, 4000);
+      return;
+    }
+    clearTimeout(timer); armed = false; reset.dataset.armed = '0'; reset.textContent = 'Réinitialiser';
+    done.clear(); save(); refresh();
+  });
+
+  // section active dans le sommaire
+  var links = {};
+  document.querySelectorAll('.toc a').forEach(function(a){ links[a.dataset.sec] = a; });
+  if ('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){
+          Object.keys(links).forEach(function(k){ links[k].classList.toggle('active', k === e.target.id); });
+        }
+      });
+    }, {rootMargin:'-80px 0px -70% 0px'});
+    document.querySelectorAll('section.sec').forEach(function(s){ obs.observe(s); });
+  }
+
+  refresh();
+})();
+</script>
+
+
+</body>
+</html>
