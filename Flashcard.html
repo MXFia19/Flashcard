@@ -105,6 +105,37 @@
         const ALL_VOCABULARY = Object.values(VOCABULARY_DB).flat();
 
         // ==========================================
+        // NÉERLANDAIS - Fiches de vocabulaire (6N2)
+        // ==========================================
+        const VOCABULARY_NL = {
+            "SSFL 7 : Reizen en vakantie": [
+                { front: "De luchthaven", back: "L'aéroport" }, { front: "Het vliegtuig", back: "L'avion" },
+                { front: "Het vluchtnummer", back: "Le numéro de vol" }, { front: "De terugreis", back: "Le voyage de retour" },
+                { front: "Een kamer boeken", back: "Réserver une chambre" }, { front: "Het hotel verlaten", back: "Quitter l'hôtel" },
+                { front: "Het pendelbusje", back: "La navette (le petit bus)" }, { front: "De bestemming", back: "La destination" },
+                { front: "OVERstappen", back: "Faire une escale" }, { front: "Landen", back: "Atterrir" },
+                { front: "Verblijven", back: "Séjourner" }, { front: "De vakantie in ___ DOORbrengen", back: "Passer les vacances à ___" },
+                { front: "Iets bezoeken, bezichtigen", back: "Visiter quelque chose" }, { front: "Een verzekering AFsluiten", back: "Souscrire à une assurance" },
+                { front: "Een gids raadplegen", back: "Consulter un guide" }, { front: "Ontgoocheld zijn", back: "Être déçu" },
+                { front: "Landschappen bewonderen", back: "Admirer les paysages" }, { front: "Inbegrepen", back: "Compris, inclus" },
+                { front: "De voorziening", back: "L'installation, le service" }, { front: "De internetaansluiting", back: "La connexion internet" },
+                { front: "Beschikbaar zijn", back: "Être disponible" }, { front: "De studentenkorting", back: "La réduction étudiante" },
+                { front: "De bezienswaardigheden", back: "Les curiosités touristiques" }, { front: "De betalingsmodaliteiten", back: "Les modalités de paiement" },
+                { front: "Het voorschot", back: "L'acompte" }, { front: "De koffers", back: "Les valises" },
+                { front: "De bediening", back: "Le service (en salle)" }, { front: "Iets KWIJTraken", back: "Perdre quelque chose" },
+                { front: "Onderhouden", back: "Entretenir (l'entretien)" }, { front: "Wegens", back: "À cause de" },
+                { front: "Het uitstapje", back: "L'excursion" }, { front: "Betalend", back: "Payant" },
+                { front: "Geld UITgeven", back: "Dépenser de l'argent" }, { front: "Het buitenland", back: "L'étranger" },
+                { front: "Waar is het hotel gelegen?", back: "Où se situe l'hôtel ?" }, { front: "De openingsuren", back: "Les heures d'ouverture" },
+                { front: "Bereikbaar zijn", back: "Être accessible" }, { front: "De faciliteiten", back: "Les facilités" },
+                { front: "Autopech hebben", back: "Avoir une panne" }, { front: "Het lawaai", back: "Le bruit" },
+                { front: "De shuttlebus", back: "La navette" }, { front: "Onvoldoende", back: "Insuffisant" },
+                { front: "De reisagentschap", back: "L'agence de voyages" }
+            ]
+        };
+        const ALL_VOCABULARY_NL = Object.values(VOCABULARY_NL).flat();
+
+        // ==========================================
         // COMPOSANTS DES JEUX (Flashcards, QCM, Clavier, Mémoire)
         // ==========================================
         const FlashcardMode = ({ cards, isReversed, langFront, langBack, onPlayAudio }) => {
@@ -484,6 +515,9 @@
             // Système de récupération intelligent des listes avec les bonnes langues
             // SUPPRESSION DE LA BASE D'HISTOIRE ICI (Les jeux ne liront plus l'histoire)
             const listData = useMemo(() => {
+                if (activeCategory === "Tout le néerlandais" || VOCABULARY_NL[activeCategory]) {
+                    return { cards: activeCategory === "Tout le néerlandais" ? ALL_VOCABULARY_NL : VOCABULARY_NL[activeCategory], langFront: 'nl', langBack: 'fr' };
+                }
                 if (activeCategory === "Tout le vocabulaire" || VOCABULARY_DB[activeCategory]) {
                     return { cards: activeCategory === "Tout le vocabulaire" ? ALL_VOCABULARY : VOCABULARY_DB[activeCategory], langFront: 'es', langBack: 'fr' };
                 }
@@ -562,6 +596,10 @@
                                     <optgroup label="Listes d'Espagnol">
                                         <option value="Tout le vocabulaire">📚 Tout le vocabulaire</option>
                                         {Object.keys(VOCABULARY_DB).map(c => <option key={c} value={c}>{c}</option>)}
+                                    </optgroup>
+                                    <optgroup label="Listes de Néerlandais">
+                                        <option value="Tout le néerlandais">📚 Tout le néerlandais</option>
+                                        {Object.keys(VOCABULARY_NL).map(c => <option key={c} value={c}>{c}</option>)}
                                     </optgroup>
                                     {Object.keys(customLists).length > 0 && (
                                         <optgroup label="Mes Listes">
