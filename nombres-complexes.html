@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Nombres complexes — tous les exercices du cours</title>
-<meta name="description" content="Les 54 exercices du cours de 6e sur les nombres complexes, avec réponses et solutions détaillées.">
+<title>Complexes et cyclométriques — exercices de 6ᵉ</title>
+<meta name="description" content="Les 102 exercices des cours de 6e sur les nombres complexes et les fonctions cyclométriques, avec réponses et solutions détaillées.">
 <style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
@@ -63,23 +63,33 @@ body{
 }
 h1,h2,h3{font-family:Spectral,Georgia,"Times New Roman",serif; font-weight:600; text-wrap:balance; margin:0}
 a{color:var(--real)}
-.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
 
 .wrap{max-width:1140px; margin:0 auto; padding-inline:16px; padding-block:0}
 
 /* ---------- en-tête ---------- */
-.hero{padding-block:34px 22px}
+.hero{padding-block:34px 4px}
 .eyebrow{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--imag); margin:0 0 10px}
-.hero h1{font-size:clamp(2.1rem,6vw,3.3rem); line-height:1.05; letter-spacing:-.015em}
+.hero h1{font-size:clamp(2rem,5.6vw,3.1rem); line-height:1.06; letter-spacing:-.015em; max-width:18ch}
 .hero h1 em{font-style:italic; color:var(--imag)}
-.lede{color:var(--ink-2); max-width:56ch; margin:12px 0 0; font-size:1.05rem}
-.hero-grid{display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:28px; align-items:center}
-@media (max-width:760px){ .hero-grid{grid-template-columns:1fr; gap:18px} }
-.plane{width:100%; height:auto; max-width:360px; justify-self:end}
-@media (max-width:760px){ .plane{justify-self:start; max-width:320px} }
+.lede{color:var(--ink-2); max-width:54ch; margin:0; font-size:1.02rem}
+
+/* ---------- onglets de chapitre ---------- */
+.tabs{display:flex; flex-wrap:wrap; gap:8px; margin-top:22px; border-bottom:1px solid var(--rule); padding-bottom:0}
+.tab{position:relative; font:inherit; font-family:Spectral,Georgia,serif; font-size:1.02rem; font-weight:600; color:var(--ink-3);
+     background:transparent; border:0; border-bottom:2px solid transparent; padding:8px 4px 10px; margin-bottom:-1px; cursor:pointer; display:flex; align-items:baseline; gap:8px}
+.tab + .tab{margin-left:14px}
+.tab:hover{color:var(--ink-2)}
+.tab[aria-selected="true"]{color:var(--ink); border-bottom-color:var(--imag)}
+.tab .cnt{font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--ink-3); font-variant-numeric:tabular-nums}
+.tab:focus-visible{outline:2px solid var(--imag); outline-offset:3px; border-radius:4px}
+
+.course-intro{display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); gap:26px; align-items:center; margin:26px 0 30px}
+@media (max-width:760px){ .course-intro{grid-template-columns:1fr; gap:14px} }
+.viz{width:100%; height:auto; max-width:360px; justify-self:end}
+@media (max-width:760px){ .viz{justify-self:start; max-width:330px} }
 
 /* ---------- barre d'outils ---------- */
-.bar{position:sticky; top:env(safe-area-inset-top,0px); z-index:20; background:color-mix(in srgb,var(--paper) 88%, transparent); backdrop-filter:blur(8px); border-block:1px solid var(--rule); margin-block:10px 26px}
+.bar{position:sticky; top:env(safe-area-inset-top,0px); z-index:20; background:color-mix(in srgb,var(--paper) 88%, transparent); backdrop-filter:blur(8px); border-bottom:1px solid var(--rule); margin-bottom:0}
 .bar-in{display:flex; flex-wrap:wrap; gap:10px; align-items:center; padding-block:10px}
 .meter{flex:1 1 180px; min-width:150px}
 .meter-top{display:flex; justify-content:space-between; align-items:baseline; gap:8px; font-family:"IBM Plex Mono",monospace; font-size:.74rem; letter-spacing:.04em; color:var(--ink-2)}
@@ -96,9 +106,9 @@ a{color:var(--real)}
 .btn.warn[data-armed="1"]{color:var(--imag); border-color:var(--imag)}
 
 /* ---------- mise en page ---------- */
-.cols{display:grid; grid-template-columns:210px minmax(0,1fr); gap:40px; align-items:start; padding-bottom:60px}
+.cols{display:grid; grid-template-columns:210px minmax(0,1fr); gap:40px; align-items:start; padding-bottom:60px; padding-top:22px}
 @media (max-width:960px){ .cols{grid-template-columns:1fr; gap:24px} }
-nav.toc{position:sticky; top:calc(env(safe-area-inset-top,0px) + 72px)}
+nav.toc{position:sticky; top:calc(env(safe-area-inset-top,0px) + 76px)}
 @media (max-width:960px){ nav.toc{position:static} }
 .toc h2{font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); font-weight:500; margin-bottom:10px}
 .toc ol{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:1px}
@@ -118,7 +128,7 @@ nav.toc{position:sticky; top:calc(env(safe-area-inset-top,0px) + 72px)}
 .memo dd{margin:0; font-size:.94rem; color:var(--ink-2)}
 
 /* ---------- sections ---------- */
-section.sec{margin-bottom:46px; scroll-margin-top:calc(env(safe-area-inset-top,0px) + 84px)}
+section.sec{margin-bottom:46px; scroll-margin-top:calc(env(safe-area-inset-top,0px) + 88px)}
 .sec-head{border-bottom:1px solid var(--rule); padding-bottom:12px; margin-bottom:20px}
 .sec-head .kick{font-family:"IBM Plex Mono",monospace; font-size:.71rem; letter-spacing:.12em; text-transform:uppercase; color:var(--real); display:block; margin-bottom:6px}
 .sec-head h2{font-size:1.5rem; letter-spacing:-.01em}
@@ -170,23 +180,75 @@ footer.foot em{font-style:italic}
 
 @media (prefers-reduced-motion: reduce){ *{animation-duration:.01ms !important; transition-duration:.01ms !important} }
 @media print{
-  .bar,nav.toc,.ex-tools,.done-btn{display:none}
+  .bar,nav.toc,.ex-tools,.done-btn,.tabs{display:none}
   .cols{grid-template-columns:1fr}
   .panel{grid-template-rows:1fr}
+  .course[hidden]{display:block !important}
   body{background:#fff}
 }
 </style>
 
 <div class="wrap">
   <header class="hero">
-    <div class="hero-grid">
-      <div>
-        <p class="eyebrow">Mathématiques · 6ᵉ (6 h)</p>
-        <h1>Nombres complexes,<br><em>tous les exercices</em></h1>
-        <p class="lede">Les 54 exercices du cours — de la formule de Cardano aux équations posées à l’ULB et à la Faculté polytechnique de Mons — avec la réponse et la démarche complète pour chacun.</p>
+    <p class="eyebrow">Mathématiques · 6ᵉ · 102 exercices résolus</p>
+    <h1>Deux chapitres,<br><em>tous les exercices</em></h1>
+    <div class="tabs" role="tablist" aria-label="Chapitre">
+      <button type="button" class="tab" role="tab" data-course="complexes" aria-selected="true">Nombres complexes <span class="cnt">54</span></button>
+      <button type="button" class="tab" role="tab" data-course="cyclo" aria-selected="false">Fonctions cyclométriques <span class="cnt">48</span></button>
+    </div>
+  </header>
+</div>
+
+<div class="bar">
+  <div class="wrap">
+    <div class="bar-in">
+      <div class="meter">
+        <div class="meter-top"><span>Progression</span><span id="count"><b>0</b> / 54</span></div>
+        <div class="track"><div class="fill" id="fill"></div></div>
       </div>
+      <div class="search"><input id="q" type="search" placeholder="Chercher : conjugué, arcsin, limite…" aria-label="Chercher un exercice"></div>
+      <button class="btn" id="rand" type="button">Au hasard</button>
+      <button class="btn ghost" id="all" type="button">Tout révéler</button>
+      <button class="btn ghost warn" id="reset" type="button" data-armed="0">Réinitialiser</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="cols">
+    <nav class="toc" aria-label="Sommaire">
+      <h2>Sommaire</h2>
+      <ol class="toc-list" data-course="complexes">
+        <li><a href="#methodes" data-sec="methodes"><span>Méthodes du cours</span><span class="n" data-count="methodes">0/4</span></a></li>
+        <li><a href="#histo" data-sec="histo"><span>Cardano & Bombelli</span><span class="n" data-count="histo">0/2</span></a></li>
+        <li><a href="#egalite" data-sec="egalite"><span>Égalité de complexes</span><span class="n" data-count="egalite">0/3</span></a></li>
+        <li><a href="#calculs" data-sec="calculs"><span>Calculs sous forme a + bi</span><span class="n" data-count="calculs">0/12</span></a></li>
+        <li><a href="#ulb3" data-sec="ulb3"><span>Un quotient réel</span><span class="n" data-count="ulb3">0/1</span></a></li>
+        <li><a href="#binome" data-sec="binome"><span>Racines carrées</span><span class="n" data-count="binome">0/6</span></a></li>
+        <li><a href="#complete" data-sec="complete"><span>Équations complètes</span><span class="n" data-count="complete">0/10</span></a></li>
+        <li><a href="#alembert" data-sec="alembert"><span>Polynômes & d’Alembert</span><span class="n" data-count="alembert">0/6</span></a></li>
+        <li><a href="#fpms" data-sec="fpms"><span>Mons (FPMs)</span><span class="n" data-count="fpms">0/2</span></a></li>
+        <li><a href="#ulb" data-sec="ulb"><span>ULB — plus loin</span><span class="n" data-count="ulb">0/8</span></a></li>
+      </ol>
+      <ol class="toc-list" data-course="cyclo" hidden>
+        <li><a href="#c-methodes" data-sec="c-methodes"><span>Les trois dérivées</span><span class="n" data-count="c-methodes">0/3</span></a></li>
+        <li><a href="#c-valeurs" data-sec="c-valeurs"><span>Valeurs exactes</span><span class="n" data-count="c-valeurs">0/6</span></a></li>
+        <li><a href="#c-equations" data-sec="c-equations"><span>Équations simples</span><span class="n" data-count="c-equations">0/6</span></a></li>
+        <li><a href="#c-sommes" data-sec="c-sommes"><span>Sommes remarquables</span><span class="n" data-count="c-sommes">0/5</span></a></li>
+        <li><a href="#c-derivees" data-sec="c-derivees"><span>Domaines & dérivées</span><span class="n" data-count="c-derivees">0/6</span></a></li>
+        <li><a href="#c-identites" data-sec="c-identites"><span>Identités</span><span class="n" data-count="c-identites">0/4</span></a></li>
+        <li><a href="#c-graphes" data-sec="c-graphes"><span>Graphiques & étude</span><span class="n" data-count="c-graphes">0/10</span></a></li>
+        <li><a href="#c-arctan" data-sec="c-arctan"><span>Équations avec arctan</span><span class="n" data-count="c-arctan">0/3</span></a></li>
+        <li><a href="#c-limites" data-sec="c-limites"><span>Limites</span><span class="n" data-count="c-limites">0/5</span></a></li>
+      </ol>
+    </nav>
+
+    <main>
+  <div class="course" id="course-complexes">
+    <div class="course-intro">
+      <p class="lede">De la formule de Cardano aux équations posées à l’ULB et à la Faculté polytechnique de Mons : chaque exercice avec sa réponse et sa démarche.</p>
       
-<svg class="plane" viewBox="0 0 340 226" role="img" aria-label="Plan complexe : le point z = 3 + 2i et son conjugué 3 − 2i">
+<svg class="viz" viewBox="0 0 340 226" role="img" aria-label="Plan complexe : le point z = 3 + 2i et son conjugué 3 − 2i">
   <g stroke="var(--rule)" stroke-width="1" opacity=".75">
     <path d="M50 11V215M84 11V215M118 11V215M152 11V215M186 11V215M220 11V215M254 11V215M288 11V215"/>
     <path d="M16 11H300M16 45H300M16 79H300M16 113H300M16 147H300M16 181H300M16 215H300"/>
@@ -201,7 +263,7 @@ footer.foot em{font-style:italic}
   <path d="M186 113V181" stroke="var(--real)" stroke-width="1.1" stroke-dasharray="3 3" fill="none" opacity=".8"/>
   <g font-family="IBM Plex Mono, monospace" font-size="11">
     <text x="196" y="42" fill="var(--imag)">z = 3 + 2i</text>
-    <text x="196" y="186" fill="var(--real)">z̄ = 3 − 2i</text>
+    <text x="196" y="186" fill="var(--real)">z&#772; = 3 &#8722; 2i</text>
     <text x="292" y="128" fill="var(--ink-3)" text-anchor="end">Re</text>
     <text x="92" y="17" fill="var(--ink-3)">Im</text>
     <text x="76" y="127" fill="var(--ink-3)" text-anchor="end">0</text>
@@ -209,39 +271,6 @@ footer.foot em{font-style:italic}
 </svg>
 
     </div>
-  </header>
-
-  <div class="bar">
-    <div class="bar-in">
-      <div class="meter">
-        <div class="meter-top"><span>Progression</span><span id="count"><b>0</b> / 54</span></div>
-        <div class="track"><div class="fill" id="fill"></div></div>
-      </div>
-      <div class="search"><input id="q" type="search" placeholder="Chercher : conjugué, discriminant, Horner…" aria-label="Chercher un exercice"></div>
-      <button class="btn" id="rand" type="button">Au hasard</button>
-      <button class="btn ghost" id="all" type="button">Tout révéler</button>
-      <button class="btn ghost warn" id="reset" type="button" data-armed="0">Réinitialiser</button>
-    </div>
-  </div>
-
-  <div class="cols">
-    <nav class="toc" aria-label="Sommaire">
-      <h2>Sommaire</h2>
-      <ol>
-      <li><a href="#methodes" data-sec="methodes"><span>Méthodes du cours</span><span class="n" data-count="methodes">0/4</span></a></li>
-      <li><a href="#histo" data-sec="histo"><span>Cardano & Bombelli</span><span class="n" data-count="histo">0/2</span></a></li>
-      <li><a href="#egalite" data-sec="egalite"><span>Égalité de complexes</span><span class="n" data-count="egalite">0/3</span></a></li>
-      <li><a href="#calculs" data-sec="calculs"><span>Calculs sous forme a + bi</span><span class="n" data-count="calculs">0/12</span></a></li>
-      <li><a href="#ulb3" data-sec="ulb3"><span>Un quotient réel</span><span class="n" data-count="ulb3">0/1</span></a></li>
-      <li><a href="#binome" data-sec="binome"><span>Racines carrées</span><span class="n" data-count="binome">0/6</span></a></li>
-      <li><a href="#complete" data-sec="complete"><span>Équations complètes</span><span class="n" data-count="complete">0/10</span></a></li>
-      <li><a href="#alembert" data-sec="alembert"><span>Polynômes & d’Alembert</span><span class="n" data-count="alembert">0/6</span></a></li>
-      <li><a href="#fpms" data-sec="fpms"><span>Mons (FPMs)</span><span class="n" data-count="fpms">0/2</span></a></li>
-      <li><a href="#ulb" data-sec="ulb"><span>ULB — plus loin</span><span class="n" data-count="ulb">0/8</span></a></li>
-      </ol>
-    </nav>
-
-    <main>
     <div class="memo">
       <h2>L’essentiel en huit lignes</h2>
       <p class="sub">Tout ce qu’il faut avoir en tête avant de se lancer dans les exercices.</p>
@@ -1450,11 +1479,1107 @@ footer.foot em{font-style:italic}
         </div>
       </article>
     </section>
+  </div>
+  <div class="course" id="course-cyclo" hidden>
+    <div class="course-intro">
+      <p class="lede">Les réciproques des fonctions trigonométriques : définitions, dérivées, identités, limites et graphiques — tous les exercices résolus pas à pas.</p>
+      
+<svg class="viz" viewBox="0 0 320 236" role="img" aria-label="Les courbes de arcsin, arccos et arctan avec leurs asymptotes">
+  <path d="M6 89H302M6 215H302" stroke="var(--rule)" stroke-width="1" stroke-dasharray="4 4" fill="none"/>
+  <path d="M0 152H308" stroke="var(--ink-3)" stroke-width="1.3" fill="none"/>
+  <path d="M118 228V16" stroke="var(--ink-3)" stroke-width="1.3" fill="none"/>
+  <path d="M308 152l-7-3.5v7z" fill="var(--ink-3)"/>
+  <path d="M118 16l-3.5 7h7z" fill="var(--ink-3)"/>
+  <polyline points="78.0,26.3 78.7,33.6 79.3,36.7 80.0,39.0 80.7,41.0 81.3,42.8 82.0,44.4 82.7,45.9 83.3,47.2 84.0,48.5 84.7,49.8 85.3,50.9 86.0,52.1 86.7,53.2 87.3,54.2 88.0,55.2 88.7,56.2 89.3,57.2 90.0,58.2 90.7,59.1 91.3,60.0 92.0,60.9 92.7,61.7 93.3,62.6 94.0,63.4 94.7,64.3 95.3,65.1 96.0,65.9 96.7,66.7 97.3,67.5 98.0,68.2 98.7,69.0 99.3,69.7 100.0,70.5 100.7,71.2 101.3,72.0 102.0,72.7 102.7,73.4 103.3,74.2 104.0,74.9 104.7,75.6 105.3,76.3 106.0,77.0 106.7,77.7 107.3,78.4 108.0,79.1 108.7,79.7 109.3,80.4 110.0,81.1 110.7,81.8 111.3,82.5 112.0,83.1 112.7,83.8 113.3,84.5 114.0,85.2 114.7,85.8 115.3,86.5 116.0,87.2 116.7,87.8 117.3,88.5 118.0,89.2 118.7,89.8 119.3,90.5 120.0,91.2 120.7,91.8 121.3,92.5 122.0,93.2 122.7,93.8 123.3,94.5 124.0,95.2 124.7,95.9 125.3,96.5 126.0,97.2 126.7,97.9 127.3,98.6 128.0,99.3 128.7,100.0 129.3,100.7 130.0,101.4 130.7,102.1 131.3,102.8 132.0,103.5 132.7,104.2 133.3,104.9 134.0,105.6 134.7,106.4 135.3,107.1 136.0,107.8 136.7,108.6 137.3,109.3 138.0,110.1 138.7,110.9 139.3,111.7 140.0,112.5 140.7,113.3 141.3,114.1 142.0,114.9 142.7,115.7 143.3,116.6 144.0,117.5 144.7,118.4 145.3,119.3 146.0,120.2 146.7,121.1 147.3,122.1 148.0,123.1 148.7,124.1 149.3,125.2 150.0,126.3 150.7,127.4 151.3,128.6 152.0,129.8 152.7,131.1 153.3,132.5 154.0,134.0 154.7,135.6 155.3,137.3 156.0,139.3 156.7,141.6 157.3,144.7 158.0,152.0" fill="none" stroke="var(--real)" stroke-width="2.2"/>
+  <polyline points="78.0,214.8 78.7,207.5 79.3,204.5 80.0,202.1 80.7,200.1 81.3,198.4 82.0,196.8 82.7,195.3 83.3,193.9 84.0,192.6 84.7,191.4 85.3,190.2 86.0,189.1 86.7,188.0 87.3,186.9 88.0,185.9 88.7,184.9 89.3,184.0 90.0,183.0 90.7,182.1 91.3,181.2 92.0,180.3 92.7,179.4 93.3,178.6 94.0,177.7 94.7,176.9 95.3,176.1 96.0,175.3 96.7,174.5 97.3,173.7 98.0,172.9 98.7,172.2 99.3,171.4 100.0,170.7 100.7,169.9 101.3,169.2 102.0,168.5 102.7,167.7 103.3,167.0 104.0,166.3 104.7,165.6 105.3,164.9 106.0,164.2 106.7,163.5 107.3,162.8 108.0,162.1 108.7,161.4 109.3,160.7 110.0,160.1 110.7,159.4 111.3,158.7 112.0,158.0 112.7,157.3 113.3,156.7 114.0,156.0 114.7,155.3 115.3,154.7 116.0,154.0 116.7,153.3 117.3,152.7 118.0,152.0 118.7,151.3 119.3,150.7 120.0,150.0 120.7,149.3 121.3,148.7 122.0,148.0 122.7,147.3 123.3,146.7 124.0,146.0 124.7,145.3 125.3,144.6 126.0,143.9 126.7,143.3 127.3,142.6 128.0,141.9 128.7,141.2 129.3,140.5 130.0,139.8 130.7,139.1 131.3,138.4 132.0,137.7 132.7,137.0 133.3,136.3 134.0,135.5 134.7,134.8 135.3,134.1 136.0,133.3 136.7,132.6 137.3,131.8 138.0,131.1 138.7,130.3 139.3,129.5 140.0,128.7 140.7,127.9 141.3,127.1 142.0,126.3 142.7,125.4 143.3,124.6 144.0,123.7 144.7,122.8 145.3,121.9 146.0,121.0 146.7,120.0 147.3,119.1 148.0,118.1 148.7,117.1 149.3,116.0 150.0,114.9 150.7,113.8 151.3,112.6 152.0,111.4 152.7,110.1 153.3,108.7 154.0,107.2 154.7,105.6 155.3,103.9 156.0,101.9 156.7,99.5 157.3,96.5 158.0,89.2" fill="none" stroke="var(--imag)" stroke-width="2.2"/>
+  <polyline points="10.0,200.6 12.4,200.4 14.7,200.0 17.1,199.7 19.5,199.4 21.8,199.1 24.2,198.7 26.6,198.3 28.9,197.9 31.3,197.5 33.7,197.1 36.0,196.7 38.4,196.2 40.8,195.7 43.1,195.2 45.5,194.7 47.9,194.1 50.2,193.5 52.6,192.9 55.0,192.2 57.3,191.5 59.7,190.8 62.1,190.0 64.4,189.2 66.8,188.3 69.2,187.4 71.5,186.4 73.9,185.4 76.3,184.3 78.6,183.1 81.0,181.9 83.4,180.5 85.7,179.2 88.1,177.7 90.5,176.1 92.8,174.5 95.2,172.7 97.6,170.9 99.9,169.0 102.3,167.0 104.7,164.9 107.0,162.7 109.4,160.5 111.8,158.2 114.1,155.9 116.5,153.5 118.9,151.1 121.2,148.8 123.6,146.4 126.0,144.1 128.3,141.9 130.7,139.7 133.1,137.6 135.4,135.6 137.8,133.6 140.2,131.8 142.5,130.0 144.9,128.3 147.3,126.7 149.6,125.2 152.0,123.8 154.4,122.5 156.7,121.2 159.1,120.0 161.5,118.9 163.8,117.9 166.2,116.9 168.6,115.9 170.9,115.1 173.3,114.2 175.7,113.4 178.0,112.7 180.4,112.0 182.8,111.3 185.1,110.7 187.5,110.1 189.9,109.5 192.2,108.9 194.6,108.4 197.0,107.9 199.3,107.5 201.7,107.0 204.1,106.6 206.4,106.2 208.8,105.8 211.2,105.4 213.5,105.0 215.9,104.7 218.3,104.4 220.6,104.0 223.0,103.7 225.4,103.4 227.7,103.2 230.1,102.9 232.5,102.6 234.8,102.4 237.2,102.1 239.6,101.9 241.9,101.7 244.3,101.4 246.7,101.2 249.0,101.0 251.4,100.8 253.8,100.6 256.1,100.4 258.5,100.3 260.9,100.1 263.2,99.9 265.6,99.8 268.0,99.6 270.3,99.4 272.7,99.3 275.1,99.1 277.4,99.0 279.8,98.9 282.2,98.7 284.5,98.6 286.9,98.5 289.3,98.3 291.6,98.2 294.0,98.1" fill="none" stroke="var(--ink)" stroke-width="2.2"/>
+  <g font-family="IBM Plex Mono, monospace" font-size="10.5">
+    <text x="164" y="94" fill="var(--imag)">arcsin</text>
+    <text x="8" y="20" fill="var(--real)">arccos</text>
+    <text x="238" y="127" fill="var(--ink)">arctan</text>
+    <text x="110" y="93" fill="var(--ink-3)" text-anchor="end">&#960;/2</text>
+    <text x="110" y="219" fill="var(--ink-3)" text-anchor="end">&#8722;&#960;/2</text>
+    <text x="110" y="30" fill="var(--ink-3)" text-anchor="end">&#960;</text>
+    <text x="156" y="166" fill="var(--ink-3)">1</text>
+    <text x="70" y="166" fill="var(--ink-3)">&#8722;1</text>
+  </g>
+</svg>
+
+    </div>
+    <div class="memo">
+      <h2>L’essentiel en huit lignes</h2>
+      <p class="sub">Les intervalles et les formules qui règlent tout le chapitre.</p>
+      <dl>
+        <div><dt>Trois réciproques</dt><dd>$\arcsin:[-1,1]\to\left[-\tfrac{\pi}{2},\tfrac{\pi}{2}\right]$, &nbsp;$\arccos:[-1,1]\to[0,\pi]$, &nbsp;$\arctan:\mathbb{R}\to\left]-\tfrac{\pi}{2},\tfrac{\pi}{2}\right[$.</dd></div>
+        <div><dt>Définition</dt><dd>$y=\arcsin x \Leftrightarrow x=\sin y$ <em>et</em> $y\in\left[-\tfrac{\pi}{2},\tfrac{\pi}{2}\right]$ — l’intervalle fait partie de la définition.</dd></div>
+        <div><dt>Pourquoi restreindre</dt><dd>$\sin$, $\cos$ et $\tan$ ne sont pas injectives : on les restreint à un intervalle de stricte monotonie avant d’inverser.</dd></div>
+        <div><dt>Dérivées</dt><dd>$(\arcsin x)'=\dfrac{1}{\sqrt{1-x^{2}}}$, &nbsp;$(\arccos x)'=\dfrac{-1}{\sqrt{1-x^{2}}}$, &nbsp;$(\arctan x)'=\dfrac{1}{1+x^{2}}$.</dd></div>
+        <div><dt>Composées</dt><dd>$(\arcsin u)'=\dfrac{u'}{\sqrt{1-u^{2}}}$, &nbsp;$(\arccos u)'=\dfrac{-u'}{\sqrt{1-u^{2}}}$, &nbsp;$(\arctan u)'=\dfrac{u'}{1+u^{2}}$.</dd></div>
+        <div><dt>La relation clé</dt><dd>$\arcsin x+\arccos x=\dfrac{\pi}{2}$ sur $[-1,1]$.</dd></div>
+        <div><dt>Triangle de secours</dt><dd>$\cos(\arcsin x)=\sqrt{1-x^{2}}$, &nbsp;$\tan(\arcsin x)=\dfrac{x}{\sqrt{1-x^{2}}}$, &nbsp;$\sin(\arctan x)=\dfrac{x}{\sqrt{1+x^{2}}}$.</dd></div>
+        <div><dt>Le piège</dt><dd>$\arcsin(\sin t)=t$ <strong>seulement si</strong> $t\in\left[-\tfrac{\pi}{2},\tfrac{\pi}{2}\right]$ ; $\arctan$ a deux asymptotes $y=\pm\dfrac{\pi}{2}$.</dd></div>
+      </dl>
+    </div>
+    <section class="sec" id="c-methodes">
+      <div class="sec-head">
+        <span class="kick">Aide-mémoire</span>
+        <h2>Les trois dérivées, démontrées</h2>
+        <p>Les démonstrations des pages 5 et 6 — et l’exercice de la page 5 laissé au lecteur</p>
+      </div>
+      <article class="ex" id="x-c-methodes-m1" data-id="c-methodes-m1" data-search="démontrer que ( x)&#x27;= 1 1-x 2 . ( x)&#x27;= 1 1-x 2 sur ]-1,1[ . 1 re méthode — formule de la réciproque : (f -1 )&#x27;(x)= 1 f&#x27; (f -1 (x) ) avec f= et f&#x27;= . ( x )&#x27;= 1 ( x) . or 2 t+ 2 t=1 donne t= 1- 2 t comme x [- 2 , 2 ] , son cosinus est positif : ( x)=+ 1- 2 ( x) = 1-x 2 . 2 e méthode — on pose g(x)= x , donc g(x)=x . en dérivant membre à membre : g(x) g&#x27;(x)=1 , d’où g&#x27;(x)= 1 ( x) et la même conclusion. le domaine se réduit à ]-1,1[ : en 1 la tangente est verticale. les trois dérivées, démontrées aide-mémoire page 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">M1</span><span class="ex-tag">page 5</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Démontrer que $(\arcsin x)'=\dfrac{1}{\sqrt{1-x^{2}}}$.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-methodes-m1">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-methodes-m1">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-methodes-m1"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$(\arcsin x)'=\dfrac{1}{\sqrt{1-x^{2}}}$ sur $]-1,1[$.</div></div></div></div></div>
+          <div class="panel" id="s-c-methodes-m1"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp"><strong>1<sup>re</sup> méthode</strong> — formule de la réciproque : $\left(f^{-1}\right)'(x)=\dfrac{1}{f'\left(f^{-1}(x)\right)}$ avec $f=\sin$ et $f'=\cos$.</div></li>
+          <li><div class="stp">$\left(\arcsin x\right)'=\dfrac{1}{\cos(\arcsin x)}$.</div></li>
+          <li><div class="stp">Or $\cos^{2}t+\sin^{2}t=1$ donne $\cos t=\pm\sqrt{1-\sin^{2}t}$ ; comme $\arcsin x\in\left[-\tfrac{\pi}{2},\tfrac{\pi}{2}\right]$, son cosinus est <strong>positif</strong> : $\cos(\arcsin x)=+\sqrt{1-\sin^{2}(\arcsin x)}=\sqrt{1-x^{2}}$.</div></li>
+          <li><div class="stp"><strong>2<sup>e</sup> méthode</strong> — on pose $g(x)=\arcsin x$, donc $\sin g(x)=x$. En dérivant membre à membre : $\cos g(x)\cdot g'(x)=1$, d’où $g'(x)=\dfrac{1}{\cos(\arcsin x)}$ et la même conclusion.</div></li>
+          <li><div class="stp">Le domaine se réduit à $]-1,1[$ : en $\pm 1$ la tangente est verticale.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-methodes-m2" data-id="c-methodes-m2" data-search="démontrer que ( x)&#x27;= -1 1-x 2 , en justifiant soigneusement le choix du signe. ( x)&#x27;= -1 1-x 2 sur ]-1,1[ . on pose g(x)= x , c’est-à-dire g(x)=x . en dérivant : - g(x) g&#x27;(x)=1 , donc g&#x27;(x)= -1 ( x) . le signe : x [0, ] , intervalle sur lequel le sinus est positif ou nul . donc ( x)=+ 1- 2 ( x) =+ 1-x 2 . d’où ( x)&#x27;= -1 1-x 2 — l’opposée de la dérivée de , ce qui est cohérent avec x+ x= 2 . les trois dérivées, démontrées aide-mémoire page 5 exercice du cours">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">M2</span><span class="ex-tag">page 5 &middot; exercice du cours</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Démontrer que $(\arccos x)'=\dfrac{-1}{\sqrt{1-x^{2}}}$, en justifiant soigneusement le choix du signe.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-methodes-m2">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-methodes-m2">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-methodes-m2"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$(\arccos x)'=\dfrac{-1}{\sqrt{1-x^{2}}}$ sur $]-1,1[$.</div></div></div></div></div>
+          <div class="panel" id="s-c-methodes-m2"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">On pose $g(x)=\arccos x$, c’est-à-dire $\cos g(x)=x$.</div></li>
+          <li><div class="stp">En dérivant : $-\sin g(x)\cdot g'(x)=1$, donc $g'(x)=\dfrac{-1}{\sin(\arccos x)}$.</div></li>
+          <li><div class="stp"><strong>Le signe</strong> : $\arccos x\in[0,\pi]$, intervalle sur lequel le sinus est <strong>positif ou nul</strong>. Donc $\sin(\arccos x)=+\sqrt{1-\cos^{2}(\arccos x)}=+\sqrt{1-x^{2}}$.</div></li>
+          <li><div class="stp">D’où $(\arccos x)'=\dfrac{-1}{\sqrt{1-x^{2}}}$ — l’opposée de la dérivée de $\arcsin$, ce qui est cohérent avec $\arcsin x+\arccos x=\dfrac{\pi}{2}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-methodes-m3" data-id="c-methodes-m3" data-search="démontrer que ( x)&#x27;= 1 1+x 2 . ( x)&#x27;= 1 1+x 2 sur r . on utilise ( x)&#x27;=1+ 2 x (forme équivalente de 1 2 x , car 1+ 2 x= 2 x+ 2 x 2 x ). formule de la réciproque : ( x)&#x27;= 1 1+ 2 ( x) . or ( x)=x , donc 2 ( x)=x 2 et ( x)&#x27;= 1 1+x 2 . aucune restriction ici : est dérivable sur r tout entier, et sa dérivée ne s’annule jamais. les trois dérivées, démontrées aide-mémoire page 6">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">M3</span><span class="ex-tag">page 6</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Démontrer que $(\arctan x)'=\dfrac{1}{1+x^{2}}$.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-methodes-m3">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-methodes-m3">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-methodes-m3"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$(\arctan x)'=\dfrac{1}{1+x^{2}}$ sur $\mathbb{R}$.</div></div></div></div></div>
+          <div class="panel" id="s-c-methodes-m3"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">On utilise $(\tan x)'=1+\tan^{2}x$ (forme équivalente de $\dfrac{1}{\cos^{2}x}$, car $1+\tan^{2}x=\dfrac{\cos^{2}x+\sin^{2}x}{\cos^{2}x}$).</div></li>
+          <li><div class="stp">Formule de la réciproque : $(\arctan x)'=\dfrac{1}{1+\tan^{2}(\arctan x)}$.</div></li>
+          <li><div class="stp">Or $\tan(\arctan x)=x$, donc $\tan^{2}(\arctan x)=x^{2}$ et $(\arctan x)'=\dfrac{1}{1+x^{2}}$.</div></li>
+          <li><div class="stp">Aucune restriction ici : $\arctan$ est dérivable sur $\mathbb{R}$ tout entier, et sa dérivée ne s’annule jamais.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+    </section>
+    <section class="sec" id="c-valeurs">
+      <div class="sec-head">
+        <span class="kick">Exercice 1 · page 7</span>
+        <h2>Donner les valeurs exactes</h2>
+        <p>Le réflexe : chercher l’angle dans le bon intervalle — $\left[-\tfrac{\pi}{2},\tfrac{\pi}{2}\right]$ pour arcsin, $[0,\pi]$ pour arccos, $\left]-\tfrac{\pi}{2},\tfrac{\pi}{2}\right[$ pour arctan</p>
+      </div>
+      <article class="ex" id="x-c-valeurs-1a" data-id="c-valeurs-1a" data-search="(- 1 2 ) - 6 on cherche l’angle t [- 2 , 2 ] tel que t=- 1 2 . (- 6 )=- 1 2 et - 6 est bien dans l’intervalle. donner les valeurs exactes exercice 1 · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">1 a</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\arcsin\left(-\dfrac{1}{2}\right)$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-valeurs-1a">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-valeurs-1a">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-valeurs-1a"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$-\dfrac{\pi}{6}$</div></div></div></div></div>
+          <div class="panel" id="s-c-valeurs-1a"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">On cherche l’angle $t\in\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$ tel que $\sin t=-\dfrac{1}{2}$.</div></li>
+          <li><div class="stp">$\sin\left(-\dfrac{\pi}{6}\right)=-\dfrac{1}{2}$ et $-\dfrac{\pi}{6}$ est bien dans l’intervalle.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-valeurs-1b" data-id="c-valeurs-1b" data-search="(- 2 2 ) 3 4 on cherche t [0, ] tel que t=- 2 2 . 3 4 =- 2 2 et 3 4 [0, ] . attention : - 3 4 conviendrait pour le cosinus, mais il est hors de [0, ] . donner les valeurs exactes exercice 1 · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">1 b</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\arccos\left(-\dfrac{\sqrt{2}}{2}\right)$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-valeurs-1b">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-valeurs-1b">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-valeurs-1b"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$\dfrac{3\pi}{4}$</div></div></div></div></div>
+          <div class="panel" id="s-c-valeurs-1b"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">On cherche $t\in[0,\pi]$ tel que $\cos t=-\dfrac{\sqrt{2}}{2}$.</div></li>
+          <li><div class="stp">$\cos\dfrac{3\pi}{4}=-\dfrac{\sqrt{2}}{2}$ et $\dfrac{3\pi}{4}\in[0,\pi]$.</div></li>
+          <li><div class="stp">Attention : $-\dfrac{3\pi}{4}$ conviendrait pour le cosinus, mais il est hors de $[0,\pi]$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-valeurs-1c" data-id="c-valeurs-1c" data-search="3 3 3 = 3 et 3 ]- 2 , 2 [ . donner les valeurs exactes exercice 1 · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">1 c</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\arctan\sqrt{3}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-valeurs-1c">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-valeurs-1c">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-valeurs-1c"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$\dfrac{\pi}{3}$</div></div></div></div></div>
+          <div class="panel" id="s-c-valeurs-1c"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\tan\dfrac{\pi}{3}=\sqrt{3}$ et $\dfrac{\pi}{3}\in\left]-\dfrac{\pi}{2},\dfrac{\pi}{2}\right[$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-valeurs-1d" data-id="c-valeurs-1d" data-search="1 2 6 6 = 1 2 avec 6 [- 2 , 2 ] . 5 6 a le même sinus mais n’appartient pas à l’intervalle : ce serait faux. donner les valeurs exactes exercice 1 · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">1 d</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\arcsin\dfrac{1}{2}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-valeurs-1d">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-valeurs-1d">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-valeurs-1d"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$\dfrac{\pi}{6}$</div></div></div></div></div>
+          <div class="panel" id="s-c-valeurs-1d"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\sin\dfrac{\pi}{6}=\dfrac{1}{2}$ avec $\dfrac{\pi}{6}\in\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$.</div></li>
+          <li><div class="stp">$\dfrac{5\pi}{6}$ a le même sinus mais n’appartient pas à l’intervalle : ce serait faux.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-valeurs-1e" data-id="c-valeurs-1e" data-search="1 4 4 =1 et 4 ]- 2 , 2 [ . donner les valeurs exactes exercice 1 · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">1 e</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\arctan 1$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-valeurs-1e">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-valeurs-1e">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-valeurs-1e"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$\dfrac{\pi}{4}$</div></div></div></div></div>
+          <div class="panel" id="s-c-valeurs-1e"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\tan\dfrac{\pi}{4}=1$ et $\dfrac{\pi}{4}\in\left]-\dfrac{\pi}{2},\dfrac{\pi}{2}\right[$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-valeurs-1f" data-id="c-valeurs-1f" data-search="(- 1 2 ) 2 3 on cherche t [0, ] tel que t=- 1 2 . 2 3 =- 1 2 : c’est l’angle supplémentaire de 3 . piège fréquent : écrire 3 3 = donnerait =-1 , pas - 12 . donner les valeurs exactes exercice 1 · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">1 f</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\arccos\left(-\dfrac{1}{2}\right)$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-valeurs-1f">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-valeurs-1f">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-valeurs-1f"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$\dfrac{2\pi}{3}$</div></div></div></div></div>
+          <div class="panel" id="s-c-valeurs-1f"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">On cherche $t\in[0,\pi]$ tel que $\cos t=-\dfrac{1}{2}$.</div></li>
+          <li><div class="stp">$\cos\dfrac{2\pi}{3}=-\dfrac{1}{2}$ : c’est l’angle supplémentaire de $\dfrac{\pi}{3}$.</div></li>
+          <li><div class="stp"><em>Piège fréquent</em> : écrire $\dfrac{3\pi}{3}=\pi$ donnerait $\cos\pi=-1$, pas $-\dfrac12$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+    </section>
+    <section class="sec" id="c-equations">
+      <div class="sec-head">
+        <span class="kick">Exercice 2 · page 7</span>
+        <h2>Résoudre les équations</h2>
+        <p>On applique la fonction directe aux deux membres, sans oublier de vérifier l’intervalle d’arrivée</p>
+      </div>
+      <article class="ex" id="x-c-equations-2a" data-id="c-equations-2a" data-search="( 6 )=x x= 3 6 = 3 2 . x= 3 2 = 3 , qui appartient bien à [- 2 , 2 ] . autre lecture : t= ( 2 -t ) , donc ( 6 )= 2 - 6 = 3 . résoudre les équations exercice 2 · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">2 a</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\arcsin\left(\cos\dfrac{\pi}{6}\right)=x$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-equations-2a">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-equations-2a">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-equations-2a"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=\dfrac{\pi}{3}$</div></div></div></div></div>
+          <div class="panel" id="s-c-equations-2a"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\cos\dfrac{\pi}{6}=\dfrac{\sqrt{3}}{2}$.</div></li>
+          <li><div class="stp">$x=\arcsin\dfrac{\sqrt{3}}{2}=\dfrac{\pi}{3}$, qui appartient bien à $\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$.</div></li>
+          <li><div class="stp">Autre lecture : $\cos t=\sin\left(\dfrac{\pi}{2}-t\right)$, donc $\arcsin\left(\cos\dfrac{\pi}{6}\right)=\dfrac{\pi}{2}-\dfrac{\pi}{6}=\dfrac{\pi}{3}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-equations-2b" data-id="c-equations-2b" data-search="(2x)=- 4 aucune solution : s= . par définition, prend ses valeurs dans [0, ] . or - 4 [0, ] : aucune valeur de x ne peut convenir. résoudre les équations exercice 2 · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">2 b</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\arccos(2x)=-\dfrac{\pi}{4}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-equations-2b">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-equations-2b">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-equations-2b"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Aucune solution : $S=\varnothing$.</div></div></div></div></div>
+          <div class="panel" id="s-c-equations-2b"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Par définition, $\arccos$ prend ses valeurs dans $[0,\pi]$.</div></li>
+          <li><div class="stp">Or $-\dfrac{\pi}{4}\notin[0,\pi]$ : aucune valeur de $x$ ne peut convenir.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-equations-2c" data-id="c-equations-2c" data-search="( 7 3 )=x x= 6 7 3 = 3 +2 , donc 7 3 = 3 = 3 2 . x= 3 2 = 6 [0, ] . résoudre les équations exercice 2 · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">2 c</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\arccos\left(\sin\dfrac{7\pi}{3}\right)=x$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-equations-2c">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-equations-2c">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-equations-2c"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=\dfrac{\pi}{6}$</div></div></div></div></div>
+          <div class="panel" id="s-c-equations-2c"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\dfrac{7\pi}{3}=\dfrac{\pi}{3}+2\pi$, donc $\sin\dfrac{7\pi}{3}=\sin\dfrac{\pi}{3}=\dfrac{\sqrt{3}}{2}$.</div></li>
+          <li><div class="stp">$x=\arccos\dfrac{\sqrt{3}}{2}=\dfrac{\pi}{6}\in[0,\pi]$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-equations-2d" data-id="c-equations-2d" data-search="(2x)=- 3 x=- 3 2 - 3 ]- 2 , 2 [ : l’équation a bien une solution. on applique la tangente : 2x= (- 3 )=- 3 . x=- 3 2 . résoudre les équations exercice 2 · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">2 d</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\arctan(2x)=-\dfrac{\pi}{3}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-equations-2d">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-equations-2d">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-equations-2d"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=-\dfrac{\sqrt{3}}{2}$</div></div></div></div></div>
+          <div class="panel" id="s-c-equations-2d"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$-\dfrac{\pi}{3}\in\left]-\dfrac{\pi}{2},\dfrac{\pi}{2}\right[$ : l’équation a bien une solution.</div></li>
+          <li><div class="stp">On applique la tangente : $2x=\tan\left(-\dfrac{\pi}{3}\right)=-\sqrt{3}$.</div></li>
+          <li><div class="stp">$x=-\dfrac{\sqrt{3}}{2}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-equations-2e" data-id="c-equations-2e" data-search="( x)= 6 x= 3 +2k ou x= 2 3 +2k ( k z ) t= 6 équivaut à t= 6 = 3 2 . il reste l’équation trigonométrique x= 3 2 . ses solutions sont x= 3 +2k et x= - 3 +2k = 2 3 +2k . ici l’inconnue est à l’intérieur : il y a une infinité de solutions, contrairement aux cas précédents. résoudre les équations exercice 2 · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">2 e</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\arccos(\sin x)=\dfrac{\pi}{6}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-equations-2e">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-equations-2e">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-equations-2e"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=\dfrac{\pi}{3}+2k\pi$ ou $x=\dfrac{2\pi}{3}+2k\pi$ &nbsp;($k\in\mathbb{Z}$)</div></div></div></div></div>
+          <div class="panel" id="s-c-equations-2e"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\arccos t=\dfrac{\pi}{6}$ équivaut à $t=\cos\dfrac{\pi}{6}=\dfrac{\sqrt{3}}{2}$.</div></li>
+          <li><div class="stp">Il reste l’équation trigonométrique $\sin x=\dfrac{\sqrt{3}}{2}$.</div></li>
+          <li><div class="stp">Ses solutions sont $x=\dfrac{\pi}{3}+2k\pi$ et $x=\pi-\dfrac{\pi}{3}+2k\pi=\dfrac{2\pi}{3}+2k\pi$.</div></li>
+          <li><div class="stp">Ici l’inconnue est à l’intérieur : il y a une infinité de solutions, contrairement aux cas précédents.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-equations-2f" data-id="c-equations-2f" data-search="( 3 -x )= 6 x= 2 3 3 on applique la tangente : 3 -x= 6 = 3 3 . x= 3 - 3 3 = 3 3 - 3 3 = 2 3 3 . résoudre les équations exercice 2 · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">2 f</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\arctan\left(\sqrt{3}-x\right)=\dfrac{\pi}{6}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-equations-2f">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-equations-2f">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-equations-2f"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=\dfrac{2\sqrt{3}}{3}$</div></div></div></div></div>
+          <div class="panel" id="s-c-equations-2f"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">On applique la tangente : $\sqrt{3}-x=\tan\dfrac{\pi}{6}=\dfrac{\sqrt{3}}{3}$.</div></li>
+          <li><div class="stp">$x=\sqrt{3}-\dfrac{\sqrt{3}}{3}=\dfrac{3\sqrt{3}-\sqrt{3}}{3}=\dfrac{2\sqrt{3}}{3}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+    </section>
+    <section class="sec" id="c-sommes">
+      <div class="sec-head">
+        <span class="kick">Exercices 3, 4 et 10 · pages 7 et 8</span>
+        <h2>Sommes et valeurs remarquables</h2>
+        <p>Sans calculatrice : on pose la somme, on lui applique sinus ou tangente, puis on encadre le résultat</p>
+      </div>
+      <article class="ex" id="x-c-sommes-3a" data-id="c-sommes-3a" data-search="3 5 + 4 5 2 posons a= 3 5 et b= 4 5 , tous deux dans ]0, 2 [ . a= 1- 9 25 = 4 5 et b= 1- 16 25 = 3 5 (positifs car a,b sont dans le premier quadrant). (a+b)= a b+ a b= 3 5 3 5 + 4 5 4 5 = 9+16 25 =1 . comme a+b ,]0, [ et que son sinus vaut 1 , on a a+b= 2 . autrement dit : les deux angles sont complémentaires — c’est le triangle 3-4-5. sommes et valeurs remarquables exercices 3, 4 et 10 · pages 7 et 8">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">3 a</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\arcsin\dfrac{3}{5}+\arcsin\dfrac{4}{5}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-sommes-3a">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-sommes-3a">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-sommes-3a"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$\dfrac{\pi}{2}$</div></div></div></div></div>
+          <div class="panel" id="s-c-sommes-3a"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Posons $a=\arcsin\dfrac{3}{5}$ et $b=\arcsin\dfrac{4}{5}$, tous deux dans $\left]0,\dfrac{\pi}{2}\right[$.</div></li>
+          <li><div class="stp">$\cos a=\sqrt{1-\dfrac{9}{25}}=\dfrac{4}{5}$ &nbsp;et&nbsp; $\cos b=\sqrt{1-\dfrac{16}{25}}=\dfrac{3}{5}$ (positifs car $a,b$ sont dans le premier quadrant).</div></li>
+          <li><div class="stp">$\sin(a+b)=\sin a\cos b+\cos a\sin b=\dfrac{3}{5}\cdot\dfrac{3}{5}+\dfrac{4}{5}\cdot\dfrac{4}{5}=\dfrac{9+16}{25}=1$.</div></li>
+          <li><div class="stp">Comme $a+b\in\,]0,\pi[$ et que son sinus vaut $1$, on a $a+b=\dfrac{\pi}{2}$.</div></li>
+          <li><div class="stp"><em>Autrement dit</em> : les deux angles sont complémentaires — c’est le triangle 3-4-5.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-sommes-3b" data-id="c-sommes-3b" data-search="1 2 + 1 3 4 posons a= 1 2 , b= 1 3 : chacun est dans ]0, 4 [ , donc a+b ]0, 2 [ . (a+b)= a+ b 1- a b = 1 2 + 1 3 1- 1 6 = 5 6 5 6 =1 . le seul angle de ]0, 2 [ de tangente 1 est 4 . sommes et valeurs remarquables exercices 3, 4 et 10 · pages 7 et 8">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">3 b</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\arctan\dfrac{1}{2}+\arctan\dfrac{1}{3}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-sommes-3b">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-sommes-3b">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-sommes-3b"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$\dfrac{\pi}{4}$</div></div></div></div></div>
+          <div class="panel" id="s-c-sommes-3b"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Posons $a=\arctan\dfrac{1}{2}$, $b=\arctan\dfrac{1}{3}$ : chacun est dans $\left]0,\dfrac{\pi}{4}\right[$, donc $a+b\in\left]0,\dfrac{\pi}{2}\right[$.</div></li>
+          <li><div class="stp">$\tan(a+b)=\dfrac{\tan a+\tan b}{1-\tan a\tan b}=\dfrac{\frac{1}{2}+\frac{1}{3}}{1-\frac{1}{6}}=\dfrac{\frac{5}{6}}{\frac{5}{6}}=1$.</div></li>
+          <li><div class="stp">Le seul angle de $\left]0,\dfrac{\pi}{2}\right[$ de tangente $1$ est $\dfrac{\pi}{4}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-sommes-4a" data-id="c-sommes-4a" data-search="( 15° ) 75°= 5 12 15°= (90°-15°)= 75° . 75° appartient à [-90°,90°] , donc ( 75°)=75° . en radians : 5 12 . sommes et valeurs remarquables exercices 3, 4 et 10 · pages 7 et 8">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">4 a</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\arcsin\left(\cos 15°\right)$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-sommes-4a">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-sommes-4a">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-sommes-4a"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$75°=\dfrac{5\pi}{12}$</div></div></div></div></div>
+          <div class="panel" id="s-c-sommes-4a"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\cos 15°=\sin(90°-15°)=\sin 75°$.</div></li>
+          <li><div class="stp">$75°$ appartient à $[-90°,90°]$, donc $\arcsin(\sin 75°)=75°$.</div></li>
+          <li><div class="stp">En radians : $\dfrac{5\pi}{12}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-sommes-4b" data-id="c-sommes-4b" data-search="( 325° ) 125°= 25 36 325°= (-35°)=- 35° . on cherche t [0°,180°] avec t=- 35° . or (90°+35°)=- 35° , donc t=125° , qui est bien dans [0°,180°] . en radians : 25 36 . sommes et valeurs remarquables exercices 3, 4 et 10 · pages 7 et 8">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">4 b</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\arccos\left(\sin 325°\right)$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-sommes-4b">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-sommes-4b">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-sommes-4b"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$125°=\dfrac{25\pi}{36}$</div></div></div></div></div>
+          <div class="panel" id="s-c-sommes-4b"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\sin 325°=\sin(-35°)=-\sin 35°$.</div></li>
+          <li><div class="stp">On cherche $t\in[0°,180°]$ avec $\cos t=-\sin 35°$.</div></li>
+          <li><div class="stp">Or $\cos(90°+35°)=-\sin 35°$, donc $t=125°$, qui est bien dans $[0°,180°]$.</div></li>
+          <li><div class="stp">En radians : $\dfrac{25\pi}{36}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-sommes-10" data-id="c-sommes-10" data-search="démontrer que 5 5 + 1 3 = 4 . vrai : 5 5 = 1 2 , et l’exercice 3 b donne la somme 4 . 5 5 = 1 5 . posons a= 1 5 ]0, 2 [ . a= 1- 1 5 = 2 5 , donc a= 1/ 5 2/ 5 = 1 2 : a= 1 2 . la somme demandée vaut 1 2 + 1 3 = 4 (exercice 3 b). variante : appliquer directement la tangente à la somme, avec ( 1 5 )= x 1-x 2 = 12 . sommes et valeurs remarquables exercices 3, 4 et 10 · pages 7 et 8">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">10</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Démontrer que $\arcsin\dfrac{\sqrt{5}}{5}+\arctan\dfrac{1}{3}=\dfrac{\pi}{4}$.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-sommes-10">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-sommes-10">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-sommes-10"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Vrai : $\arcsin\dfrac{\sqrt{5}}{5}=\arctan\dfrac{1}{2}$, et l’exercice 3 b donne la somme $\dfrac{\pi}{4}$.</div></div></div></div></div>
+          <div class="panel" id="s-c-sommes-10"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\dfrac{\sqrt{5}}{5}=\dfrac{1}{\sqrt{5}}$. Posons $a=\arcsin\dfrac{1}{\sqrt{5}}\in\left]0,\dfrac{\pi}{2}\right[$.</div></li>
+          <li><div class="stp">$\cos a=\sqrt{1-\dfrac{1}{5}}=\dfrac{2}{\sqrt{5}}$, donc $\tan a=\dfrac{1/\sqrt5}{2/\sqrt5}=\dfrac{1}{2}$ : $a=\arctan\dfrac{1}{2}$.</div></li>
+          <li><div class="stp">La somme demandée vaut $\arctan\dfrac{1}{2}+\arctan\dfrac{1}{3}=\dfrac{\pi}{4}$ (exercice 3 b).</div></li>
+          <li><div class="stp"><em>Variante</em> : appliquer directement la tangente à la somme, avec $\tan\left(\arcsin\dfrac{1}{\sqrt5}\right)=\dfrac{x}{\sqrt{1-x^{2}}}=\dfrac12$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+    </section>
+    <section class="sec" id="c-derivees">
+      <div class="sec-head">
+        <span class="kick">Exercice 5 · page 7</span>
+        <h2>Domaines de définition et dérivées</h2>
+        <p>Condition d’existence $-1\leq u\leq 1$ pour arcsin et arccos, aucune pour arctan ; puis dérivation en chaîne</p>
+      </div>
+      <article class="ex" id="x-c-derivees-5a" data-id="c-derivees-5a" data-search="f(x)= (2x) dom ,f= [- 1 2 , 1 2 ] et f&#x27;(x)= 2 1-4x 2 sur ]- 12, 12 [ ce : -1 2x 1 , d’où x [- 1 2 , 1 2 ] . ( u )&#x27;= u&#x27; 1-u 2 avec u=2x et u&#x27;=2 . f&#x27;(x)= 2 1-4x 2 , définie sur l’intérieur du domaine. domaines de définition et dérivées exercice 5 · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">5 a</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$f(x)=\arcsin(2x)$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-derivees-5a">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-derivees-5a">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-derivees-5a"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$\mathrm{dom}\,f=\left[-\dfrac{1}{2},\dfrac{1}{2}\right]$ &nbsp;et&nbsp; $f'(x)=\dfrac{2}{\sqrt{1-4x^{2}}}$ sur $\left]-\dfrac12,\dfrac12\right[$</div></div></div></div></div>
+          <div class="panel" id="s-c-derivees-5a"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $-1\leq 2x\leq 1$, d’où $x\in\left[-\dfrac{1}{2},\dfrac{1}{2}\right]$.</div></li>
+          <li><div class="stp">$\left(\arcsin u\right)'=\dfrac{u'}{\sqrt{1-u^{2}}}$ avec $u=2x$ et $u'=2$.</div></li>
+          <li><div class="stp">$f'(x)=\dfrac{2}{\sqrt{1-4x^{2}}}$, définie sur l’intérieur du domaine.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-derivees-5b" data-id="c-derivees-5b" data-search="f(x)= ( 4 -2x ) dom ,f= [ 8 - 1 2 , 8 + 1 2 ] et f&#x27;(x)= 2 1- ( 4 -2x ) 2 ce : -1 4 -2x 1 , soit 4 -1 2x 4 +1 . d’où x [ 8 - 1 2 , 8 + 1 2 ] (environ [-0 , 107 , ,0 , 893] ). ( u)&#x27;= -u&#x27; 1-u 2 avec u&#x27;=-2 : les deux signes se compensent. f&#x27;(x)= -(-2) 1- ( 4 -2x ) 2 = +2 1- ( 4 -2x ) 2 la dérivée est positive : la fonction croît, car u décroît et décroît. domaines de définition et dérivées exercice 5 · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">5 b</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$f(x)=\arccos\left(\dfrac{\pi}{4}-2x\right)$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-derivees-5b">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-derivees-5b">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-derivees-5b"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$\mathrm{dom}\,f=\left[\dfrac{\pi}{8}-\dfrac{1}{2},\ \dfrac{\pi}{8}+\dfrac{1}{2}\right]$ &nbsp;et&nbsp; $f'(x)=\dfrac{2}{\sqrt{1-\left(\frac{\pi}{4}-2x\right)^{2}}}$</div></div></div></div></div>
+          <div class="panel" id="s-c-derivees-5b"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $-1\leq\dfrac{\pi}{4}-2x\leq 1$, soit $\dfrac{\pi}{4}-1\leq 2x\leq\dfrac{\pi}{4}+1$.</div></li>
+          <li><div class="stp">D’où $x\in\left[\dfrac{\pi}{8}-\dfrac{1}{2},\ \dfrac{\pi}{8}+\dfrac{1}{2}\right]$ (environ $[-0{,}107\,;\,0{,}893]$).</div></li>
+          <li><div class="stp">$(\arccos u)'=\dfrac{-u'}{\sqrt{1-u^{2}}}$ avec $u'=-2$ : les deux signes se compensent.</div></li>
+          <li><div class="stp">$f'(x)=\dfrac{-(-2)}{\sqrt{1-\left(\frac{\pi}{4}-2x\right)^{2}}}=\dfrac{+2}{\sqrt{1-\left(\frac{\pi}{4}-2x\right)^{2}}}$ &mdash; la dérivée est <strong>positive</strong> : la fonction croît, car $u$ décroît et $\arccos$ décroît.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-derivees-5c" data-id="c-derivees-5c" data-search="f(x)= ( -3x) dom ,f= [ -1 3 , +1 3 ] et f&#x27;(x)= -3 1-( -3x) 2 ce : -1 -3x 1 , soit -1 3x +1 . x [ -1 3 , +1 3 ] , environ [0 , 714 , ,1 , 381] . f&#x27;(x)= ( -3x)&#x27; 1-( -3x) 2 = -3 1-( -3x) 2 : négative, la fonction décroît. domaines de définition et dérivées exercice 5 · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">5 c</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$f(x)=\arcsin(\pi-3x)$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-derivees-5c">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-derivees-5c">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-derivees-5c"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$\mathrm{dom}\,f=\left[\dfrac{\pi-1}{3},\dfrac{\pi+1}{3}\right]$ &nbsp;et&nbsp; $f'(x)=\dfrac{-3}{\sqrt{1-(\pi-3x)^{2}}}$</div></div></div></div></div>
+          <div class="panel" id="s-c-derivees-5c"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $-1\leq\pi-3x\leq 1$, soit $\pi-1\leq 3x\leq\pi+1$.</div></li>
+          <li><div class="stp">$x\in\left[\dfrac{\pi-1}{3},\dfrac{\pi+1}{3}\right]$, environ $[0{,}714\,;\,1{,}381]$.</div></li>
+          <li><div class="stp">$f'(x)=\dfrac{(\pi-3x)'}{\sqrt{1-(\pi-3x)^{2}}}=\dfrac{-3}{\sqrt{1-(\pi-3x)^{2}}}$ : négative, la fonction décroît.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-derivees-5d" data-id="c-derivees-5d" data-search="f(x)= (3x+ ) dom ,f= [ -1- 3 , 1- 3 ] et f&#x27;(x)= -3 1-(3x+ ) 2 ce : -1 3x+ 1 , soit -1- 3x 1- . x [ -1- 3 , 1- 3 ] , environ [-1 , 381 , ,-0 , 714] . f&#x27;(x)= -(3x+ )&#x27; 1-(3x+ ) 2 = -3 1-(3x+ ) 2 . domaines de définition et dérivées exercice 5 · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">5 d</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$f(x)=\arccos(3x+\pi)$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-derivees-5d">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-derivees-5d">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-derivees-5d"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$\mathrm{dom}\,f=\left[\dfrac{-1-\pi}{3},\dfrac{1-\pi}{3}\right]$ &nbsp;et&nbsp; $f'(x)=\dfrac{-3}{\sqrt{1-(3x+\pi)^{2}}}$</div></div></div></div></div>
+          <div class="panel" id="s-c-derivees-5d"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $-1\leq 3x+\pi\leq 1$, soit $-1-\pi\leq 3x\leq 1-\pi$.</div></li>
+          <li><div class="stp">$x\in\left[\dfrac{-1-\pi}{3},\dfrac{1-\pi}{3}\right]$, environ $[-1{,}381\,;\,-0{,}714]$.</div></li>
+          <li><div class="stp">$f'(x)=\dfrac{-(3x+\pi)'}{\sqrt{1-(3x+\pi)^{2}}}=\dfrac{-3}{\sqrt{1-(3x+\pi)^{2}}}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-derivees-5e" data-id="c-derivees-5e" data-search="f(x)= x 2 +1 dom ,f= 0 : la fonction n’existe qu’en x=0 (où f(0)=0 ) et n’est donc pas dérivable. ce : -1 x 2 +1 1 . la racine étant positive, il reste x 2 +1 1 . en élevant au carré : x 2 +1 1 , donc x 2 0 , c’est-à-dire x=0 . le domaine est le singleton 0 et f(0)= 1=0 . sur un point isolé, aucune dérivée n’est définie : il n’y a pas de voisinage où calculer le taux d’accroissement. c’est tout le piège de l’exercice. domaines de définition et dérivées exercice 5 · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">5 e</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$f(x)=\arccos\sqrt{x^{2}+1}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-derivees-5e">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-derivees-5e">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-derivees-5e"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$\mathrm{dom}\,f=\{0\}$ : la fonction n’existe qu’en $x=0$ (où $f(0)=0$) et n’est donc pas dérivable.</div></div></div></div></div>
+          <div class="panel" id="s-c-derivees-5e"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $-1\leq\sqrt{x^{2}+1}\leq 1$. La racine étant positive, il reste $\sqrt{x^{2}+1}\leq 1$.</div></li>
+          <li><div class="stp">En élevant au carré : $x^{2}+1\leq 1$, donc $x^{2}\leq 0$, c’est-à-dire $x=0$.</div></li>
+          <li><div class="stp">Le domaine est le singleton $\{0\}$ et $f(0)=\arccos 1=0$.</div></li>
+          <li><div class="stp">Sur un point isolé, aucune dérivée n’est définie : il n’y a pas de voisinage où calculer le taux d’accroissement. <em>C’est tout le piège de l’exercice.</em></div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-derivees-5f" data-id="c-derivees-5f" data-search="f(x)= ((x+1) 2 ) dom ,f= r et f&#x27;(x)= 2(x+1) 1+(x+1) 4 est définie sur r : aucune condition d’existence. ( u)&#x27;= u&#x27; 1+u 2 avec u=(x+1) 2 et u&#x27;=2(x+1) . f&#x27;(x)= 2(x+1) 1+(x+1) 4 : négative avant -1 , nulle en -1 , positive après — minimum f(-1)=0 . domaines de définition et dérivées exercice 5 · page 7">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">5 f</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$f(x)=\arctan\left((x+1)^{2}\right)$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-derivees-5f">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-derivees-5f">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-derivees-5f"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$\mathrm{dom}\,f=\mathbb{R}$ &nbsp;et&nbsp; $f'(x)=\dfrac{2(x+1)}{1+(x+1)^{4}}$</div></div></div></div></div>
+          <div class="panel" id="s-c-derivees-5f"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\arctan$ est définie sur $\mathbb{R}$ : aucune condition d’existence.</div></li>
+          <li><div class="stp">$(\arctan u)'=\dfrac{u'}{1+u^{2}}$ avec $u=(x+1)^{2}$ et $u'=2(x+1)$.</div></li>
+          <li><div class="stp">$f'(x)=\dfrac{2(x+1)}{1+(x+1)^{4}}$ : négative avant $-1$, nulle en $-1$, positive après — minimum $f(-1)=0$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+    </section>
+    <section class="sec" id="c-identites">
+      <div class="sec-head">
+        <span class="kick">Exercices 6 et 9 · pages 7 et 8</span>
+        <h2>Identités à démontrer</h2>
+        <p>Technique clé : poser $t=\arcsin x$ (ou arctan), puis travailler sur l’angle $t$ en tenant compte de son intervalle</p>
+      </div>
+      <article class="ex" id="x-c-identites-6" data-id="c-identites-6" data-search="démontrer que x [-1,1] : x+ x= 2 . vrai. deux preuves : par la dérivée, ou par les angles complémentaires. preuve par les angles : posons y= x , donc y=x et y [- 2 , 2 ] . alors 2 -y [0, ] et ( 2 -y )= y=x . ces deux conditions caractérisent l’arc cosinus : x= 2 -y= 2 - x . ✓ preuve par la dérivée : posons g(x)= x+ x . sur ]-1,1[ , g&#x27;(x)= 1 1-x 2 - 1 1-x 2 =0 . g est donc constante sur ]-1,1[ comme g(0)=0+ 2 , cette constante vaut 2 . la continuité de g en 1 étend le résultat à [-1,1] . identités à démontrer exercices 6 et 9 · pages 7 et 8">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">6</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Démontrer que $\forall x\in[-1,1]$ : $\arcsin x+\arccos x=\dfrac{\pi}{2}$.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-identites-6">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-identites-6">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-identites-6"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Vrai. Deux preuves : par la dérivée, ou par les angles complémentaires.</div></div></div></div></div>
+          <div class="panel" id="s-c-identites-6"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp"><strong>Preuve par les angles</strong> : posons $y=\arcsin x$, donc $\sin y=x$ et $y\in\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$.</div></li>
+          <li><div class="stp">Alors $\dfrac{\pi}{2}-y\in[0,\pi]$ et $\cos\left(\dfrac{\pi}{2}-y\right)=\sin y=x$.</div></li>
+          <li><div class="stp">Ces deux conditions caractérisent l’arc cosinus : $\arccos x=\dfrac{\pi}{2}-y=\dfrac{\pi}{2}-\arcsin x$. ✓</div></li>
+          <li><div class="stp"><strong>Preuve par la dérivée</strong> : posons $g(x)=\arcsin x+\arccos x$. Sur $]-1,1[$, $g'(x)=\dfrac{1}{\sqrt{1-x^{2}}}-\dfrac{1}{\sqrt{1-x^{2}}}=0$.</div></li>
+          <li><div class="stp">$g$ est donc constante sur $]-1,1[$ ; comme $g(0)=0+\dfrac{\pi}{2}$, cette constante vaut $\dfrac{\pi}{2}$. La continuité de $g$ en $\pm 1$ étend le résultat à $[-1,1]$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-identites-9a" data-id="c-identites-9a" data-search="x ,]-1,1[ : ( x)= x 1-x 2 vrai, et le dénominateur ne s’annule pas sur ]-1,1[ . posons t= x ]- 2 , 2 [ : alors t=x . sur cet intervalle t&gt;0 , donc t= 1- 2 t = 1-x 2 . t= t t = x 1-x 2 . ✓ l’exclusion de 1 est indispensable : en x= 1 , t=0 et la tangente n’existe pas. identités à démontrer exercices 6 et 9 · pages 7 et 8">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">9 a</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\forall x\in\,]-1,1[\ :\ \tan(\arcsin x)=\dfrac{x}{\sqrt{1-x^{2}}}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-identites-9a">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-identites-9a">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-identites-9a"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Vrai, et le dénominateur ne s’annule pas sur $]-1,1[$.</div></div></div></div></div>
+          <div class="panel" id="s-c-identites-9a"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Posons $t=\arcsin x\in\left]-\dfrac{\pi}{2},\dfrac{\pi}{2}\right[$ : alors $\sin t=x$.</div></li>
+          <li><div class="stp">Sur cet intervalle $\cos t>0$, donc $\cos t=\sqrt{1-\sin^{2}t}=\sqrt{1-x^{2}}$.</div></li>
+          <li><div class="stp">$\tan t=\dfrac{\sin t}{\cos t}=\dfrac{x}{\sqrt{1-x^{2}}}$. ✓</div></li>
+          <li><div class="stp">L’exclusion de $\pm 1$ est indispensable : en $x=\pm1$, $\cos t=0$ et la tangente n’existe pas.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-identites-9b" data-id="c-identites-9b" data-search="x r : ( x)= x 1+x 2 vrai sur r tout entier. posons t= x ]- 2 , 2 [ , donc t=x et t&gt;0 . de 1+ 2 t= 1 2 t on tire t= 1 1+x 2 . t= t t= x 1+x 2 . ✓ au passage : ( x)= 1 1+x 2 , à retenir aussi. identités à démontrer exercices 6 et 9 · pages 7 et 8">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">9 b</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\forall x\in\mathbb{R}\ :\ \sin(\arctan x)=\dfrac{x}{\sqrt{1+x^{2}}}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-identites-9b">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-identites-9b">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-identites-9b"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Vrai sur $\mathbb{R}$ tout entier.</div></div></div></div></div>
+          <div class="panel" id="s-c-identites-9b"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Posons $t=\arctan x\in\left]-\dfrac{\pi}{2},\dfrac{\pi}{2}\right[$, donc $\tan t=x$ et $\cos t>0$.</div></li>
+          <li><div class="stp">De $1+\tan^{2}t=\dfrac{1}{\cos^{2}t}$ on tire $\cos t=\dfrac{1}{\sqrt{1+x^{2}}}$.</div></li>
+          <li><div class="stp">$\sin t=\tan t\cdot\cos t=\dfrac{x}{\sqrt{1+x^{2}}}$. ✓</div></li>
+          <li><div class="stp">Au passage : $\cos(\arctan x)=\dfrac{1}{\sqrt{1+x^{2}}}$, à retenir aussi.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-identites-9c" data-id="c-identites-9c" data-search="x [1,+ [ : ( x-1 x+1 )= ( 2 x x+1 ) vrai : les deux membres sont l’angle a [0, 2 [ de sinus x-1 x+1 . pour x 1 , x-1 x+1 [0,1[ : posons a= x-1 x+1 [0, 2 [ . a= 1- ( x-1 x+1 ) 2 = (x+1) 2 -(x-1) 2 x+1 (positif car a est dans le premier quadrant). (x+1) 2 -(x-1) 2 =4x , donc a= 2 x x+1 . comme a [0, ] , la relation a= 2 x x+1 signifie exactement a= 2 x x+1 . ✓ identités à démontrer exercices 6 et 9 · pages 7 et 8">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">9 c</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\forall x\in[1,+\infty[\ :\ \arcsin\left(\dfrac{x-1}{x+1}\right)=\arccos\left(\dfrac{2\sqrt{x}}{x+1}\right)$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-identites-9c">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-identites-9c">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-identites-9c"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Vrai : les deux membres sont l’angle $A\in\left[0,\dfrac{\pi}{2}\right[$ de sinus $\dfrac{x-1}{x+1}$.</div></div></div></div></div>
+          <div class="panel" id="s-c-identites-9c"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Pour $x\geq 1$, $\dfrac{x-1}{x+1}\in[0,1[$ : posons $A=\arcsin\dfrac{x-1}{x+1}\in\left[0,\dfrac{\pi}{2}\right[$.</div></li>
+          <li><div class="stp">$\cos A=\sqrt{1-\left(\dfrac{x-1}{x+1}\right)^{2}}=\dfrac{\sqrt{(x+1)^{2}-(x-1)^{2}}}{x+1}$ (positif car $A$ est dans le premier quadrant).</div></li>
+          <li><div class="stp">$(x+1)^{2}-(x-1)^{2}=4x$, donc $\cos A=\dfrac{2\sqrt{x}}{x+1}$.</div></li>
+          <li><div class="stp">Comme $A\in[0,\pi]$, la relation $\cos A=\dfrac{2\sqrt{x}}{x+1}$ signifie exactement $A=\arccos\dfrac{2\sqrt{x}}{x+1}$. ✓</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+    </section>
+    <section class="sec" id="c-graphes">
+      <div class="sec-head">
+        <span class="kick">Exercices 7, 8 et 13 · pages 8 et 9</span>
+        <h2>Graphiques et étude de fonctions</h2>
+        <p>Composées, étude complète, et l’association énoncé / graphique</p>
+      </div>
+      <article class="ex" id="x-c-graphes-7a" data-id="c-graphes-7a" data-search="domaine et graphique de f(x)= ( x) . dom ,f=[-1,1] et f(x)=x : le graphique est le segment de la droite y=x entre (-1,-1) et (1,1) . l’écriture impose x [-1,1] (domaine de ). sur ce domaine, et se composent en l’identité : ( x)=x . le graphique n’est donc pas toute la droite y=x , mais seulement le morceau au-dessus de [-1,1] . l’ordre compte : ici on applique la réciproque d’abord, donc aucune perte d’information. graphiques et étude de fonctions exercices 7, 8 et 13 · pages 8 et 9">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">7 a</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Domaine et graphique de $f(x)=\sin(\arcsin x)$.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-graphes-7a">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-graphes-7a">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-graphes-7a"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$\mathrm{dom}\,f=[-1,1]$ et $f(x)=x$ : le graphique est le <strong>segment</strong> de la droite $y=x$ entre $(-1,-1)$ et $(1,1)$.</div></div></div></div></div>
+          <div class="panel" id="s-c-graphes-7a"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">L’écriture impose $x\in[-1,1]$ (domaine de $\arcsin$).</div></li>
+          <li><div class="stp">Sur ce domaine, $\sin$ et $\arcsin$ se composent en l’identité : $\sin(\arcsin x)=x$.</div></li>
+          <li><div class="stp">Le graphique n’est donc pas toute la droite $y=x$, mais seulement le morceau au-dessus de $[-1,1]$.</div></li>
+          <li><div class="stp"><em>L’ordre compte</em> : ici on applique la réciproque d’abord, donc aucune perte d’information.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-graphes-7b" data-id="c-graphes-7b" data-search="domaine et graphique de f(x)= ( x) . dom ,f= r le graphique est une ligne brisée en zigzag (onde triangulaire) d’amplitude 2 et de période 2 . x existe partout et appartient à [-1,1] : le domaine est r . mais ( x)=x uniquement si x [- 2 , 2 ] . sur [ 2 , 3 2 ] , on a x= ( -x) avec -x dans le bon intervalle : f(x)= -x . la fonction est 2 -périodique, impaire, et son image est [- 2 , 2 ] . graphiquement : des segments de pente +1 puis -1 qui montent jusqu’à 2 en 2 et redescendent à - 2 en 3 2 — des « dents de scie » triangulaires. graphiques et étude de fonctions exercices 7, 8 et 13 · pages 8 et 9">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">7 b</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Domaine et graphique de $f(x)=\arcsin(\sin x)$.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-graphes-7b">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-graphes-7b">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-graphes-7b"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$\mathrm{dom}\,f=\mathbb{R}$ ; le graphique est une <strong>ligne brisée en zigzag</strong> (onde triangulaire) d’amplitude $\dfrac{\pi}{2}$ et de période $2\pi$.</div></div></div></div></div>
+          <div class="panel" id="s-c-graphes-7b"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\sin x$ existe partout et appartient à $[-1,1]$ : le domaine est $\mathbb{R}$.</div></li>
+          <li><div class="stp">Mais $\arcsin(\sin x)=x$ <strong>uniquement</strong> si $x\in\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$.</div></li>
+          <li><div class="stp">Sur $\left[\dfrac{\pi}{2},\dfrac{3\pi}{2}\right]$, on a $\sin x=\sin(\pi-x)$ avec $\pi-x$ dans le bon intervalle : $f(x)=\pi-x$.</div></li>
+          <li><div class="stp">La fonction est $2\pi$-périodique, impaire, et son image est $\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$.</div></li>
+          <li><div class="stp">Graphiquement : des segments de pente $+1$ puis $-1$ qui montent jusqu’à $\dfrac{\pi}{2}$ en $\dfrac{\pi}{2}$ et redescendent à $-\dfrac{\pi}{2}$ en $\dfrac{3\pi}{2}$ — des « dents de scie » triangulaires.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-graphes-8" data-id="c-graphes-8" data-search="étudier complètement f(x)= ( 2 x 1+x ) : domaine, asymptotes, variations, concavité, graphique. dom ,f=[0,+ [ croissante sur [0,1] jusqu’au maximum f(1)= 2 , puis décroissante vers 0 asymptote horizontale y=0 point anguleux en x=1 . domaine : il faut x 0 , puis 2 x 1+x 1 , soit 2 x 1+x , c’est-à-dire ( x -1 ) 2 0 : toujours vrai. donc dom ,f=[0,+ [ . valeurs : f(0)= 0=0 et f(1)= 1= 2 (l’égalité 2 x=1+x n’a lieu qu’en x=1 ). asymptote : x + 2 x 1+x =0 , donc f(x) 0 + : la droite y=0 est asymptote horizontale. dérivée : avec u= 2 x 1+x , on trouve u&#x27;= 1-x x ,(1+x) 2 et 1-u 2 = (1-x) 2 (1+x) 2 , d’où 1-u 2 = 1-x 1+x . f&#x27;(x)= u&#x27; 1-u 2 = 1-x 1-x 1 x ,(1+x) . variations : sur ]0,1[ , f&#x27;(x)= 1 x (1+x) &gt;0 (croissante) sur ]1,+ [ , f&#x27;(x)= -1 x (1+x) points remarquables : en 0 + , f&#x27; + (tangente verticale) en 1 , les dérivées à gauche (+ 12 ) et à droite (- 12 ) diffèrent : point anguleux , la fonction n’y est pas dérivable. concavité : f&#x27; décroît sur ]0,1[ puis croît sur ]1,+ [ en restant négative, donc f&#x27;&#x27; 0 après (convexe). forme explicite : f(x)=2 x sur [0,1] et f(x)= -2 x sur [1,+ [ — on le voit en posant t= x , car 2t= 2 t 1+ 2 t = 2 x 1+x . graphique : la courbe part de l’origine avec une tangente verticale, monte jusqu’au pic (1, 2 ) , puis redescend en s’aplatissant vers l’axe des abscisses. graphiques et étude de fonctions exercices 7, 8 et 13 · pages 8 et 9">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">8</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Étudier complètement $f(x)=\arcsin\left(\dfrac{2\sqrt{x}}{1+x}\right)$ : domaine, asymptotes, variations, concavité, graphique.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-graphes-8">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-graphes-8">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-graphes-8"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$\mathrm{dom}\,f=[0,+\infty[$ ; croissante sur $[0,1]$ jusqu’au maximum $f(1)=\dfrac{\pi}{2}$, puis décroissante vers $0$ ; asymptote horizontale $y=0$ ; point anguleux en $x=1$.</div></div></div></div></div>
+          <div class="panel" id="s-c-graphes-8"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp"><strong>Domaine</strong> : il faut $x\geq 0$, puis $\left|\dfrac{2\sqrt{x}}{1+x}\right|\leq 1$, soit $2\sqrt{x}\leq 1+x$, c’est-à-dire $\left(\sqrt{x}-1\right)^{2}\geq 0$ : toujours vrai. Donc $\mathrm{dom}\,f=[0,+\infty[$.</div></li>
+          <li><div class="stp"><strong>Valeurs</strong> : $f(0)=\arcsin 0=0$ et $f(1)=\arcsin 1=\dfrac{\pi}{2}$ (l’égalité $2\sqrt x=1+x$ n’a lieu qu’en $x=1$).</div></li>
+          <li><div class="stp"><strong>Asymptote</strong> : $\displaystyle\lim_{x\to+\infty}\dfrac{2\sqrt{x}}{1+x}=0$, donc $f(x)\to 0^{+}$ : la droite $y=0$ est asymptote horizontale.</div></li>
+          <li><div class="stp"><strong>Dérivée</strong> : avec $u=\dfrac{2\sqrt x}{1+x}$, on trouve $u'=\dfrac{1-x}{\sqrt{x}\,(1+x)^{2}}$ et $1-u^{2}=\dfrac{(1-x)^{2}}{(1+x)^{2}}$, d’où $\sqrt{1-u^{2}}=\dfrac{|1-x|}{1+x}$.</div></li>
+          <li><div class="stp">$f'(x)=\dfrac{u'}{\sqrt{1-u^{2}}}=\dfrac{1-x}{|1-x|}\cdot\dfrac{1}{\sqrt{x}\,(1+x)}$.</div></li>
+          <li><div class="stp"><strong>Variations</strong> : sur $]0,1[$, $f'(x)=\dfrac{1}{\sqrt{x}(1+x)}>0$ (croissante) ; sur $]1,+\infty[$, $f'(x)=\dfrac{-1}{\sqrt{x}(1+x)}<0$ (décroissante). Maximum $\dfrac{\pi}{2}$ en $x=1$.</div></li>
+          <li><div class="stp"><strong>Points remarquables</strong> : en $0^{+}$, $f'\to+\infty$ (tangente verticale) ; en $1$, les dérivées à gauche $\left(+\dfrac12\right)$ et à droite $\left(-\dfrac12\right)$ diffèrent : <strong>point anguleux</strong>, la fonction n’y est pas dérivable.</div></li>
+          <li><div class="stp"><strong>Concavité</strong> : $f'$ décroît sur $]0,1[$ puis croît sur $]1,+\infty[$ en restant négative, donc $f''<0$ avant $1$ (concave) et $f''>0$ après (convexe).</div></li>
+          <li><div class="stp"><strong>Forme explicite</strong> : $f(x)=2\arctan\sqrt{x}$ sur $[0,1]$ et $f(x)=\pi-2\arctan\sqrt{x}$ sur $[1,+\infty[$ — on le voit en posant $t=\arctan\sqrt x$, car $\sin 2t=\dfrac{2\tan t}{1+\tan^{2}t}=\dfrac{2\sqrt x}{1+x}$.</div></li>
+          <li><div class="stp"><strong>Graphique</strong> : la courbe part de l’origine avec une tangente verticale, monte jusqu’au pic $\left(1,\dfrac{\pi}{2}\right)$, puis redescend en s’aplatissant vers l’axe des abscisses.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-graphes-13a" data-id="c-graphes-13a" data-search="f(x)= x retrouver son graphique. graphique ⑥ (le dôme) domaine : x 1 , donc [-1,1] — le graphique s’arrête net en 1 . la fonction est paire : symétrie par rapport à l’axe oy . f(0)= 0= 2 (maximum) et f( 1)= 1=0 . c’est donc l’arche qui culmine à 2 en 0 et retombe à 0 en 1 : le graphique ⑥. graphiques et étude de fonctions exercices 7, 8 et 13 · pages 8 et 9">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">13 a</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$f(x)=\arccos|x|$ &mdash; retrouver son graphique.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-graphes-13a">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-graphes-13a">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-graphes-13a"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Graphique <strong>⑥</strong> (le dôme)</div></div></div></div></div>
+          <div class="panel" id="s-c-graphes-13a"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Domaine : $|x|\leq 1$, donc $[-1,1]$ — le graphique s’arrête net en $\pm 1$.</div></li>
+          <li><div class="stp">La fonction est <strong>paire</strong> : symétrie par rapport à l’axe $Oy$.</div></li>
+          <li><div class="stp">$f(0)=\arccos 0=\dfrac{\pi}{2}$ (maximum) et $f(\pm 1)=\arccos 1=0$.</div></li>
+          <li><div class="stp">C’est donc l’arche qui culmine à $\dfrac{\pi}{2}$ en $0$ et retombe à $0$ en $\pm1$ : le graphique ⑥.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-graphes-13b" data-id="c-graphes-13b" data-search="g(x)= 1 x graphique ① domaine : 1 x 1 , soit x 1 : deux branches séparées, avec des points pleins en 1 . g(1)= 1= 2 puis décroissance vers 0 quand x + . g(-1)=- 2 et remontée vers 0 - quand x - (fonction impaire). seul le graphique ① présente ces deux extrémités marquées en ( 1, 2 ) . graphiques et étude de fonctions exercices 7, 8 et 13 · pages 8 et 9">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">13 b</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$g(x)=\arcsin\dfrac{1}{x}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-graphes-13b">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-graphes-13b">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-graphes-13b"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Graphique <strong>①</strong></div></div></div></div></div>
+          <div class="panel" id="s-c-graphes-13b"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Domaine : $\left|\dfrac{1}{x}\right|\leq 1$, soit $|x|\geq 1$ : deux branches séparées, avec des points pleins en $\pm1$.</div></li>
+          <li><div class="stp">$g(1)=\arcsin 1=\dfrac{\pi}{2}$ puis décroissance vers $0$ quand $x\to+\infty$.</div></li>
+          <li><div class="stp">$g(-1)=-\dfrac{\pi}{2}$ et remontée vers $0^{-}$ quand $x\to-\infty$ (fonction impaire).</div></li>
+          <li><div class="stp">Seul le graphique ① présente ces deux extrémités marquées en $\left(\pm1,\pm\dfrac{\pi}{2}\right)$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-graphes-13c" data-id="c-graphes-13c" data-search="h(x)= 1 2 x 4 graphique ④ domaine : -1 x 4 1 , soit [-4,4] . h(-4)= 1 2 (-1)= 2 et h(4)= 1 2 1=0 . décroissante (comme ), de 2 à 0 : c’est le graphique ④. le facteur 12 divise l’amplitude par deux : l’image est [0, 2 ] et non [0, ] . graphiques et étude de fonctions exercices 7, 8 et 13 · pages 8 et 9">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">13 c</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$h(x)=\dfrac{1}{2}\arccos\dfrac{x}{4}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-graphes-13c">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-graphes-13c">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-graphes-13c"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Graphique <strong>④</strong></div></div></div></div></div>
+          <div class="panel" id="s-c-graphes-13c"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Domaine : $-1\leq\dfrac{x}{4}\leq 1$, soit $[-4,4]$.</div></li>
+          <li><div class="stp">$h(-4)=\dfrac{1}{2}\arccos(-1)=\dfrac{\pi}{2}$ et $h(4)=\dfrac{1}{2}\arccos 1=0$.</div></li>
+          <li><div class="stp">Décroissante (comme $\arccos$), de $\dfrac{\pi}{2}$ à $0$ : c’est le graphique ④.</div></li>
+          <li><div class="stp">Le facteur $\dfrac12$ divise l’amplitude par deux : l’image est $\left[0,\dfrac{\pi}{2}\right]$ et non $[0,\pi]$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-graphes-13d" data-id="c-graphes-13d" data-search="i(x)= 1 x graphique ⑤ domaine : r 0 — pas de condition sur la valeur, seulement x 0 . quand x 0 + , 1x + et i(x) 2 quand x 0 - , i(x) - 2 : saut en 0 . quand x , i(x) 0 : l’axe ox est asymptote. deux branches qui s’écrasent sur l’axe et se détachent en 2 près de l’origine : graphique ⑤. graphiques et étude de fonctions exercices 7, 8 et 13 · pages 8 et 9">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">13 d</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$i(x)=\arctan\dfrac{1}{x}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-graphes-13d">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-graphes-13d">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-graphes-13d"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Graphique <strong>⑤</strong></div></div></div></div></div>
+          <div class="panel" id="s-c-graphes-13d"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Domaine : $\mathbb{R}\setminus\{0\}$ — pas de condition sur la valeur, seulement $x\neq 0$.</div></li>
+          <li><div class="stp">Quand $x\to 0^{+}$, $\dfrac1x\to+\infty$ et $i(x)\to\dfrac{\pi}{2}$ ; quand $x\to 0^{-}$, $i(x)\to-\dfrac{\pi}{2}$ : <strong>saut</strong> en $0$.</div></li>
+          <li><div class="stp">Quand $x\to\pm\infty$, $i(x)\to 0$ : l’axe $Ox$ est asymptote.</div></li>
+          <li><div class="stp">Deux branches qui s’écrasent sur l’axe et se détachent en $\pm\dfrac{\pi}{2}$ près de l’origine : graphique ⑤.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-graphes-13e" data-id="c-graphes-13e" data-search="j(x)= x graphique ⑦ (le « v » arrondi) domaine : [-1,1] fonction paire. j(0)= 0=0 (minimum) et j( 1)= 2 . la courbe part donc de (-1, 2 ) , descend jusqu’à l’origine et remonte : c’est ⑦. ne pas confondre avec ⑥ : x fait exactement l’inverse (dôme). les deux sont d’ailleurs complémentaires : leur somme vaut 2 . graphiques et étude de fonctions exercices 7, 8 et 13 · pages 8 et 9">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">13 e</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$j(x)=\arcsin|x|$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-graphes-13e">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-graphes-13e">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-graphes-13e"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Graphique <strong>⑦</strong> (le « V » arrondi)</div></div></div></div></div>
+          <div class="panel" id="s-c-graphes-13e"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Domaine : $[-1,1]$ ; fonction paire.</div></li>
+          <li><div class="stp">$j(0)=\arcsin 0=0$ (minimum) et $j(\pm 1)=\dfrac{\pi}{2}$.</div></li>
+          <li><div class="stp">La courbe part donc de $\left(-1,\dfrac{\pi}{2}\right)$, descend jusqu’à l’origine et remonte : c’est ⑦.</div></li>
+          <li><div class="stp"><em>Ne pas confondre avec ⑥</em> : $\arccos|x|$ fait exactement l’inverse (dôme). Les deux sont d’ailleurs complémentaires : leur somme vaut $\dfrac{\pi}{2}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-graphes-13f" data-id="c-graphes-13f" data-search="k(x)= x 4 graphique ③ domaine : [-4,4] fonction impaire, croissante. k(-4)=- 2 , k(0)=0 , k(4)= 2 . c’est la courbe croissante qui relie (-4,- 2 ) à (4, 2 ) : graphique ③. graphiques et étude de fonctions exercices 7, 8 et 13 · pages 8 et 9">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">13 f</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$k(x)=\arcsin\dfrac{x}{4}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-graphes-13f">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-graphes-13f">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-graphes-13f"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Graphique <strong>③</strong></div></div></div></div></div>
+          <div class="panel" id="s-c-graphes-13f"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Domaine : $[-4,4]$ ; fonction impaire, croissante.</div></li>
+          <li><div class="stp">$k(-4)=-\dfrac{\pi}{2}$, $k(0)=0$, $k(4)=\dfrac{\pi}{2}$.</div></li>
+          <li><div class="stp">C’est la courbe croissante qui relie $\left(-4,-\dfrac{\pi}{2}\right)$ à $\left(4,\dfrac{\pi}{2}\right)$ : graphique ③.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-graphes-13g" data-id="c-graphes-13g" data-search="l(x)= 1 x 3 graphique ② domaine : 1 x 3 1 , soit x 1 : deux branches. l(1)= 1=0 , puis l(x) 2 quand x + (croissante). l(-1)= (-1)= , puis l(x) 2 quand x - (décroissante). les valeurs 0 et atteintes en 1 avec l’asymptote y= 2 identifient le graphique ②. graphiques et étude de fonctions exercices 7, 8 et 13 · pages 8 et 9">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">13 g</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$l(x)=\arccos\dfrac{1}{x^{3}}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-graphes-13g">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-graphes-13g">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-graphes-13g"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Graphique <strong>②</strong></div></div></div></div></div>
+          <div class="panel" id="s-c-graphes-13g"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Domaine : $\left|\dfrac{1}{x^{3}}\right|\leq 1$, soit $|x|\geq 1$ : deux branches.</div></li>
+          <li><div class="stp">$l(1)=\arccos 1=0$, puis $l(x)\to\dfrac{\pi}{2}$ quand $x\to+\infty$ (croissante).</div></li>
+          <li><div class="stp">$l(-1)=\arccos(-1)=\pi$, puis $l(x)\to\dfrac{\pi}{2}$ quand $x\to-\infty$ (décroissante).</div></li>
+          <li><div class="stp">Les valeurs $0$ et $\pi$ atteintes en $\pm1$ avec l’asymptote $y=\dfrac{\pi}{2}$ identifient le graphique ②.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+    </section>
+    <section class="sec" id="c-arctan">
+      <div class="sec-head">
+        <span class="kick">Exercice 11 · page 8</span>
+        <h2>Équations avec arctan</h2>
+        <p>On applique la tangente, avec la formule $\tan(a+b)=\dfrac{\tan a+\tan b}{1-\tan a\tan b}$ — puis on vérifie les solutions</p>
+      </div>
+      <article class="ex" id="x-c-arctan-11a" data-id="c-arctan-11a" data-search="x+ 3 = 4 x= 3 -2 -0 , 268 3 = 3 , donc x= 4 - 3 =- 12 . x= (- 12 )=- 12 =-(2- 3 )= 3 -2 . par la formule d’addition : x+ 3 1-x 3 =1 donne x(1+ 3)=1- 3 , soit x= 1- 3 1+ 3 = 3-2 . même résultat. vérification : - 12 est bien dans ]- 2 , 2 [ . ✓ équations avec arctan exercice 11 · page 8">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">11 a</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\arctan x+\arctan\sqrt{3}=\dfrac{\pi}{4}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-arctan-11a">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-arctan-11a">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-arctan-11a"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=\sqrt{3}-2\approx-0{,}268$</div></div></div></div></div>
+          <div class="panel" id="s-c-arctan-11a"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\arctan\sqrt{3}=\dfrac{\pi}{3}$, donc $\arctan x=\dfrac{\pi}{4}-\dfrac{\pi}{3}=-\dfrac{\pi}{12}$.</div></li>
+          <li><div class="stp">$x=\tan\left(-\dfrac{\pi}{12}\right)=-\tan\dfrac{\pi}{12}=-(2-\sqrt{3})=\sqrt{3}-2$.</div></li>
+          <li><div class="stp"><em>Par la formule d’addition</em> : $\dfrac{x+\sqrt3}{1-x\sqrt3}=1$ donne $x(1+\sqrt3)=1-\sqrt3$, soit $x=\dfrac{1-\sqrt3}{1+\sqrt3}=\sqrt3-2$. Même résultat.</div></li>
+          <li><div class="stp">Vérification : $-\dfrac{\pi}{12}$ est bien dans $\left]-\dfrac{\pi}{2},\dfrac{\pi}{2}\right[$. ✓</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-arctan-11b" data-id="c-arctan-11b" data-search="x= 3 4 x= 4 5 posons = 3 4 ]0, 2 [ : c’est l’angle du triangle 3-4-5. = 1 1+ 2 = 1 1+ 9 16 = 4 5 . l’équation x= équivaut à x= = 4 5 . [0, ] : la solution est acceptable. ✓ équations avec arctan exercice 11 · page 8">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">11 b</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\arccos x=\arctan\dfrac{3}{4}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-arctan-11b">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-arctan-11b">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-arctan-11b"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=\dfrac{4}{5}$</div></div></div></div></div>
+          <div class="panel" id="s-c-arctan-11b"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Posons $\theta=\arctan\dfrac{3}{4}\in\left]0,\dfrac{\pi}{2}\right[$ : c’est l’angle du triangle 3-4-5.</div></li>
+          <li><div class="stp">$\cos\theta=\dfrac{1}{\sqrt{1+\tan^{2}\theta}}=\dfrac{1}{\sqrt{1+\frac{9}{16}}}=\dfrac{4}{5}$.</div></li>
+          <li><div class="stp">L’équation $\arccos x=\theta$ équivaut à $x=\cos\theta=\dfrac{4}{5}$.</div></li>
+          <li><div class="stp">$\theta\in[0,\pi]$ : la solution est acceptable. ✓</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-arctan-11c" data-id="c-arctan-11c" data-search="(x-1)+ 1 x+1 = x s= 0, 2 ce : x -1 . on applique la tangente aux deux membres : (x-1)+ 1 x+1 1- x-1 x+1 =x . numérateur : (x-1)(x+1)+1 x+1 = x 2 x+1 . dénominateur : (x+1)-(x-1) x+1 = 2 x+1 . le quotient vaut x 2 2 , d’où l’équation x 2 2 =x , soit x 2 -2x=0 et x 0,2 . vérification indispensable (la tangente n’est pas injective sur r ) : pour x=0 , - 4 + 4 =0= 0 ✓ pour x=2 , 4 + 13 1 , 107= 2 ✓. équations avec arctan exercice 11 · page 8">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">11 c</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\arctan(x-1)+\arctan\dfrac{1}{x+1}=\arctan x$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-arctan-11c">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-arctan-11c">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-arctan-11c"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$S=\{0,\ 2\}$</div></div></div></div></div>
+          <div class="panel" id="s-c-arctan-11c"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $x\neq-1$.</div></li>
+          <li><div class="stp">On applique la tangente aux deux membres : $\dfrac{(x-1)+\frac{1}{x+1}}{1-\frac{x-1}{x+1}}=x$.</div></li>
+          <li><div class="stp">Numérateur : $\dfrac{(x-1)(x+1)+1}{x+1}=\dfrac{x^{2}}{x+1}$. Dénominateur : $\dfrac{(x+1)-(x-1)}{x+1}=\dfrac{2}{x+1}$.</div></li>
+          <li><div class="stp">Le quotient vaut $\dfrac{x^{2}}{2}$, d’où l’équation $\dfrac{x^{2}}{2}=x$, soit $x^{2}-2x=0$ et $x\in\{0,2\}$.</div></li>
+          <li><div class="stp"><strong>Vérification indispensable</strong> (la tangente n’est pas injective sur $\mathbb{R}$) : pour $x=0$, $-\dfrac{\pi}{4}+\dfrac{\pi}{4}=0=\arctan 0$ ✓ ; pour $x=2$, $\dfrac{\pi}{4}+\arctan\dfrac13\approx 1{,}107=\arctan 2$ ✓.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+    </section>
+    <section class="sec" id="c-limites">
+      <div class="sec-head">
+        <span class="kick">Exercice 12 · page 8</span>
+        <h2>Limites</h2>
+        <p>Près de $0$ : $\arctan x\approx x-\dfrac{x^{3}}{3}$ et $\arcsin x\approx x+\dfrac{x^{3}}{6}$ — ou la règle de l’Hospital</p>
+      </div>
+      <article class="ex" id="x-c-limites-12a" data-id="c-limites-12a" data-search="x 0 x x 1 forme indéterminée 0 0 . par l’hospital : 1 1+x 2 1 1-x 2 = 1-x 2 1+x 2 1 1 =1 . autre lecture : au voisinage de 0 , x x et x x . limites exercice 12 · page 8">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">12 a</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\displaystyle\lim_{x\to 0}\dfrac{\arctan x}{\arcsin x}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-limites-12a">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-limites-12a">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-limites-12a"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$1$</div></div></div></div></div>
+          <div class="panel" id="s-c-limites-12a"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Forme indéterminée $\dfrac{0}{0}$.</div></li>
+          <li><div class="stp">Par l’Hospital : $\dfrac{\frac{1}{1+x^{2}}}{\frac{1}{\sqrt{1-x^{2}}}}=\dfrac{\sqrt{1-x^{2}}}{1+x^{2}}\longrightarrow\dfrac{1}{1}=1$.</div></li>
+          <li><div class="stp">Autre lecture : au voisinage de $0$, $\arctan x\sim x$ et $\arcsin x\sim x$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-limites-12b" data-id="c-limites-12b" data-search="x 0 k x-x kx- x ( k r 1 ) 1 développements en 0 : x=x- x 3 3 + et x=x+ x 3 6 + numérateur : k (x- x 3 3 )-x=(k-1)x- k 3 x 3 + dénominateur : kx- (x+ x 3 6 )=(k-1)x- 1 6 x 3 + comme k 1 , le terme dominant est (k-1)x dans les deux : le quotient tend vers 1 . c’est précisément pourquoi k=1 est exclu : ce terme disparaîtrait et la limite deviendrait celle de l’exercice c. limites exercice 12 · page 8">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">12 b</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\displaystyle\lim_{x\to 0}\dfrac{k\cdot\arctan x-x}{kx-\arcsin x}$ &nbsp;($k\in\mathbb{R}\setminus\{1\}$)</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-limites-12b">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-limites-12b">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-limites-12b"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$1$</div></div></div></div></div>
+          <div class="panel" id="s-c-limites-12b"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Développements en $0$ : $\arctan x=x-\dfrac{x^{3}}{3}+\cdots$ et $\arcsin x=x+\dfrac{x^{3}}{6}+\cdots$</div></li>
+          <li><div class="stp">Numérateur : $k\left(x-\dfrac{x^{3}}{3}\right)-x=(k-1)x-\dfrac{k}{3}x^{3}+\cdots$</div></li>
+          <li><div class="stp">Dénominateur : $kx-\left(x+\dfrac{x^{3}}{6}\right)=(k-1)x-\dfrac{1}{6}x^{3}+\cdots$</div></li>
+          <li><div class="stp">Comme $k\neq 1$, le terme dominant est $(k-1)x$ dans les deux : le quotient tend vers $1$.</div></li>
+          <li><div class="stp"><em>C’est précisément pourquoi $k=1$ est exclu</em> : ce terme disparaîtrait et la limite deviendrait celle de l’exercice c.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-limites-12c" data-id="c-limites-12c" data-search="x 0 x-x x- x 2 numérateur : x-x=- x 3 3 + dénominateur : x- x=- x 3 6 + le quotient tend vers -1/3 -1/6 =2 . par l’hospital, il faut dériver trois fois — le développement limité est bien plus rapide. limites exercice 12 · page 8">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">12 c</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\displaystyle\lim_{x\to 0}\dfrac{\arctan x-x}{x-\arcsin x}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-limites-12c">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-limites-12c">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-limites-12c"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$2$</div></div></div></div></div>
+          <div class="panel" id="s-c-limites-12c"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Numérateur : $\arctan x-x=-\dfrac{x^{3}}{3}+\cdots$</div></li>
+          <li><div class="stp">Dénominateur : $x-\arcsin x=-\dfrac{x^{3}}{6}+\cdots$</div></li>
+          <li><div class="stp">Le quotient tend vers $\dfrac{-1/3}{-1/6}=2$.</div></li>
+          <li><div class="stp">Par l’Hospital, il faut dériver trois fois — le développement limité est bien plus rapide.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-limites-12d" data-id="c-limites-12d" data-search="x 1 1 x-1 la limite n’existe pas : - 2 à gauche, + 2 à droite. quand x 1 + : 1 x-1 + , donc 2 (asymptote horizontale de arctan). quand x 1 - : 1 x-1 - , donc - 2 . les deux limites latérales diffèrent : pas de limite en 1 , mais un saut de hauteur . limites exercice 12 · page 8">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">12 d</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\displaystyle\lim_{x\to 1}\arctan\dfrac{1}{x-1}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-limites-12d">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-limites-12d">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-limites-12d"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>La limite n’existe pas : $-\dfrac{\pi}{2}$ à gauche, $+\dfrac{\pi}{2}$ à droite.</div></div></div></div></div>
+          <div class="panel" id="s-c-limites-12d"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Quand $x\to 1^{+}$ : $\dfrac{1}{x-1}\to+\infty$, donc $\arctan\to\dfrac{\pi}{2}$ (asymptote horizontale de arctan).</div></li>
+          <li><div class="stp">Quand $x\to 1^{-}$ : $\dfrac{1}{x-1}\to-\infty$, donc $\arctan\to-\dfrac{\pi}{2}$.</div></li>
+          <li><div class="stp">Les deux limites latérales diffèrent : pas de limite en $1$, mais un saut de hauteur $\pi$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-c-limites-12e" data-id="c-limites-12e" data-search="x 3 x x- 3 la limite n’existe pas : - 2 à gauche, + 2 à droite. le numérateur tend vers 3 &gt;0 , le dénominateur vers 0 en changeant de signe. à droite : x x- 3 + et l’arc tangente tend vers 2 . à gauche : le quotient tend vers - et l’arc tangente vers - 2 . même conclusion qu’en d : saut de , pas de limite. limites exercice 12 · page 8">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">12 e</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\displaystyle\lim_{x\to\frac{\pi}{3}}\arctan\dfrac{x}{x-\frac{\pi}{3}}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-c-limites-12e">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-c-limites-12e">Solution détaillée</button>
+          </div>
+          <div class="panel" id="a-c-limites-12e"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>La limite n’existe pas : $-\dfrac{\pi}{2}$ à gauche, $+\dfrac{\pi}{2}$ à droite.</div></div></div></div></div>
+          <div class="panel" id="s-c-limites-12e"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Le numérateur tend vers $\dfrac{\pi}{3}>0$, le dénominateur vers $0$ en changeant de signe.</div></li>
+          <li><div class="stp">À droite : $\dfrac{x}{x-\frac{\pi}{3}}\to+\infty$ et l’arc tangente tend vers $\dfrac{\pi}{2}$.</div></li>
+          <li><div class="stp">À gauche : le quotient tend vers $-\infty$ et l’arc tangente vers $-\dfrac{\pi}{2}$.</div></li>
+          <li><div class="stp">Même conclusion qu’en d : saut de $\pi$, pas de limite.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+    </section>
+  </div>
     </main>
   </div>
 
   <footer class="foot">
-    <span><em>Nombres complexes — 6ᵉ (6 h)</em> · 54 exercices, réponses vérifiées</span>
+    <span><em>Nombres complexes</em> et <em>Fonctions cyclométriques</em> — 6ᵉ (6 h chacun) · 102 exercices, réponses vérifiées</span>
     <span>Cochez « Fait » : votre progression reste enregistrée dans ce navigateur.</span>
   </footer>
 </div>
@@ -1462,33 +2587,56 @@ footer.foot em{font-style:italic}
 <script>
 (function(){
   var KEY = 'nc6-done-v1';
-  var cards = Array.prototype.slice.call(document.querySelectorAll('.ex'));
   var done = new Set();
   try { var raw = localStorage.getItem(KEY); if (raw) JSON.parse(raw).forEach(function(id){ done.add(id); }); } catch(e){}
-
   function save(){ try { localStorage.setItem(KEY, JSON.stringify(Array.from(done))); } catch(e){} }
 
   var fill = document.getElementById('fill');
   var count = document.getElementById('count');
+  var courses = {};
+  document.querySelectorAll('.course').forEach(function(el){
+    courses[el.id.replace('course-','')] = { el: el, cards: Array.prototype.slice.call(el.querySelectorAll('.ex')) };
+  });
+  var active = document.querySelector('.tab[aria-selected="true"]').dataset.course;
+  function cards(){ return courses[active].cards; }
 
   function refresh(){
     var n = 0;
-    cards.forEach(function(c){
+    cards().forEach(function(c){
       var d = done.has(c.dataset.id);
       c.classList.toggle('done', d);
       c.querySelector('.js-done').setAttribute('aria-pressed', d ? 'true' : 'false');
       if (d) n++;
     });
-    fill.style.width = (n / cards.length * 100) + '%';
-    count.innerHTML = '<b>' + n + '</b> / ' + cards.length;
-    document.querySelectorAll('[data-count]').forEach(function(el){
-      var sec = document.getElementById(el.dataset.count);
-      var all = sec.querySelectorAll('.ex');
-      var k = 0;
+    fill.style.width = (n / cards().length * 100) + '%';
+    count.innerHTML = '<b>' + n + '</b> / ' + cards().length;
+    courses[active].el.querySelectorAll('section.sec').forEach(function(sec){
+      var el = document.querySelector('[data-count="' + sec.id + '"]');
+      if (!el) return;
+      var all = sec.querySelectorAll('.ex'), k = 0;
       all.forEach(function(c){ if (done.has(c.dataset.id)) k++; });
       el.textContent = k + '/' + all.length;
     });
   }
+
+  // changement de chapitre
+  function setCourse(id){
+    active = id;
+    document.querySelectorAll('.tab').forEach(function(t){ t.setAttribute('aria-selected', t.dataset.course === id ? 'true' : 'false'); });
+    Object.keys(courses).forEach(function(k){ courses[k].el.hidden = k !== id; });
+    document.querySelectorAll('.toc-list').forEach(function(l){ l.hidden = l.dataset.course !== id; });
+    q.value = '';
+    cards().forEach(function(c){ c.hidden = false; });
+    courses[active].el.querySelectorAll('section.sec').forEach(function(s){ s.hidden = false; });
+    shown = false; allBtn.textContent = 'Tout révéler';
+    refresh();
+  }
+  document.querySelectorAll('.tab').forEach(function(t){
+    t.addEventListener('click', function(){
+      setCourse(t.dataset.course);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
 
   document.addEventListener('click', function(ev){
     var t = ev.target.closest('.js-toggle');
@@ -1507,38 +2655,34 @@ footer.foot em{font-style:italic}
     }
   });
 
-  // tout révéler / tout masquer
   var allBtn = document.getElementById('all');
   var shown = false;
   allBtn.addEventListener('click', function(){
     shown = !shown;
-    document.querySelectorAll('.panel').forEach(function(p){ p.classList.toggle('open', shown); });
-    document.querySelectorAll('.js-toggle').forEach(function(b){ b.setAttribute('aria-expanded', shown ? 'true' : 'false'); });
+    courses[active].el.querySelectorAll('.panel').forEach(function(p){ p.classList.toggle('open', shown); });
+    courses[active].el.querySelectorAll('.js-toggle').forEach(function(b){ b.setAttribute('aria-expanded', shown ? 'true' : 'false'); });
     allBtn.textContent = shown ? 'Tout masquer' : 'Tout révéler';
   });
 
-  // recherche
   var q = document.getElementById('q');
   q.addEventListener('input', function(){
     var v = q.value.trim().toLowerCase();
-    cards.forEach(function(c){ c.hidden = v !== '' && c.dataset.search.indexOf(v) === -1; });
-    document.querySelectorAll('section.sec').forEach(function(s){
+    cards().forEach(function(c){ c.hidden = v !== '' && c.dataset.search.indexOf(v) === -1; });
+    courses[active].el.querySelectorAll('section.sec').forEach(function(s){
       var vis = Array.prototype.slice.call(s.querySelectorAll('.ex')).some(function(c){ return !c.hidden; });
       s.hidden = !vis;
     });
   });
 
-  // exercice au hasard, parmi ceux qui restent à faire
   document.getElementById('rand').addEventListener('click', function(){
-    var pool = cards.filter(function(c){ return !c.hidden && !done.has(c.dataset.id); });
-    if (!pool.length) pool = cards.filter(function(c){ return !c.hidden; });
+    var pool = cards().filter(function(c){ return !c.hidden && !done.has(c.dataset.id); });
+    if (!pool.length) pool = cards().filter(function(c){ return !c.hidden; });
     if (!pool.length) return;
     var c = pool[Math.floor(Math.random() * pool.length)];
     c.scrollIntoView({behavior:'smooth', block:'center'});
     c.classList.remove('flash'); void c.offsetWidth; c.classList.add('flash');
   });
 
-  // remise à zéro, en deux temps (pas de boîte de dialogue dans un artifact)
   var reset = document.getElementById('reset');
   var armed = false, timer;
   reset.addEventListener('click', function(){
@@ -1548,10 +2692,10 @@ footer.foot em{font-style:italic}
       return;
     }
     clearTimeout(timer); armed = false; reset.dataset.armed = '0'; reset.textContent = 'Réinitialiser';
-    done.clear(); save(); refresh();
+    cards().forEach(function(c){ done.delete(c.dataset.id); });
+    save(); refresh();
   });
 
-  // section active dans le sommaire
   var links = {};
   document.querySelectorAll('.toc a').forEach(function(a){ links[a.dataset.sec] = a; });
   if ('IntersectionObserver' in window){
@@ -1561,11 +2705,13 @@ footer.foot em{font-style:italic}
           Object.keys(links).forEach(function(k){ links[k].classList.toggle('active', k === e.target.id); });
         }
       });
-    }, {rootMargin:'-80px 0px -70% 0px'});
+    }, {rootMargin:'-90px 0px -70% 0px'});
     document.querySelectorAll('section.sec').forEach(function(s){ obs.observe(s); });
   }
 
-  refresh();
+  // lien direct #cyclo / #complexes
+  var h = (location.hash || '').replace('#','');
+  if (courses[h]) setCourse(h); else refresh();
 })();
 </script>
 
