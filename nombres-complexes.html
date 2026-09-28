@@ -241,6 +241,19 @@ footer.foot em{font-style:italic}
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --grid-b: rgba(124,173,255,.12); } }
 :root[data-theme="dark"]{ --grid-b: rgba(124,173,255,.12); }
 .board canvas{position:absolute; inset:0; width:100%; height:100%; touch-action:none; cursor:crosshair}
+.board canvas.hand{cursor:grab}
+.board canvas.hand.drag{cursor:grabbing}
+.bd-foot{gap:6px 10px; justify-content:space-between}
+.bd-foot .grp{display:flex; align-items:center; gap:5px; flex-wrap:nowrap}
+.bd-foot .zoom{gap:0}
+.bd-foot .zoom .tool{border-radius:0; margin-left:-1px}
+.bd-foot .zoom .tool:first-child{border-radius:8px 0 0 8px; margin-left:0}
+.bd-foot .zoom .tool:last-child{border-radius:0 8px 8px 0}
+.tools,.bd-page{-webkit-user-select:none; user-select:none}
+.bd-page{font-family:"IBM Plex Mono",monospace; font-size:.8rem; color:var(--ink-2); min-width:7.2em; text-align:center; font-variant-numeric:tabular-nums}
+.bd-grow{flex:1}
+#bd-zreset{min-width:4.2em; font-variant-numeric:tabular-nums}
+.hint.warn-save{color:var(--imag)}
 
 .calc-disp{border:1px solid var(--rule); border-radius:10px; background:var(--surface-2); padding:8px 10px}
 .calc-disp input{width:100%; font-family:"IBM Plex Mono",monospace; font-size:1.02rem; color:var(--ink); background:transparent; border:0; outline:0; padding:2px 0}
@@ -3262,12 +3275,27 @@ footer.foot em{font-style:italic}
         <button type="button" class="tool" data-width="3.5" aria-pressed="true">Moyen</button>
         <button type="button" class="tool" data-width="7" aria-pressed="false">Épais</button>
         <button type="button" class="tool" id="bd-eraser" aria-pressed="false">Gomme</button>
+        <button type="button" class="tool" id="bd-hand" aria-pressed="false" title="Déplacer la feuille">✋ Déplacer</button>
         <span class="sep"></span>
         <button type="button" class="tool" id="bd-undo">↶ Annuler</button>
-        <button type="button" class="tool warn" id="bd-clear" data-armed="0">Tout effacer</button>
+        <button type="button" class="tool warn" id="bd-clear" data-armed="0">Effacer la page</button>
       </div>
       <div class="board" id="board"><canvas id="bd-canvas" aria-label="Tableau : écrivez au doigt, au stylet ou à la souris"></canvas></div>
-      <p class="hint">Écrivez au doigt, au stylet ou à la souris. Le tableau est gardé dans ce navigateur.</p>
+      <div class="tools bd-foot">
+        <div class="grp" role="group" aria-label="Pages">
+          <button type="button" class="tool" id="bd-prev" aria-label="Page précédente">‹</button>
+          <span class="bd-page" id="bd-page" aria-live="polite">Page 1 / 1</span>
+          <button type="button" class="tool" id="bd-next" aria-label="Page suivante">›</button>
+          <button type="button" class="tool" id="bd-add" title="Ajouter une page après celle-ci">＋ Page</button>
+          <button type="button" class="tool warn" id="bd-del" data-armed="0">Supprimer</button>
+        </div>
+        <div class="grp zoom" role="group" aria-label="Zoom">
+          <button type="button" class="tool" id="bd-zout" aria-label="Dézoomer">－</button>
+          <button type="button" class="tool" id="bd-zreset" title="Revenir à 100 % et recentrer">100 %</button>
+          <button type="button" class="tool" id="bd-zin" aria-label="Zoomer">＋</button>
+        </div>
+      </div>
+      <p class="hint" id="bd-hint">La feuille n’a pas de bords : dézoomez pour gagner de la place. Au doigt, un doigt écrit et deux doigts déplacent ou zooment. À la souris, la molette fait défiler et <code>Ctrl</code> + molette zoome.</p>
     </div>
 
     <div class="pane" data-pane="calc" hidden>
@@ -3851,65 +3879,179 @@ footer.foot em{font-style:italic}
   }
   document.querySelectorAll('[data-angle]').forEach(function(b){ b.addEventListener('click', function(){ setAngle(b.dataset.angle); }); });
 
-  /* ================= tableau ================= */
+  /* ================= tableau : pages, zoom, déplacement ================= */
   var bd = document.getElementById('board'), cv = document.getElementById('bd-canvas'), cx = cv.getContext('2d');
-  var strokes = [], cur = null, color = 'ink', width = 3.5, eraser = false;
-  try { strokes = JSON.parse(load('nc6-board') || '[]'); } catch(e){ strokes = []; }
   var colorVar = {ink:'--ink', real:'--real', imag:'--imag', ok:'--ok'};
+  function newPage(){ return {s: [], v: {s: 1, ox: 0, oy: 0}}; }
+  var book = {cur: 0, pages: [newPage()]};
+  try {
+    var sb = JSON.parse(load('nc6-board-pages') || 'null');
+    if (sb && sb.pages && sb.pages.length){ book = sb; book.cur = Math.min(Math.max(0, book.cur | 0), book.pages.length - 1); }
+    else { var old = JSON.parse(load('nc6-board') || '[]'); if (old.length) book.pages[0].s = old; }   // ancien tableau d'une seule page
+  } catch(e){}
+  function page(){ return book.pages[book.cur]; }
+  function V(){ return page().v; }
+  var color = 'ink', width = 3.5, eraser = false, hand = false, cur = null;
+  var ZMIN = 0.2, ZMAX = 4, GRID = 22, dpr = 1, BW = 0, BH = 0;
+
   function sizeCanvas(c, box){
-    var r = box.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+    var r = box.getBoundingClientRect(), d = window.devicePixelRatio || 1;
     if (!r.width || !r.height) return false;
-    c.width = Math.round(r.width * dpr); c.height = Math.round(r.height * dpr);
-    c.getContext('2d').setTransform(dpr, 0, 0, dpr, 0, 0);
+    c.width = Math.round(r.width * d); c.height = Math.round(r.height * d);
+    c.getContext('2d').setTransform(d, 0, 0, d, 0, 0);
     return true;
   }
-  function drawStroke(s){
-    var p = s.p; if (p.length < 2) return;
+  function worldXform(){ var v = V(); cx.setTransform(dpr * v.s, 0, 0, dpr * v.s, dpr * v.ox, dpr * v.oy); }
+  function styleFor(s){
     cx.globalCompositeOperation = s.e ? 'destination-out' : 'source-over';
     cx.strokeStyle = s.e ? '#000' : css(colorVar[s.c] || '--ink');
     cx.fillStyle = cx.strokeStyle;
     cx.lineWidth = s.e ? s.w * 4 : s.w; cx.lineCap = 'round'; cx.lineJoin = 'round';
+  }
+  function drawStroke(s){
+    var p = s.p; if (p.length < 2) return;
+    styleFor(s);
     cx.beginPath(); cx.moveTo(p[0], p[1]);
-    if (p.length === 2){ cx.arc(p[0], p[1], cx.lineWidth/2, 0, 7); cx.fill(); return; }
-    for (var i = 2; i < p.length - 2; i += 2){
-      cx.quadraticCurveTo(p[i], p[i+1], (p[i] + p[i+2]) / 2, (p[i+1] + p[i+3]) / 2);
-    }
+    if (p.length === 2){ cx.arc(p[0], p[1], cx.lineWidth / 2, 0, 7); cx.fill(); cx.globalCompositeOperation = 'source-over'; return; }
+    for (var i = 2; i < p.length - 2; i += 2) cx.quadraticCurveTo(p[i], p[i+1], (p[i] + p[i+2]) / 2, (p[i+1] + p[i+3]) / 2);
     cx.lineTo(p[p.length-2], p[p.length-1]); cx.stroke();
     cx.globalCompositeOperation = 'source-over';
   }
+  function grid(){
+    var v = V(), g = GRID * v.s;
+    bd.style.backgroundSize = g + 'px ' + g + 'px';
+    bd.style.backgroundPosition = (v.ox % g) + 'px ' + (v.oy % g) + 'px';
+  }
+  function labels(){
+    document.getElementById('bd-page').textContent = 'Page ' + (book.cur + 1) + ' / ' + book.pages.length;
+    document.getElementById('bd-prev').disabled = book.cur === 0;
+    document.getElementById('bd-next').disabled = book.cur === book.pages.length - 1;
+    document.getElementById('bd-zreset').textContent = Math.round(V().s * 100) + ' %';
+  }
+  function paint(){
+    cx.setTransform(dpr, 0, 0, dpr, 0, 0); cx.clearRect(0, 0, BW, BH);
+    worldXform(); page().s.forEach(drawStroke);
+    cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    grid(); labels();
+  }
   function redraw(){
     if (!sizeCanvas(cv, bd)) return;
-    var r = bd.getBoundingClientRect(); cx.clearRect(0, 0, r.width, r.height);
-    strokes.forEach(drawStroke);
+    var r = bd.getBoundingClientRect(); dpr = window.devicePixelRatio || 1; BW = r.width; BH = r.height;
+    paint();
   }
-  function saveBoard(){ var s = JSON.stringify(strokes); if (s.length < 1.8e6) store('nc6-board', s); }
-  function pos(e){ var r = cv.getBoundingClientRect(); return [Math.round((e.clientX - r.left)*10)/10, Math.round((e.clientY - r.top)*10)/10]; }
+  var raf = 0;
+  function schedule(){ if (!raf) raf = requestAnimationFrame(function(){ raf = 0; paint(); }); }
+
+  var saveT, hint = document.getElementById('bd-hint'), hintText = hint.innerHTML;
+  function saveBoard(){
+    clearTimeout(saveT);
+    saveT = setTimeout(function(){
+      var sjson = JSON.stringify(book), ok = sjson.length < 2.4e6;
+      if (ok){ try { localStorage.setItem('nc6-board-pages', sjson); localStorage.removeItem('nc6-board'); } catch(e){ ok = false; } }
+      hint.classList.toggle('warn-save', !ok);
+      hint.innerHTML = ok ? hintText : 'Le tableau est trop chargé pour être gardé dans ce navigateur : effacez ou supprimez une page.';
+    }, 250);
+  }
+
+  function screen(e){ var r = cv.getBoundingClientRect(); return {x: e.clientX - r.left, y: e.clientY - r.top}; }
+  function toWorld(pt){ var v = V(); return [Math.round((pt.x - v.ox) / v.s * 10) / 10, Math.round((pt.y - v.oy) / v.s * 10) / 10]; }
+  function zoomAt(sx, sy, f){
+    var v = V(), ns = Math.min(ZMAX, Math.max(ZMIN, v.s * f));
+    var wx = (sx - v.ox) / v.s, wy = (sy - v.oy) / v.s;
+    v.s = ns; v.ox = sx - wx * ns; v.oy = sy - wy * ns;
+    schedule(); saveBoard();
+  }
+
+  // gestes : un doigt, un stylet ou la souris écrivent ; deux doigts déplacent et zooment
+  var touches = new Map(), gesture = null, pan = null, blockTouch = false;
+  function twoFinger(){
+    var pts = Array.from(touches.values()), a = pts[0], b = pts[1];
+    return {mx: (a.x + b.x) / 2, my: (a.y + b.y) / 2, d: Math.hypot(a.x - b.x, a.y - b.y) || 1};
+  }
   cv.addEventListener('pointerdown', function(e){
+    try { cv.setPointerCapture(e.pointerId); } catch(err){}
+    var pt = screen(e);
+    if (e.pointerType === 'touch'){
+      touches.set(e.pointerId, pt);
+      if (touches.size >= 2){
+        if (cur){ var st = page().s; if (st[st.length - 1] === cur) st.pop(); cur = null; paint(); }  // le premier doigt n'écrivait pas
+        var g = twoFinger(), v = V();
+        gesture = {mx: g.mx, my: g.my, d: g.d, s: v.s, ox: v.ox, oy: v.oy};
+        blockTouch = true; return;
+      }
+      if (blockTouch) return;
+    }
+    if (hand || e.button === 1){ var v2 = V(); pan = {x: pt.x, y: pt.y, ox: v2.ox, oy: v2.oy}; cv.classList.add('drag'); return; }
     if (e.button && e.button !== 0) return;
-    cv.setPointerCapture(e.pointerId);
-    var p = pos(e);
-    var w = width * (e.pointerType === 'pen' && e.pressure ? (0.55 + e.pressure) : 1);
-    cur = {c: color, w: Math.round(w*10)/10, e: eraser, p: [p[0], p[1]]};
-    strokes.push(cur); drawStroke(cur);
+    var w = toWorld(pt), pw = width * (e.pointerType === 'pen' && e.pressure ? (0.55 + e.pressure) : 1);
+    cur = {c: color, w: Math.round(pw / V().s * 10) / 10, e: eraser, p: [w[0], w[1]]};
+    page().s.push(cur);
+    worldXform(); drawStroke(cur); cx.setTransform(dpr, 0, 0, dpr, 0, 0);
   });
   cv.addEventListener('pointermove', function(e){
+    if (touches.has(e.pointerId)) touches.set(e.pointerId, screen(e));
+    if (gesture && touches.size >= 2){
+      var g = twoFinger(), ns = Math.min(ZMAX, Math.max(ZMIN, gesture.s * g.d / gesture.d)), v = V();
+      var wx = (gesture.mx - gesture.ox) / gesture.s, wy = (gesture.my - gesture.oy) / gesture.s;
+      v.s = ns; v.ox = g.mx - wx * ns; v.oy = g.my - wy * ns;
+      schedule(); return;
+    }
+    if (pan){ var pt = screen(e), v3 = V(); v3.ox = pan.ox + pt.x - pan.x; v3.oy = pan.oy + pt.y - pan.y; schedule(); return; }
     if (!cur) return;
     var evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
-    evs.forEach(function(ce){ var p = pos(ce); cur.p.push(p[0], p[1]); });
-    var r = bd.getBoundingClientRect(); cx.clearRect(0, 0, r.width, r.height); strokes.forEach(drawStroke);
+    worldXform(); styleFor(cur);
+    evs.forEach(function(ce){
+      var w = toWorld(screen(ce)), n = cur.p.length;
+      cx.beginPath(); cx.moveTo(cur.p[n-2], cur.p[n-1]); cx.lineTo(w[0], w[1]); cx.stroke();
+      cur.p.push(w[0], w[1]);
+    });
+    cx.globalCompositeOperation = 'source-over'; cx.setTransform(dpr, 0, 0, dpr, 0, 0);
   });
-  function endStroke(){ if (cur){ cur = null; saveBoard(); } }
-  cv.addEventListener('pointerup', endStroke); cv.addEventListener('pointercancel', endStroke);
+  function up(e){
+    touches.delete(e.pointerId);
+    if (touches.size < 2 && gesture){ gesture = null; saveBoard(); }
+    if (touches.size === 0) blockTouch = false;
+    if (pan){ pan = null; cv.classList.remove('drag'); saveBoard(); }
+    if (cur){ cur = null; paint(); saveBoard(); }        // repeint le trait lissé
+  }
+  cv.addEventListener('pointerup', up); cv.addEventListener('pointercancel', up);
+  cv.addEventListener('wheel', function(e){
+    e.preventDefault();
+    var pt = screen(e);
+    if (e.ctrlKey || e.metaKey) zoomAt(pt.x, pt.y, Math.min(1.25, Math.max(0.8, Math.exp(-e.deltaY * 0.01))));   // un cran de molette : ×1,25 au plus
+    else { var v = V(); v.ox -= e.deltaX; v.oy -= e.deltaY; schedule(); saveBoard(); }
+  }, {passive: false});
+
   function press(sel, el){ document.querySelectorAll(sel).forEach(function(b){ b.setAttribute('aria-pressed', b === el ? 'true' : 'false'); }); }
-  document.querySelectorAll('[data-color]').forEach(function(b){ b.addEventListener('click', function(){ color = b.dataset.color; eraser = false; press('[data-color]', b); document.getElementById('bd-eraser').setAttribute('aria-pressed','false'); }); });
-  document.querySelectorAll('[data-width]').forEach(function(b){ b.addEventListener('click', function(){ width = parseFloat(b.dataset.width); press('[data-width]', b); }); });
-  document.getElementById('bd-eraser').addEventListener('click', function(){ eraser = !eraser; this.setAttribute('aria-pressed', eraser ? 'true' : 'false'); });
-  document.getElementById('bd-undo').addEventListener('click', function(){ strokes.pop(); redraw(); saveBoard(); });
-  var clr = document.getElementById('bd-clear'), clrT;
-  clr.addEventListener('click', function(){
-    if (clr.dataset.armed !== '1'){ clr.dataset.armed = '1'; clr.textContent = 'Confirmer ?'; clrT = setTimeout(function(){ clr.dataset.armed = '0'; clr.textContent = 'Tout effacer'; }, 4000); return; }
-    clearTimeout(clrT); clr.dataset.armed = '0'; clr.textContent = 'Tout effacer';
-    strokes = []; redraw(); saveBoard();
+  function setHand(on){ hand = on; document.getElementById('bd-hand').setAttribute('aria-pressed', on ? 'true' : 'false'); cv.classList.toggle('hand', on); }
+  document.querySelectorAll('[data-color]').forEach(function(b){ b.addEventListener('click', function(){ color = b.dataset.color; eraser = false; setHand(false); press('[data-color]', b); document.getElementById('bd-eraser').setAttribute('aria-pressed','false'); }); });
+  document.querySelectorAll('[data-width]').forEach(function(b){ b.addEventListener('click', function(){ width = parseFloat(b.dataset.width); setHand(false); press('[data-width]', b); }); });
+  document.getElementById('bd-eraser').addEventListener('click', function(){ eraser = !eraser; setHand(false); this.setAttribute('aria-pressed', eraser ? 'true' : 'false'); });
+  document.getElementById('bd-hand').addEventListener('click', function(){ setHand(!hand); });
+  document.getElementById('bd-undo').addEventListener('click', function(){ page().s.pop(); paint(); saveBoard(); });
+  document.getElementById('bd-zin').addEventListener('click', function(){ zoomAt(BW / 2, BH / 2, 1.25); });
+  document.getElementById('bd-zout').addEventListener('click', function(){ zoomAt(BW / 2, BH / 2, 1 / 1.25); });
+  document.getElementById('bd-zreset').addEventListener('click', function(){ page().v = {s: 1, ox: 0, oy: 0}; paint(); saveBoard(); });
+
+  // pages
+  function goto(i){ book.cur = Math.max(0, Math.min(book.pages.length - 1, i)); paint(); saveBoard(); }
+  document.getElementById('bd-prev').addEventListener('click', function(){ goto(book.cur - 1); });
+  document.getElementById('bd-next').addEventListener('click', function(){ goto(book.cur + 1); });
+  document.getElementById('bd-add').addEventListener('click', function(){ book.pages.splice(book.cur + 1, 0, newPage()); goto(book.cur + 1); });
+
+  // effacer la page / supprimer la page : en deux temps (pas de boîte de dialogue dans un artifact)
+  function twoStep(btn, label, act){
+    var t;
+    btn.addEventListener('click', function(){
+      if (btn.dataset.armed !== '1'){ btn.dataset.armed = '1'; btn.textContent = 'Confirmer ?'; t = setTimeout(function(){ btn.dataset.armed = '0'; btn.textContent = label; }, 4000); return; }
+      clearTimeout(t); btn.dataset.armed = '0'; btn.textContent = label; act();
+    });
+  }
+  twoStep(document.getElementById('bd-clear'), 'Effacer la page', function(){ page().s = []; paint(); saveBoard(); });
+  twoStep(document.getElementById('bd-del'), 'Supprimer', function(){
+    if (book.pages.length === 1){ book.pages[0] = newPage(); }
+    else { book.pages.splice(book.cur, 1); book.cur = Math.min(book.cur, book.pages.length - 1); }
+    paint(); saveBoard();
   });
 
   /* ================= grapheur ================= */
@@ -4006,7 +4148,7 @@ footer.foot em{font-style:italic}
   });
   var drag = null, read = document.getElementById('pl-read');
   function world(e){ var r = pc.getBoundingClientRect(); return {x: view.x0 + (e.clientX - r.left) / r.width * (view.x1 - view.x0), y: view.y1 - (e.clientY - r.top) / r.height * (view.y1 - view.y0), r: r}; }
-  pc.addEventListener('pointerdown', function(e){ pc.setPointerCapture(e.pointerId); drag = {sx: e.clientX, sy: e.clientY, v: Object.assign({}, view)}; pc.classList.add('drag'); });
+  pc.addEventListener('pointerdown', function(e){ try { pc.setPointerCapture(e.pointerId); } catch(err){} drag = {sx: e.clientX, sy: e.clientY, v: Object.assign({}, view)}; pc.classList.add('drag'); });
   pc.addEventListener('pointermove', function(e){
     var w = world(e);
     if (drag){
