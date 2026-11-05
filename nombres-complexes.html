@@ -302,6 +302,25 @@ footer.foot em{font-style:italic}
 .vals td.x-na{color:var(--ink-3)}
 .notes{flex:1; min-height:200px; font:inherit; font-size:.95rem; line-height:1.6; color:var(--ink); background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:10px 12px; resize:none}
 .notes:focus-visible{outline:2px solid var(--imag); outline-offset:1px}
+/* ---------- formulaire ---------- */
+.pane[data-pane="formules"]{gap:10px}
+.fm-head{display:flex; align-items:baseline; justify-content:space-between; gap:8px; flex-wrap:wrap}
+.fm-head h3{font-size:1.1rem}
+.fm-grp{border:1px solid var(--rule); border-radius:10px; background:var(--surface); overflow:hidden; flex-shrink:0}
+.fm-grp h4{margin:0; font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--real); font-weight:500; padding:9px 12px 7px; background:var(--surface-2); border-bottom:1px solid var(--rule-soft)}
+.fm-grp dl{margin:0; padding:2px 12px}
+.pane[data-pane="formules"]{container-type:inline-size}
+.fm-row{display:grid; grid-template-columns:6.2em minmax(0,1fr); gap:10px; padding:7px 0; border-bottom:1px solid var(--rule-soft); align-items:baseline}
+@container (max-width: 400px){ .fm-row{grid-template-columns:minmax(0,1fr); gap:1px} }
+.fm-row:last-child{border-bottom:0}
+.fm-row dt{font-size:.78rem; color:var(--ink-3); line-height:1.35}
+.fm-row dd{margin:0; font-size:.92rem; color:var(--ink); overflow-x:auto; overflow-y:hidden}
+.fm-row dd strong{color:var(--ink)}
+.fm-go{display:block; font:inherit; font-size:.8rem; color:var(--real); background:transparent; border:0; border-top:1px solid var(--rule-soft); width:100%; text-align:left; padding:7px 12px; cursor:pointer}
+.fm-go:hover{background:var(--surface-2)}
+.fm-go:focus-visible,.memo-go:focus-visible{outline:2px solid var(--imag); outline-offset:-2px}
+.fm-star{color:var(--imag)}
+.memo .memo-go{margin-left:6px; vertical-align:baseline}
 
 /* ---------- graphiques dans les exercices ---------- */
 .fig{margin:0 0 12px; background:var(--surface); border:1px solid var(--rule); border-radius:var(--r); padding:14px 16px; box-shadow:var(--shadow); scroll-margin-top:calc(env(safe-area-inset-top,0px) + 88px)}
@@ -449,7 +468,7 @@ footer.foot em{font-style:italic}
     </div>
     <div class="memo">
       <h2>L’essentiel en huit lignes</h2>
-      <p class="sub">Tout ce qu’il faut avoir en tête avant de se lancer dans les exercices.</p>
+      <p class="sub">Tout ce qu’il faut avoir en tête avant de se lancer dans les exercices.<button type="button" class="btn-sm js-formules memo-go" aria-controls="ws">Formulaire complet →</button></p>
       <dl>
         <div><dt>Le nombre $i$</dt><dd>$i^{2}=-1$. Tout complexe s’écrit $z=a+bi$, avec $a=\mathrm{Re}(z)$ et $b=\mathrm{Im}(z)$.</dd></div>
         <div><dt>Égalité</dt><dd>$a+bi=c+di$ &nbsp;$\Leftrightarrow$&nbsp; $a=c$ et $b=d$.</dd></div>
@@ -3260,6 +3279,7 @@ footer.foot em{font-style:italic}
     <button type="button" class="ws-tab" role="tab" data-pane="board" aria-selected="true">Tableau</button>
     <button type="button" class="ws-tab" role="tab" data-pane="calc" aria-selected="false">Calculatrice</button>
     <button type="button" class="ws-tab" role="tab" data-pane="plot" aria-selected="false">Grapheur</button>
+    <button type="button" class="ws-tab" role="tab" data-pane="formules" aria-selected="false">Formules</button>
     <button type="button" class="ws-tab" role="tab" data-pane="notes" aria-selected="false">Notes</button>
   </div>
   <div class="ws-body">
@@ -3377,6 +3397,95 @@ footer.foot em{font-style:italic}
         <label>pas<input id="tv-h" type="text" value="0,5"></label>
       </div>
       <div class="vals" id="tv"></div>
+    </div>
+
+    <div class="pane" data-pane="formules" hidden>
+      <div class="fm-head"><h3>Nombres complexes</h3><span class="hint">Formulaire complet · <span class="fm-star">★</span> hors cours</span></div>
+      <section class="fm-grp">
+        <h4>Définition</h4>
+        <dl>
+          <div class="fm-row"><dt>Le nombre $i$</dt><dd>$i^{2}=-1$</dd></div>
+          <div class="fm-row"><dt>Forme algébrique</dt><dd>$z=a+bi$ &nbsp;avec&nbsp; $a=\mathrm{Re}(z)$, $b=\mathrm{Im}(z)$, &nbsp;$a,b\in\mathbb{R}$</dd></div>
+          <div class="fm-row"><dt>Ensembles</dt><dd>$\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}\subset\mathbb{C}$</dd></div>
+          <div class="fm-row"><dt>Égalité</dt><dd>$a+bi=c+di\ \Leftrightarrow\ a=c$ et $b=d$</dd></div>
+          <div class="fm-row"><dt>Imaginaire pur</dt><dd>partie réelle nulle : $i,\ 3i,\ -2i,\ldots$</dd></div>
+        </dl>
+        <button type="button" class="fm-go" data-go="egalite-1a">S’entraîner : Exercice 1 · p. 5 →</button>
+      </section>
+      <section class="fm-grp">
+        <h4>Opérations</h4>
+        <dl>
+          <div class="fm-row"><dt>Somme</dt><dd>$(a+bi)\pm(c+di)=(a\pm c)+(b\pm d)\,i$</dd></div>
+          <div class="fm-row"><dt>Produit</dt><dd>$(a+bi)(c+di)=(ac-bd)+(ad+bc)\,i$</dd></div>
+          <div class="fm-row"><dt>Carré</dt><dd>$(a+bi)^{2}=a^{2}-b^{2}+2ab\,i$</dd></div>
+          <div class="fm-row"><dt>Puissances de $i$</dt><dd>$i^{0}=1,\ i^{1}=i,\ i^{2}=-1,\ i^{3}=-i$, puis le cycle recommence tous les 4</dd></div>
+        </dl>
+        <button type="button" class="fm-go" data-go="calculs-2a">S’entraîner : Exercice 2 · p. 5 →</button>
+      </section>
+      <section class="fm-grp">
+        <h4>Conjugué et division</h4>
+        <dl>
+          <div class="fm-row"><dt>Conjugué</dt><dd>$\overline{a+bi}=a-bi$</dd></div>
+          <div class="fm-row"><dt>Produit</dt><dd>$z\cdot\bar z=a^{2}+b^{2}$, toujours réel et positif &nbsp;— ex. $(3+5i)(3-5i)=34$</dd></div>
+          <div class="fm-row"><dt>Somme</dt><dd>$z+\bar z=2\,\mathrm{Re}(z)$</dd></div>
+          <div class="fm-row"><dt>Division</dt><dd>$\dfrac{z_1}{z_2}=\dfrac{z_1\cdot\bar z_2}{z_2\cdot\bar z_2}$ : on multiplie haut et bas par le conjugué du dénominateur</dd></div>
+          <div class="fm-row"><dt>À retenir</dt><dd>$\dfrac{1}{i}=-i$</dd></div>
+        </dl>
+        <button type="button" class="fm-go" data-go="calculs-2g">S’entraîner : Exercice 2 g · p. 5 →</button>
+      </section>
+      <section class="fm-grp">
+        <h4>Racines carrées · équation binôme $z^{2}=a+bi$</h4>
+        <dl>
+          <div class="fm-row"><dt>1. Poser</dt><dd>$z=x+yi$ avec $x,y\in\mathbb{R}$</dd></div>
+          <div class="fm-row"><dt>2. Identifier</dt><dd>$x^{2}-y^{2}=a$ &nbsp;et&nbsp; $2xy=b$</dd></div>
+          <div class="fm-row"><dt>3. Résoudre</dt><dd>$y=\dfrac{b}{2x}$ donne une équation bicarrée en $x$ : poser $t=x^{2}$ et garder $t\geq 0$</dd></div>
+          <div class="fm-row"><dt>Résultat</dt><dd>toujours <strong>deux</strong> racines opposées, $\pm(x+yi)$</dd></div>
+          <div class="fm-row"><dt><span class="fm-star">★</span> Raccourci</dt><dd>$x^{2}=\dfrac{\sqrt{a^{2}+b^{2}}+a}{2}$, &nbsp;$y^{2}=\dfrac{\sqrt{a^{2}+b^{2}}-a}{2}$, et $xy$ a le signe de $b$</dd></div>
+        </dl>
+        <button type="button" class="fm-go" data-go="binome-a">S’entraîner : Exercice de la page 6 →</button>
+      </section>
+      <section class="fm-grp">
+        <h4>Second degré · $az^{2}+bz+c=0$</h4>
+        <dl>
+          <div class="fm-row"><dt>Discriminant</dt><dd>$\Delta=b^{2}-4ac$</dd></div>
+          <div class="fm-row"><dt>Solutions</dt><dd>$z=\dfrac{-b\pm\delta}{2a}$ &nbsp;où&nbsp; $\delta^{2}=\Delta$</dd></div>
+          <div class="fm-row"><dt>$\Delta$ réel négatif</dt><dd>$\delta=\pm i\sqrt{|\Delta|}$ ; avec des coefficients réels, les racines sont <strong>conjuguées</strong></dd></div>
+          <div class="fm-row"><dt>$\Delta$ complexe</dt><dd>$\delta$ est une racine carrée de $\Delta$, trouvée comme une équation binôme</dd></div>
+          <div class="fm-row"><dt>Racine double</dt><dd>$\Delta=0\ \Leftrightarrow\ z=-\dfrac{b}{2a}$</dd></div>
+          <div class="fm-row"><dt>Somme, produit</dt><dd>$z_1+z_2=-\dfrac{b}{a}$ &nbsp;et&nbsp; $z_1z_2=\dfrac{c}{a}$ — tous deux réels si les racines sont conjuguées</dd></div>
+          <div class="fm-row"><dt>Bicarrée</dt><dd>$ax^{4}+bx^{2}+c=0$ : poser $t=x^{2}$, puis résoudre $x^{2}=t$ pour chaque valeur de $t$</dd></div>
+        </dl>
+        <button type="button" class="fm-go" data-go="complete-a">S’entraîner : Exercice de la page 7 →</button>
+      </section>
+      <section class="fm-grp">
+        <h4>Polynômes · d’Alembert</h4>
+        <dl>
+          <div class="fm-row"><dt>Divisibilité</dt><dd>$p(x)$ est divisible par $(x-\alpha)\ \Leftrightarrow\ p(\alpha)=0$ ; quotient par la méthode de Horner</dd></div>
+          <div class="fm-row"><dt>Racines conjuguées</dt><dd>coefficients réels : si $r$ est racine, $\bar r$ l’est aussi</dd></div>
+          <div class="fm-row"><dt>Facteur réel</dt><dd>$r=p+qi$ : $(z-r)(z-\bar r)=z^{2}-2pz+p^{2}+q^{2}$ &nbsp;— ex. $(x-i)(x+i)=x^{2}+1$</dd></div>
+          <div class="fm-row"><dt>Racine double $i$</dt><dd>coefficients réels : $(z^{2}+1)^{2}$ divise le polynôme</dd></div>
+          <div class="fm-row"><dt>d’Alembert</dt><dd>une équation de degré $n$ à coefficients réels a $n$ solutions complexes, distinctes ou non</dd></div>
+        </dl>
+        <button type="button" class="fm-go" data-go="alembert-1">S’entraîner : Exercice 1 · p. 9 →</button>
+      </section>
+      <section class="fm-grp">
+        <h4>Identités utiles</h4>
+        <dl>
+          <div class="fm-row"><dt>Différence de cubes</dt><dd>$a^{3}-b^{3}=(a-b)(a^{2}+ab+b^{2})$</dd></div>
+          <div class="fm-row"><dt>Somme de cubes</dt><dd>$a^{3}+b^{3}=(a+b)(a^{2}-ab+b^{2})$</dd></div>
+          <div class="fm-row"><dt>Cube</dt><dd>$(a+b)^{3}=a^{3}+3a^{2}b+3ab^{2}+b^{3}$</dd></div>
+          <div class="fm-row"><dt>Racines cubiques de 1</dt><dd>$1,\ \dfrac{-1+\sqrt{3}\,i}{2},\ \dfrac{-1-\sqrt{3}\,i}{2}$ ; si $a^{3}=1$ et $a\neq 1$ : $a^{2}+a+1=0$</dd></div>
+        </dl>
+        <button type="button" class="fm-go" data-go="ulb-12">S’entraîner : Exercice 12 · p. 10 →</button>
+      </section>
+      <section class="fm-grp">
+        <h4>Pour la culture · Cardano et Bombelli</h4>
+        <dl>
+          <div class="fm-row"><dt>$x^{3}=cx+d$</dt><dd>$x=\sqrt[3]{\dfrac{d}{2}+\sqrt{\dfrac{d^{2}}{4}-\dfrac{c^{3}}{27}}}-\sqrt[3]{-\dfrac{d}{2}+\sqrt{\dfrac{d^{2}}{4}-\dfrac{c^{3}}{27}}}$</dd></div>
+          <div class="fm-row"><dt>Bombelli</dt><dd>$x^{3}=15x+4$ fait apparaître $\sqrt{-121}$ et pourtant $x=4$, car $(2+i)^{3}=2+11i$ : c’est la naissance de $i=\sqrt{-1}$</dd></div>
+        </dl>
+        <button type="button" class="fm-go" data-go="histo-h2">S’entraîner : Introduction · p. 2 →</button>
+      </section>
     </div>
 
     <div class="pane" data-pane="notes" hidden>
@@ -3547,6 +3656,16 @@ footer.foot em{font-style:italic}
     }, {rootMargin:'-90px 0px -70% 0px'});
     document.querySelectorAll('section.sec').forEach(function(s){ obs.observe(s); });
   }
+
+  // aller à un exercice précis (depuis le formulaire du brouillon)
+  window.nc6Show = function(uid){
+    var card = document.getElementById('x-' + uid); if (!card) return;
+    var cid = card.closest('.course').id.replace('course-', '');
+    if (cid !== active) setCourse(cid);
+    if (q.value){ clearView(); refresh(); }
+    card.scrollIntoView({behavior: 'smooth', block: 'center'});
+    card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash');
+  };
 
   // état initial : classement mémorisé, puis lien direct #cyclo / #complexes
   var saved = null;
@@ -4183,6 +4302,14 @@ footer.foot em{font-style:italic}
     tv.innerHTML = html + '</tbody></table>';
   }
   tva.addEventListener('input', table); tvh.addEventListener('input', table);
+
+  /* ================= formulaire ================= */
+  document.addEventListener('click', function(ev){
+    if (ev.target.closest('.js-formules')){ openWS(); showPane('formules'); return; }
+    var g = ev.target.closest('.fm-go'); if (!g) return;
+    if (window.matchMedia('(max-width: 999.98px)').matches) closeWS();     // sur téléphone, le panneau cacherait l'exercice
+    if (window.nc6Show) window.nc6Show(g.dataset.go);
+  });
 
   /* ================= notes ================= */
   var notes = document.getElementById('notes');
