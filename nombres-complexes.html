@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Complexes et cyclométriques — exercices de 6ᵉ</title>
-<meta name="description" content="Les 102 exercices des cours de 6e sur les nombres complexes et les fonctions cyclométriques, avec réponses et solutions détaillées.">
+<title>Cahier de maths 6ᵉ — exercices résolus</title>
+<meta name="description" content="Les 162 exercices des cours de 6e sur les nombres complexes, les fonctions cyclométriques et les fonctions exponentielles et logarithmiques, avec réponses et solutions détaillées.">
 <style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
@@ -340,11 +340,12 @@ footer.foot em{font-style:italic}
 
 <div class="wrap">
   <header class="hero">
-    <p class="eyebrow">Mathématiques · 6ᵉ · 102 exercices résolus</p>
-    <h1>Deux chapitres,<br><em>tous les exercices</em></h1>
+    <p class="eyebrow">Mathématiques · 6ᵉ · 162 exercices résolus</p>
+    <h1>Trois chapitres,<br><em>tous les exercices</em></h1>
     <div class="tabs" role="tablist" aria-label="Chapitre">
       <button type="button" class="tab" role="tab" data-course="complexes" aria-selected="true">Nombres complexes <span class="cnt">54</span></button>
       <button type="button" class="tab" role="tab" data-course="cyclo" aria-selected="false">Fonctions cyclométriques <span class="cnt">48</span></button>
+      <button type="button" class="tab" role="tab" data-course="explog" aria-selected="false">Exponentielles et logarithmes <span class="cnt">60</span></button>
     </div>
   </header>
 </div>
@@ -361,7 +362,7 @@ footer.foot em{font-style:italic}
         <button type="button" class="seg" data-mode="theme" aria-pressed="true">Par thème</button>
         <button type="button" class="seg" data-mode="exo" aria-pressed="false">Par exercice</button>
       </div>
-      <div class="search"><input id="q" type="search" placeholder="Chercher : conjugué, arcsin, limite…" aria-label="Chercher un exercice"></div>
+      <div class="search"><input id="q" type="search" placeholder="Chercher : conjugué, arcsin, logarithme…" aria-label="Chercher un exercice"></div>
       <button class="btn" id="rand" type="button">Au hasard</button>
       <button class="btn ghost" id="all" type="button">Tout révéler</button>
       <button class="btn ghost warn" id="reset" type="button" data-armed="0">Réinitialiser</button>
@@ -435,6 +436,29 @@ footer.foot em{font-style:italic}
         <li><a href="#e-cyclo-11" data-sec="e-cyclo-11"><span>Ex. 11 · p. 8</span><span class="n" data-count="e-cyclo-11">0/3</span></a></li>
         <li><a href="#e-cyclo-12" data-sec="e-cyclo-12"><span>Ex. 12 · p. 8</span><span class="n" data-count="e-cyclo-12">0/5</span></a></li>
         <li><a href="#e-cyclo-13" data-sec="e-cyclo-13"><span>Ex. 13 · p. 9</span><span class="n" data-count="e-cyclo-13">0/8</span></a></li>
+      </ol>
+      <ol class="toc-list" data-course="explog" data-mode="theme" hidden>
+        <li><a href="#l-methode" data-sec="l-methode"><span>La méthode type</span><span class="n" data-count="l-methode">0/1</span></a></li>
+        <li><a href="#l-base" data-sec="l-base"><span>Même base</span><span class="n" data-count="l-base">0/10</span></a></li>
+        <li><a href="#l-passlog" data-sec="l-passlog"><span>Passer au logarithme</span><span class="n" data-count="l-passlog">0/11</span></a></li>
+        <li><a href="#l-log" data-sec="l-log"><span>Équations log simples</span><span class="n" data-count="l-log">0/10</span></a></li>
+        <li><a href="#l-prop" data-sec="l-prop"><span>Propriétés des logs</span><span class="n" data-count="l-prop">0/10</span></a></li>
+        <li><a href="#l-ineqexp" data-sec="l-ineqexp"><span>Inéquations exp.</span><span class="n" data-count="l-ineqexp">0/7</span></a></li>
+        <li><a href="#l-ineqlog" data-sec="l-ineqlog"><span>Inéquations log.</span><span class="n" data-count="l-ineqlog">0/5</span></a></li>
+        <li><a href="#l-pb" data-sec="l-pb"><span>Problèmes</span><span class="n" data-count="l-pb">0/6</span></a></li>
+      </ol>
+      <ol class="toc-list" data-course="explog" data-mode="exo" hidden>
+        <li><a href="#e-explog-ex4" data-sec="e-explog-ex4"><span>Exemple 4 · p. 23</span><span class="n" data-count="e-explog-ex4">0/1</span></a></li>
+        <li><a href="#e-explog-s1" data-sec="e-explog-s1"><span>Série 1 · p. 23</span><span class="n" data-count="e-explog-s1">0/10</span></a></li>
+        <li><a href="#e-explog-s2" data-sec="e-explog-s2"><span>Série 2 · p. 23</span><span class="n" data-count="e-explog-s2">0/5</span></a></li>
+        <li><a href="#e-explog-s3" data-sec="e-explog-s3"><span>Série 3 · p. 24</span><span class="n" data-count="e-explog-s3">0/6</span></a></li>
+        <li><a href="#e-explog-s4" data-sec="e-explog-s4"><span>Série 4 · p. 24</span><span class="n" data-count="e-explog-s4">0/10</span></a></li>
+        <li><a href="#e-explog-s5" data-sec="e-explog-s5"><span>Série 5 · p. 24</span><span class="n" data-count="e-explog-s5">0/10</span></a></li>
+        <li><a href="#e-explog-s6" data-sec="e-explog-s6"><span>Série 6 · p. 25</span><span class="n" data-count="e-explog-s6">0/12</span></a></li>
+        <li><a href="#e-explog-2" data-sec="e-explog-2"><span>Ex. 2 · p. 25</span><span class="n" data-count="e-explog-2">0/1</span></a></li>
+        <li><a href="#e-explog-3" data-sec="e-explog-3"><span>Ex. 3 · p. 25</span><span class="n" data-count="e-explog-3">0/1</span></a></li>
+        <li><a href="#e-explog-4" data-sec="e-explog-4"><span>Ex. 4 · p. 25</span><span class="n" data-count="e-explog-4">0/1</span></a></li>
+        <li><a href="#e-explog-5" data-sec="e-explog-5"><span>Ex. 5 · p. 25</span><span class="n" data-count="e-explog-5">0/3</span></a></li>
       </ol>
     </nav>
 
@@ -3254,15 +3278,1472 @@ footer.foot em{font-style:italic}
     </section>
     </div>
   </div>
+  <div class="course" id="course-explog" hidden>
+    <div class="course-intro">
+      <p class="lede">Puissances, logarithmes et croissance : équations, inéquations, puis problèmes de capital et de population — tous les exercices des pages 23 à 25, résolus pas à pas.</p>
+      <svg class="viz" viewBox="0 0 320 236" role="img" aria-label="Les courbes de e puissance x et de ln x, symétriques par rapport à la droite y = x">
+  <path d="M14 6V230 M44 6V230 M74 6V230 M134 6V230 M164 6V230 M194 6V230 M224 6V230 M254 6V230 M284 6V230 M5 218H302 M5 188H302 M5 128H302 M5 98H302 M5 68H302 M5 38H302" stroke="var(--rule)" stroke-width="1" opacity=".7" fill="none"/>
+  <path d="M5 158H302" stroke="var(--ink-3)" stroke-width="1.3" fill="none"/>
+  <path d="M104 232V8" stroke="var(--ink-3)" stroke-width="1.3" fill="none"/>
+  <path d="M308 158l-7-3.5v7z" fill="var(--ink-3)"/>
+  <path d="M104 4l-3.5 7h7z" fill="var(--ink-3)"/>
+  <path d="M26.0 236.0L242.0 20.0" stroke="var(--ink-3)" stroke-width="1" stroke-dasharray="4 4" fill="none"/>
+  <polyline points="8.0,156.8 8.9,156.7 9.8,156.7 10.7,156.7 11.6,156.6 12.5,156.6 13.4,156.5 14.3,156.5 15.2,156.4 16.1,156.4 17.0,156.4 17.9,156.3 18.8,156.2 19.7,156.2 20.6,156.1 21.5,156.1 22.4,156.0 23.3,156.0 24.2,155.9 25.1,155.8 26.0,155.8 26.9,155.7 27.8,155.6 28.7,155.6 29.6,155.5 30.4,155.4 31.3,155.3 32.2,155.3 33.1,155.2 34.0,155.1 34.9,155.0 35.8,154.9 36.7,154.8 37.6,154.7 38.5,154.6 39.4,154.5 40.3,154.4 41.2,154.3 42.1,154.2 43.0,154.1 43.9,154.0 44.8,153.8 45.7,153.7 46.6,153.6 47.5,153.4 48.4,153.3 49.3,153.2 50.2,153.0 51.1,152.9 52.0,152.7 52.9,152.5 53.8,152.4 54.7,152.2 55.6,152.0 56.5,151.8 57.4,151.7 58.3,151.5 59.2,151.3 60.1,151.1 61.0,150.8 61.9,150.6 62.8,150.4 63.7,150.2 64.6,149.9 65.5,149.7 66.4,149.4 67.3,149.2 68.2,148.9 69.1,148.6 70.0,148.4 70.9,148.1 71.8,147.8 72.7,147.4 73.6,147.1 74.5,146.8 75.3,146.5 76.2,146.1 77.1,145.7 78.0,145.4 78.9,145.0 79.8,144.6 80.7,144.2 81.6,143.8 82.5,143.3 83.4,142.9 84.3,142.4 85.2,142.0 86.1,141.5 87.0,141.0 87.9,140.4 88.8,139.9 89.7,139.4 90.6,138.8 91.5,138.2 92.4,137.6 93.3,137.0 94.2,136.4 95.1,135.7 96.0,135.0 96.9,134.3 97.8,133.6 98.7,132.9 99.6,132.1 100.5,131.3 101.4,130.5 102.3,129.7 103.2,128.8 104.1,127.9 105.0,127.0 105.9,126.1 106.8,125.1 107.7,124.1 108.6,123.1 109.5,122.0 110.4,120.9 111.3,119.8 112.2,118.6 113.1,117.4 114.0,116.2 114.9,114.9 115.8,113.6 116.7,112.3 117.6,110.9 118.5,109.4 119.3,108.0 120.2,106.4 121.1,104.9 122.0,103.3 122.9,101.6 123.8,99.9 124.7,98.1 125.6,96.3 126.5,94.4 127.4,92.5 128.3,90.5 129.2,88.4 130.1,86.3 131.0,84.2 131.9,81.9 132.8,79.6 133.7,77.2 134.6,74.8 135.5,72.2 136.4,69.6 137.3,66.9 138.2,64.2 139.1,61.3 140.0,58.4 140.9,55.4 141.8,52.2 142.7,49.0 143.6,45.7 144.5,42.3 145.4,38.8 146.3,35.2 147.2,31.4 148.1,27.6 149.0,23.6 149.9,19.5 150.8,15.3 151.7,11.0" fill="none" stroke="var(--imag)" stroke-width="2.2"/>
+  <polyline points="105.2,254.0 106.4,233.4 107.6,221.2 108.9,212.6 110.1,205.9 111.3,200.5 112.5,195.9 113.7,191.9 114.9,188.3 116.1,185.2 117.3,182.3 118.5,179.7 119.8,177.3 121.0,175.1 122.2,173.0 123.4,171.1 124.6,169.3 125.8,167.6 127.0,165.9 128.2,164.4 129.4,162.9 130.7,161.5 131.9,160.2 133.1,158.9 134.3,157.7 135.5,156.5 136.7,155.4 137.9,154.3 139.1,153.3 140.3,152.2 141.6,151.3 142.8,150.3 144.0,149.4 145.2,148.5 146.4,147.6 147.6,146.8 148.8,146.0 150.0,145.2 151.2,144.4 152.5,143.6 153.7,142.9 154.9,142.2 156.1,141.4 157.3,140.8 158.5,140.1 159.7,139.4 160.9,138.8 162.1,138.1 163.4,137.5 164.6,136.9 165.8,136.3 167.0,135.7 168.2,135.2 169.4,134.6 170.6,134.1 171.8,133.5 173.0,133.0 174.3,132.5 175.5,132.0 176.7,131.5 177.9,131.0 179.1,130.5 180.3,130.0 181.5,129.5 182.7,129.1 183.9,128.6 185.2,128.1 186.4,127.7 187.6,127.3 188.8,126.8 190.0,126.4 191.2,126.0 192.4,125.6 193.6,125.2 194.8,124.8 196.1,124.4 197.3,124.0 198.5,123.6 199.7,123.2 200.9,122.8 202.1,122.5 203.3,122.1 204.5,121.7 205.7,121.4 207.0,121.0 208.2,120.7 209.4,120.3 210.6,120.0 211.8,119.6 213.0,119.3 214.2,119.0 215.4,118.6 216.6,118.3 217.9,118.0 219.1,117.7 220.3,117.4 221.5,117.0 222.7,116.7 223.9,116.4 225.1,116.1 226.3,115.8 227.5,115.5 228.8,115.2 230.0,115.0 231.2,114.7 232.4,114.4 233.6,114.1 234.8,113.8 236.0,113.5 237.2,113.3 238.4,113.0 239.7,112.7 240.9,112.5 242.1,112.2 243.3,111.9 244.5,111.7 245.7,111.4 246.9,111.2 248.1,110.9 249.3,110.7 250.6,110.4 251.8,110.2 253.0,109.9 254.2,109.7 255.4,109.4 256.6,109.2 257.8,109.0 259.0,108.7 260.2,108.5 261.5,108.3 262.7,108.0 263.9,107.8 265.1,107.6 266.3,107.4 267.5,107.1 268.7,106.9 269.9,106.7 271.1,106.5 272.4,106.3 273.6,106.0 274.8,105.8 276.0,105.6 277.2,105.4 278.4,105.2 279.6,105.0 280.8,104.8 282.0,104.6 283.3,104.4 284.5,104.2 285.7,104.0 286.9,103.8 288.1,103.6 289.3,103.4 290.5,103.2 291.7,103.0 292.9,102.8 294.2,102.6 295.4,102.4 296.6,102.2 297.8,102.0 299.0,101.8" fill="none" stroke="var(--real)" stroke-width="2.2"/>
+  <circle cx="104.0" cy="128.0" r="3.6" fill="var(--imag)"/>
+  <circle cx="134.0" cy="158.0" r="3.6" fill="var(--real)"/>
+  <g font-family="IBM Plex Mono, monospace" font-size="10.5">
+    <text x="153" y="32" fill="var(--imag)">y = eˣ</text>
+    <text x="245" y="100" fill="var(--real)">y = ln x</text>
+    <text x="236" y="56" fill="var(--ink-3)">y = x</text>
+    <text x="96" y="132" fill="var(--ink-3)" text-anchor="end">1</text>
+    <text x="131" y="172" fill="var(--ink-3)">1</text>
+    <text x="98" y="172" fill="var(--ink-3)" text-anchor="end">0</text>
+  </g>
+</svg>
+    </div>
+    <div class="memo">
+      <h2>L’essentiel en huit lignes</h2>
+      <p class="sub">Les règles qui reviennent dans toutes les séries.</p>
+      <dl>
+        <div><dt>Exponentielle</dt><dd>$a^{x}>0$ pour tout $x$ (avec $a>0$) ; $a^{0}=1$ ; $e\approx 2{,}718$.</dd></div>
+        <div><dt>Logarithme</dt><dd>$\log_{a}x=y\Leftrightarrow x=a^{y}$ ($a>0$, $a\neq 1$, $x>0$) ; $\ln=\log_{e}$ et $\log=\log_{10}$.</dd></div>
+        <div><dt>Propriétés</dt><dd>$\log(xy)=\log x+\log y$, &nbsp;$\log\dfrac{x}{y}=\log x-\log y$, &nbsp;$\log x^{n}=n\log x$.</dd></div>
+        <div><dt>Changement de base</dt><dd>$\log_{a}x=\dfrac{\ln x}{\ln a}$ — c’est ainsi qu’on résout $a^{x}=b$ : $x=\dfrac{\ln b}{\ln a}$.</dd></div>
+        <div><dt>Valeurs utiles</dt><dd>$\log_{a}1=0$, &nbsp;$\log_{a}a=1$, &nbsp;$e^{\ln x}=x$, &nbsp;$\ln e^{x}=x$.</dd></div>
+        <div><dt>Conditions</dt><dd>Ce qui est dans un logarithme doit être $>0$ : on écrit la CE <strong>avant</strong> de calculer, et on trie les solutions après.</dd></div>
+        <div><dt>Inéquations</dt><dd>Base $>1$ : le sens est conservé. Base entre 0 et 1 : le sens s’inverse.</dd></div>
+        <div><dt>Croissance</dt><dd>Taux $r$ par an : $V_{n}=V_{0}(1+r)^{n}$ ; doublement en $n=\dfrac{\ln 2}{\ln(1+r)}$ années.</dd></div>
+      </dl>
+    </div>
+    <div class="layout" data-mode="theme">
+    <section class="sec" id="l-methode">
+      <div class="sec-head">
+        <span class="kick">Exemple 4 · page 23</span>
+        <h2>La méthode type</h2>
+        <p>Conditions d’existence, un seul logarithme de chaque côté, on « enlève » le log, puis on vérifie</p>
+      </div>
+      <div class="cards">
+      <article class="ex" id="x-lg-ex4" data-id="lg-ex4" data-search="résoudre 2 x+ 2 (x-2)=3 . s= 4 conditions d’existence : x&gt;0 et x-2&gt;0 , donc x&gt;2 . on écrit 3= 2 8 et on regroupe : 2 x+ 2 (x-2)= 2 [x(x-2) ] . 2 [x(x-2) ]= 2 8 donne x(x-2)=8 , soit x 2 -2x-8=0 , d’où x=-2 ou x=4 . seule x=4 respecte x&gt;2 : s= 4 . vérification : 2 4+ 2 2=2+1=3 . ✓ p. 23 exemple 4 · page 23 la méthode type exemple 4 · page 23 un exemple résolu du cours">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">Exemple 4</span><span class="ex-tag">p. 23</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Résoudre $\log_{2}x+\log_{2}(x-2)=3$.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-ex4">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-ex4">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-ex4"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$S=\{4\}$</div></div></div></div></div>
+          <div class="panel" id="s-lg-ex4"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Conditions d’existence : $x>0$ et $x-2>0$, donc $x>2$.</div></li>
+          <li><div class="stp">On écrit $3=\log_{2}8$ et on regroupe : $\log_{2}x+\log_{2}(x-2)=\log_{2}\big[x(x-2)\big]$.</div></li>
+          <li><div class="stp">$\log_{2}\big[x(x-2)\big]=\log_{2}8$ donne $x(x-2)=8$, soit $x^{2}-2x-8=0$, d’où $x=-2$ ou $x=4$.</div></li>
+          <li><div class="stp">Seule $x=4$ respecte $x>2$ : $S=\{4\}$. Vérification : $\log_{2}4+\log_{2}2=2+1=3$. ✓</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="sec" id="l-base">
+      <div class="sec-head">
+        <span class="kick">Série 1 · page 23</span>
+        <h2>Écrire les deux membres dans la même base</h2>
+        <p>$a^{u}=a^{v}\Leftrightarrow u=v$ : racines et fractions deviennent des puissances</p>
+      </div>
+      <div class="cards">
+      <article class="ex" id="x-lg-s1a" data-id="lg-s1a" data-search="2 x =64 x=6 64=2 6 , donc 2 x =2 6 . deux puissances de même base sont égales si et seulement si leurs exposants le sont : x=6 . p. 23 série 1 · page 23 écrire les deux membres dans la même base exercice 1 · page 23 série 1">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S1 a</span><span class="ex-tag">p. 23</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$2^{x}=64$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s1a">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s1a">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s1a"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=6$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s1a"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$64=2^{6}$, donc $2^{x}=2^{6}$.</div></li>
+          <li><div class="stp">Deux puissances de même base sont égales si et seulement si leurs exposants le sont : $x=6$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s1b" data-id="lg-s1b" data-search="3 x = 3 x= 1 2 une racine carrée est un exposant 12 : 3 =3 1/2 . 3 x =3 1/2 , donc x= 1 2 . p. 23 série 1 · page 23 écrire les deux membres dans la même base exercice 1 · page 23 série 1">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S1 b</span><span class="ex-tag">p. 23</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$3^{x}=\sqrt{3}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s1b">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s1b">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s1b"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=\dfrac{1}{2}$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s1b"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Une racine carrée est un exposant $\dfrac12$ : $\sqrt{3}=3^{1/2}$.</div></li>
+          <li><div class="stp">$3^{x}=3^{1/2}$, donc $x=\dfrac{1}{2}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s1c" data-id="lg-s1c" data-search="2 x = 1 2 x=- 1 2 1 2 = 1 2 1/2 =2 -1/2 (un inverse donne un exposant négatif). 2 x =2 -1/2 , donc x=- 1 2 . p. 23 série 1 · page 23 écrire les deux membres dans la même base exercice 1 · page 23 série 1">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S1 c</span><span class="ex-tag">p. 23</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$2^{x}=\dfrac{1}{\sqrt{2}}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s1c">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s1c">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s1c"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=-\dfrac{1}{2}$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s1c"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\dfrac{1}{\sqrt{2}}=\dfrac{1}{2^{1/2}}=2^{-1/2}$ (un inverse donne un exposant négatif).</div></li>
+          <li><div class="stp">$2^{x}=2^{-1/2}$, donc $x=-\dfrac{1}{2}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s1d" data-id="lg-s1d" data-search="( 3 4 ) x = 4 3 x=-1 4 3 est l’inverse de 3 4 : 4 3 = ( 3 4 ) -1 . donc x=-1 . p. 23 série 1 · page 23 écrire les deux membres dans la même base exercice 1 · page 23 série 1">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S1 d</span><span class="ex-tag">p. 23</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\left(\dfrac{3}{4}\right)^{x}=\dfrac{4}{3}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s1d">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s1d">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s1d"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=-1$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s1d"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\dfrac{4}{3}$ est l’inverse de $\dfrac{3}{4}$ : $\dfrac{4}{3}=\left(\dfrac{3}{4}\right)^{-1}$.</div></li>
+          <li><div class="stp">Donc $x=-1$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s1e" data-id="lg-s1e" data-search="3 x = [3] 9 x= 2 3 [3] 9 =9 1/3 = (3 2 ) 1/3 =3 2/3 . 3 x =3 2/3 , donc x= 2 3 . p. 23 série 1 · page 23 écrire les deux membres dans la même base exercice 1 · page 23 série 1">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S1 e</span><span class="ex-tag">p. 23</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$3^{x}=\sqrt[3]{9}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s1e">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s1e">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s1e"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=\dfrac{2}{3}$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s1e"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\sqrt[3]{9}=9^{1/3}=\left(3^{2}\right)^{1/3}=3^{2/3}$.</div></li>
+          <li><div class="stp">$3^{x}=3^{2/3}$, donc $x=\dfrac{2}{3}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s1f" data-id="lg-s1f" data-search="2 x =2 [5] 16 x= 9 5 [5] 16 = (2 4 ) 1/5 =2 4/5 . 2 2 4/5 =2 1+ 4 5 =2 9/5 . donc x= 9 5 . p. 23 série 1 · page 23 écrire les deux membres dans la même base exercice 1 · page 23 série 1">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S1 f</span><span class="ex-tag">p. 23</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$2^{x}=2\cdot\sqrt[5]{16}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s1f">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s1f">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s1f"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=\dfrac{9}{5}$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s1f"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\sqrt[5]{16}=\left(2^{4}\right)^{1/5}=2^{4/5}$.</div></li>
+          <li><div class="stp">$2\cdot 2^{4/5}=2^{1+\frac{4}{5}}=2^{9/5}$.</div></li>
+          <li><div class="stp">Donc $x=\dfrac{9}{5}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s1g" data-id="lg-s1g" data-search="3 x =9 x+1 x=-2 on écrit tout en base 3 : 9 x+1 = (3 2 ) x+1 =3 2x+2 . 3 x =3 2x+2 donne x=2x+2 , soit x=-2 . vérification : 3 -2 = 19 et 9 -1 = 19 . ✓ p. 23 série 1 · page 23 écrire les deux membres dans la même base exercice 1 · page 23 série 1">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S1 g</span><span class="ex-tag">p. 23</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$3^{x}=9^{x+1}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s1g">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s1g">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s1g"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=-2$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s1g"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">On écrit tout en base 3 : $9^{x+1}=\left(3^{2}\right)^{x+1}=3^{2x+2}$.</div></li>
+          <li><div class="stp">$3^{x}=3^{2x+2}$ donne $x=2x+2$, soit $x=-2$.</div></li>
+          <li><div class="stp">Vérification : $3^{-2}=\dfrac19$ et $9^{-1}=\dfrac19$. ✓</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s1h" data-id="lg-s1h" data-search="4 x = 32 x= 5 4 base commune 2 : 4 x = (2 2 ) x =2 2x et 32 = (2 5 ) 1/2 =2 5/2 . 2x= 5 2 , donc x= 5 4 . p. 23 série 1 · page 23 écrire les deux membres dans la même base exercice 1 · page 23 série 1">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S1 h</span><span class="ex-tag">p. 23</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$4^{x}=\sqrt{32}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s1h">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s1h">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s1h"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=\dfrac{5}{4}$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s1h"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Base commune 2 : $4^{x}=\left(2^{2}\right)^{x}=2^{2x}$ et $\sqrt{32}=\left(2^{5}\right)^{1/2}=2^{5/2}$.</div></li>
+          <li><div class="stp">$2x=\dfrac{5}{2}$, donc $x=\dfrac{5}{4}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s1i" data-id="lg-s1i" data-search="( 4 3 ) x = 16 9 x=2 16 9 = 4 2 3 2 = ( 4 3 ) 2 . donc x=2 . p. 23 série 1 · page 23 écrire les deux membres dans la même base exercice 1 · page 23 série 1">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S1 i</span><span class="ex-tag">p. 23</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\left(\dfrac{4}{3}\right)^{x}=\dfrac{16}{9}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s1i">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s1i">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s1i"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=2$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s1i"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\dfrac{16}{9}=\dfrac{4^{2}}{3^{2}}=\left(\dfrac{4}{3}\right)^{2}$.</div></li>
+          <li><div class="stp">Donc $x=2$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s1j" data-id="lg-s1j" data-search="27 2 x =8 3 x x=3 on sépare les inconnues : 2 x 3 x = 8 27 , c’est-à-dire ( 2 3 ) x = 2 3 3 3 = ( 2 3 ) 3 . donc x=3 . vérification : 27 8=216=8 27 . ✓ p. 23 série 1 · page 23 écrire les deux membres dans la même base exercice 1 · page 23 série 1">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S1 j</span><span class="ex-tag">p. 23</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$27\cdot 2^{x}=8\cdot 3^{x}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s1j">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s1j">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s1j"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=3$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s1j"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">On sépare les inconnues : $\dfrac{2^{x}}{3^{x}}=\dfrac{8}{27}$, c’est-à-dire $\left(\dfrac{2}{3}\right)^{x}=\dfrac{2^{3}}{3^{3}}=\left(\dfrac{2}{3}\right)^{3}$.</div></li>
+          <li><div class="stp">Donc $x=3$. Vérification : $27\cdot 8=216=8\cdot 27$. ✓</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="sec" id="l-passlog">
+      <div class="sec-head">
+        <span class="kick">Séries 2 et 3 · pages 23 et 24</span>
+        <h2>Passer au logarithme</h2>
+        <p>$a^{x}=b\Leftrightarrow x=\dfrac{\ln b}{\ln a}$ si $b>0$ ; une exponentielle n’est jamais nulle ni négative</p>
+      </div>
+      <div class="cards">
+      <article class="ex" id="x-lg-s2a" data-id="lg-s2a" data-search="10 x =43 , 125 x= 43 , 125 1 , 6347 on applique le logarithme décimal (base 10) aux deux membres : x= 43 , 125 . à la calculatrice : x 1 , 6347 . p. 23 séries 2 et 3 · pages 23 et 24 passer au logarithme exercice 1 · page 23 série 2">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S2 a</span><span class="ex-tag">p. 23</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$10^{x}=43{,}125$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s2a">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s2a">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s2a"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=\log 43{,}125\approx 1{,}6347$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s2a"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">On applique le logarithme décimal (base 10) aux deux membres : $x=\log 43{,}125$.</div></li>
+          <li><div class="stp">À la calculatrice : $x\approx 1{,}6347$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s2b" data-id="lg-s2b" data-search="3 x =5 x= 3 5= 5 3 1 , 4650 5 n’est pas une puissance « simple » de 3 : on prend le logarithme des deux membres. 3 x = 5 , soit x 3= 5 . x= 5 3 1 , 4650 — c’est aussi 3 5 (changement de base). p. 23 séries 2 et 3 · pages 23 et 24 passer au logarithme exercice 1 · page 23 série 2">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S2 b</span><span class="ex-tag">p. 23</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$3^{x}=5$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s2b">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s2b">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s2b"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=\log_{3}5=\dfrac{\ln 5}{\ln 3}\approx 1{,}4650$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s2b"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$5$ n’est pas une puissance « simple » de 3 : on prend le logarithme des deux membres.</div></li>
+          <li><div class="stp">$\ln 3^{x}=\ln 5$, soit $x\ln 3=\ln 5$.</div></li>
+          <li><div class="stp">$x=\dfrac{\ln 5}{\ln 3}\approx 1{,}4650$ — c’est aussi $\log_{3}5$ (changement de base).</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s2c" data-id="lg-s2c" data-search="145 x -3451=0 x= 3451 145 1 , 6369 145 x =3451 . x 145= 3451 , donc x= 3451 145 1 , 6369 . p. 23 séries 2 et 3 · pages 23 et 24 passer au logarithme exercice 1 · page 23 série 2">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S2 c</span><span class="ex-tag">p. 23</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$145^{x}-3451=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s2c">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s2c">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s2c"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=\dfrac{\ln 3451}{\ln 145}\approx 1{,}6369$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s2c"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$145^{x}=3451$.</div></li>
+          <li><div class="stp">$x\ln 145=\ln 3451$, donc $x=\dfrac{\ln 3451}{\ln 145}\approx 1{,}6369$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s2d" data-id="lg-s2d" data-search="3 x +81=0 aucune solution : s= . 3 x =-81 . une exponentielle est toujours strictement positive : 3 x &gt;0 pour tout x . l’équation est impossible. piège : 81=3 4 fait penser à x=4 , mais le signe moins rend l’égalité impossible. p. 23 séries 2 et 3 · pages 23 et 24 passer au logarithme exercice 1 · page 23 série 2">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S2 d</span><span class="ex-tag">p. 23</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$3^{x}+81=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s2d">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s2d">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s2d"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Aucune solution : $S=\varnothing$.</div></div></div></div></div>
+          <div class="panel" id="s-lg-s2d"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$3^{x}=-81$.</div></li>
+          <li><div class="stp">Une exponentielle est <strong>toujours strictement positive</strong> : $3^{x}>0$ pour tout $x$. L’équation est impossible.</div></li>
+          <li><div class="stp"><em>Piège</em> : $81=3^{4}$ fait penser à $x=4$, mais le signe moins rend l’égalité impossible.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s2e" data-id="lg-s2e" data-search="0 , 421 x =73 , 55 x= 73 , 55 0 , 421 -4 , 9680 x 0 , 421= 73 , 55 , donc x= 73 , 55 0 , 421 -4 , 9680 . le résultat est négatif, ce qui est logique : 0 , 421 0 car la base est entre 0 et 1, et il faut un exposant négatif pour obtenir un nombre plus grand que 1. p. 23 séries 2 et 3 · pages 23 et 24 passer au logarithme exercice 1 · page 23 série 2">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S2 e</span><span class="ex-tag">p. 23</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$0{,}421^{x}=73{,}55$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s2e">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s2e">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s2e"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=\dfrac{\ln 73{,}55}{\ln 0{,}421}\approx -4{,}9680$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s2e"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$x\ln 0{,}421=\ln 73{,}55$, donc $x=\dfrac{\ln 73{,}55}{\ln 0{,}421}\approx -4{,}9680$.</div></li>
+          <li><div class="stp">Le résultat est négatif, ce qui est logique : $\ln 0{,}421\lt 0$ car la base est entre 0 et 1, et il faut un exposant négatif pour obtenir un nombre plus grand que 1.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s3a" data-id="lg-s3a" data-search="e x -1=0 x=0 e x =1=e 0 . donc x=0 . p. 24 séries 2 et 3 · pages 23 et 24 passer au logarithme exercice 1 · page 24 série 3">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S3 a</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$e^{x}-1=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s3a">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s3a">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s3a"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=0$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s3a"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$e^{x}=1=e^{0}$.</div></li>
+          <li><div class="stp">Donc $x=0$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s3b" data-id="lg-s3b" data-search="e x -2=0 x= 2 0 , 6931 e x =2 . est la réciproque de e x : x= 2 0 , 6931 . p. 24 séries 2 et 3 · pages 23 et 24 passer au logarithme exercice 1 · page 24 série 3">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S3 b</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$e^{x}-2=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s3b">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s3b">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s3b"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=\ln 2\approx 0{,}6931$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s3b"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$e^{x}=2$.</div></li>
+          <li><div class="stp">$\ln$ est la réciproque de $e^{x}$ : $x=\ln 2\approx 0{,}6931$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s3c" data-id="lg-s3c" data-search="e 2x -e=0 x= 1 2 e 2x =e=e 1 . 2x=1 , donc x= 1 2 . p. 24 séries 2 et 3 · pages 23 et 24 passer au logarithme exercice 1 · page 24 série 3">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S3 c</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$e^{2x}-e=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s3c">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s3c">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s3c"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=\dfrac{1}{2}$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s3c"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$e^{2x}=e=e^{1}$.</div></li>
+          <li><div class="stp">$2x=1$, donc $x=\dfrac{1}{2}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s3d" data-id="lg-s3d" data-search="3-2 e x =0 x= 3 2 0 , 4055 2e x =3 , donc e x = 3 2 . x= 3 2 0 , 4055 . p. 24 séries 2 et 3 · pages 23 et 24 passer au logarithme exercice 1 · page 24 série 3">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S3 d</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$3-2\cdot e^{x}=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s3d">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s3d">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s3d"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=\ln\dfrac{3}{2}\approx 0{,}4055$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s3d"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$2e^{x}=3$, donc $e^{x}=\dfrac{3}{2}$.</div></li>
+          <li><div class="stp">$x=\ln\dfrac{3}{2}\approx 0{,}4055$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s3e" data-id="lg-s3e" data-search="e x +3=0 aucune solution : s= . e x =-3 . impossible : e x &gt;0 pour tout réel x . p. 24 séries 2 et 3 · pages 23 et 24 passer au logarithme exercice 1 · page 24 série 3">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S3 e</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$e^{x}+3=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s3e">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s3e">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s3e"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Aucune solution : $S=\varnothing$.</div></div></div></div></div>
+          <div class="panel" id="s-lg-s3e"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$e^{x}=-3$.</div></li>
+          <li><div class="stp">Impossible : $e^{x}>0$ pour tout réel $x$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s3f" data-id="lg-s3f" data-search="2x-x e 3x =0 x=0 ou x= 2 3 0 , 2310 on met x en évidence : x (2-e 3x )=0 . un produit est nul si l’un des facteurs l’est : x=0 ou e 3x =2 . e 3x =2 donne 3x= 2 , soit x= 2 3 . piège : diviser par x ferait perdre la solution x=0 . p. 24 séries 2 et 3 · pages 23 et 24 passer au logarithme exercice 1 · page 24 série 3">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S3 f</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$2x-x\cdot e^{3x}=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s3f">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s3f">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s3f"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=0$ ou $x=\dfrac{\ln 2}{3}\approx 0{,}2310$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s3f"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">On met $x$ en évidence : $x\left(2-e^{3x}\right)=0$.</div></li>
+          <li><div class="stp">Un produit est nul si l’un des facteurs l’est : $x=0$ ou $e^{3x}=2$.</div></li>
+          <li><div class="stp">$e^{3x}=2$ donne $3x=\ln 2$, soit $x=\dfrac{\ln 2}{3}$.</div></li>
+          <li><div class="stp"><em>Piège</em> : diviser par $x$ ferait perdre la solution $x=0$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="sec" id="l-log">
+      <div class="sec-head">
+        <span class="kick">Série 4 · page 24</span>
+        <h2>Équations logarithmiques simples</h2>
+        <p>$\log_{a}x=y\Leftrightarrow x=a^{y}$, après avoir écrit les conditions d’existence</p>
+      </div>
+      <div class="cards">
+      <article class="ex" id="x-lg-s4a" data-id="lg-s4a" data-search="2 3 x=18 x=3 9 =19 ,683 ce : x&gt;0 . 3 x=9 . par définition du logarithme : x=3 9 =19 ,683 , qui respecte la ce. p. 24 série 4 · page 24 équations logarithmiques simples exercice 1 · page 24 série 4 — équations logarithmiques">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S4 a</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$2\cdot\log_{3}x=18$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s4a">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s4a">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s4a"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=3^{9}=19\,683$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s4a"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $x>0$.</div></li>
+          <li><div class="stp">$\log_{3}x=9$.</div></li>
+          <li><div class="stp">Par définition du logarithme : $x=3^{9}=19\,683$, qui respecte la CE.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s4b" data-id="lg-s4b" data-search="3 (x-5)-2=0 x=14 ce : x-5&gt;0 , donc x&gt;5 . 3 (x-5)=2 , donc x-5=3 2 =9 . x=14 , qui respecte x&gt;5 . p. 24 série 4 · page 24 équations logarithmiques simples exercice 1 · page 24 série 4 — équations logarithmiques">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S4 b</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\log_{3}(x-5)-2=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s4b">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s4b">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s4b"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=14$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s4b"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $x-5>0$, donc $x>5$.</div></li>
+          <li><div class="stp">$\log_{3}(x-5)=2$, donc $x-5=3^{2}=9$.</div></li>
+          <li><div class="stp">$x=14$, qui respecte $x>5$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s4c" data-id="lg-s4c" data-search="3 x=6 x=100 ce : x&gt;0 . ici est le logarithme décimal (base 10). x=2 , donc x=10 2 =100 . p. 24 série 4 · page 24 équations logarithmiques simples exercice 1 · page 24 série 4 — équations logarithmiques">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S4 c</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$3\cdot\log x=6$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s4c">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s4c">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s4c"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=100$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s4c"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $x>0$. Ici $\log$ est le logarithme décimal (base 10).</div></li>
+          <li><div class="stp">$\log x=2$, donc $x=10^{2}=100$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s4d" data-id="lg-s4d" data-search="x-4=0 x=e 4 54 , 598 ce : x&gt;0 . x=4 , donc x=e 4 54 , 598 . p. 24 série 4 · page 24 équations logarithmiques simples exercice 1 · page 24 série 4 — équations logarithmiques">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S4 d</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\ln x-4=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s4d">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s4d">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s4d"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=e^{4}\approx 54{,}598$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s4d"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $x>0$.</div></li>
+          <li><div class="stp">$\ln x=4$, donc $x=e^{4}\approx 54{,}598$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s4e" data-id="lg-s4e" data-search="2 x+1=0 x=e -1/2 = 1 e 0 , 6065 ce : x&gt;0 . x=- 1 2 , donc x=e -1/2 = 1 e 0 , 6065 . un logarithme négatif est normal : il correspond à un x entre 0 et 1. p. 24 série 4 · page 24 équations logarithmiques simples exercice 1 · page 24 série 4 — équations logarithmiques">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S4 e</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$2\cdot\ln x+1=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s4e">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s4e">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s4e"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=e^{-1/2}=\dfrac{1}{\sqrt{e}}\approx 0{,}6065$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s4e"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $x>0$.</div></li>
+          <li><div class="stp">$\ln x=-\dfrac{1}{2}$, donc $x=e^{-1/2}=\dfrac{1}{\sqrt{e}}\approx 0{,}6065$.</div></li>
+          <li><div class="stp">Un logarithme négatif est normal : il correspond à un $x$ entre 0 et 1.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s4f" data-id="lg-s4f" data-search="3 x= 8 x=2 ce : x&gt;0 . 3 x= x 3 , donc x 3 = 8 et x 3 =8 . x=2 . (autre lecture : x= 8 3 = 3 2 3 = 2 .) p. 24 série 4 · page 24 équations logarithmiques simples exercice 1 · page 24 série 4 — équations logarithmiques">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S4 f</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$3\cdot\ln x=\ln 8$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s4f">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s4f">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s4f"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=2$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s4f"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $x>0$.</div></li>
+          <li><div class="stp">$3\ln x=\ln x^{3}$, donc $\ln x^{3}=\ln 8$ et $x^{3}=8$.</div></li>
+          <li><div class="stp">$x=2$. (Autre lecture : $\ln x=\dfrac{\ln 8}{3}=\dfrac{3\ln 2}{3}=\ln 2$.)</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s4g" data-id="lg-s4g" data-search="x 9=2 x=3 ce : la base d’un logarithme doit vérifier x&gt;0 et x 1 . par définition : x 2 =9 , donc x=3 ou x=-3 . x=-3 est rejeté par la ce : s= 3 . p. 24 série 4 · page 24 équations logarithmiques simples exercice 1 · page 24 série 4 — équations logarithmiques">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S4 g</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\log_{x}9=2$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s4g">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s4g">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s4g"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=3$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s4g"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : la base d’un logarithme doit vérifier $x>0$ et $x\neq 1$.</div></li>
+          <li><div class="stp">Par définition : $x^{2}=9$, donc $x=3$ ou $x=-3$.</div></li>
+          <li><div class="stp">$x=-3$ est rejeté par la CE : $S=\{3\}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s4h" data-id="lg-s4h" data-search="4 x-2=0 x= 10 3 , 162 ce : x&gt;0 . x= 1 2 , donc x=10 1/2 = 10 3 , 162 . p. 24 série 4 · page 24 équations logarithmiques simples exercice 1 · page 24 série 4 — équations logarithmiques">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S4 h</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$4\cdot\log x-2=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s4h">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s4h">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s4h"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=\sqrt{10}\approx 3{,}162$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s4h"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $x>0$.</div></li>
+          <li><div class="stp">$\log x=\dfrac{1}{2}$, donc $x=10^{1/2}=\sqrt{10}\approx 3{,}162$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s4i" data-id="lg-s4i" data-search="x x-x=0 x=e ce : x&gt;0 . on met x en évidence : x( x-1)=0 , donc x=0 ou x=1 . x=0 est rejeté par la ce x=1 donne x=e . p. 24 série 4 · page 24 équations logarithmiques simples exercice 1 · page 24 série 4 — équations logarithmiques">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S4 i</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$x\cdot\ln x-x=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s4i">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s4i">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s4i"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=e$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s4i"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $x>0$.</div></li>
+          <li><div class="stp">On met $x$ en évidence : $x(\ln x-1)=0$, donc $x=0$ ou $\ln x=1$.</div></li>
+          <li><div class="stp">$x=0$ est rejeté par la CE ; $\ln x=1$ donne $x=e$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s4j" data-id="lg-s4j" data-search="2 (2x+3)=4 x= 13 2 ce : 2x+3&gt;0 , donc x&gt;- 3 2 . 2x+3=2 4 =16 , donc x= 13 2 , qui respecte la ce. p. 24 série 4 · page 24 équations logarithmiques simples exercice 1 · page 24 série 4 — équations logarithmiques">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S4 j</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\log_{2}(2x+3)=4$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s4j">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s4j">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s4j"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=\dfrac{13}{2}$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s4j"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $2x+3>0$, donc $x>-\dfrac{3}{2}$.</div></li>
+          <li><div class="stp">$2x+3=2^{4}=16$, donc $x=\dfrac{13}{2}$, qui respecte la CE.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="sec" id="l-prop">
+      <div class="sec-head">
+        <span class="kick">Série 5 · page 24</span>
+        <h2>Avec les propriétés des logarithmes</h2>
+        <p>On regroupe en un seul logarithme de chaque côté, on compare les arguments, puis on confronte à la CE</p>
+      </div>
+      <div class="cards">
+      <article class="ex" id="x-lg-s5a" data-id="lg-s5a" data-search="x- 4+ 5= 25 x=20 ce : x&gt;0 . on regroupe : 5x 4 = 25 . 5x 4 =25 , donc x=20 . p. 24 série 5 · page 24 avec les propriétés des logarithmes exercice 1 · page 24 série 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S5 a</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\log x-\log 4+\log 5=\log 25$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s5a">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s5a">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s5a"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=20$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s5a"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $x>0$.</div></li>
+          <li><div class="stp">On regroupe : $\log\dfrac{5x}{4}=\log 25$.</div></li>
+          <li><div class="stp">$\dfrac{5x}{4}=25$, donc $x=20$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s5b" data-id="lg-s5b" data-search="(x+7)+ 3= 6 x=-5 ce : x+7&gt;0 , donc x&gt;-7 . [3(x+7) ]= 6 , donc 3(x+7)=6 et x+7=2 . x=-5 : une solution négative est acceptée, puisque -5&gt;-7 . p. 24 série 5 · page 24 avec les propriétés des logarithmes exercice 1 · page 24 série 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S5 b</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\log(x+7)+\log 3=\log 6$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s5b">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s5b">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s5b"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=-5$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s5b"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $x+7>0$, donc $x>-7$.</div></li>
+          <li><div class="stp">$\log\big[3(x+7)\big]=\log 6$, donc $3(x+7)=6$ et $x+7=2$.</div></li>
+          <li><div class="stp">$x=-5$ : une solution négative est acceptée, puisque $-5>-7$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s5c" data-id="lg-s5c" data-search="2 2 (x-2)= 2 (3x-8) s= 3 , ,4 ce : x-2&gt;0 et 3x-8&gt;0 , donc x&gt; 8 3 . 2 2 (x-2)= 2 (x-2) 2 , donc (x-2) 2 =3x-8 . x 2 -4x+4=3x-8 , soit x 2 -7x+12=0 , d’où x=3 ou x=4 . les deux sont supérieures à 8 3 2 , 67 : s= 3 , ,4 . p. 24 série 5 · page 24 avec les propriétés des logarithmes exercice 1 · page 24 série 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S5 c</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$2\cdot\log_{2}(x-2)=\log_{2}(3x-8)$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s5c">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s5c">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s5c"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$S=\{3\,;\,4\}$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s5c"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $x-2>0$ et $3x-8>0$, donc $x>\dfrac{8}{3}$.</div></li>
+          <li><div class="stp">$2\log_{2}(x-2)=\log_{2}(x-2)^{2}$, donc $(x-2)^{2}=3x-8$.</div></li>
+          <li><div class="stp">$x^{2}-4x+4=3x-8$, soit $x^{2}-7x+12=0$, d’où $x=3$ ou $x=4$.</div></li>
+          <li><div class="stp">Les deux sont supérieures à $\dfrac{8}{3}\approx 2{,}67$ : $S=\{3\,;\,4\}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s5d" data-id="lg-s5d" data-search="2 (x-5)= 5+ (5-x) aucune solution : s= . ce : x-5&gt;0 et 5-x&gt;0 , c’est-à-dire x&gt;5 et x 5 . ces deux conditions sont incompatibles : l’équation n’a aucune solution, inutile de calculer. p. 24 série 5 · page 24 avec les propriétés des logarithmes exercice 1 · page 24 série 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S5 d</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$2\cdot\log(x-5)=\log 5+\log(5-x)$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s5d">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s5d">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s5d"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Aucune solution : $S=\varnothing$.</div></div></div></div></div>
+          <div class="panel" id="s-lg-s5d"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $x-5>0$ <strong>et</strong> $5-x>0$, c’est-à-dire $x>5$ et $x\lt 5$.</div></li>
+          <li><div class="stp">Ces deux conditions sont incompatibles : l’équation n’a aucune solution, inutile de calculer.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s5e" data-id="lg-s5e" data-search="x+ (11-x)= 2x 2 x= 11 3 ce : x&gt;0 et 11-x&gt;0 , donc 0 x 11 . [x(11-x) ]= 2x 2 , donc 11x-x 2 =2x 2 , soit 3x 2 -11x=0 . x(3x-11)=0 : x=0 est rejeté par la ce, il reste x= 11 3 . p. 24 série 5 · page 24 avec les propriétés des logarithmes exercice 1 · page 24 série 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S5 e</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\log x+\log(11-x)=\log 2x^{2}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s5e">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s5e">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s5e"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=\dfrac{11}{3}$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s5e"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $x>0$ et $11-x>0$, donc $0\lt x\lt 11$.</div></li>
+          <li><div class="stp">$\log\big[x(11-x)\big]=\log 2x^{2}$, donc $11x-x^{2}=2x^{2}$, soit $3x^{2}-11x=0$.</div></li>
+          <li><div class="stp">$x(3x-11)=0$ : $x=0$ est rejeté par la CE, il reste $x=\dfrac{11}{3}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s5f" data-id="lg-s5f" data-search="3 x+ 3 (3-x)= 3 7 aucune solution : s= . ce : 0 x 3 . x(3-x)=7 , soit x 2 -3x+7=0 . =9-28=-19 0 : aucune solution réelle. p. 24 série 5 · page 24 avec les propriétés des logarithmes exercice 1 · page 24 série 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S5 f</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\log_{3}x+\log_{3}(3-x)=\log_{3}7$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s5f">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s5f">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s5f"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Aucune solution : $S=\varnothing$.</div></div></div></div></div>
+          <div class="panel" id="s-lg-s5f"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $0\lt x\lt 3$.</div></li>
+          <li><div class="stp">$x(3-x)=7$, soit $x^{2}-3x+7=0$.</div></li>
+          <li><div class="stp">$\Delta=9-28=-19\lt 0$ : aucune solution réelle.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s5g" data-id="lg-s5g" data-search="3 (x+2)+1= 3 (x 2 +4x) x=2 ce : x+2&gt;0 et x 2 +4x=x(x+4)&gt;0 , ce qui donne x&gt;0 . 1= 3 3 , donc 3 [3(x+2) ]= 3 (x 2 +4x) . 3x+6=x 2 +4x , soit x 2 +x-6=0 , d’où x=2 ou x=-3 . x=-3 est rejeté par la ce : s= 2 . p. 24 série 5 · page 24 avec les propriétés des logarithmes exercice 1 · page 24 série 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S5 g</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\log_{3}(x+2)+1=\log_{3}(x^{2}+4x)$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s5g">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s5g">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s5g"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=2$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s5g"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $x+2>0$ et $x^{2}+4x=x(x+4)>0$, ce qui donne $x>0$.</div></li>
+          <li><div class="stp">$1=\log_{3}3$, donc $\log_{3}\big[3(x+2)\big]=\log_{3}(x^{2}+4x)$.</div></li>
+          <li><div class="stp">$3x+6=x^{2}+4x$, soit $x^{2}+x-6=0$, d’où $x=2$ ou $x=-3$.</div></li>
+          <li><div class="stp">$x=-3$ est rejeté par la CE : $S=\{2\}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s5h" data-id="lg-s5h" data-search="(x-5)+ (x-2)=1 x=7 ce : x&gt;5 . 1= 10 , donc (x-5)(x-2)=10 . x 2 -7x+10=10 , soit x(x-7)=0 : x=0 est rejeté, il reste x=7 . p. 24 série 5 · page 24 avec les propriétés des logarithmes exercice 1 · page 24 série 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S5 h</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\log(x-5)+\log(x-2)=1$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s5h">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s5h">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s5h"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=7$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s5h"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $x>5$.</div></li>
+          <li><div class="stp">$1=\log 10$, donc $(x-5)(x-2)=10$.</div></li>
+          <li><div class="stp">$x^{2}-7x+10=10$, soit $x(x-7)=0$ : $x=0$ est rejeté, il reste $x=7$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s5i" data-id="lg-s5i" data-search="3 x- 64=0 x=4 ce : x&gt;0 . x 3 = 64 , donc x 3 =64 et x=4 . p. 24 série 5 · page 24 avec les propriétés des logarithmes exercice 1 · page 24 série 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S5 i</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$3\cdot\ln x-\ln 64=0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s5i">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s5i">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s5i"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=4$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s5i"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $x>0$.</div></li>
+          <li><div class="stp">$\ln x^{3}=\ln 64$, donc $x^{3}=64$ et $x=4$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s5j" data-id="lg-s5j" data-search="2 x+ 2x=1 x= [3] e 2 1 , 1077 ce : x&gt;0 . x 2 + 2x= (x 2 2x )= (2x 3 ) . (2x 3 )=1 , donc 2x 3 =e et x 3 = e 2 . x= [3] e 2 1 , 1077 . p. 24 série 5 · page 24 avec les propriétés des logarithmes exercice 1 · page 24 série 5">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S5 j</span><span class="ex-tag">p. 24</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$2\cdot\ln x+\ln 2x=1$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s5j">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s5j">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s5j"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$x=\sqrt[3]{\dfrac{e}{2}}\approx 1{,}1077$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s5j"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $x>0$.</div></li>
+          <li><div class="stp">$\ln x^{2}+\ln 2x=\ln\left(x^{2}\cdot 2x\right)=\ln\left(2x^{3}\right)$.</div></li>
+          <li><div class="stp">$\ln\left(2x^{3}\right)=1$, donc $2x^{3}=e$ et $x^{3}=\dfrac{e}{2}$.</div></li>
+          <li><div class="stp">$x=\sqrt[3]{\dfrac{e}{2}}\approx 1{,}1077$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="sec" id="l-ineqexp">
+      <div class="sec-head">
+        <span class="kick">Série 6 · page 25</span>
+        <h2>Inéquations exponentielles</h2>
+        <p>Base supérieure à 1 : le sens est conservé ; base entre 0 et 1 : le sens s’inverse</p>
+      </div>
+      <div class="cards">
+      <article class="ex" id="x-lg-s6a" data-id="lg-s6a" data-search="2 x 8 s= ]- , ,3 [ 8=2 3 , donc 2 x 2 3 . la base 2&gt;1 : la fonction 2 x est croissante , le sens de l’inégalité est conservé : x 3 . p. 25 série 6 · page 25 inéquations exponentielles exercice 1 · page 25 série 6 — inéquations">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S6 a</span><span class="ex-tag">p. 25</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$2^{x}\lt 8$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s6a">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s6a">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s6a"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$S=\left]-\infty\,;\,3\right[$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s6a"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$8=2^{3}$, donc $2^{x}\lt 2^{3}$.</div></li>
+          <li><div class="stp">La base $2>1$ : la fonction $2^{x}$ est <strong>croissante</strong>, le sens de l’inégalité est conservé : $x\lt 3$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s6b" data-id="lg-s6b" data-search="( 1 2 ) x 8 s= ]-3 , ,+ [ 8=2 3 = ( 1 2 ) -3 . la base 1 2 est entre 0 et 1 : la fonction est décroissante , le sens s’inverse : x&gt;-3 . p. 25 série 6 · page 25 inéquations exponentielles exercice 1 · page 25 série 6 — inéquations">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S6 b</span><span class="ex-tag">p. 25</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\left(\dfrac{1}{2}\right)^{x}\lt 8$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s6b">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s6b">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s6b"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$S=\left]-3\,;\,+\infty\right[$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s6b"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$8=2^{3}=\left(\dfrac{1}{2}\right)^{-3}$.</div></li>
+          <li><div class="stp">La base $\dfrac{1}{2}$ est entre 0 et 1 : la fonction est <strong>décroissante</strong>, le sens <strong>s’inverse</strong> : $x>-3$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s6c" data-id="lg-s6c" data-search="( 1 2 ) x &gt;4 s= ]- , ,-2 [ 4= ( 1 2 ) -2 . base entre 0 et 1, le sens s’inverse : x -2 . p. 25 série 6 · page 25 inéquations exponentielles exercice 1 · page 25 série 6 — inéquations">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S6 c</span><span class="ex-tag">p. 25</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\left(\dfrac{1}{2}\right)^{x}>4$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s6c">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s6c">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s6c"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$S=\left]-\infty\,;\,-2\right[$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s6c"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$4=\left(\dfrac{1}{2}\right)^{-2}$.</div></li>
+          <li><div class="stp">Base entre 0 et 1, le sens s’inverse : $x\lt -2$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s6d" data-id="lg-s6d" data-search="3 x 1 9 s= ]- , ,-2 [ 1 9 =3 -2 . base 3&gt;1 , le sens est conservé : x -2 . p. 25 série 6 · page 25 inéquations exponentielles exercice 1 · page 25 série 6 — inéquations">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S6 d</span><span class="ex-tag">p. 25</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$3^{x}\lt\dfrac{1}{9}$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s6d">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s6d">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s6d"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$S=\left]-\infty\,;\,-2\right[$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s6d"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$\dfrac{1}{9}=3^{-2}$.</div></li>
+          <li><div class="stp">Base $3>1$, le sens est conservé : $x\lt -2$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s6e" data-id="lg-s6e" data-search="e x &gt;1 s= ]0 , ,+ [ 1=e 0 et e 2 , 718&gt;1 : sens conservé. x&gt;0 . p. 25 série 6 · page 25 inéquations exponentielles exercice 1 · page 25 série 6 — inéquations">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S6 e</span><span class="ex-tag">p. 25</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$e^{x}>1$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s6e">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s6e">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s6e"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$S=\left]0\,;\,+\infty\right[$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s6e"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$1=e^{0}$ et $e\approx 2{,}718>1$ : sens conservé.</div></li>
+          <li><div class="stp">$x>0$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s6f" data-id="lg-s6f" data-search="2 x &gt;10 s= ] 2 10 , ,+ [ , avec 2 10 3 , 32 10 n’est pas une puissance entière de 2 : on passe au logarithme. est croissante : x 2&gt; 10 , et 2&gt;0 donc x&gt; 10 2 = 2 10 3 , 32 . p. 25 série 6 · page 25 inéquations exponentielles exercice 1 · page 25 série 6 — inéquations">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S6 f</span><span class="ex-tag">p. 25</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$2^{x}>10$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s6f">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s6f">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s6f"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$S=\left]\log_{2}10\,;\,+\infty\right[$, avec $\log_{2}10\approx 3{,}32$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s6f"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$10$ n’est pas une puissance entière de 2 : on passe au logarithme.</div></li>
+          <li><div class="stp">$\ln$ est croissante : $x\ln 2>\ln 10$, et $\ln 2>0$ donc $x>\dfrac{\ln 10}{\ln 2}=\log_{2}10\approx 3{,}32$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s6g" data-id="lg-s6g" data-search="0 , 1 x &gt;1000 s= ]- , ,-3 [ 1000=10 3 =0 , 1 -3 . la base 0 , 1 est entre 0 et 1 : le sens s’inverse, x -3 . p. 25 série 6 · page 25 inéquations exponentielles exercice 1 · page 25 série 6 — inéquations">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S6 g</span><span class="ex-tag">p. 25</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$0{,}1^{x}>1000$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s6g">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s6g">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s6g"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$S=\left]-\infty\,;\,-3\right[$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s6g"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$1000=10^{3}=0{,}1^{-3}$.</div></li>
+          <li><div class="stp">La base $0{,}1$ est entre 0 et 1 : le sens s’inverse, $x\lt -3$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="sec" id="l-ineqlog">
+      <div class="sec-head">
+        <span class="kick">Série 6 · page 25</span>
+        <h2>Inéquations logarithmiques</h2>
+        <p>Même règle sur la base, sans oublier la condition $x>0$</p>
+      </div>
+      <div class="cards">
+      <article class="ex" id="x-lg-s6h" data-id="lg-s6h" data-search="2 x&gt;3 s= ]8 , ,+ [ ce : x&gt;0 . 3= 2 8 et la base 2&gt;1 : sens conservé, x&gt;8 (ce qui respecte la ce). p. 25 série 6 · page 25 inéquations logarithmiques exercice 1 · page 25 série 6 — inéquations">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S6 h</span><span class="ex-tag">p. 25</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\log_{2}x>3$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s6h">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s6h">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s6h"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$S=\left]8\,;\,+\infty\right[$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s6h"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $x>0$.</div></li>
+          <li><div class="stp">$3=\log_{2}8$ et la base $2>1$ : sens conservé, $x>8$ (ce qui respecte la CE).</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s6i" data-id="lg-s6i" data-search="0 , 5 x -1 s= ]2 , ,+ [ ce : x&gt;0 . -1= 0 , 5 2 , puisque 0 , 5 -1 =2 . la base 0 , 5 est entre 0 et 1 : 0 , 5 est décroissante , le sens s’inverse : x&gt;2 . p. 25 série 6 · page 25 inéquations logarithmiques exercice 1 · page 25 série 6 — inéquations">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S6 i</span><span class="ex-tag">p. 25</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\log_{0{,}5}x\lt -1$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s6i">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s6i">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s6i"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$S=\left]2\,;\,+\infty\right[$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s6i"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $x>0$.</div></li>
+          <li><div class="stp">$-1=\log_{0{,}5}2$, puisque $0{,}5^{-1}=2$.</div></li>
+          <li><div class="stp">La base $0{,}5$ est entre 0 et 1 : $\log_{0{,}5}$ est <strong>décroissante</strong>, le sens s’inverse : $x>2$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s6j" data-id="lg-s6j" data-search="x 0 s= ]0 , ,1 [ ce : x&gt;0 . 0= 1 et la base 10&gt;1 : x 1 . avec la ce : 0 x 1 . p. 25 série 6 · page 25 inéquations logarithmiques exercice 1 · page 25 série 6 — inéquations">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S6 j</span><span class="ex-tag">p. 25</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\log x\lt 0$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s6j">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s6j">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s6j"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$S=\left]0\,;\,1\right[$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s6j"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $x>0$.</div></li>
+          <li><div class="stp">$0=\log 1$ et la base $10>1$ : $x\lt 1$.</div></li>
+          <li><div class="stp">Avec la CE : $0\lt x\lt 1$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s6k" data-id="lg-s6k" data-search="x&gt;2 s= ]e 2 , ,+ [ , avec e 2 7 , 39 ce : x&gt;0 . 2= e 2 et est croissante : x&gt;e 2 7 , 39 . p. 25 série 6 · page 25 inéquations logarithmiques exercice 1 · page 25 série 6 — inéquations">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S6 k</span><span class="ex-tag">p. 25</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\ln x>2$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s6k">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s6k">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s6k"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$S=\left]e^{2}\,;\,+\infty\right[$, avec $e^{2}\approx 7{,}39$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s6k"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $x>0$.</div></li>
+          <li><div class="stp">$2=\ln e^{2}$ et $\ln$ est croissante : $x>e^{2}\approx 7{,}39$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-s6l" data-id="lg-s6l" data-search="x -2 s= ]0 , ,e -2 [ , avec e -2 0 , 135 ce : x&gt;0 . -2= e -2 et est croissante : x e -2 0 , 135 . sans oublier la ce : 0 x e -2 . p. 25 série 6 · page 25 inéquations logarithmiques exercice 1 · page 25 série 6 — inéquations">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">S6 l</span><span class="ex-tag">p. 25</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">$\ln x\lt -2$</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-s6l">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-s6l">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-s6l"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$S=\left]0\,;\,e^{-2}\right[$, avec $e^{-2}\approx 0{,}135$</div></div></div></div></div>
+          <div class="panel" id="s-lg-s6l"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">CE : $x>0$.</div></li>
+          <li><div class="stp">$-2=\ln e^{-2}$ et $\ln$ est croissante : $x\lt e^{-2}\approx 0{,}135$.</div></li>
+          <li><div class="stp">Sans oublier la CE : $0\lt x\lt e^{-2}$.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      </div>
+    </section>
+    <section class="sec" id="l-pb">
+      <div class="sec-head">
+        <span class="kick">Exercices 2 à 5 · page 25</span>
+        <h2>Croissance exponentielle : les problèmes</h2>
+        <p>Capital, sapin, population : $V=V_{0}\cdot(1+r)^{n}$ ou $V_{0}\cdot e^{kt}$</p>
+      </div>
+      <div class="cards">
+      <article class="ex" id="x-lg-p2" data-id="lg-p2" data-search="un capital de 2 ,500 euros est placé au taux de 4 % l’an. dans combien de temps ce capital s’élèvera-t-il à 4 ,000 euros ? au bout de 12 ans ( n 11 , 98 ). chaque année, le capital est multiplié par 1 , 04 : après n années, c n =2 ,500 1 , 04 n . 2 ,500 1 , 04 n =4 ,000 1 , 04 n =1 , 6 . n 1 , 04= 1 , 6 , donc n= 1 , 6 1 , 04 11 , 98 . les intérêts sont versés une fois par an : après 11 ans, le capital vaut environ 3 ,848 , 64 € après 12 ans, environ 4 ,002 , 58 €. il faut donc 12 ans. p. 25 exercices 2 à 5 · page 25 croissance exponentielle : les problèmes exercice 2 · page 25 un capital placé à 4 %">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">2</span><span class="ex-tag">p. 25</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Un capital de $2\,500$ euros est placé au taux de 4 % l’an. Dans combien de temps ce capital s’élèvera-t-il à $4\,000$ euros ?</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-p2">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-p2">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-p2"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Au bout de <strong>12 ans</strong> ($n\approx 11{,}98$).</div></div></div></div></div>
+          <div class="panel" id="s-lg-p2"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Chaque année, le capital est multiplié par $1{,}04$ : après $n$ années, $C_{n}=2\,500\cdot 1{,}04^{n}$.</div></li>
+          <li><div class="stp">$2\,500\cdot 1{,}04^{n}=4\,000\Leftrightarrow 1{,}04^{n}=1{,}6$.</div></li>
+          <li><div class="stp">$n\ln 1{,}04=\ln 1{,}6$, donc $n=\dfrac{\ln 1{,}6}{\ln 1{,}04}\approx 11{,}98$.</div></li>
+          <li><div class="stp">Les intérêts sont versés une fois par an : après 11 ans, le capital vaut environ $3\,848{,}64$ € ; après 12 ans, environ $4\,002{,}58$ €. Il faut donc 12 ans.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-p3" data-id="lg-p3" data-search="un sapin augmente sa taille de 10 % chaque année. combien d’années lui faut-il pour doubler sa taille ? tripler sa taille ? doubler : 8 ans ( n 7 , 27 ). tripler : 12 ans ( n 11 , 53 ). après n années : t n =t 0 1 , 1 n . la taille de départ t 0 n’intervient pas. doubler : 1 , 1 n =2 , donc n= 2 1 , 1 7 , 27 . après 7 ans, la taille est multipliée par 1 , 949 après 8 ans, par 2 , 144 . tripler : 1 , 1 n =3 , donc n= 3 1 , 1 11 , 53 . après 11 ans : 2 , 853 après 12 ans : 3 , 138 . si l’on considère que le sapin pousse continûment au fil de l’année, on peut aussi répondre 7,3 et 11,5 ans. p. 25 exercices 2 à 5 · page 25 croissance exponentielle : les problèmes exercice 3 · page 25 le sapin qui grandit de 10 % par an">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">3</span><span class="ex-tag">p. 25</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">Un sapin augmente sa taille de 10 % chaque année. Combien d’années lui faut-il pour doubler sa taille ? Tripler sa taille ?</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-p3">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-p3">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-p3"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Doubler : <strong>8 ans</strong> ($n\approx 7{,}27$). &nbsp;Tripler : <strong>12 ans</strong> ($n\approx 11{,}53$).</div></div></div></div></div>
+          <div class="panel" id="s-lg-p3"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Après $n$ années : $T_{n}=T_{0}\cdot 1{,}1^{n}$. La taille de départ $T_{0}$ n’intervient pas.</div></li>
+          <li><div class="stp">Doubler : $1{,}1^{n}=2$, donc $n=\dfrac{\ln 2}{\ln 1{,}1}\approx 7{,}27$. Après 7 ans, la taille est multipliée par $1{,}949$ ; après 8 ans, par $2{,}144$.</div></li>
+          <li><div class="stp">Tripler : $1{,}1^{n}=3$, donc $n=\dfrac{\ln 3}{\ln 1{,}1}\approx 11{,}53$. Après 11 ans : $\times 2{,}853$ ; après 12 ans : $\times 3{,}138$.</div></li>
+          <li><div class="stp">Si l’on considère que le sapin pousse continûment au fil de l’année, on peut aussi répondre 7,3 et 11,5 ans.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-p4" data-id="lg-p4" data-search="la population d’une ville varie de manière exponentielle : 135 ,426 habitants en 2004, 137 ,229 en 2005. si la croissance continue au même rythme, en quelle année cette population dépassera-t-elle 200 ,000 habitants ? en 2033 ( t 29 , 5 ans après 2004). croissance exponentielle : p(t)=135 ,426 q t , avec t en années depuis 2004. en 2005 ( t=1 ) : q= 137 ,229 135 ,426 1 , 01331 , soit une hausse de 1,33 % par an. 135 ,426 q t &gt;200 ,000 q t &gt; 200 ,000 135 ,426 1 , 4768 . q&gt;0 , donc t&gt; 1 , 4768 q 29 , 48 : le seuil est franchi dans le courant de 2033. contrôle : p(29) 198 ,735 (début 2033) et p(30) 201 ,381 (début 2034). avec un seul comptage par an, c’est en 2034 qu’on lit pour la première fois plus de 200 ,000 habitants. p. 25 exercices 2 à 5 · page 25 croissance exponentielle : les problèmes exercice 4 · page 25 la population d’une ville">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">4</span><span class="ex-tag">p. 25</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">La population d’une ville varie de manière exponentielle : $135\,426$ habitants en 2004, $137\,229$ en 2005. Si la croissance continue au même rythme, en quelle année cette population dépassera-t-elle $200\,000$ habitants ?</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-p4">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-p4">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-p4"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>En <strong>2033</strong> ($t\approx 29{,}5$ ans après 2004).</div></div></div></div></div>
+          <div class="panel" id="s-lg-p4"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Croissance exponentielle : $P(t)=135\,426\cdot q^{t}$, avec $t$ en années depuis 2004.</div></li>
+          <li><div class="stp">En 2005 ($t=1$) : $q=\dfrac{137\,229}{135\,426}\approx 1{,}01331$, soit une hausse de 1,33 % par an.</div></li>
+          <li><div class="stp">$135\,426\cdot q^{t}>200\,000\Leftrightarrow q^{t}>\dfrac{200\,000}{135\,426}\approx 1{,}4768$.</div></li>
+          <li><div class="stp">$\ln q>0$, donc $t>\dfrac{\ln 1{,}4768}{\ln q}\approx 29{,}48$ : le seuil est franchi dans le courant de 2033.</div></li>
+          <li><div class="stp">Contrôle : $P(29)\approx 198\,735$ (début 2033) et $P(30)\approx 201\,381$ (début 2034). Avec un seul comptage par an, c’est en 2034 qu’on lit pour la première fois plus de $200\,000$ habitants.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-p5a" data-id="lg-p5a" data-search="en 1975 : 800 millions d’habitants en chine, 600 millions en inde, avec c(t)=800 e 0 , 017 ,t et i(t)=600 e 0 , 022 ,t (en millions, t années après 1975). a) quel devrait être l’écart entre les populations des deux pays en 2005 ? comparer avec les données officielles. modèle : chine 1 ,332 m, inde 1 ,161 m, écart 171 millions. réalité : environ 1 ,304 m et 1 ,150 m, écart 150 millions. 2005 correspond à t=30 . c(30)=800 ,e 0 , 51 1 ,332 , 2 millions et i(30)=600 ,e 0 , 66 1 ,160 , 9 millions. écart prévu par le modèle : environ 171 millions d’habitants. données officielles (banque mondiale, onu) : environ 1,30 milliard d’habitants en chine et 1,15 milliard en inde en 2005, soit un écart d’environ 150 millions. les chiffres varient légèrement d’une révision à l’autre. le modèle surestime surtout la chine, d’une trentaine de millions : la politique de l’enfant unique, appliquée dès 1979, a freiné la croissance chinoise bien en dessous de 1,7 % par an. l’inde est mieux prévue. p. 25 exercices 2 à 5 · page 25 croissance exponentielle : les problèmes exercice 5 · page 25 chine et inde depuis 1975">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">5 a</span><span class="ex-tag">p. 25</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">En 1975 : 800 millions d’habitants en Chine, 600 millions en Inde, avec $C(t)=800\cdot e^{0{,}017\,t}$ et $I(t)=600\cdot e^{0{,}022\,t}$ (en millions, $t$ années après 1975). <br><b>a)</b> Quel devrait être l’écart entre les populations des deux pays en 2005 ? Comparer avec les données officielles.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-p5a">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-p5a">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-p5a"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>Modèle : Chine $\approx 1\,332$ M, Inde $\approx 1\,161$ M, écart $\approx 171$ millions. &nbsp;Réalité : environ $1\,304$ M et $1\,150$ M, écart $\approx 150$ millions.</div></div></div></div></div>
+          <div class="panel" id="s-lg-p5a"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">2005 correspond à $t=30$.</div></li>
+          <li><div class="stp">$C(30)=800\,e^{0{,}51}\approx 1\,332{,}2$ millions et $I(30)=600\,e^{0{,}66}\approx 1\,160{,}9$ millions.</div></li>
+          <li><div class="stp">Écart prévu par le modèle : environ $171$ millions d’habitants.</div></li>
+          <li><div class="stp">Données officielles (Banque mondiale, ONU) : environ 1,30 milliard d’habitants en Chine et 1,15 milliard en Inde en 2005, soit un écart d’environ 150 millions. Les chiffres varient légèrement d’une révision à l’autre.</div></li>
+          <li><div class="stp">Le modèle surestime surtout la Chine, d’une trentaine de millions : la politique de l’enfant unique, appliquée dès 1979, a freiné la croissance chinoise bien en dessous de 1,7 % par an. L’Inde est mieux prévue.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-p5b" data-id="lg-p5b" data-search="en 1975 : 800 millions d’habitants en chine, 600 millions en inde, avec c(t)=800 e 0 , 017 ,t et i(t)=600 e 0 , 022 ,t (en millions, t années après 1975). b) en quelle année y aurait-il autant d’indiens que de chinois ? commenter. t=200 4 3 57 , 5 : vers le milieu de 2032 . 800 ,e 0 , 017t =600 ,e 0 , 022t e 0 , 022t e 0 , 017t = 800 600 e 0 , 005t = 4 3 . 0 , 005 ,t= 4 3 , donc t=200 4 3 57 , 5 ans après 1975, soit vers le milieu de 2032. chaque pays compterait alors environ 2 ,128 millions d’habitants. commentaire : en réalité, l’inde a dépassé la chine dès 2023 (estimation de l’onu), avec environ 1,43 milliard d’habitants chacune, bien moins que prévu. la croissance chinoise a ralenti beaucoup plus vite que 1,7 % par an, au point que la population chinoise diminue depuis 2022. un modèle exponentiel à taux constant ne vaut que sur une période courte. p. 25 exercices 2 à 5 · page 25 croissance exponentielle : les problèmes exercice 5 · page 25 chine et inde depuis 1975">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">5 b</span><span class="ex-tag">p. 25</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">En 1975 : 800 millions d’habitants en Chine, 600 millions en Inde, avec $C(t)=800\cdot e^{0{,}017\,t}$ et $I(t)=600\cdot e^{0{,}022\,t}$ (en millions, $t$ années après 1975). <br><b>b)</b> En quelle année y aurait-il autant d’Indiens que de Chinois ? Commenter.</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-p5b">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-p5b">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-p5b"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$t=200\ln\dfrac{4}{3}\approx 57{,}5$ : vers le milieu de <strong>2032</strong>.</div></div></div></div></div>
+          <div class="panel" id="s-lg-p5b"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">$800\,e^{0{,}017t}=600\,e^{0{,}022t}\Leftrightarrow\dfrac{e^{0{,}022t}}{e^{0{,}017t}}=\dfrac{800}{600}\Leftrightarrow e^{0{,}005t}=\dfrac{4}{3}$.</div></li>
+          <li><div class="stp">$0{,}005\,t=\ln\dfrac{4}{3}$, donc $t=200\ln\dfrac{4}{3}\approx 57{,}5$ ans après 1975, soit vers le milieu de 2032.</div></li>
+          <li><div class="stp">Chaque pays compterait alors environ $2\,128$ millions d’habitants.</div></li>
+          <li><div class="stp"><strong>Commentaire</strong> : en réalité, l’Inde a dépassé la Chine dès 2023 (estimation de l’ONU), avec environ 1,43 milliard d’habitants chacune, bien moins que prévu. La croissance chinoise a ralenti beaucoup plus vite que 1,7 % par an, au point que la population chinoise diminue depuis 2022. Un modèle exponentiel à taux constant ne vaut que sur une période courte.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      <article class="ex" id="x-lg-p5c" data-id="lg-p5c" data-search="en 1975 : 800 millions d’habitants en chine, 600 millions en inde, avec c(t)=800 e 0 , 017 ,t et i(t)=600 e 0 , 022 ,t (en millions, t années après 1975). c) quelles formules auriez-vous utilisées pour décrire l’évolution des populations indienne et chinoise ? sont-elles équivalentes à celles qui sont fournies ? c(t)=800 1 , 017 t et i(t)=600 1 , 022 t : proches, mais pas équivalentes . une hausse de 1,7 % par an revient à multiplier par 1 , 017 chaque année : c(t)=800 1 , 017 t , et de même i(t)=600 1 , 022 t . or 1 , 017 t =e t 1 , 017 =e 0 , 01686 ,t : l’exposant n’est pas exactement 0 , 017 ,t . inversement, e 0 , 017 1 , 01715 : les formules de l’énoncé correspondent à des hausses annuelles de 1,715 % (chine) et 2,224 % (inde), un peu plus que l’énoncé ne l’annonce. les écarts restent faibles : en 2005, 1 ,326 , 5 m au lieu de 1 ,332 , 2 m pour la chine, 1 ,152 , 6 m au lieu de 1 ,160 , 9 m pour l’inde l’égalité tomberait en 2033,7 au lieu de 2032,5. les deux écritures coïncident si k= (1+r) , car e kt =(1+r) t : 0 , 017 est un taux « continu », 1,7 % un taux annuel. p. 25 exercices 2 à 5 · page 25 croissance exponentielle : les problèmes exercice 5 · page 25 chine et inde depuis 1975">
+        <div class="rail" aria-hidden="true"></div>
+        <div class="ex-body">
+          <div class="ex-top">
+            <span class="ex-num">5 c</span><span class="ex-tag">p. 25</span>
+            <button type="button" class="done-btn js-done" aria-pressed="false">✓ Fait</button>
+          </div>
+          <div class="ex-q">En 1975 : 800 millions d’habitants en Chine, 600 millions en Inde, avec $C(t)=800\cdot e^{0{,}017\,t}$ et $I(t)=600\cdot e^{0{,}022\,t}$ (en millions, $t$ années après 1975). <br><b>c)</b> Quelles formules auriez-vous utilisées pour décrire l’évolution des populations indienne et chinoise ? Sont-elles équivalentes à celles qui sont fournies ?</div>
+          <div class="ex-tools">
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="a-lg-p5c">Réponse</button>
+            <button type="button" class="btn-sm js-toggle" aria-expanded="false" aria-controls="s-lg-p5c">Solution détaillée</button>
+            <button type="button" class="btn-sm js-work work" aria-controls="ws">✎ Brouillon</button>
+          </div>
+          <div class="panel" id="a-lg-p5c"><div class="inner"><div class="pad"><div class="ans-box"><span class="lbl">Réponse</span><div>$C(t)=800\cdot 1{,}017^{t}$ et $I(t)=600\cdot 1{,}022^{t}$ : proches, mais <strong>pas équivalentes</strong>.</div></div></div></div></div>
+          <div class="panel" id="s-lg-p5c"><div class="inner"><div class="pad"><div class="sol-box"><span class="lbl">Démarche</span><ol>
+          <li><div class="stp">Une hausse de 1,7 % par an revient à multiplier par $1{,}017$ chaque année : $C(t)=800\cdot 1{,}017^{t}$, et de même $I(t)=600\cdot 1{,}022^{t}$.</div></li>
+          <li><div class="stp">Or $1{,}017^{t}=e^{t\ln 1{,}017}=e^{0{,}01686\,t}$ : l’exposant n’est pas exactement $0{,}017\,t$.</div></li>
+          <li><div class="stp">Inversement, $e^{0{,}017}\approx 1{,}01715$ : les formules de l’énoncé correspondent à des hausses annuelles de 1,715 % (Chine) et 2,224 % (Inde), un peu plus que l’énoncé ne l’annonce.</div></li>
+          <li><div class="stp">Les écarts restent faibles : en 2005, $1\,326{,}5$ M au lieu de $1\,332{,}2$ M pour la Chine, $1\,152{,}6$ M au lieu de $1\,160{,}9$ M pour l’Inde ; l’égalité tomberait en 2033,7 au lieu de 2032,5.</div></li>
+          <li><div class="stp">Les deux écritures coïncident si $k=\ln(1+r)$, car $e^{kt}=(1+r)^{t}$ : $0{,}017$ est un taux « continu », 1,7 % un taux annuel.</div></li>
+          </ol></div></div></div></div>
+        </div>
+      </article>
+      </div>
+    </section>
+    </div>
+    <div class="layout" data-mode="exo" hidden>
+    <section class="sec" id="e-explog-ex4">
+      <div class="sec-head">
+        <span class="kick">Exemple 4 · page 23</span>
+        <h2>Un exemple résolu du cours</h2>
+      </div>
+      <div class="cards">
+
+      </div>
+    </section>
+    <section class="sec" id="e-explog-s1">
+      <div class="sec-head">
+        <span class="kick">Exercice 1 · page 23</span>
+        <h2>Série 1</h2>
+      </div>
+      <div class="cards">
+
+      </div>
+    </section>
+    <section class="sec" id="e-explog-s2">
+      <div class="sec-head">
+        <span class="kick">Exercice 1 · page 23</span>
+        <h2>Série 2</h2>
+      </div>
+      <div class="cards">
+
+      </div>
+    </section>
+    <section class="sec" id="e-explog-s3">
+      <div class="sec-head">
+        <span class="kick">Exercice 1 · page 24</span>
+        <h2>Série 3</h2>
+      </div>
+      <div class="cards">
+
+      </div>
+    </section>
+    <section class="sec" id="e-explog-s4">
+      <div class="sec-head">
+        <span class="kick">Exercice 1 · page 24</span>
+        <h2>Série 4 — équations logarithmiques</h2>
+      </div>
+      <div class="cards">
+
+      </div>
+    </section>
+    <section class="sec" id="e-explog-s5">
+      <div class="sec-head">
+        <span class="kick">Exercice 1 · page 24</span>
+        <h2>Série 5</h2>
+      </div>
+      <div class="cards">
+
+      </div>
+    </section>
+    <section class="sec" id="e-explog-s6">
+      <div class="sec-head">
+        <span class="kick">Exercice 1 · page 25</span>
+        <h2>Série 6 — inéquations</h2>
+      </div>
+      <div class="cards">
+
+      </div>
+    </section>
+    <section class="sec" id="e-explog-2">
+      <div class="sec-head">
+        <span class="kick">Exercice 2 · page 25</span>
+        <h2>Un capital placé à 4 %</h2>
+      </div>
+      <div class="cards">
+
+      </div>
+    </section>
+    <section class="sec" id="e-explog-3">
+      <div class="sec-head">
+        <span class="kick">Exercice 3 · page 25</span>
+        <h2>Le sapin qui grandit de 10 % par an</h2>
+      </div>
+      <div class="cards">
+
+      </div>
+    </section>
+    <section class="sec" id="e-explog-4">
+      <div class="sec-head">
+        <span class="kick">Exercice 4 · page 25</span>
+        <h2>La population d’une ville</h2>
+      </div>
+      <div class="cards">
+
+      </div>
+    </section>
+    <section class="sec" id="e-explog-5">
+      <div class="sec-head">
+        <span class="kick">Exercice 5 · page 25</span>
+        <h2>Chine et Inde depuis 1975</h2>
+      </div>
+      <div class="cards">
+
+      </div>
+    </section>
+    </div>
+  </div>
     </main>
   </div>
 
   <footer class="foot">
-    <span><em>Nombres complexes</em> et <em>Fonctions cyclométriques</em> — 6ᵉ (6 h chacun) · 102 exercices, réponses vérifiées</span>
+    <span><em>Nombres complexes</em>, <em>Fonctions cyclométriques</em> et <em>Fonctions exponentielles et logarithmiques</em> — 6ᵉ · 162 exercices, réponses vérifiées</span>
     <span>Cochez « Fait » : votre progression reste enregistrée dans ce navigateur.</span>
   </footer>
 </div>
-<script type="application/json" id="layouts">{"complexes":{"theme":[["methodes",["methodes-m1","methodes-m2","methodes-m3","methodes-m4"]],["histo",["histo-h1","histo-h2"]],["egalite",["egalite-1a","egalite-1b","egalite-1c"]],["calculs",["calculs-2a","calculs-2b","calculs-2c","calculs-2d","calculs-2e","calculs-2f","calculs-2g","calculs-2h","calculs-2i","calculs-2j","calculs-2k","calculs-2l","ulb3-3"]],["binome",["binome-a","binome-b","binome-c","binome-d","binome-e","binome-f"]],["t-second",["complete-a","complete-b","complete-c","complete-d","complete-e","complete-f","complete-g","ulb-13"]],["t-param",["fpms-7","ulb-10","ulb-16"]],["t-bicarre",["complete-h","complete-i","complete-j","ulb-11","ulb-14"]],["t-poly",["alembert-1","alembert-2","alembert-3","alembert-4","alembert-5","alembert-6","fpms-8","ulb-9","ulb-12","ulb-15"]]],"exo":[["e-complexes-cours",["methodes-m1","methodes-m2","methodes-m3","methodes-m4"]],["e-complexes-intro",["histo-h1","histo-h2"]],["e-complexes-p5-1",["egalite-1a","egalite-1b","egalite-1c"]],["e-complexes-p5-2",["calculs-2a","calculs-2b","calculs-2c","calculs-2d","calculs-2e","calculs-2f","calculs-2g","calculs-2h","calculs-2i","calculs-2j","calculs-2k","calculs-2l"]],["e-complexes-p5-3",["ulb3-3"]],["e-complexes-p6",["binome-a","binome-b","binome-c","binome-d","binome-e","binome-f"]],["e-complexes-p7",["complete-a","complete-b","complete-c","complete-d","complete-e","complete-f","complete-g","complete-h","complete-i","complete-j"]],["e-complexes-p9-1",["alembert-1"]],["e-complexes-p9-2",["alembert-2"]],["e-complexes-p9-3",["alembert-3"]],["e-complexes-p9-4",["alembert-4"]],["e-complexes-p9-5",["alembert-5"]],["e-complexes-p9-6",["alembert-6"]],["e-complexes-p9-7",["fpms-7"]],["e-complexes-p9-8",["fpms-8"]],["e-complexes-p10-9",["ulb-9"]],["e-complexes-p10-10",["ulb-10"]],["e-complexes-p10-11",["ulb-11"]],["e-complexes-p10-12",["ulb-12"]],["e-complexes-p10-13",["ulb-13"]],["e-complexes-p10-14",["ulb-14"]],["e-complexes-p10-15",["ulb-15"]],["e-complexes-p10-16",["ulb-16"]]]},"cyclo":{"theme":[["c-methodes",["c-methodes-m1","c-methodes-m2","c-methodes-m3"]],["c-valeurs",["c-valeurs-1a","c-valeurs-1b","c-valeurs-1c","c-valeurs-1d","c-valeurs-1e","c-valeurs-1f"]],["c-equations",["c-equations-2a","c-equations-2b","c-equations-2c","c-equations-2d","c-equations-2e","c-equations-2f"]],["c-sommes",["c-sommes-3a","c-sommes-3b","c-sommes-4a","c-sommes-4b","c-sommes-10"]],["c-derivees",["c-derivees-5a","c-derivees-5b","c-derivees-5c","c-derivees-5d","c-derivees-5e","c-derivees-5f"]],["c-identites",["c-identites-6","c-identites-9a","c-identites-9b","c-identites-9c"]],["c-graphes",["c-graphes-7a","c-graphes-7b","c-graphes-8","fig13","c-graphes-13a","c-graphes-13b","c-graphes-13c","c-graphes-13d","c-graphes-13e","c-graphes-13f","c-graphes-13g"]],["c-arctan",["c-arctan-11a","c-arctan-11b","c-arctan-11c"]],["c-limites",["c-limites-12a","c-limites-12b","c-limites-12c","c-limites-12d","c-limites-12e"]]],"exo":[["e-cyclo-cours",["c-methodes-m1","c-methodes-m2","c-methodes-m3"]],["e-cyclo-1",["c-valeurs-1a","c-valeurs-1b","c-valeurs-1c","c-valeurs-1d","c-valeurs-1e","c-valeurs-1f"]],["e-cyclo-2",["c-equations-2a","c-equations-2b","c-equations-2c","c-equations-2d","c-equations-2e","c-equations-2f"]],["e-cyclo-3",["c-sommes-3a","c-sommes-3b"]],["e-cyclo-4",["c-sommes-4a","c-sommes-4b"]],["e-cyclo-5",["c-derivees-5a","c-derivees-5b","c-derivees-5c","c-derivees-5d","c-derivees-5e","c-derivees-5f"]],["e-cyclo-6",["c-identites-6"]],["e-cyclo-7",["c-graphes-7a","c-graphes-7b"]],["e-cyclo-8",["c-graphes-8"]],["e-cyclo-9",["c-identites-9a","c-identites-9b","c-identites-9c"]],["e-cyclo-10",["c-sommes-10"]],["e-cyclo-11",["c-arctan-11a","c-arctan-11b","c-arctan-11c"]],["e-cyclo-12",["c-limites-12a","c-limites-12b","c-limites-12c","c-limites-12d","c-limites-12e"]],["e-cyclo-13",["fig13","c-graphes-13a","c-graphes-13b","c-graphes-13c","c-graphes-13d","c-graphes-13e","c-graphes-13f","c-graphes-13g"]]]}}</script>
+<script type="application/json" id="layouts">{"complexes":{"theme":[["methodes",["methodes-m1","methodes-m2","methodes-m3","methodes-m4"]],["histo",["histo-h1","histo-h2"]],["egalite",["egalite-1a","egalite-1b","egalite-1c"]],["calculs",["calculs-2a","calculs-2b","calculs-2c","calculs-2d","calculs-2e","calculs-2f","calculs-2g","calculs-2h","calculs-2i","calculs-2j","calculs-2k","calculs-2l","ulb3-3"]],["binome",["binome-a","binome-b","binome-c","binome-d","binome-e","binome-f"]],["t-second",["complete-a","complete-b","complete-c","complete-d","complete-e","complete-f","complete-g","ulb-13"]],["t-param",["fpms-7","ulb-10","ulb-16"]],["t-bicarre",["complete-h","complete-i","complete-j","ulb-11","ulb-14"]],["t-poly",["alembert-1","alembert-2","alembert-3","alembert-4","alembert-5","alembert-6","fpms-8","ulb-9","ulb-12","ulb-15"]]],"exo":[["e-complexes-cours",["methodes-m1","methodes-m2","methodes-m3","methodes-m4"]],["e-complexes-intro",["histo-h1","histo-h2"]],["e-complexes-p5-1",["egalite-1a","egalite-1b","egalite-1c"]],["e-complexes-p5-2",["calculs-2a","calculs-2b","calculs-2c","calculs-2d","calculs-2e","calculs-2f","calculs-2g","calculs-2h","calculs-2i","calculs-2j","calculs-2k","calculs-2l"]],["e-complexes-p5-3",["ulb3-3"]],["e-complexes-p6",["binome-a","binome-b","binome-c","binome-d","binome-e","binome-f"]],["e-complexes-p7",["complete-a","complete-b","complete-c","complete-d","complete-e","complete-f","complete-g","complete-h","complete-i","complete-j"]],["e-complexes-p9-1",["alembert-1"]],["e-complexes-p9-2",["alembert-2"]],["e-complexes-p9-3",["alembert-3"]],["e-complexes-p9-4",["alembert-4"]],["e-complexes-p9-5",["alembert-5"]],["e-complexes-p9-6",["alembert-6"]],["e-complexes-p9-7",["fpms-7"]],["e-complexes-p9-8",["fpms-8"]],["e-complexes-p10-9",["ulb-9"]],["e-complexes-p10-10",["ulb-10"]],["e-complexes-p10-11",["ulb-11"]],["e-complexes-p10-12",["ulb-12"]],["e-complexes-p10-13",["ulb-13"]],["e-complexes-p10-14",["ulb-14"]],["e-complexes-p10-15",["ulb-15"]],["e-complexes-p10-16",["ulb-16"]]]},"cyclo":{"theme":[["c-methodes",["c-methodes-m1","c-methodes-m2","c-methodes-m3"]],["c-valeurs",["c-valeurs-1a","c-valeurs-1b","c-valeurs-1c","c-valeurs-1d","c-valeurs-1e","c-valeurs-1f"]],["c-equations",["c-equations-2a","c-equations-2b","c-equations-2c","c-equations-2d","c-equations-2e","c-equations-2f"]],["c-sommes",["c-sommes-3a","c-sommes-3b","c-sommes-4a","c-sommes-4b","c-sommes-10"]],["c-derivees",["c-derivees-5a","c-derivees-5b","c-derivees-5c","c-derivees-5d","c-derivees-5e","c-derivees-5f"]],["c-identites",["c-identites-6","c-identites-9a","c-identites-9b","c-identites-9c"]],["c-graphes",["c-graphes-7a","c-graphes-7b","c-graphes-8","fig13","c-graphes-13a","c-graphes-13b","c-graphes-13c","c-graphes-13d","c-graphes-13e","c-graphes-13f","c-graphes-13g"]],["c-arctan",["c-arctan-11a","c-arctan-11b","c-arctan-11c"]],["c-limites",["c-limites-12a","c-limites-12b","c-limites-12c","c-limites-12d","c-limites-12e"]]],"exo":[["e-cyclo-cours",["c-methodes-m1","c-methodes-m2","c-methodes-m3"]],["e-cyclo-1",["c-valeurs-1a","c-valeurs-1b","c-valeurs-1c","c-valeurs-1d","c-valeurs-1e","c-valeurs-1f"]],["e-cyclo-2",["c-equations-2a","c-equations-2b","c-equations-2c","c-equations-2d","c-equations-2e","c-equations-2f"]],["e-cyclo-3",["c-sommes-3a","c-sommes-3b"]],["e-cyclo-4",["c-sommes-4a","c-sommes-4b"]],["e-cyclo-5",["c-derivees-5a","c-derivees-5b","c-derivees-5c","c-derivees-5d","c-derivees-5e","c-derivees-5f"]],["e-cyclo-6",["c-identites-6"]],["e-cyclo-7",["c-graphes-7a","c-graphes-7b"]],["e-cyclo-8",["c-graphes-8"]],["e-cyclo-9",["c-identites-9a","c-identites-9b","c-identites-9c"]],["e-cyclo-10",["c-sommes-10"]],["e-cyclo-11",["c-arctan-11a","c-arctan-11b","c-arctan-11c"]],["e-cyclo-12",["c-limites-12a","c-limites-12b","c-limites-12c","c-limites-12d","c-limites-12e"]],["e-cyclo-13",["fig13","c-graphes-13a","c-graphes-13b","c-graphes-13c","c-graphes-13d","c-graphes-13e","c-graphes-13f","c-graphes-13g"]]]},"explog":{"theme":[["l-methode",["lg-ex4"]],["l-base",["lg-s1a","lg-s1b","lg-s1c","lg-s1d","lg-s1e","lg-s1f","lg-s1g","lg-s1h","lg-s1i","lg-s1j"]],["l-passlog",["lg-s2a","lg-s2b","lg-s2c","lg-s2d","lg-s2e","lg-s3a","lg-s3b","lg-s3c","lg-s3d","lg-s3e","lg-s3f"]],["l-log",["lg-s4a","lg-s4b","lg-s4c","lg-s4d","lg-s4e","lg-s4f","lg-s4g","lg-s4h","lg-s4i","lg-s4j"]],["l-prop",["lg-s5a","lg-s5b","lg-s5c","lg-s5d","lg-s5e","lg-s5f","lg-s5g","lg-s5h","lg-s5i","lg-s5j"]],["l-ineqexp",["lg-s6a","lg-s6b","lg-s6c","lg-s6d","lg-s6e","lg-s6f","lg-s6g"]],["l-ineqlog",["lg-s6h","lg-s6i","lg-s6j","lg-s6k","lg-s6l"]],["l-pb",["lg-p2","lg-p3","lg-p4","lg-p5a","lg-p5b","lg-p5c"]]],"exo":[["e-explog-ex4",["lg-ex4"]],["e-explog-s1",["lg-s1a","lg-s1b","lg-s1c","lg-s1d","lg-s1e","lg-s1f","lg-s1g","lg-s1h","lg-s1i","lg-s1j"]],["e-explog-s2",["lg-s2a","lg-s2b","lg-s2c","lg-s2d","lg-s2e"]],["e-explog-s3",["lg-s3a","lg-s3b","lg-s3c","lg-s3d","lg-s3e","lg-s3f"]],["e-explog-s4",["lg-s4a","lg-s4b","lg-s4c","lg-s4d","lg-s4e","lg-s4f","lg-s4g","lg-s4h","lg-s4i","lg-s4j"]],["e-explog-s5",["lg-s5a","lg-s5b","lg-s5c","lg-s5d","lg-s5e","lg-s5f","lg-s5g","lg-s5h","lg-s5i","lg-s5j"]],["e-explog-s6",["lg-s6a","lg-s6b","lg-s6c","lg-s6d","lg-s6e","lg-s6f","lg-s6g","lg-s6h","lg-s6i","lg-s6j","lg-s6k","lg-s6l"]],["e-explog-2",["lg-p2"]],["e-explog-3",["lg-p3"]],["e-explog-4",["lg-p4"]],["e-explog-5",["lg-p5a","lg-p5b","lg-p5c"]]]}}</script>
 
 <button type="button" class="fab" id="ws-open" aria-controls="ws">✎ Brouillon</button>
 <aside class="ws" id="ws" aria-label="Brouillon" hidden>
