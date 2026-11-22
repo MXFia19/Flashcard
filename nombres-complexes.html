@@ -326,6 +326,56 @@ footer.foot em{font-style:italic}
 .fm-sw[aria-pressed="true"]{background:color-mix(in srgb,var(--real) 12%, transparent); color:var(--real); font-weight:600}
 .fm-sw:focus-visible{outline:2px solid var(--imag); outline-offset:1px}
 .fm-set{display:flex; flex-direction:column; gap:10px}
+/* ---------- leçon interactive (cyclométriques) ---------- */
+.lesson{background:var(--surface); border:1px solid var(--rule); border-radius:var(--r); box-shadow:var(--shadow); padding:18px 20px 16px; margin-bottom:34px; scroll-margin-top:calc(env(safe-area-inset-top,0px) + 88px)}
+.ls-kick{font-family:"IBM Plex Mono",monospace; font-size:.71rem; letter-spacing:.12em; text-transform:uppercase; color:var(--real); display:block; margin-bottom:6px}
+.lesson h2{font-size:1.35rem; letter-spacing:-.01em}
+.ls-intro{margin:6px 0 0; color:var(--ink-2); font-size:.93rem; max-width:70ch}
+.ls-tabs{display:flex; flex-wrap:wrap; gap:6px; margin:14px 0 16px}
+.ls-tab{font:inherit; font-size:.8rem; border:1px solid var(--rule); background:var(--surface-2); color:var(--ink-2); border-radius:999px; padding:4px 11px; cursor:pointer}
+.ls-tab:hover{color:var(--ink)}
+.ls-tab[aria-selected="true"]{background:color-mix(in srgb,var(--real) 12%, transparent); border-color:color-mix(in srgb,var(--real) 45%, transparent); color:var(--real); font-weight:600}
+.ls-tab:focus-visible,.ls-sw:focus-visible,.ls-chip:focus-visible{outline:2px solid var(--imag); outline-offset:1px}
+.ls-step{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); gap:22px; align-items:start}
+@media (max-width:860px){ .ls-step{grid-template-columns:1fr; gap:14px} }
+.ls-text h3{font-size:1.08rem; margin:0 0 8px}
+.ls-text p{margin:0 0 10px; font-size:.95rem; color:var(--ink-2)}
+.ls-text ul{margin:0 0 10px; padding-left:20px; font-size:.95rem; color:var(--ink-2)}
+.ls-text li{margin-bottom:4px}
+.ls-keep{border-left:3px solid var(--imag); background:var(--surface-2); padding:8px 11px; border-radius:0 8px 8px 0; font-size:.92rem; color:var(--ink); margin:0 0 10px}
+.ls-fig{background:var(--surface-2); border:1px solid var(--rule-soft); border-radius:10px; padding:10px; min-width:0}
+.ls-fig svg{display:block; width:100%; height:auto; background:var(--surface); border-radius:6px}
+.ls-ctrl{display:flex; flex-wrap:wrap; gap:8px 12px; align-items:center; margin-top:10px; font-size:.84rem; color:var(--ink-2)}
+.ls-ctrl label{display:flex; align-items:center; gap:8px; flex:1 1 220px; min-width:0}
+.ls-ctrl input[type="range"]{flex:1 1 auto; min-width:0; accent-color:var(--imag)}
+.ls-sws{display:inline-flex; border:1px solid var(--rule); border-radius:var(--r); background:var(--surface); padding:3px}
+.ls-sw{font:inherit; font-size:.8rem; color:var(--ink-2); background:transparent; border:0; border-radius:7px; padding:4px 10px; cursor:pointer; white-space:nowrap}
+.ls-sw[aria-pressed="true"]{background:color-mix(in srgb,var(--real) 12%, transparent); color:var(--real); font-weight:600}
+.ls-chips{display:flex; flex-wrap:wrap; gap:5px; width:100%}
+.ls-chip{font:inherit; font-size:.76rem; padding:2px 9px; border-radius:999px; border:1px solid var(--rule); background:var(--surface); color:var(--ink-2); cursor:pointer}
+.ls-chip:hover{color:var(--imag); border-color:var(--imag)}
+.ls-read{margin:10px 2px 0; font-size:.92rem; line-height:1.5; color:var(--ink); min-height:3em; font-variant-numeric:tabular-nums}
+.ls-read b{color:var(--imag)}
+.ls-read .ok{color:var(--ok); font-weight:600}
+.ls-read .ko{color:var(--imag); font-weight:600}
+.ls-nav{display:flex; justify-content:space-between; align-items:center; gap:10px; margin-top:16px; padding-top:12px; border-top:1px solid var(--rule-soft)}
+.ls-pos{font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--ink-3)}
+.ls-resume{margin-top:16px; border:1px solid var(--rule); border-radius:10px; background:var(--surface-2)}
+.ls-resume > summary{cursor:pointer; font-weight:600; color:var(--real); padding:11px 14px; list-style-position:inside}
+.ls-resume[open] > summary{border-bottom:1px solid var(--rule-soft)}
+.ls-rbody{padding:4px 16px 14px}
+.ls-rbody h4{font-family:"IBM Plex Mono",monospace; font-size:.74rem; letter-spacing:.1em; text-transform:uppercase; color:var(--imag); margin:16px 0 6px; font-weight:500}
+.ls-rbody p,.ls-rbody li{font-size:.93rem; color:var(--ink-2)}
+.ls-rbody p{margin:0 0 8px}
+.ls-rbody ul{margin:0 0 8px; padding-left:20px}
+.cols > *{min-width:0}
+.lesson,.ls-resume{min-width:0; max-width:100%}
+.ls-tw{overflow-x:auto; margin:6px 0 10px; max-width:100%}
+.ls-tw table{border-collapse:collapse; font-size:.88rem; min-width:100%}
+.ls-tw th,.ls-tw td{border:1px solid var(--rule-soft); padding:5px 8px; text-align:left; vertical-align:top; background:var(--surface)}
+.ls-tw th{background:var(--surface-3); color:var(--ink); font-weight:600}
+@media print{ .lesson .ls-tabs,.lesson .ls-nav,.lesson .ls-ctrl{display:none} }
+
 .memo .memo-go{margin-left:6px; vertical-align:baseline}
 
 /* ---------- graphiques dans les exercices ---------- */
@@ -4333,7 +4383,7 @@ footer.foot em{font-style:italic}
     </div>
     <div class="memo">
       <h2>L’essentiel en huit lignes</h2>
-      <p class="sub">Les intervalles et les formules qui règlent tout le chapitre.</p>
+      <p class="sub">Les intervalles et les formules qui règlent tout le chapitre.<button type="button" class="btn-sm js-lesson memo-go">Leçon interactive ↓</button><button type="button" class="btn-sm js-formules memo-go" aria-controls="ws">Formulaire complet →</button></p>
       <dl>
         <div><dt>Trois réciproques</dt><dd>$\arcsin:[-1,1]\to\left[-\tfrac{\pi}{2},\tfrac{\pi}{2}\right]$, &nbsp;$\arccos:[-1,1]\to[0,\pi]$, &nbsp;$\arctan:\mathbb{R}\to\left]-\tfrac{\pi}{2},\tfrac{\pi}{2}\right[$.</dd></div>
         <div><dt>Définition</dt><dd>$y=\arcsin x \Leftrightarrow x=\sin y$ <em>et</em> $y\in\left[-\tfrac{\pi}{2},\tfrac{\pi}{2}\right]$ — l’intervalle fait partie de la définition.</dd></div>
@@ -4345,6 +4395,192 @@ footer.foot em{font-style:italic}
         <div><dt>Le piège</dt><dd>$\arcsin(\sin t)=t$ <strong>seulement si</strong> $t\in\left[-\tfrac{\pi}{2},\tfrac{\pi}{2}\right]$ ; $\arctan$ a deux asymptotes $y=\pm\dfrac{\pi}{2}$.</dd></div>
       </dl>
     </div>
+    <section class="lesson" id="lecon-cyclo" aria-labelledby="ls-title">
+      <span class="ls-kick">Leçon interactive · 6 étapes</span>
+      <h2 id="ls-title">Comprendre les fonctions cyclométriques</h2>
+      <p class="ls-intro">Manipulez chaque figure : faites glisser les curseurs, changez de fonction, cliquez sur les valeurs remarquables. Le résumé complet est juste en dessous.</p>
+      <div class="ls-tabs" role="tablist" aria-label="Étapes de la leçon"><button type="button" class="ls-tab" role="tab" id="ls-t1" aria-controls="ls-p1" aria-selected="true">1. Le problème</button><button type="button" class="ls-tab" role="tab" id="ls-t2" aria-controls="ls-p2" aria-selected="false">2. Restreindre puis retourner</button><button type="button" class="ls-tab" role="tab" id="ls-t3" aria-controls="ls-p3" aria-selected="false">3. Lire l’angle sur le cercle</button><button type="button" class="ls-tab" role="tab" id="ls-t4" aria-controls="ls-p4" aria-selected="false">4. Le piège</button><button type="button" class="ls-tab" role="tab" id="ls-t5" aria-controls="ls-p5" aria-selected="false">5. Le triangle de secours</button><button type="button" class="ls-tab" role="tab" id="ls-t6" aria-controls="ls-p6" aria-selected="false">6. Les dérivées</button></div>
+      <div class="ls-step" id="ls-p1" role="tabpanel" aria-labelledby="ls-t1">
+        <div class="ls-text">
+          <h3>1. Le problème : sin n’est pas injective</h3>
+          <p>Une fonction est <strong>injective</strong> si deux départs différents donnent toujours deux résultats différents. Alors on peut « remonter » du résultat vers le départ.</p>
+          <p>Ce n’est pas le cas de $\sin$ : bougez la droite horizontale $y=k$, elle coupe la courbe <strong>plusieurs fois</strong>. Si l’on vous dit « $\sin x=\frac12$ », impossible de savoir de quel $x$ on parle.</p>
+          <p>La solution : <strong>restreindre</strong> $\sin$ à $\left[-\frac{\pi}{2}\,;\frac{\pi}{2}\right]$, un intervalle où elle est strictement croissante. Cochez la case : il ne reste qu’une solution.</p>
+          <p class="ls-keep">Test de la droite horizontale : une fonction est injective si chaque droite horizontale coupe la courbe au plus une fois.</p>
+          <p><button type="button" class="btn-sm fm-go-inline" data-go="c-methodes-m1">S’entraîner : méthodes du cours →</button></p>
+        </div>
+        <div class="ls-fig">
+          <svg id="ls-s1" viewBox="0 0 360 230" role="img" aria-label="Le problème : sin n’est pas injective"></svg>
+          <div class="ls-ctrl">
+            <label>$k$ <input type="range" id="ls-k" min="-1" max="1" step="0.01" value="0.5" aria-label="Valeur de k"></label>
+            <label style="flex:0 0 auto"><input type="checkbox" id="ls-res"> Restreindre à [−π/2 ; π/2]</label>
+            <div class="ls-chips" data-target="k"></div>
+          </div>
+          <p class="ls-read" id="ls-s1-r" aria-live="polite"></p>
+        </div>
+      </div>
+      <div class="ls-step" id="ls-p2" role="tabpanel" aria-labelledby="ls-t2" hidden>
+        <div class="ls-text">
+          <h3>2. Restreindre puis retourner : le graphique de la réciproque</h3>
+          <p>Sur l’intervalle choisi, chaque valeur n’est atteinte qu’une fois : on peut définir la <strong>réciproque</strong>.</p>
+          <ul><li>$\sin$ sur $\left[-\frac{\pi}{2}\,;\frac{\pi}{2}\right]$ donne $\arcsin$ : $[-1\,;1]\to\left[-\frac{\pi}{2}\,;\frac{\pi}{2}\right]$</li>
+          <li>$\cos$ sur $[0\,;\pi]$ donne $\arccos$ : $[-1\,;1]\to[0\,;\pi]$</li>
+          <li>$\tan$ sur $\left]-\frac{\pi}{2}\,;\frac{\pi}{2}\right[$ donne $\arctan$ : $\mathbb{R}\to\left]-\frac{\pi}{2}\,;\frac{\pi}{2}\right[$</li></ul>
+          <p>Le graphique d’une réciproque est le <strong>symétrique</strong> de la fonction restreinte par rapport à la droite $y=x$ : chaque point $(x\,;y)$ devient $(y\,;x)$. Le domaine et l’image s’échangent.</p>
+          <p class="ls-keep">Lancez la symétrie : les asymptotes verticales de $\tan$ deviennent les asymptotes horizontales $y=\pm\frac{\pi}{2}$ de $\arctan$.</p>
+          <p><button type="button" class="btn-sm fm-go-inline" data-go="c-graphes-13a">S’entraîner : associer les graphiques →</button></p>
+        </div>
+        <div class="ls-fig">
+          <svg id="ls-s2" viewBox="0 0 360 230" role="img" aria-label="Restreindre puis retourner : le graphique de la réciproque"></svg>
+          <div class="ls-ctrl">
+            <div class="ls-sws" role="group" aria-label="Fonction"><button type="button" class="ls-sw" data-s="2" data-f="sin" aria-pressed="true">sin</button><button type="button" class="ls-sw" data-s="2" data-f="cos" aria-pressed="false">cos</button><button type="button" class="ls-sw" data-s="2" data-f="tan" aria-pressed="false">tan</button></div>
+            <button type="button" class="btn-sm" id="ls-play">▶ Refléter</button>
+            <label>symétrie <input type="range" id="ls-m" min="0" max="1" step="0.01" value="0" aria-label="Avancement de la symétrie"></label>
+          </div>
+          <p class="ls-read" id="ls-s2-r" aria-live="polite"></p>
+        </div>
+      </div>
+      <div class="ls-step" id="ls-p3" role="tabpanel" aria-labelledby="ls-t3" hidden>
+        <div class="ls-text">
+          <h3>3. Lire l’angle sur le cercle : arcsin, arccos, arctan</h3>
+          <p>$\arcsin x$ est <strong>l’angle dont le sinus vaut $x$</strong>, choisi sur l’arc vert. De même pour $\arccos$ et $\arctan$.</p>
+          <ul><li>$\arcsin$ : moitié droite du cercle, de $-\frac{\pi}{2}$ à $\frac{\pi}{2}$ ; on lit le sinus sur l’axe vertical.</li>
+          <li>$\arccos$ : moitié <strong>haute</strong>, de $0$ à $\pi$ ; on lit le cosinus sur l’axe horizontal.</li>
+          <li>$\arctan$ : moitié droite (bornes exclues) ; on lit la tangente sur la droite verticale qui touche le cercle.</li></ul>
+          <p class="ls-keep">Un nombre négatif donne un angle négatif pour $\arcsin$ et $\arctan$, mais un angle entre $\frac{\pi}{2}$ et $\pi$ pour $\arccos$ : $\arccos\left(-\frac12\right)=\frac{2\pi}{3}$.</p>
+          <p><button type="button" class="btn-sm fm-go-inline" data-go="c-valeurs-1a">S’entraîner : valeurs exactes →</button></p>
+        </div>
+        <div class="ls-fig">
+          <svg id="ls-s3" viewBox="0 0 360 230" role="img" aria-label="Lire l’angle sur le cercle : arcsin, arccos, arctan"></svg>
+          <div class="ls-ctrl">
+            <div class="ls-sws" role="group" aria-label="Fonction"><button type="button" class="ls-sw" data-s="3" data-f="asin" aria-pressed="true">arcsin</button><button type="button" class="ls-sw" data-s="3" data-f="acos" aria-pressed="false">arccos</button><button type="button" class="ls-sw" data-s="3" data-f="atan" aria-pressed="false">arctan</button></div>
+            <label>$x$ <input type="range" id="ls-x3" min="-1" max="1" step="0.01" value="0.5" aria-label="Valeur de x"></label>
+            <div class="ls-chips" data-target="x3"></div>
+          </div>
+          <p class="ls-read" id="ls-s3-r" aria-live="polite"></p>
+        </div>
+      </div>
+      <div class="ls-step" id="ls-p4" role="tabpanel" aria-labelledby="ls-t4" hidden>
+        <div class="ls-text">
+          <h3>4. Le piège : arcsin(sin t) n’est pas toujours t</h3>
+          <p>$\sin(\arcsin x)=x$ marche toujours. Mais dans l’autre sens, $\arcsin(\sin t)=t$ <strong>seulement si $t$ est dans $\left[-\frac{\pi}{2}\,;\frac{\pi}{2}\right]$</strong>.</p>
+          <p>Sinon, $\arcsin$ renvoie l’angle de son intervalle qui a <strong>le même sinus</strong>. La courbe en zigzag montre $\arcsin(\sin t)$ : elle ne suit la droite $y=t$ que dans la bande verte.</p>
+          <p class="ls-keep">Exemple : $\arcsin\left(\sin\frac{5\pi}{6}\right)=\arcsin\frac12=\frac{\pi}{6}$, et non $\frac{5\pi}{6}$.</p>
+          <p><button type="button" class="btn-sm fm-go-inline" data-go="c-valeurs-1d">S’entraîner : Exercice 1 · p. 7 →</button></p>
+        </div>
+        <div class="ls-fig">
+          <svg id="ls-s4" viewBox="0 0 360 230" role="img" aria-label="Le piège : arcsin(sin t) n’est pas toujours t"></svg>
+          <div class="ls-ctrl">
+            <div class="ls-sws" role="group" aria-label="Composition"><button type="button" class="ls-sw" data-s="4" data-f="sin" aria-pressed="true">arcsin(sin t)</button><button type="button" class="ls-sw" data-s="4" data-f="cos" aria-pressed="false">arccos(cos t)</button><button type="button" class="ls-sw" data-s="4" data-f="tan" aria-pressed="false">arctan(tan t)</button></div>
+            <label>$t$ <input type="range" id="ls-tv4" min="-24" max="24" step="1" value="10" aria-label="Angle t, par pas de π/12"></label>
+          </div>
+          <p class="ls-read" id="ls-s4-r" aria-live="polite"></p>
+        </div>
+      </div>
+      <div class="ls-step" id="ls-p5" role="tabpanel" aria-labelledby="ls-t5" hidden>
+        <div class="ls-text">
+          <h3>5. Le triangle de secours : cos(arcsin x) et compagnie</h3>
+          <p>Pour calculer $\cos(\arcsin x)$, on pose $t=\arcsin x$ : c’est un angle dont le sinus vaut $x$.</p>
+          <p>Dans un triangle rectangle d’hypoténuse 1, le côté opposé à $t$ mesure $x$ ; Pythagore donne le côté adjacent : $\sqrt{1-x^{2}}$. On lit alors tout :</p>
+          <ul><li>$\cos(\arcsin x)=\sqrt{1-x^{2}}$</li><li>$\tan(\arcsin x)=\dfrac{x}{\sqrt{1-x^{2}}}$</li></ul>
+          <p>L’autre angle aigu a pour cosinus $\frac{x}{1}=x$ : c’est $\arccos x$. Les deux angles aigus d’un triangle rectangle font $90°$, d’où :</p>
+          <p class="ls-keep">$\arcsin x+\arccos x=\dfrac{\pi}{2}$ — l’identité la plus utilisée du chapitre.</p>
+          <p><button type="button" class="btn-sm fm-go-inline" data-go="c-identites-9a">S’entraîner : identités à démontrer →</button></p>
+        </div>
+        <div class="ls-fig">
+          <svg id="ls-s5" viewBox="0 0 360 230" role="img" aria-label="Le triangle de secours : cos(arcsin x) et compagnie"></svg>
+          <div class="ls-ctrl">
+            <label>$x$ <input type="range" id="ls-x5" min="0.05" max="0.95" step="0.01" value="0.6" aria-label="Valeur de x"></label>
+            <div class="ls-chips" data-target="x5"></div>
+          </div>
+          <p class="ls-read" id="ls-s5-r" aria-live="polite"></p>
+        </div>
+      </div>
+      <div class="ls-step" id="ls-p6" role="tabpanel" aria-labelledby="ls-t6" hidden>
+        <div class="ls-text">
+          <h3>6. Les dérivées : pente de la tangente</h3>
+          <p>Les trois dérivées à connaître par cœur :</p>
+          <ul><li>$(\arcsin x)'=\dfrac{1}{\sqrt{1-x^{2}}}$</li><li>$(\arccos x)'=\dfrac{-1}{\sqrt{1-x^{2}}}$</li><li>$(\arctan x)'=\dfrac{1}{1+x^{2}}$</li></ul>
+          <p>Déplacez le point : la pente de la tangente est la valeur de la dérivée. Près de $\pm1$, celle de $\arcsin$ et $\arccos$ explose (tangente verticale) : elles ne sont dérivables que sur $]-1\,;1[$.</p>
+          <p class="ls-keep">Avec une composée : $(\arcsin u)'=\dfrac{u'}{\sqrt{1-u^{2}}}$ et $(\arctan u)'=\dfrac{u'}{1+u^{2}}$.</p>
+          <p><button type="button" class="btn-sm fm-go-inline" data-go="c-derivees-5a">S’entraîner : Exercice 5 · p. 7 →</button></p>
+        </div>
+        <div class="ls-fig">
+          <svg id="ls-s6" viewBox="0 0 360 230" role="img" aria-label="Les dérivées : pente de la tangente"></svg>
+          <div class="ls-ctrl">
+            <div class="ls-sws" role="group" aria-label="Fonction"><button type="button" class="ls-sw" data-s="6" data-f="asin" aria-pressed="true">arcsin</button><button type="button" class="ls-sw" data-s="6" data-f="acos" aria-pressed="false">arccos</button><button type="button" class="ls-sw" data-s="6" data-f="atan" aria-pressed="false">arctan</button></div>
+            <label>$x$ <input type="range" id="ls-x6" min="-0.99" max="0.99" step="0.01" value="0.5" aria-label="Abscisse du point"></label>
+          </div>
+          <p class="ls-read" id="ls-s6-r" aria-live="polite"></p>
+        </div>
+      </div>
+      <div class="ls-nav">
+        <button type="button" class="btn-sm" id="ls-prev">← Étape précédente</button>
+        <span class="ls-pos" id="ls-pos">1 / 6</span>
+        <button type="button" class="btn-sm" id="ls-next">Étape suivante →</button>
+      </div>
+      <details class="ls-resume" id="resume-cyclo">
+        <summary>Le résumé complet du chapitre</summary>
+        <div class="ls-rbody">
+          <h4>1. Pourquoi ces fonctions</h4>
+          <p>$\sin$, $\cos$ et $\tan$ ne sont pas injectives (une même valeur pour une infinité d’angles). On les restreint à un intervalle de stricte monotonie, puis on les inverse. $\arcsin x$ est l’angle <strong>de l’intervalle choisi</strong> dont le sinus vaut $x$.</p>
+          <h4>2. Les trois fonctions</h4>
+          <div class="ls-tw"><table><thead><tr><th></th><th>arcsin</th><th>arccos</th><th>arctan</th></tr></thead><tbody>
+            <tr><th>Définition</th><td>$y=\arcsin x\Leftrightarrow\sin y=x$ et $y\in\left[-\frac{\pi}{2};\frac{\pi}{2}\right]$</td><td>$y=\arccos x\Leftrightarrow\cos y=x$ et $y\in[0;\pi]$</td><td>$y=\arctan x\Leftrightarrow\tan y=x$ et $y\in\left]-\frac{\pi}{2};\frac{\pi}{2}\right[$</td></tr>
+            <tr><th>Domaine</th><td>$[-1;1]$</td><td>$[-1;1]$</td><td>$\mathbb{R}$</td></tr>
+            <tr><th>Image</th><td>$\left[-\frac{\pi}{2};\frac{\pi}{2}\right]$</td><td>$[0;\pi]$</td><td>$\left]-\frac{\pi}{2};\frac{\pi}{2}\right[$</td></tr>
+            <tr><th>Variations</th><td>croissante</td><td>décroissante</td><td>croissante</td></tr>
+            <tr><th>Parité</th><td>impaire</td><td>$\arccos(-x)=\pi-\arccos x$</td><td>impaire</td></tr>
+          </tbody></table></div>
+          <p><strong>L’intervalle d’arrivée fait partie de la définition</strong> : c’est lui qui tranche dans presque tous les exercices.</p>
+          <h4>3. Valeurs exactes</h4>
+          <div class="ls-tw"><table><thead><tr><th>$x$</th><th>$-1$</th><th>$-\frac{\sqrt3}{2}$</th><th>$-\frac{\sqrt2}{2}$</th><th>$-\frac12$</th><th>$0$</th><th>$\frac12$</th><th>$\frac{\sqrt2}{2}$</th><th>$\frac{\sqrt3}{2}$</th><th>$1$</th></tr></thead><tbody>
+            <tr><th>arcsin</th><td>$-\frac{\pi}{2}$</td><td>$-\frac{\pi}{3}$</td><td>$-\frac{\pi}{4}$</td><td>$-\frac{\pi}{6}$</td><td>$0$</td><td>$\frac{\pi}{6}$</td><td>$\frac{\pi}{4}$</td><td>$\frac{\pi}{3}$</td><td>$\frac{\pi}{2}$</td></tr>
+            <tr><th>arccos</th><td>$\pi$</td><td>$\frac{5\pi}{6}$</td><td>$\frac{3\pi}{4}$</td><td>$\frac{2\pi}{3}$</td><td>$\frac{\pi}{2}$</td><td>$\frac{\pi}{3}$</td><td>$\frac{\pi}{4}$</td><td>$\frac{\pi}{6}$</td><td>$0$</td></tr>
+          </tbody></table></div>
+          <div class="ls-tw"><table><thead><tr><th>$x$</th><th>$-\sqrt3$</th><th>$-1$</th><th>$-\frac{\sqrt3}{3}$</th><th>$0$</th><th>$\frac{\sqrt3}{3}$</th><th>$1$</th><th>$\sqrt3$</th></tr></thead><tbody>
+            <tr><th>arctan</th><td>$-\frac{\pi}{3}$</td><td>$-\frac{\pi}{4}$</td><td>$-\frac{\pi}{6}$</td><td>$0$</td><td>$\frac{\pi}{6}$</td><td>$\frac{\pi}{4}$</td><td>$\frac{\pi}{3}$</td></tr>
+          </tbody></table></div>
+          <h4>4. Compositions</h4>
+          <ul><li>Toujours vrai : $\sin(\arcsin x)=x$ et $\cos(\arccos x)=x$ sur $[-1;1]$, $\tan(\arctan x)=x$ sur $\mathbb{R}$.</li>
+          <li>$\arcsin(\sin t)=t$ <strong>seulement si</strong> $t\in\left[-\frac{\pi}{2};\frac{\pi}{2}\right]$ ; sinon on cherche l’angle de l’intervalle qui a le même sinus.</li>
+          <li>Exemples : $\arcsin\left(\sin\frac{5\pi}{6}\right)=\frac{\pi}{6}$ ; $\arccos\left(\cos\left(-\frac{\pi}{3}\right)\right)=\frac{\pi}{3}$ ; $\arctan\left(\tan\frac{3\pi}{4}\right)=-\frac{\pi}{4}$.</li></ul>
+          <h4>5. Le triangle de secours</h4>
+          <p>On pose $t=\arcsin x$ (donc $\sin t=x$), puis $\cos^{2}t=1-\sin^{2}t$, avec le signe donné par l’intervalle de $t$.</p>
+          <ul><li>$\cos(\arcsin x)=\sin(\arccos x)=\sqrt{1-x^{2}}$ &nbsp;·&nbsp; $\tan(\arcsin x)=\dfrac{x}{\sqrt{1-x^{2}}}$</li>
+          <li>$\cos(\arctan x)=\dfrac{1}{\sqrt{1+x^{2}}}$ &nbsp;·&nbsp; $\sin(\arctan x)=\dfrac{x}{\sqrt{1+x^{2}}}$</li>
+          <li>Exemple : $\cos\left(\arcsin\frac35\right)=\sqrt{1-\frac{9}{25}}=\frac45$.</li></ul>
+          <h4>6. Identités</h4>
+          <ul><li>$\arcsin x+\arccos x=\dfrac{\pi}{2}$ pour tout $x\in[-1;1]$.</li>
+          <li>$\arctan x+\arctan\dfrac1x=\dfrac{\pi}{2}$ si $x>0$, et $-\dfrac{\pi}{2}$ si $x\lt 0$.</li>
+          <li>Méthode : poser $t=\arcsin x$ (ou $\arctan x$), noter son intervalle, calculer $\sin$, $\cos$ ou $\tan$ de l’autre membre, puis conclure grâce à l’intervalle.</li></ul>
+          <h4>7. Équations</h4>
+          <ul><li>On applique la fonction directe aux deux membres, en vérifiant que le second membre est dans l’<strong>image</strong>.</li>
+          <li>$\arcsin(2x-1)=\frac{\pi}{6}$ donne $2x-1=\frac12$, donc $x=\frac34$. &nbsp;$\arccos x=-1$ : aucune solution.</li>
+          <li>Avec des $\arctan$ : on applique $\tan$ et $\tan(a+b)=\dfrac{\tan a+\tan b}{1-\tan a\tan b}$, puis on <strong>vérifie</strong> chaque solution.</li></ul>
+          <h4>8. Sommes sans calculatrice</h4>
+          <p>On pose $S$ = la somme, on calcule $\tan S$ (ou $\sin S$), puis on <strong>encadre</strong> $S$. Ex. : $\arctan\frac12+\arctan\frac13$ : $\tan S=\dfrac{\frac56}{1-\frac16}=1$ et $S\in]0;\pi[$, donc $S=\dfrac{\pi}{4}$.</p>
+          <h4>9. Dérivées</h4>
+          <div class="ls-tw"><table><thead><tr><th>Fonction</th><th>Dérivée</th><th>Composée</th></tr></thead><tbody>
+            <tr><td>$\arcsin x$</td><td>$\dfrac{1}{\sqrt{1-x^{2}}}$</td><td>$\dfrac{u'}{\sqrt{1-u^{2}}}$</td></tr>
+            <tr><td>$\arccos x$</td><td>$\dfrac{-1}{\sqrt{1-x^{2}}}$</td><td>$\dfrac{-u'}{\sqrt{1-u^{2}}}$</td></tr>
+            <tr><td>$\arctan x$</td><td>$\dfrac{1}{1+x^{2}}$</td><td>$\dfrac{u'}{1+u^{2}}$</td></tr>
+          </tbody></table></div>
+          <p>Domaine : $-1\leq u\leq1$ pour $\arcsin u$ et $\arccos u$ (dérivables seulement si $-1\lt u\lt 1$) ; aucune condition pour $\arctan u$. Ex. : $(\arctan x^{2})'=\dfrac{2x}{1+x^{4}}$.</p>
+          <h4>10. Limites</h4>
+          <ul><li>$\lim\limits_{x\to+\infty}\arctan x=\dfrac{\pi}{2}$ et $\lim\limits_{x\to-\infty}\arctan x=-\dfrac{\pi}{2}$ : asymptotes $y=\pm\dfrac{\pi}{2}$.</li>
+          <li>$\dfrac{\arcsin x}{x}\to1$ et $\dfrac{\arctan x}{x}\to1$ en 0 (L’Hospital). Composée : d’abord la limite de l’intérieur.</li></ul>
+          <h4>11. Graphiques</h4>
+          <ul><li>Symétrique de la fonction restreinte par rapport à $y=x$.</li>
+          <li>$\arcsin$ : de $\left(-1;-\frac{\pi}{2}\right)$ à $\left(1;\frac{\pi}{2}\right)$, symétrique par rapport à $O$, tangentes verticales aux bouts. $\arccos$ : de $(-1;\pi)$ à $(1;0)$, centre de symétrie $\left(0;\frac{\pi}{2}\right)$. $\arctan$ : sur $\mathbb{R}$, asymptotes $y=\pm\frac{\pi}{2}$.</li></ul>
+          <h4>12. Les pièges</h4>
+          <ul><li>$\arcsin(\sin t)=t$ seulement dans $\left[-\frac{\pi}{2};\frac{\pi}{2}\right]$.</li>
+          <li>$\arccos$ n’est jamais négatif : $\arccos\left(-\frac12\right)=\frac{2\pi}{3}$.</li>
+          <li>$\arcsin x\neq\dfrac{1}{\sin x}$ : c’est la <strong>réciproque</strong>, pas l’inverse.</li>
+          <li>Écrire le domaine ($-1\leq u\leq 1$) avant de dériver ; vérifier les solutions des équations avec $\arctan$.</li></ul>
+        </div>
+      </details>
+    </section>
     <div class="layout" data-mode="theme">
     <section class="sec" id="c-methodes">
       <div class="sec-head">
@@ -9045,7 +9281,7 @@ footer.foot em{font-style:italic}
     </div>
 
     <div class="pane" data-pane="formules" hidden>
-      <div class="sort fm-switch" role="group" aria-label="Formulaire"><button type="button" class="fm-sw" data-fm="complexes" aria-pressed="true">Nombres complexes</button><button type="button" class="fm-sw" data-fm="explog" aria-pressed="false">Exp. et log</button></div>
+      <div class="sort fm-switch" role="group" aria-label="Formulaire"><button type="button" class="fm-sw" data-fm="complexes" aria-pressed="true">Complexes</button><button type="button" class="fm-sw" data-fm="cyclo" aria-pressed="false">Cyclométriques</button><button type="button" class="fm-sw" data-fm="explog" aria-pressed="false">Exp. et log</button></div>
       <div class="fm-set" data-course="complexes">
       <div class="fm-head"><h3>Nombres complexes</h3><span class="hint">Formulaire complet · <span class="fm-star">★</span> hors cours</span></div>
       <section class="fm-grp">
@@ -9193,6 +9429,67 @@ footer.foot em{font-style:italic}
           <div class="fm-row"><dt>Bombelli</dt><dd>$x^{3}=15x+4$ fait apparaître $\sqrt{-121}$ et pourtant $x=4$, car $(2+i)^{3}=2+11i$ : c’est la naissance de $i=\sqrt{-1}$</dd></div>
         </dl>
         <button type="button" class="fm-go" data-go="histo-h2">S’entraîner : Introduction · p. 2 →</button>
+      </section>
+      </div>
+      <div class="fm-set" data-course="cyclo" hidden>
+      <div class="fm-head"><h3>Fonctions cyclométriques</h3><span class="hint">Formulaire complet</span></div>
+      <section class="fm-grp">
+        <h4>Définitions</h4>
+        <dl>
+          <div class="fm-row"><dt>Pourquoi</dt><dd>$\sin$, $\cos$, $\tan$ ne sont pas injectives : on les restreint à un intervalle de stricte monotonie</dd></div>
+          <div class="fm-row"><dt>arcsin</dt><dd>$y=\arcsin x\Leftrightarrow\sin y=x$ et $y\in\left[-\frac{\pi}{2};\frac{\pi}{2}\right]$ ; domaine $[-1;1]$</dd></div>
+          <div class="fm-row"><dt>arccos</dt><dd>$y=\arccos x\Leftrightarrow\cos y=x$ et $y\in[0;\pi]$ ; domaine $[-1;1]$</dd></div>
+          <div class="fm-row"><dt>arctan</dt><dd>$y=\arctan x\Leftrightarrow\tan y=x$ et $y\in\left]-\frac{\pi}{2};\frac{\pi}{2}\right[$ ; domaine $\mathbb{R}$</dd></div>
+          <div class="fm-row"><dt>Parité</dt><dd>$\arcsin$ et $\arctan$ impaires ; $\arccos(-x)=\pi-\arccos x$</dd></div>
+        </dl>
+        <button type="button" class="fm-go" data-go="c-methodes-m1">S’entraîner : méthodes du cours →</button>
+      </section>
+      <section class="fm-grp">
+        <h4>Valeurs exactes</h4>
+        <dl>
+          <div class="fm-row"><dt>arcsin</dt><dd>$\frac12\to\frac{\pi}{6}$, $\frac{\sqrt2}{2}\to\frac{\pi}{4}$, $\frac{\sqrt3}{2}\to\frac{\pi}{3}$, $1\to\frac{\pi}{2}$</dd></div>
+          <div class="fm-row"><dt>arccos</dt><dd>$\frac12\to\frac{\pi}{3}$, $\frac{\sqrt2}{2}\to\frac{\pi}{4}$, $\frac{\sqrt3}{2}\to\frac{\pi}{6}$, $0\to\frac{\pi}{2}$, $-\frac12\to\frac{2\pi}{3}$, $-1\to\pi$</dd></div>
+          <div class="fm-row"><dt>arctan</dt><dd>$\frac{\sqrt3}{3}\to\frac{\pi}{6}$, $1\to\frac{\pi}{4}$, $\sqrt3\to\frac{\pi}{3}$</dd></div>
+        </dl>
+        <button type="button" class="fm-go" data-go="c-valeurs-1a">S’entraîner : Exercice 1 · p. 7 →</button>
+      </section>
+      <section class="fm-grp">
+        <h4>Compositions</h4>
+        <dl>
+          <div class="fm-row"><dt>Toujours</dt><dd>$\sin(\arcsin x)=x$, $\cos(\arccos x)=x$, $\tan(\arctan x)=x$</dd></div>
+          <div class="fm-row"><dt>Attention</dt><dd>$\arcsin(\sin t)=t$ <strong>seulement si</strong> $t\in\left[-\frac{\pi}{2};\frac{\pi}{2}\right]$ — ex. $\arcsin\left(\sin\frac{5\pi}{6}\right)=\frac{\pi}{6}$</dd></div>
+          <div class="fm-row"><dt>Triangle de secours</dt><dd>$\cos(\arcsin x)=\sqrt{1-x^{2}}$ ; $\tan(\arcsin x)=\dfrac{x}{\sqrt{1-x^{2}}}$ ; $\cos(\arctan x)=\dfrac{1}{\sqrt{1+x^{2}}}$</dd></div>
+        </dl>
+        <button type="button" class="fm-go" data-go="c-valeurs-1d">S’entraîner : Exercice 1 · p. 7 →</button>
+      </section>
+      <section class="fm-grp">
+        <h4>Identités, équations, sommes</h4>
+        <dl>
+          <div class="fm-row"><dt>Clé</dt><dd>$\arcsin x+\arccos x=\dfrac{\pi}{2}$ ; &nbsp;$\arctan x+\arctan\frac1x=\pm\dfrac{\pi}{2}$ (signe de $x$)</dd></div>
+          <div class="fm-row"><dt>Équation</dt><dd>appliquer la fonction directe ; le second membre doit être dans l’image</dd></div>
+          <div class="fm-row"><dt>Somme</dt><dd>$\tan(a+b)=\dfrac{\tan a+\tan b}{1-\tan a\tan b}$, puis encadrer l’angle</dd></div>
+          <div class="fm-row"><dt>Méthode</dt><dd>poser $t=\arcsin x$, noter l’intervalle de $t$, travailler sur l’angle</dd></div>
+        </dl>
+        <button type="button" class="fm-go" data-go="c-sommes-3a">S’entraîner : Exercice 3 · p. 7 →</button>
+      </section>
+      <section class="fm-grp">
+        <h4>Dérivées</h4>
+        <dl>
+          <div class="fm-row"><dt>arcsin</dt><dd>$\dfrac{1}{\sqrt{1-x^{2}}}$ ; &nbsp;$(\arcsin u)'=\dfrac{u'}{\sqrt{1-u^{2}}}$</dd></div>
+          <div class="fm-row"><dt>arccos</dt><dd>$\dfrac{-1}{\sqrt{1-x^{2}}}$ ; &nbsp;$(\arccos u)'=\dfrac{-u'}{\sqrt{1-u^{2}}}$</dd></div>
+          <div class="fm-row"><dt>arctan</dt><dd>$\dfrac{1}{1+x^{2}}$ ; &nbsp;$(\arctan u)'=\dfrac{u'}{1+u^{2}}$</dd></div>
+          <div class="fm-row"><dt>Domaine</dt><dd>$-1\leq u\leq1$ pour arcsin et arccos (dérivables si $-1\lt u\lt 1$) ; rien pour arctan</dd></div>
+        </dl>
+        <button type="button" class="fm-go" data-go="c-derivees-5a">S’entraîner : Exercice 5 · p. 7 →</button>
+      </section>
+      <section class="fm-grp">
+        <h4>Limites et graphiques</h4>
+        <dl>
+          <div class="fm-row"><dt>arctan</dt><dd>$\to\pm\dfrac{\pi}{2}$ en $\pm\infty$ : asymptotes $y=\pm\dfrac{\pi}{2}$</dd></div>
+          <div class="fm-row"><dt>En 0</dt><dd>$\dfrac{\arcsin x}{x}\to1$ et $\dfrac{\arctan x}{x}\to1$</dd></div>
+          <div class="fm-row"><dt>Graphique</dt><dd>symétrique de la fonction restreinte par rapport à $y=x$</dd></div>
+        </dl>
+        <button type="button" class="fm-go" data-go="c-limites-12a">S’entraîner : Exercice 12 · p. 8 →</button>
       </section>
       </div>
       <div class="fm-set" data-course="explog" hidden>
@@ -10135,5 +10432,373 @@ footer.foot em{font-style:italic}
 </script>
 
 
+<script>
+/* ================= leçon interactive : fonctions cyclométriques ================= */
+(function(){
+  var L = document.getElementById('lecon-cyclo'); if (!L) return;
+  var PI = Math.PI, SQ2 = Math.SQRT2, SQ3 = Math.sqrt(3);
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $(id){ return document.getElementById(id); }
+  function fr(v, d){ if (d === undefined) d = 2; var s = (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d); if (/^-0[,.]?0*$/.test(s)) s = s.slice(1); return s.replace('-', '−').replace('.', ','); }
+  function gcd(a, b){ return b ? gcd(b, a % b) : a; }
+  function piFrac(v){
+    if (Math.abs(v) < 1e-9) return '0';
+    var dens = [1, 2, 3, 4, 6, 12];
+    for (var i = 0; i < dens.length; i++){
+      var d = dens[i], n = v / PI * d;
+      if (Math.abs(n - Math.round(n)) < 1e-7){
+        n = Math.round(n); var g = gcd(Math.abs(n), d), nn = Math.abs(n) / g, dd = d / g;
+        return (n < 0 ? '−' : '') + (nn === 1 ? '' : nn) + 'π' + (dd === 1 ? '' : '/' + dd);
+      }
+    }
+    return null;
+  }
+  var REM = [[0.5, '½'], [SQ2 / 2, '√2/2'], [SQ3 / 2, '√3/2'], [1, '1'], [SQ3 / 3, '√3/3'], [SQ3, '√3'], [0.6, '3/5'], [0.8, '4/5'], [0.75, '3/4'], [4 / 3, '4/3'], [2, '2']];
+  function exact(v){
+    if (Math.abs(v) < 1e-9) return '0';
+    for (var i = 0; i < REM.length; i++) if (Math.abs(Math.abs(v) - REM[i][0]) < 1e-9) return (v < 0 ? '−' : '') + REM[i][1];
+    return null;
+  }
+  function num(v, d){ return exact(v) || fr(v, d === undefined ? 2 : d); }
+  function ang(v){ var p = piFrac(v), deg = fr(v * 180 / PI, 1).replace(/,0$/, ''); return (p ? p + ' ≈ ' + fr(v, 3) : '≈ ' + fr(v, 3)) + ' rad (' + deg + '°)'; }
+  var uid = 0;
+  function plot(o){
+    var W = o.W || 360, H = o.H || 230, m = o.m || 14, id = 'lscp' + (++uid);
+    var X = function(x){ return m + (x - o.x0) / (o.x1 - o.x0) * (W - 2 * m); };
+    var Y = function(y){ return H - m - (y - o.y0) / (o.y1 - o.y0) * (H - 2 * m); };
+    var g = '';
+    (o.xg || []).forEach(function(v){ g += 'M' + X(v).toFixed(1) + ' ' + m + 'V' + (H - m) + ' '; });
+    (o.yg || []).forEach(function(v){ g += 'M' + m + ' ' + Y(v).toFixed(1) + 'H' + (W - m) + ' '; });
+    var h = '<defs><clipPath id="' + id + '"><rect x="' + m + '" y="' + m + '" width="' + (W - 2 * m) + '" height="' + (H - 2 * m) + '"/></clipPath></defs>';
+    h += '<path d="' + g + '" stroke="var(--rule)" stroke-width="1" opacity=".75" fill="none"/>';
+    var ax = '';
+    if (o.y0 < 0 && o.y1 > 0) ax += 'M' + (m - 2) + ' ' + Y(0).toFixed(1) + 'H' + (W - m + 6) + ' ';
+    if (o.x0 < 0 && o.x1 > 0) ax += 'M' + X(0).toFixed(1) + ' ' + (H - m + 2) + 'V' + (m - 6);
+    h += '<path d="' + ax + '" stroke="var(--ink-3)" stroke-width="1.3" fill="none"/>';
+    var t = '<g font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--ink-3)">';
+    var y0 = (o.y0 < 0 && o.y1 > 0) ? Y(0) : H - m;
+    var x0 = (o.x0 < 0 && o.x1 > 0) ? X(0) : m;
+    (o.xl || []).forEach(function(p){ t += '<text x="' + X(p[0]).toFixed(1) + '" y="' + (y0 + 13).toFixed(1) + '" text-anchor="middle">' + p[1] + '</text>'; });
+    (o.yl || []).forEach(function(p){ t += '<text x="' + (x0 - 5).toFixed(1) + '" y="' + (Y(p[0]) + 3.5).toFixed(1) + '" text-anchor="end">' + p[1] + '</text>'; });
+    h += t + '</g>';
+    function curve(pts){
+      var d = '', on = false, lim = (o.y1 - o.y0) * 3;
+      pts.forEach(function(p, i){
+        var ok = p && isFinite(p[0]) && isFinite(p[1]) && p[1] > o.y0 - lim && p[1] < o.y1 + lim;
+        if (ok && on && p.jump) ok = false;
+        if (!ok){ on = false; return; }
+        d += (on ? 'L' : 'M') + X(p[0]).toFixed(1) + ' ' + Y(p[1]).toFixed(1);
+        on = true;
+      });
+      return d;
+    }
+    function fn(f, a, b, n){ var pts = []; n = n || 300; for (var i = 0; i <= n; i++){ var x = a + (b - a) * i / n; pts.push([x, f(x)]); } return curve(pts); }
+    return { X: X, Y: Y, base: h, clip: 'clip-path="url(#' + id + ')"', curve: curve, fn: fn, W: W, H: H, m: m };
+  }
+  function txt(x, y, s, col, anchor, size){ return '<text x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" fill="' + (col || 'var(--ink-3)') + '" text-anchor="' + (anchor || 'start') + '" font-family="IBM Plex Mono, monospace" font-size="' + (size || 10.5) + '" paint-order="stroke" stroke="var(--surface)" stroke-width="3">' + s + '</text>'; }
+  function chips(target, list, cb){
+    var box = L.querySelector('.ls-chips[data-target="' + target + '"]'); if (!box) return;
+    box.innerHTML = list.map(function(c, i){ return '<button type="button" class="ls-chip" data-i="' + i + '">' + c[1] + '</button>'; }).join('');
+    box.onclick = function(ev){ var b = ev.target.closest('.ls-chip'); if (b) cb(list[+b.dataset.i][0]); };
+  }
+  var drawn = {};
+
+  /* ---------- étape 1 : sin n'est pas injective ---------- */
+  var s1 = { k: 0.5, r: false };
+  function draw1(){
+    var P = plot({ x0: -2 * PI - 0.45, x1: 2 * PI + 0.45, y0: -1.55, y1: 1.55, xg: [-2 * PI, -1.5 * PI, -PI, -PI / 2, PI / 2, PI, 1.5 * PI, 2 * PI], yg: [-1, 1],
+      xl: [[-2 * PI, '−2π'], [-PI, '−π'], [-PI / 2, '−π/2'], [PI / 2, 'π/2'], [PI, 'π'], [2 * PI, '2π']], yl: [[1, '1'], [-1, '−1']] });
+    var h = P.base, k = s1.k;
+    if (s1.r) h += '<rect x="' + P.X(-PI / 2).toFixed(1) + '" y="' + P.m + '" width="' + (P.X(PI / 2) - P.X(-PI / 2)).toFixed(1) + '" height="' + (P.H - 2 * P.m) + '" fill="var(--ok)" opacity=".1"/>';
+    h += '<g ' + P.clip + '>';
+    h += '<path d="' + P.fn(Math.sin, -2 * PI - 0.45, 2 * PI + 0.45, 400) + '" stroke="var(--imag)" stroke-width="2.2" fill="none" opacity="' + (s1.r ? '.22' : '1') + '"/>';
+    if (s1.r) h += '<path d="' + P.fn(Math.sin, -PI / 2, PI / 2, 120) + '" stroke="var(--imag)" stroke-width="2.8" fill="none"/>';
+    h += '<path d="M' + P.m + ' ' + P.Y(k).toFixed(1) + 'H' + (P.W - P.m) + '" stroke="var(--real)" stroke-width="1.5" stroke-dasharray="6 4"/>';
+    var a = Math.asin(k), sols = [];
+    for (var n = -2; n <= 2; n++) [a + 2 * n * PI, PI - a + 2 * n * PI].forEach(function(x){ if (x >= -2 * PI - 1e-9 && x <= 2 * PI + 1e-9 && !sols.some(function(y){ return Math.abs(y - x) < 1e-6; })) sols.push(x); });
+    if (s1.r) sols = [a];
+    sols.forEach(function(x){ h += '<circle cx="' + P.X(x).toFixed(1) + '" cy="' + P.Y(k).toFixed(1) + '" r="4.2" fill="var(--real)" stroke="var(--surface)" stroke-width="1.5"/>'; });
+    h += '</g>' + txt(P.W - P.m - 2, P.Y(k) - 6, 'y = ' + num(k), 'var(--real)', 'end');
+    $('ls-s1').innerHTML = h;
+    var K = num(k);
+    $('ls-s1-r').innerHTML = s1.r
+      ? 'Sur [−π/2 ; π/2], <b>une seule solution</b> : x = ' + ang(a) + '. On peut remonter : <b>arcsin(' + K + ') = ' + (piFrac(a) || fr(a, 3)) + '</b>.'
+      : 'La droite y = ' + K + ' coupe la courbe en <b>' + sols.length + ' point' + (sols.length > 1 ? 's' : '') + '</b> sur ce dessin, et en une infinité sur ℝ : <span class="ko">sin n’est pas injective</span>.';
+  }
+  function init1(){
+    var k = $('ls-k'), r = $('ls-res');
+    k.addEventListener('input', function(){ s1.k = +k.value; draw1(); });
+    r.addEventListener('change', function(){ s1.r = r.checked; draw1(); });
+    chips('k', [[-1, '−1'], [-SQ3 / 2, '−√3/2'], [-SQ2 / 2, '−√2/2'], [-0.5, '−½'], [0, '0'], [0.5, '½'], [SQ2 / 2, '√2/2'], [SQ3 / 2, '√3/2'], [1, '1']], function(v){ s1.k = v; k.value = v; draw1(); });
+  }
+
+  /* ---------- étape 2 : restreindre puis retourner ---------- */
+  var F2 = {
+    sin: { f: Math.sin, a: -PI / 2, b: PI / 2, inv: 'arcsin', dom: '[−1 ; 1]', img: '[−π/2 ; π/2]', I: '[−π/2 ; π/2]' },
+    cos: { f: Math.cos, a: 0, b: PI, inv: 'arccos', dom: '[−1 ; 1]', img: '[0 ; π]', I: '[0 ; π]' },
+    tan: { f: Math.tan, a: -PI / 2 + 0.002, b: PI / 2 - 0.002, inv: 'arctan', dom: 'ℝ', img: ']−π/2 ; π/2[', I: ']−π/2 ; π/2[' }
+  };
+  var s2 = { f: 'sin', m: 0 };
+  function draw2(){
+    var F = F2[s2.f], m = s2.m, r = [-2.3, 3.6];
+    var P = plot({ W: 330, H: 330, x0: r[0], x1: r[1], y0: r[0], y1: r[1], xg: [-2, -1, 1, 2, 3], yg: [-2, -1, 1, 2, 3],
+      xl: [[-PI / 2, '−π/2'], [1, '1'], [PI / 2, 'π/2'], [PI, 'π']], yl: [[-PI / 2, '−π/2'], [1, '1'], [PI / 2, 'π/2'], [PI, 'π']] });
+    var h = P.base + '<g ' + P.clip + '>';
+    h += '<path d="M' + P.X(r[0]).toFixed(1) + ' ' + P.Y(r[0]).toFixed(1) + 'L' + P.X(r[1]).toFixed(1) + ' ' + P.Y(r[1]).toFixed(1) + '" stroke="var(--ink-3)" stroke-width="1.2" stroke-dasharray="5 4"/>';
+    if (s2.f === 'tan'){
+      [-PI / 2, PI / 2].forEach(function(v){
+        h += '<path d="M' + P.X(v).toFixed(1) + ' ' + P.m + 'V' + (P.H - P.m) + '" stroke="var(--real)" stroke-width="1.2" stroke-dasharray="4 4" opacity="' + (1 - m).toFixed(2) + '"/>';
+        h += '<path d="M' + P.m + ' ' + P.Y(v).toFixed(1) + 'H' + (P.W - P.m) + '" stroke="var(--real)" stroke-width="1.2" stroke-dasharray="4 4" opacity="' + m.toFixed(2) + '"/>';
+      });
+    }
+    h += '<path d="' + P.fn(F.f, r[0], r[1], 500).replace(/L[^ML]*(?=M)/g, function(x){ return x; }) + '" stroke="var(--ink-3)" stroke-width="1.4" fill="none" opacity="' + (0.35 * (1 - m)).toFixed(2) + '"/>';
+    var pts = [], pre = [];
+    for (var i = 0; i <= 400; i++){
+      var x = F.a + (F.b - F.a) * i / 400, y = F.f(x);
+      if (Math.abs(y) > 60) { pts.push(null); pre.push(null); continue; }
+      pre.push([x, y]);
+      pts.push([(1 - m) * x + m * y, (1 - m) * y + m * x]);
+    }
+    if (m > 0.02) h += '<path d="' + P.curve(pre) + '" stroke="var(--real)" stroke-width="1.6" fill="none" stroke-dasharray="5 4" opacity=".55"/>';
+    h += '<path d="' + P.curve(pts) + '" stroke="var(--imag)" stroke-width="2.8" fill="none"/>';
+    h += '</g>' + txt(P.X(2.6), P.Y(2.6) + 16, 'y = x', 'var(--ink-3)', 'start');
+    var lab = m < 0.5 ? s2.f + ' restreinte' : F.inv;
+    h += txt(P.m + 4, P.m + 14, lab, 'var(--imag)', 'start', 12);
+    $('ls-s2').innerHTML = h;
+    $('ls-s2-r').innerHTML = m < 0.02
+      ? s2.f + ' restreinte à ' + F.I + ' : chaque valeur n’est atteinte qu’<b>une fois</b>. Lancez la symétrie par rapport à y = x.'
+      : (m > 0.98
+        ? 'Voici <b>' + F.inv + '</b> : domaine <b>' + F.dom + '</b>, image <b>' + F.img + '</b>. Le domaine et l’image de ' + s2.f + ' restreinte se sont échangés.'
+        : 'Symétrie en cours : chaque point (x ; y) devient (y ; x)…');
+  }
+  var anim = null;
+  function init2(){
+    var mm = $('ls-m'), play = $('ls-play');
+    mm.addEventListener('input', function(){ if (anim) cancelAnimationFrame(anim); s2.m = +mm.value; draw2(); });
+    play.addEventListener('click', function(){
+      if (anim) cancelAnimationFrame(anim);
+      var from = s2.m, to = from > 0.5 ? 0 : 1, t0 = null, dur = reduce ? 1 : 1400;
+      play.textContent = to ? '◀ Revenir' : '▶ Refléter';
+      function tick(ts){
+        if (t0 === null) t0 = ts;
+        var u = Math.min(1, (ts - t0) / dur), e = u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2;
+        s2.m = from + (to - from) * e; mm.value = s2.m; draw2();
+        if (u < 1) anim = requestAnimationFrame(tick); else anim = null;
+      }
+      anim = requestAnimationFrame(tick);
+    });
+  }
+
+  /* ---------- étape 3 : le cercle ---------- */
+  var s3 = { f: 'asin', x: 0.5 };
+  var CH3 = {
+    asin: [[-1, '−1'], [-SQ3 / 2, '−√3/2'], [-SQ2 / 2, '−√2/2'], [-0.5, '−½'], [0, '0'], [0.5, '½'], [SQ2 / 2, '√2/2'], [SQ3 / 2, '√3/2'], [1, '1']],
+    atan: [[-SQ3, '−√3'], [-1, '−1'], [-SQ3 / 3, '−√3/3'], [0, '0'], [SQ3 / 3, '√3/3'], [1, '1'], [SQ3, '√3']]
+  };
+  CH3.acos = CH3.asin;
+  function arcPath(cx, cy, r, a1, a2){
+    var x1 = cx + r * Math.cos(a1), y1 = cy - r * Math.sin(a1), x2 = cx + r * Math.cos(a2), y2 = cy - r * Math.sin(a2);
+    var large = Math.abs(a2 - a1) > PI ? 1 : 0, sweep = a2 > a1 ? 0 : 1;
+    return 'M' + x1.toFixed(1) + ' ' + y1.toFixed(1) + 'A' + r + ' ' + r + ' 0 ' + large + ' ' + sweep + ' ' + x2.toFixed(1) + ' ' + y2.toFixed(1);
+  }
+  function draw3(){
+    var f = s3.f, x = s3.x, W = 360, H = 300, cx = f === 'atan' ? 150 : 180, cy = 150, R = f === 'atan' ? 62 : 108;
+    var h = '<path d="M14 ' + cy + 'H' + (W - 10) + 'M' + cx + ' ' + (H - 8) + 'V8" stroke="var(--ink-3)" stroke-width="1.3" fill="none"/>';
+    h += '<circle cx="' + cx + '" cy="' + cy + '" r="' + R + '" fill="none" stroke="var(--ink-3)" stroke-width="1.2"/>';
+    var a1 = f === 'acos' ? 0 : -PI / 2, a2 = f === 'acos' ? PI : PI / 2;
+    h += '<path d="' + arcPath(cx, cy, R, a1, a2) + '" stroke="var(--ok)" stroke-width="6" opacity=".45" fill="none" stroke-linecap="round"/>';
+    if (f === 'atan') [a1, a2].forEach(function(a){ h += '<circle cx="' + (cx + R * Math.cos(a)).toFixed(1) + '" cy="' + (cy - R * Math.sin(a)).toFixed(1) + '" r="4" fill="var(--surface)" stroke="var(--ok)" stroke-width="2"/>'; });
+    var th = f === 'asin' ? Math.asin(x) : f === 'acos' ? Math.acos(x) : Math.atan(x);
+    var Mx = cx + R * Math.cos(th), My = cy - R * Math.sin(th);
+    if (Math.abs(th) > 1e-6) h += '<path d="' + arcPath(cx, cy, 26, 0, th) + '" stroke="var(--imag)" stroke-width="2" fill="none"/>';
+    if (f === 'asin'){
+      h += '<path d="M' + Mx.toFixed(1) + ' ' + My.toFixed(1) + 'H' + cx + '" stroke="var(--real)" stroke-width="1.4" stroke-dasharray="4 3"/>';
+      h += '<path d="M' + cx + ' ' + cy + 'V' + My.toFixed(1) + '" stroke="var(--real)" stroke-width="3.5" opacity=".8"/>';
+      h += txt(cx - 6, My + 4, 'sin = ' + num(x), 'var(--real)', 'end');
+      h += txt(cx + 6, 16, 'axe des sinus', 'var(--ink-3)', 'start', 9.5);
+    } else if (f === 'acos'){
+      h += '<path d="M' + Mx.toFixed(1) + ' ' + My.toFixed(1) + 'V' + cy + '" stroke="var(--real)" stroke-width="1.4" stroke-dasharray="4 3"/>';
+      h += '<path d="M' + cx + ' ' + cy + 'H' + Mx.toFixed(1) + '" stroke="var(--real)" stroke-width="3.5" opacity=".8"/>';
+      h += txt(Mx, cy + 16, 'cos = ' + num(x), 'var(--real)', 'middle');
+      h += txt(W - 12, cy - 6, 'axe des cosinus', 'var(--ink-3)', 'end', 9.5);
+    } else {
+      var Tx = cx + R, Ty = cy - R * x;
+      h += '<path d="M' + Tx + ' 10V' + (H - 10) + '" stroke="var(--ink-3)" stroke-width="1.2"/>';
+      h += '<path d="M' + cx + ' ' + cy + 'L' + Tx + ' ' + Ty.toFixed(1) + '" stroke="var(--imag)" stroke-width="1.2" stroke-dasharray="4 3"/>';
+      h += '<path d="M' + Tx + ' ' + cy + 'V' + Ty.toFixed(1) + '" stroke="var(--real)" stroke-width="3.5" opacity=".8"/>';
+      h += '<circle cx="' + Tx + '" cy="' + Ty.toFixed(1) + '" r="4" fill="var(--real)"/>';
+      h += txt(Tx + 8, Ty + 4, 'tan = ' + num(x), 'var(--real)', 'start');
+      h += txt(Tx + 6, 18, 'axe des tangentes', 'var(--ink-3)', 'start', 9.5);
+    }
+    h += '<path d="M' + cx + ' ' + cy + 'L' + Mx.toFixed(1) + ' ' + My.toFixed(1) + '" stroke="var(--imag)" stroke-width="2.2"/>';
+    h += '<circle cx="' + Mx.toFixed(1) + '" cy="' + My.toFixed(1) + '" r="4.5" fill="var(--imag)"/>';
+    var lx = cx + 40 * Math.cos(th / 2), ly = cy - 40 * Math.sin(th / 2);
+    h += txt(lx, ly + 4, piFrac(th) || fr(th, 2), 'var(--imag)', 'middle', 11);
+    $('ls-s3').setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    $('ls-s3').innerHTML = h;
+    var name = { asin: 'arcsin', acos: 'arccos', atan: 'arctan' }[f], what = { asin: 'le sinus', acos: 'le cosinus', atan: 'la tangente' }[f];
+    $('ls-s3-r').innerHTML = '<b>' + name + '(' + num(x) + ') = ' + ang(th) + '</b> : c’est l’angle de l’arc vert dont ' + what + ' vaut ' + num(x) + '.';
+  }
+  function init3(){
+    var sl = $('ls-x3');
+    sl.addEventListener('input', function(){ s3.x = +sl.value; draw3(); });
+    L.querySelectorAll('.ls-sw[data-s="3"]').forEach(function(b){ b.addEventListener('click', function(){
+      s3.f = b.dataset.f; L.querySelectorAll('.ls-sw[data-s="3"]').forEach(function(c){ c.setAttribute('aria-pressed', c === b ? 'true' : 'false'); });
+      var lim = s3.f === 'atan' ? 2 : 1; sl.min = -lim; sl.max = lim; s3.x = Math.max(-lim, Math.min(lim, s3.x)); sl.value = s3.x;
+      chips('x3', CH3[s3.f], function(v){ s3.x = v; sl.value = v; draw3(); }); draw3();
+    }); });
+    chips('x3', CH3.asin, function(v){ s3.x = v; sl.value = v; draw3(); });
+  }
+
+  /* ---------- étape 4 : le piège ---------- */
+  var s4 = { f: 'sin', k: 10 };
+  var F4 = {
+    sin: { d: Math.sin, inv: Math.asin, n: 'sin', ni: 'arcsin', a: -PI / 2, b: PI / 2, I: '[−π/2 ; π/2]', same: 'le même sinus' },
+    cos: { d: Math.cos, inv: Math.acos, n: 'cos', ni: 'arccos', a: 0, b: PI, I: '[0 ; π]', same: 'le même cosinus' },
+    tan: { d: Math.tan, inv: Math.atan, n: 'tan', ni: 'arctan', a: -PI / 2, b: PI / 2, I: ']−π/2 ; π/2[', same: 'la même tangente' }
+  };
+  function comp(F, t){ if (F.n === 'tan' && Math.abs(Math.cos(t)) < 1e-9) return NaN; var v = F.d(t); if (F.n !== 'tan') v = Math.max(-1, Math.min(1, v)); return F.inv(v); }
+  function draw4(){
+    var F = F4[s4.f], t = s4.k * PI / 12;
+    var P = plot({ x0: -2 * PI - 0.3, x1: 2 * PI + 0.3, y0: -2.1, y1: 3.7, xg: [-2 * PI, -1.5 * PI, -PI, -PI / 2, PI / 2, PI, 1.5 * PI, 2 * PI], yg: [-PI / 2, PI / 2, PI],
+      xl: [[-2 * PI, '−2π'], [-PI, '−π'], [PI, 'π'], [2 * PI, '2π']], yl: [[-PI / 2, '−π/2'], [PI / 2, 'π/2'], [PI, 'π']] });
+    var h = P.base;
+    h += '<rect x="' + P.X(F.a).toFixed(1) + '" y="' + P.m + '" width="' + (P.X(F.b) - P.X(F.a)).toFixed(1) + '" height="' + (P.H - 2 * P.m) + '" fill="var(--ok)" opacity=".12"/>';
+    h += '<g ' + P.clip + '>';
+    h += '<path d="M' + P.X(-2.1).toFixed(1) + ' ' + P.Y(-2.1).toFixed(1) + 'L' + P.X(3.7).toFixed(1) + ' ' + P.Y(3.7).toFixed(1) + '" stroke="var(--ink-3)" stroke-width="1.2" stroke-dasharray="5 4"/>';
+    var pts = [], prev = null;
+    for (var i = 0; i <= 800; i++){
+      var x = -2 * PI - 0.3 + (4 * PI + 0.6) * i / 800, y = comp(F, x), p = [x, y];
+      if (prev !== null && isFinite(y) && Math.abs(y - prev) > 1) p.jump = true;
+      pts.push(p); prev = isFinite(y) ? y : null;
+    }
+    h += '<path d="' + P.curve(pts) + '" stroke="var(--imag)" stroke-width="2.4" fill="none"/>';
+    var y = comp(F, t);
+    h += '<path d="M' + P.X(t).toFixed(1) + ' ' + P.m + 'V' + (P.H - P.m) + '" stroke="var(--real)" stroke-width="1.2" stroke-dasharray="3 3"/>';
+    if (isFinite(y)) h += '<circle cx="' + P.X(t).toFixed(1) + '" cy="' + P.Y(y).toFixed(1) + '" r="5" fill="var(--imag)" stroke="var(--surface)" stroke-width="1.5"/>';
+    if (t > -2.1 && t < 3.7) h += '<circle cx="' + P.X(t).toFixed(1) + '" cy="' + P.Y(t).toFixed(1) + '" r="3.5" fill="none" stroke="var(--ink-3)" stroke-width="1.5"/>';
+    h += '</g>' + txt(P.X(3.2), P.Y(3.3) - 4, 'y = t', 'var(--ink-3)', 'end');
+    $('ls-s4').innerHTML = h;
+    var T = piFrac(t), r;
+    if (!isFinite(y)) r = 't = ' + T + ' : <b>tan t n’existe pas</b> (cos t = 0), donc arctan(tan t) non plus.';
+    else {
+      var inside = F.n === 'tan' ? (t > F.a + 1e-9 && t < F.b - 1e-9) : (t >= F.a - 1e-9 && t <= F.b + 1e-9);
+      r = 't = <b>' + T + '</b> · ' + F.n + ' t = ' + num(F.d(t), 3) + ' · <b>' + F.ni + '(' + F.n + ' t) = ' + (piFrac(y) || fr(y, 3)) + '</b><br>';
+      r += inside ? '<span class="ok">t est dans ' + F.I + ' : on retrouve t. ✓</span>'
+                  : '<span class="ko">t n’est pas dans ' + F.I + '</span> : ' + F.ni + ' renvoie l’angle de cet intervalle qui a ' + F.same + ', ici ' + (piFrac(y) || fr(y, 3)) + ' ≠ ' + T + '.';
+    }
+    $('ls-s4-r').innerHTML = r;
+  }
+  function init4(){
+    var sl = $('ls-tv4');
+    sl.addEventListener('input', function(){ s4.k = +sl.value; draw4(); });
+    L.querySelectorAll('.ls-sw[data-s="4"]').forEach(function(b){ b.addEventListener('click', function(){
+      s4.f = b.dataset.f; L.querySelectorAll('.ls-sw[data-s="4"]').forEach(function(c){ c.setAttribute('aria-pressed', c === b ? 'true' : 'false'); }); draw4();
+    }); });
+  }
+
+  /* ---------- étape 5 : triangle de secours ---------- */
+  var s5 = { x: 0.6 };
+  function draw5(){
+    var x = s5.x, c = Math.sqrt(1 - x * x), S = 190, Ax = 34, Ay = 214;
+    var Bx = Ax + S * c, By = Ay, Cx = Bx, Cy = Ay - S * x, t = Math.asin(x);
+    var h = '<polygon points="' + Ax + ',' + Ay + ' ' + Bx.toFixed(1) + ',' + By + ' ' + Cx.toFixed(1) + ',' + Cy.toFixed(1) + '" fill="var(--imag)" fill-opacity=".07" stroke="var(--ink-2)" stroke-width="1.6"/>';
+    h += '<path d="M' + (Bx - 11).toFixed(1) + ' ' + By + 'V' + (By - 11) + 'H' + Bx.toFixed(1) + '" stroke="var(--ink-3)" stroke-width="1.2" fill="none"/>';
+    h += '<path d="M' + Bx.toFixed(1) + ' ' + By + 'V' + Cy.toFixed(1) + '" stroke="var(--real)" stroke-width="3"/>';
+    h += '<path d="M' + Ax + ' ' + Ay + 'H' + Bx.toFixed(1) + '" stroke="var(--ok)" stroke-width="3"/>';
+    h += '<path d="' + arcPath(Ax, Ay, 36, 0, t) + '" stroke="var(--imag)" stroke-width="2" fill="none"/>';
+    var aC1 = -PI / 2, aC2 = -PI + t;
+    h += '<path d="' + arcPath(Cx, Cy, 26, aC2, aC1) + '" stroke="var(--real)" stroke-width="2" fill="none"/>';
+    h += txt(Ax + 44, Ay - 8, 't = arcsin x', 'var(--imag)', 'start', 10.5);
+    h += txt(Cx - 8, Cy + 40, 'arccos x', 'var(--real)', 'end', 10.5);
+    h += txt((Ax + Cx) / 2 - 8, (Ay + Cy) / 2 - 6, '1', 'var(--ink)', 'end', 12);
+    h += txt(Bx + 7, (By + Cy) / 2 + 4, 'x = ' + num(x), 'var(--real)', 'start', 11);
+    h += txt((Ax + Bx) / 2, Ay + 15, '√(1 − x²) = ' + num(c), 'var(--ok)', 'middle', 11);
+    $('ls-s5').innerHTML = h;
+    var d1 = t * 180 / PI, d2 = 90 - d1;
+    $('ls-s5-r').innerHTML = 't = arcsin(' + num(x) + ') ≈ ' + fr(d1, 1) + '° · <b>cos t = √(1 − x²) = ' + num(c) + '</b> · <b>tan t = x/√(1 − x²) = ' + num(x / c) + '</b><br>'
+      + 'arcsin x + arccos x ≈ ' + fr(d1, 1) + '° + ' + fr(d2, 1) + '° = <b>90° = π/2</b>';
+  }
+  function init5(){
+    var sl = $('ls-x5');
+    sl.addEventListener('input', function(){ s5.x = +sl.value; draw5(); });
+    chips('x5', [[0.5, '½'], [0.6, '3/5'], [SQ2 / 2, '√2/2'], [0.8, '4/5'], [SQ3 / 2, '√3/2']], function(v){ s5.x = v; sl.value = v; draw5(); });
+  }
+
+  /* ---------- étape 6 : dérivées ---------- */
+  var s6 = { f: 'asin', x: 0.5 };
+  var F6 = {
+    asin: { f: Math.asin, d: function(x){ return 1 / Math.sqrt(1 - x * x); }, n: 'arcsin', fx: '1/√(1 − x²)', r: [-1.45, 1.45, -1.95, 1.95], lim: 0.99 },
+    acos: { f: Math.acos, d: function(x){ return -1 / Math.sqrt(1 - x * x); }, n: 'arccos', fx: '−1/√(1 − x²)', r: [-1.45, 1.45, -0.45, 3.55], lim: 0.99 },
+    atan: { f: Math.atan, d: function(x){ return 1 / (1 + x * x); }, n: 'arctan', fx: '1/(1 + x²)', r: [-5, 5, -2.1, 2.1], lim: 4.5 }
+  };
+  function draw6(){
+    var F = F6[s6.f], r = F.r, x = s6.x;
+    var P = plot({ x0: r[0], x1: r[1], y0: r[2], y1: r[3], xg: s6.f === 'atan' ? [-4, -3, -2, -1, 1, 2, 3, 4] : [-1, -0.5, 0.5, 1], yg: s6.f === 'acos' ? [PI / 2, PI] : [-PI / 2, PI / 2],
+      xl: s6.f === 'atan' ? [[-4, '−4'], [-2, '−2'], [2, '2'], [4, '4']] : [[-1, '−1'], [1, '1']], yl: s6.f === 'acos' ? [[PI / 2, 'π/2'], [PI, 'π']] : [[-PI / 2, '−π/2'], [PI / 2, 'π/2']] });
+    var h = P.base + '<g ' + P.clip + '>';
+    if (s6.f === 'atan') [-PI / 2, PI / 2].forEach(function(v){ h += '<path d="M' + P.m + ' ' + P.Y(v).toFixed(1) + 'H' + (P.W - P.m) + '" stroke="var(--real)" stroke-width="1.2" stroke-dasharray="5 4"/>'; });
+    var a = s6.f === 'atan' ? r[0] : -1, b = s6.f === 'atan' ? r[1] : 1;
+    h += '<path d="' + P.fn(F.f, a, b, 400) + '" stroke="var(--imag)" stroke-width="2.4" fill="none"/>';
+    var y = F.f(x), sl = F.d(x);
+    var dx = P.X(1) - P.X(0), dy = P.Y(sl) - P.Y(0), len = Math.sqrt(dx * dx + dy * dy), ux = dx / len * 80, uy = dy / len * 80;
+    var px = P.X(x), py = P.Y(y);
+    h += '<path d="M' + (px - ux).toFixed(1) + ' ' + (py - uy).toFixed(1) + 'L' + (px + ux).toFixed(1) + ' ' + (py + uy).toFixed(1) + '" stroke="var(--real)" stroke-width="2" />';
+    h += '<circle cx="' + px.toFixed(1) + '" cy="' + py.toFixed(1) + '" r="5" fill="var(--imag)" stroke="var(--surface)" stroke-width="1.5"/>';
+    if (s6.f !== 'atan') [[-1, F.f(-1)], [1, F.f(1)]].forEach(function(p){ h += '<circle cx="' + P.X(p[0]).toFixed(1) + '" cy="' + P.Y(p[1]).toFixed(1) + '" r="3.5" fill="var(--imag)"/>'; });
+    h += '</g>' + txt(P.m + 4, P.m + 14, 'y = ' + F.n + ' x', 'var(--imag)', 'start', 12);
+    $('ls-s6').innerHTML = h;
+    var X = num(x);
+    var r6 = 'En x = ' + X + ' : <b>(' + F.n + ' x)′ = ' + F.fx + ' = ' + num(sl) + '</b> — c’est la pente de la tangente (en bleu).';
+    if (s6.f !== 'atan' && Math.abs(x) > 0.9) r6 += '<br>Près de ±1, la pente devient énorme : <b>tangente verticale</b> aux extrémités.';
+    if (s6.f === 'atan' && Math.abs(x) > 3) r6 += '<br>Loin de 0, la pente tend vers 0 : la courbe s’aplatit contre l’asymptote y = ' + (x > 0 ? 'π/2' : '−π/2') + '.';
+    $('ls-s6-r').innerHTML = r6;
+  }
+  function init6(){
+    var sl = $('ls-x6');
+    sl.addEventListener('input', function(){ s6.x = +sl.value; draw6(); });
+    L.querySelectorAll('.ls-sw[data-s="6"]').forEach(function(b){ b.addEventListener('click', function(){
+      s6.f = b.dataset.f; L.querySelectorAll('.ls-sw[data-s="6"]').forEach(function(c){ c.setAttribute('aria-pressed', c === b ? 'true' : 'false'); });
+      var lim = F6[s6.f].lim; sl.min = -lim; sl.max = lim; sl.step = s6.f === 'atan' ? 0.05 : 0.01; s6.x = Math.max(-lim, Math.min(lim, s6.x)); sl.value = s6.x; draw6();
+    }); });
+  }
+
+  /* ---------- étape 2 : bascule de fonction ---------- */
+  L.querySelectorAll('.ls-sw[data-s="2"]').forEach(function(b){ b.addEventListener('click', function(){
+    s2.f = b.dataset.f; L.querySelectorAll('.ls-sw[data-s="2"]').forEach(function(c){ c.setAttribute('aria-pressed', c === b ? 'true' : 'false'); }); draw2();
+  }); });
+
+  var DRAW = [draw1, draw2, draw3, draw4, draw5, draw6];
+  [init1, init2, init3, init4, init5, init6].forEach(function(f){ f(); });
+
+  /* ---------- navigation entre étapes ---------- */
+  var tabs = L.querySelectorAll('.ls-tab'), cur = 0, KEY = 'nc6-lesson-cyclo';
+  function show(i){
+    cur = Math.max(0, Math.min(tabs.length - 1, i));
+    tabs.forEach(function(t, j){ t.setAttribute('aria-selected', j === cur ? 'true' : 'false'); t.tabIndex = j === cur ? 0 : -1; $('ls-p' + (j + 1)).hidden = j !== cur; });
+    $('ls-pos').textContent = (cur + 1) + ' / ' + tabs.length;
+    $('ls-prev').disabled = cur === 0; $('ls-next').disabled = cur === tabs.length - 1;
+    DRAW[cur]();
+    try { localStorage.setItem(KEY, String(cur)); } catch(e){}
+  }
+  tabs.forEach(function(t, j){
+    t.addEventListener('click', function(){ show(j); });
+    t.addEventListener('keydown', function(ev){
+      if (ev.key === 'ArrowRight' || ev.key === 'ArrowLeft'){ ev.preventDefault(); show(cur + (ev.key === 'ArrowRight' ? 1 : -1)); tabs[cur].focus(); }
+    });
+  });
+  $('ls-prev').addEventListener('click', function(){ show(cur - 1); });
+  $('ls-next').addEventListener('click', function(){ show(cur + 1); });
+  L.addEventListener('click', function(ev){
+    var g = ev.target.closest('.fm-go-inline'); if (g && window.nc6Show) window.nc6Show(g.dataset.go);
+  });
+  document.addEventListener('click', function(ev){
+    if (ev.target.closest('.js-lesson')) L.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  });
+  var saved = 0; try { saved = +localStorage.getItem(KEY) || 0; } catch(e){}
+  show(saved);
+})();
+
+</script>
 </body>
 </html>
